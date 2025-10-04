@@ -1,12 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from "@/components/landing/Header";
+import { Hero } from "@/components/landing/Hero";
+import { Features } from "@/components/landing/Features";
+import { BeforeAfter } from "@/components/landing/BeforeAfter";
+import { Pricing } from "@/components/landing/Pricing";
+import { FAQ } from "@/components/landing/FAQ";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen">
+      <Header />
+      <Hero />
+      <Features />
+      <div id="examples">
+        <BeforeAfter />
       </div>
+      <div id="pricing">
+        <Pricing />
+      </div>
+      <div id="faq">
+        <FAQ />
+      </div>
+      
+      {/* Footer */}
+      <footer className="border-t py-12 bg-secondary/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center text-muted-foreground">
+            <p>&copy; 2025 The Landry Method. All rights reserved.</p>
+            <p className="mt-2 text-sm">AI-powered virtual staging for real estate professionals</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
