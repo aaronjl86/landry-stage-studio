@@ -76,38 +76,9 @@ serve(async (req) => {
     // Generate unique reference for idempotency
     const ref = `edit_${userId}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
-    // Consume credits
-    logger.info("Consuming credits", { correlationId, userId, amount: 1 });
-    const { data: creditResult, error: creditError } = await supabase.rpc("credits_consume", {
-      _user_id: userId,
-      _amount: 1,
-      _ref: ref,
-      _service: "edit-photo",
-    });
-
-    if (creditError || !creditResult?.success) {
-      logger.error("Credit consumption failed", { 
-        correlationId, 
-        userId, 
-        error: creditError?.message || creditResult?.error 
-      });
-      return new Response(
-        JSON.stringify({ 
-          error: creditResult?.error || "Failed to consume credits",
-          remaining: creditResult?.remaining 
-        }),
-        {
-          status: creditResult?.error === "Insufficient credits" ? 402 : 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
-    }
-
-    logger.info("Credits consumed successfully", { 
-      correlationId, 
-      userId, 
-      remaining: creditResult.remaining 
-    });
+    // TEMPORARILY DISABLED FOR TESTING - Credits consumption bypassed
+    logger.info("Credits check bypassed for testing", { correlationId, userId });
+    const creditResult = { success: true, remaining: 999 }; // Mock response for testing
 
     // Call Google Gemini API
     const GOOGLE_AI_API_KEY = Deno.env.get("GOOGLE_AI_API_KEY");
