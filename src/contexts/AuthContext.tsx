@@ -23,13 +23,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!user) return;
 
     const { data, error } = await supabase
-      .from("user_credits")
-      .select("credits")
-      .eq("user_id", user.id)
+      .from("profiles")
+      .select("quota, used")
+      .eq("id", user.id)
       .single();
 
     if (!error && data) {
-      setCredits(data.credits);
+      setCredits(data.quota - data.used);
     }
   };
 

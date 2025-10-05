@@ -1,1 +1,10 @@
 project_id = "lcwhbgfcyzefwnoblkkd"
+
+[functions.edit-photo]
+verify_jwt = true
+
+[functions.generate-image]
+verify_jwt = true
+
+[functions.get-credit-balance]
+verify_jwt = true
