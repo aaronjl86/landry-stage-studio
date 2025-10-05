@@ -57,7 +57,7 @@ export const Pricing = () => {
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {plans.map(plan => <Card key={plan.name} className={`relative transition-all hover:shadow-xl ${plan.popular ? 'border-primary shadow-[var(--shadow-card)] scale-105' : ''}`}>
               {plan.popular && <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                  <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold whitespace-nowrap">Most Popular</span>
                 </div>}
               
               <CardHeader>
