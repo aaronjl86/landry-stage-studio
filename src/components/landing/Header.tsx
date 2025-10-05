@@ -9,7 +9,7 @@ export const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src={tlmLogo} alt="The Landry Method" className="h-8" />
+            <img src={tlmLogo} alt="The Landry Method" className="h-12" />
           </Link>
 
           {/* Navigation */}
