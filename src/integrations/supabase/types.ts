@@ -14,27 +14,128 @@ export type Database = {
   }
   public: {
     Tables: {
+      credit_transactions: {
+        Row: {
+          amount: number
+          balance_after: number
+          created_at: string | null
+          id: string
+          metadata: Json | null
+          operation: string
+          ref: string | null
+          service: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          balance_after: number
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          operation: string
+          ref?: string | null
+          service?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          balance_after?: number
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          operation?: string
+          ref?: string | null
+          service?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "credit_transactions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
+          avatar_url: string | null
           created_at: string | null
           email: string
           full_name: string | null
           id: string
+          period_end: string | null
+          period_start: string | null
+          plan_code: string | null
+          quota: number | null
+          stripe_subscription_id: string | null
+          subscription_status: string | null
           updated_at: string | null
+          used: number | null
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string | null
           email: string
           full_name?: string | null
           id: string
+          period_end?: string | null
+          period_start?: string | null
+          plan_code?: string | null
+          quota?: number | null
+          stripe_subscription_id?: string | null
+          subscription_status?: string | null
           updated_at?: string | null
+          used?: number | null
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string | null
           email?: string
           full_name?: string | null
           id?: string
+          period_end?: string | null
+          period_start?: string | null
+          plan_code?: string | null
+          quota?: number | null
+          stripe_subscription_id?: string | null
+          subscription_status?: string | null
           updated_at?: string | null
+          used?: number | null
+        }
+        Relationships: []
+      }
+      subscription_plans: {
+        Row: {
+          created_at: string | null
+          credits_per_month: number
+          description: string | null
+          id: string
+          name: string
+          plan_code: string
+          price_id: string | null
+          product_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          credits_per_month: number
+          description?: string | null
+          id?: string
+          name: string
+          plan_code: string
+          price_id?: string | null
+          product_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          credits_per_month?: number
+          description?: string | null
+          id?: string
+          name?: string
+          plan_code?: string
+          price_id?: string | null
+          product_id?: string | null
         }
         Relationships: []
       }
@@ -157,7 +258,31 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      credits_consume: {
+        Args: {
+          _amount: number
+          _period_end?: string
+          _period_start?: string
+          _ref?: string
+          _service?: string
+          _user_id: string
+        }
+        Returns: Json
+      }
+      credits_provision: {
+        Args: { _plan_code: string; _user_id?: string }
+        Returns: Json
+      }
+      credits_refund: {
+        Args: {
+          _amount: number
+          _original_ref?: string
+          _ref?: string
+          _service?: string
+          _user_id: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
