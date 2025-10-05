@@ -44,7 +44,7 @@ export default function Dashboard() {
               <span>The Landry Method</span>
             </Link>
 
-            <NavigationMenu className="hidden md:flex">
+            <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
