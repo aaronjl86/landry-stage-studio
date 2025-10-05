@@ -2,17 +2,17 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const TEMPLATE_PROMPTS = {
   "lighting-enhancement":
-    "Enhance the lighting and brightness of this real estate photo. Balance the exposure, brighten dark areas, and create even, natural lighting throughout. Maintain the authentic look of the space while making it more appealing.",
+    "Enhance ONLY the lighting and brightness. DO NOT change walls, floors, ceiling, windows, doors, or room structure. Balance the exposure, brighten dark areas, and create even, natural lighting throughout. Preserve the exact room architecture.",
   decluttering:
-    "Remove personal items, clutter, and distracting objects from this real estate photo while keeping essential furniture and architectural features. Make the space look clean, organized, and ready for showing.",
+    "Remove ONLY personal items, clutter, and distracting objects. DO NOT change walls, floors, ceiling, windows, doors, or room structure. Keep all architectural features exactly as they are. Make the space look clean and organized.",
   "virtual-staging":
-    "Add tasteful modern furniture and decor to this empty room. Include appropriate pieces like sofas, tables, lamps, and wall art that complement the space. Make it look lived-in but show-ready.",
+    "Add ONLY furniture and decor to this room. DO NOT change walls, floors, ceiling, windows, doors, or any room structure. Preserve the exact architecture. Add tasteful modern furniture like sofas, tables, lamps, and wall art that complement the existing space.",
   "sky-replacement":
-    "Replace the cloudy or dull sky in this real estate exterior photo with a beautiful clear blue sky with some white clouds. Maintain realistic lighting and colors.",
+    "Replace ONLY the sky in this exterior photo with a beautiful clear blue sky with white clouds. DO NOT change the building, landscaping, or any other elements. Maintain realistic lighting and colors.",
   "day-to-dusk":
-    "Transform this daytime real estate photo into a stunning twilight shot. Add warm interior lighting glowing from windows, create a golden hour sky, and enhance the overall ambiance for maximum curb appeal.",
+    "Transform ONLY the lighting to twilight. DO NOT change the building structure, landscaping, or architectural features. Add warm interior lighting glowing from windows and create a golden hour sky. Preserve all structural elements.",
   "lawn-enhancement":
-    "Enhance the landscaping in this real estate photo. Make the grass look lush and green, trim overgrown areas, and improve the overall appearance of the yard to look well-maintained and inviting.",
+    "Enhance ONLY the landscaping and grass. DO NOT change the building, hardscaping, or structural elements. Make the grass look lush and green, trim overgrown areas. Keep all architecture exactly as is.",
 };
 
 export enum RealEstateTemplates {

@@ -88,6 +88,9 @@ serve(async (req) => {
 
     logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
 
+    // Add instruction to preserve room structure
+    const enhancedPrompt = `CRITICAL: Preserve the room's structure completely - do NOT modify walls, floors, ceiling, windows, doors, or any architectural features. Only modify the furniture, decor, and contents as specified below.\n\n${prompt}`;
+
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
       {
@@ -104,7 +107,7 @@ serve(async (req) => {
               content: [
                 {
                   type: "text",
-                  text: prompt
+                  text: enhancedPrompt
                 },
                 {
                   type: "image_url",
