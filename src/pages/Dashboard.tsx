@@ -2,9 +2,16 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, Image } from "lucide-react";
+import { LogOut, Image, Sparkles, ImageIcon, CreditCard } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AIPhotoEditor } from "@/components/ai/AIPhotoEditor";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 export default function Dashboard() {
   const { user, signOut, loading } = useAuth();
@@ -36,6 +43,29 @@ export default function Dashboard() {
               </div>
               <span>The Landry Method</span>
             </Link>
+
+            <NavigationMenu className="hidden md:flex">
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    Editor
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <ImageIcon className="h-4 w-4 mr-2" />
+                    Gallery
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <CreditCard className="h-4 w-4 mr-2" />
+                    Credits
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
 
             <Button variant="ghost" size="sm" onClick={signOut}>
               <LogOut className="h-4 w-4 mr-2" />
