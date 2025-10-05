@@ -6,8 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Image } from "lucide-react";
 import { Link } from "react-router-dom";
+import tlmLogo from "@/assets/tlm-logo-white.png";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -56,11 +56,8 @@ export default function Auth() {
     <div className="min-h-screen flex items-center justify-center bg-[image:var(--gradient-subtle)] p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <Link to="/" className="flex items-center justify-center gap-2 font-bold text-2xl mb-8">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <Image className="h-6 w-6 text-white" />
-          </div>
-          <span>The Landry Method</span>
+        <Link to="/" className="flex items-center justify-center mb-8">
+          <img src={tlmLogo} alt="The Landry Method" className="h-12" />
         </Link>
 
         <Card>

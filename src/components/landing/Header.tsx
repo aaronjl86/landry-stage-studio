@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Image } from "lucide-react";
+import tlmLogo from "@/assets/tlm-logo-white.png";
 
 export const Header = () => {
   return (
@@ -8,11 +8,8 @@ export const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 font-bold text-xl">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Image className="h-5 w-5 text-white" />
-            </div>
-            <span>The Landry Method</span>
+          <Link to="/" className="flex items-center">
+            <img src={tlmLogo} alt="The Landry Method" className="h-8" />
           </Link>
 
           {/* Navigation */}
