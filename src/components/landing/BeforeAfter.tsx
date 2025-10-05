@@ -1,6 +1,6 @@
 import { useState } from "react";
-import emptyRoom from "@/assets/demo-empty-room.jpg";
-import stagedBedroom from "@/assets/demo-bedroom.jpg";
+import emptyRoom from "@/assets/before-empty-room.jpg";
+import stagedRoom from "@/assets/after-staged-room.jpg";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -41,7 +41,7 @@ export const BeforeAfter = () => {
               }}
             >
               <img
-                src={stagedBedroom}
+                src={stagedRoom}
                 alt="Professionally staged room"
                 className="w-full h-full object-cover"
               />
