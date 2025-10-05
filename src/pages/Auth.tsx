@@ -54,7 +54,43 @@ export default function Auth() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[image:var(--gradient-subtle)] p-4">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-4xl">
+        {/* Logo Size Comparison */}
+        <div className="mb-8 p-6 bg-card rounded-lg border">
+          <h3 className="text-lg font-semibold mb-4 text-center">Logo Size Comparison</h3>
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-16">h-8</span>
+              <img src={tlmLogo} alt="The Landry Method" className="h-8" />
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-16">h-10</span>
+              <img src={tlmLogo} alt="The Landry Method" className="h-10" />
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-16">h-12</span>
+              <img src={tlmLogo} alt="The Landry Method" className="h-12" />
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-16">h-16</span>
+              <img src={tlmLogo} alt="The Landry Method" className="h-16" />
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-16">h-20</span>
+              <img src={tlmLogo} alt="The Landry Method" className="h-20" />
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-16">h-24</span>
+              <img src={tlmLogo} alt="The Landry Method" className="h-24" />
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-16">h-32</span>
+              <img src={tlmLogo} alt="The Landry Method" className="h-32" />
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-md mx-auto">
         {/* Logo */}
         <Link to="/" className="flex items-center justify-center mb-8">
           <img src={tlmLogo} alt="The Landry Method" className="h-12" />
@@ -129,6 +165,7 @@ export default function Auth() {
             </CardFooter>
           </form>
         </Card>
+        </div>
       </div>
     </div>
   );
