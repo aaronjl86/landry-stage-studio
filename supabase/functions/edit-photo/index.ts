@@ -80,62 +80,53 @@ serve(async (req) => {
     logger.info("Credits check bypassed for testing", { correlationId, userId });
     const creditResult = { success: true, remaining: 999 }; // Mock response for testing
 
-    // Call Google Gemini API
-    const GOOGLE_AI_API_KEY = Deno.env.get("GOOGLE_AI_API_KEY");
-    if (!GOOGLE_AI_API_KEY) {
-      throw new Error("GOOGLE_AI_API_KEY not configured");
+    // Call Lovable AI Gateway with Gemini image editing model
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    if (!LOVABLE_API_KEY) {
+      throw new Error("LOVABLE_API_KEY not configured");
     }
 
-    logger.info("Calling Google Gemini API", { correlationId, userId });
+    logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
 
-    const geminiResponse = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent",
+    const aiResponse = await fetch(
+      "https://ai.gateway.lovable.dev/v1/chat/completions",
       {
         method: "POST",
         headers: {
+          "Authorization": `Bearer ${LOVABLE_API_KEY}`,
           "Content-Type": "application/json",
-          "x-goog-api-key": GOOGLE_AI_API_KEY,
         },
         body: JSON.stringify({
-          contents: [
+          model: "google/gemini-2.5-flash-image-preview",
+          messages: [
             {
-              parts: [
-                { text: prompt },
+              role: "user",
+              content: [
                 {
-                  inline_data: {
-                    mime_type: mimeType,
-                    data: imageData.replace(/^data:image\/\w+;base64,/, ""),
-                  },
+                  type: "text",
+                  text: prompt
                 },
-              ],
-            },
+                {
+                  type: "image_url",
+                  image_url: {
+                    url: `data:${mimeType};base64,${imageData.replace(/^data:image\/\w+;base64,/, "")}`
+                  }
+                }
+              ]
+            }
           ],
-          generationConfig: {
-            temperature: 0.4,
-            topK: 32,
-            topP: 1,
-            maxOutputTokens: 4096,
-          },
+          modalities: ["image", "text"]
         }),
       }
     );
 
-    if (!geminiResponse.ok) {
-      const errorText = await geminiResponse.text();
-      logger.error("Gemini API error", { 
+    if (!aiResponse.ok) {
+      const errorText = await aiResponse.text();
+      logger.error("AI Gateway error", { 
         correlationId, 
         userId, 
-        status: geminiResponse.status, 
+        status: aiResponse.status, 
         error: errorText 
-      });
-
-      // Refund credits on API failure
-      await supabase.rpc("credits_refund", {
-        _user_id: userId,
-        _amount: 1,
-        _ref: `refund_${ref}`,
-        _original_ref: ref,
-        _service: "edit-photo",
       });
 
       return new Response(
@@ -147,23 +138,13 @@ serve(async (req) => {
       );
     }
 
-    const geminiData = await geminiResponse.json();
+    const aiData = await aiResponse.json();
     
     // Extract image from response
-    const candidate = geminiData.candidates?.[0];
-    const content = candidate?.content?.parts?.[0];
+    const editedImageUrl = aiData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
     
-    if (!content?.inline_data?.data) {
-      logger.error("No image in Gemini response", { correlationId, userId });
-      
-      // Refund credits
-      await supabase.rpc("credits_refund", {
-        _user_id: userId,
-        _amount: 1,
-        _ref: `refund_${ref}`,
-        _original_ref: ref,
-        _service: "edit-photo",
-      });
+    if (!editedImageUrl) {
+      logger.error("No image in AI response", { correlationId, userId, response: JSON.stringify(aiData) });
 
       return new Response(
         JSON.stringify({ error: "No edited image returned from AI" }),
@@ -174,15 +155,12 @@ serve(async (req) => {
       );
     }
 
-    const editedImageData = content.inline_data.data;
-    const editedMimeType = content.inline_data.mime_type || "image/png";
-
     logger.info("Image editing successful", { correlationId, userId });
 
     return new Response(
       JSON.stringify({
         success: true,
-        editedImageData: `data:${editedMimeType};base64,${editedImageData}`,
+        editedImageData: editedImageUrl,
         remaining: creditResult.remaining,
       }),
       {
