@@ -28,7 +28,7 @@ export const BeforeAfter = () => {
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
             {/* Before Image */}
             <img
-              src={emptyRoom}
+              src={stagedRoom}
               alt="Empty room before staging"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -41,7 +41,7 @@ export const BeforeAfter = () => {
               }}
             >
               <img
-                src={stagedRoom}
+                src={emptyRoom}
                 alt="Professionally staged room"
                 className="w-full h-full object-cover"
               />
