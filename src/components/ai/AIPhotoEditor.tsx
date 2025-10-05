@@ -17,7 +17,7 @@ export function AIPhotoEditor() {
   const [selectedTemplates, setSelectedTemplates] = useState<string[]>([]);
   const [customPrompt, setCustomPrompt] = useState("");
   
-  const { jobs, isProcessing, submitBatchEdit, clearJobs } = useAIProcessor();
+  const { jobs, isProcessing, submitBatchEdit, clearJobs, redoJob } = useAIProcessor();
   const { credits, refreshCredits } = useAuth();
 
   const handleProcess = async () => {
@@ -127,8 +127,8 @@ export function AIPhotoEditor() {
 
       {jobs.length > 0 && (
         <>
-          <ProcessingQueue jobs={jobs} />
-          <BeforeAfterComparison jobs={jobs} />
+      <ProcessingQueue jobs={jobs} />
+      <BeforeAfterComparison jobs={jobs} onRedoJob={redoJob} />
         </>
       )}
     </div>

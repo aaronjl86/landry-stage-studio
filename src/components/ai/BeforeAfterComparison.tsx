@@ -1,4 +1,4 @@
-import { Download } from "lucide-react";
+import { Download, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EditingJob } from "@/hooks/useAIProcessor";
@@ -7,9 +7,10 @@ import { saveAs } from "file-saver";
 
 interface BeforeAfterComparisonProps {
   jobs: EditingJob[];
+  onRedoJob?: (jobId: string) => void;
 }
 
-export function BeforeAfterComparison({ jobs }: BeforeAfterComparisonProps) {
+export function BeforeAfterComparison({ jobs, onRedoJob }: BeforeAfterComparisonProps) {
   const completedJobs = jobs.filter((j) => j.status === "completed" && j.editedImage);
 
   if (completedJobs.length === 0) return null;
@@ -56,13 +57,24 @@ export function BeforeAfterComparison({ jobs }: BeforeAfterComparisonProps) {
             <div key={job.id} className="space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-medium truncate">{job.fileName}</h4>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => downloadImage(job.editedImage!, job.fileName)}
-                >
-                  <Download className="h-4 w-4" />
-                </Button>
+                <div className="flex gap-1">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => onRedoJob?.(job.id)}
+                    title="Re-render with same settings"
+                  >
+                    <RefreshCw className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => downloadImage(job.editedImage!, job.fileName)}
+                    title="Download image"
+                  >
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">

@@ -122,11 +122,31 @@ export function useAIProcessor() {
     setJobs((prev) => prev.filter((job) => job.id !== jobId));
   }, []);
 
+  const redoJob = useCallback(
+    async (jobId: string) => {
+      const job = jobs.find((j) => j.id === jobId);
+      if (!job) return;
+
+      // Reset the job status and reprocess
+      updateJob(jobId, {
+        status: "pending",
+        progress: 0,
+        editedImage: undefined,
+        error: undefined,
+        processingTime: undefined,
+      });
+
+      await processJob(job);
+    },
+    [jobs, updateJob, processJob]
+  );
+
   return {
     jobs,
     isProcessing,
     submitBatchEdit,
     clearJobs,
     removeJob,
+    redoJob,
   };
 }
