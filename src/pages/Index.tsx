@@ -22,11 +22,11 @@ const Index = () => {
       </div>
       
       {/* Footer */}
-      <footer className="border-t py-12 bg-secondary/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-muted-foreground">
-            <p>&copy; 2025 The Landry Method. All rights reserved.</p>
-            <p className="mt-2 text-sm">AI-powered virtual staging for real estate professionals</p>
+      <footer className="border-t py-16 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center text-muted-foreground space-y-3">
+            <p className="font-medium">&copy; 2025 The Landry Method. All rights reserved.</p>
+            <p className="text-sm">AI-powered virtual staging for real estate professionals</p>
           </div>
         </div>
       </footer>
