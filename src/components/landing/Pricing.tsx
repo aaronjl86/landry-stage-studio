@@ -27,8 +27,8 @@ const plans = [{
 }];
 export const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
-  return <section className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  return <section className="py-20 md:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-4xl md:text-5xl font-bold">
             Simple, Transparent Pricing
@@ -57,7 +57,7 @@ export const Pricing = () => {
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {plans.map(plan => <Card key={plan.name} className={`relative transition-all hover:shadow-xl ${plan.popular ? 'border-primary shadow-[var(--shadow-card)] scale-105' : ''}`}>
               {plan.popular && <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-full text-sm font-semibold"> Most Popular</span>
+                  <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
                 </div>}
               
               <CardHeader>
