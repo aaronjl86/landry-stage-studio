@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { LogOut, Image, Sparkles, ImageIcon, CreditCard } from "lucide-react";
-import { Link } from "react-router-dom";
-import { AIPhotoEditor } from "@/components/ai/AIPhotoEditor";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -12,8 +10,9 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function Dashboard() {
+export default function Gallery() {
   const { user, signOut, loading } = useAuth();
   const navigate = useNavigate();
 
@@ -48,7 +47,7 @@ export default function Dashboard() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <Link to="/dashboard">
-                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-accent`}>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                       <Sparkles className="h-4 w-4 mr-2" />
                       Editor
                     </NavigationMenuLink>
@@ -56,7 +55,7 @@ export default function Dashboard() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link to="/dashboard/gallery">
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-accent`}>
                       <ImageIcon className="h-4 w-4 mr-2" />
                       Gallery
                     </NavigationMenuLink>
@@ -82,8 +81,27 @@ export default function Dashboard() {
       </header>
 
       {/* Main Content */}
-      <main>
-        <AIPhotoEditor />
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">Your Gallery</h1>
+          <p className="text-muted-foreground">View all your processed images</p>
+        </div>
+
+        <Card>
+          <CardContent className="flex items-center justify-center py-16">
+            <div className="text-center">
+              <ImageIcon className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+              <h3 className="text-lg font-semibold mb-2">No images yet</h3>
+              <p className="text-muted-foreground mb-4">Process some photos to see them here</p>
+              <Link to="/dashboard">
+                <Button>
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  Start Editing
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
       </main>
     </div>
   );
