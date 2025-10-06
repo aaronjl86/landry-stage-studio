@@ -76,7 +76,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
   return (
     <div className="relative w-full max-w-6xl mx-auto">
       {/* Carousel container */}
-      <div className="relative h-[413px] overflow-visible">
+      <div className="relative h-[413px] overflow-visible mb-3">
         <div
           className="relative w-full h-full flex items-center pt-0"
           style={{ perspective: "1200px" }}
@@ -112,7 +112,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-center gap-4 mt-4 mb-8">
+      <div className="flex justify-center gap-4 mt-4">
         <Button
           variant="outline"
           size="icon"
