@@ -1,5 +1,9 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
-import realEstateLogos from "@/assets/real-estate-logos-transparent.png";
+import { Marquee } from "@/components/ui/marquee";
+import century21Logo from "@/assets/logos/century21.png";
+import coldwellBankerLogo from "@/assets/logos/coldwell-banker.png";
+import kellerWilliamsLogo from "@/assets/logos/keller-williams.png";
+import remaxLogo from "@/assets/logos/remax.png";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
@@ -60,11 +64,27 @@ export const SocialProof = () => {
       </div>
 
       {/* Trust Badges */}
-      <div className="bg-muted/30 rounded-lg p-4 text-center">
+      <div className="bg-muted/30 rounded-lg p-4 text-center overflow-hidden">
         <div className="text-sm font-medium mb-3">Trusted By</div>
-        <div className="flex items-center justify-center">
-          <img src={realEstateLogos} alt="Top Real Estate Companies" className="w-full max-w-2xl h-auto object-contain" />
-        </div>
+        <Marquee className="py-4" pauseOnHover>
+          {[
+            { src: remaxLogo, alt: "RE/MAX" },
+            { src: century21Logo, alt: "Century 21" },
+            { src: kellerWilliamsLogo, alt: "Keller Williams" },
+            { src: coldwellBankerLogo, alt: "Coldwell Banker" },
+          ].map((logo, index) => (
+            <div
+              key={index}
+              className="relative h-12 w-32 mx-8 flex items-center justify-center"
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="h-full w-full object-contain"
+              />
+            </div>
+          ))}
+        </Marquee>
       </div>
     </div>;
 };
