@@ -97,7 +97,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center transform scale-[1.08]"
+                    className="absolute inset-0 w-full h-full object-cover object-bottom transform scale-[1.06]"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                     <p className="text-white font-semibold text-sm">
