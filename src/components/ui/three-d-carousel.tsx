@@ -89,15 +89,15 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
                 className="absolute top-0 transition-all duration-600 ease-out"
                 style={{
                   ...style,
-                  width: "400px",
-                  height: "300px",
+                  width: "550px",
+                  height: "413px",
                 }}
               >
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border bg-card">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border bg-transparent">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover transform scale-[1.22] translate-y-[-2%]"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                     <p className="text-white font-semibold text-sm">
