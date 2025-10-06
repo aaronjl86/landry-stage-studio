@@ -78,7 +78,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
       {/* Carousel container */}
       <div className="relative h-[420px] overflow-hidden">
         <div
-          className="relative w-full h-full flex items-center"
+          className="relative w-full h-full flex items-start pt-2"
           style={{ perspective: "1200px" }}
         >
           {items.map((item, index) => {
@@ -86,7 +86,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
             return (
               <div
                 key={index}
-                className="absolute top-1/2 -translate-y-1/2 transition-all duration-600 ease-out"
+                className="absolute top-0 transition-all duration-600 ease-out"
                 style={{
                   ...style,
                   width: "400px",
