@@ -152,6 +152,9 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
           />
         ))}
       </div>
+
+      {/* Spacer to prevent any visual overlap with following sections */}
+      <div aria-hidden="true" className="h-16 md:h-20" />
     </div>
   );
 }
