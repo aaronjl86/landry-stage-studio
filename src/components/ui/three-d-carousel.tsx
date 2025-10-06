@@ -76,7 +76,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
   return (
     <div className="relative w-full max-w-6xl mx-auto">
       {/* Carousel container */}
-      <div className="relative h-[413px] overflow-visible">
+      <div className="relative h-[413px] overflow-visible pb-8">
         <div
           className="relative w-full h-full flex items-center pt-0"
           style={{ perspective: "1200px" }}
