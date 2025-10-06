@@ -1,12 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import beforeLivingRoom1 from '@/assets/gallery/before-living-room-1.jpg';
+import afterLivingRoom1 from '@/assets/gallery/after-living-room-1.jpg';
+import beforeLivingRoom2 from '@/assets/gallery/before-living-room-2.jpg';
+import afterLivingRoom2 from '@/assets/gallery/after-living-room-2.jpg';
+import beforeRoom1 from '@/assets/gallery/before-room-1.jpg';
+import afterRoom1 from '@/assets/gallery/after-room-1.jpg';
+import beforeBedroom from '@/assets/gallery/before-bedroom.jpg';
+import afterBedroom from '@/assets/gallery/after-bedroom.jpg';
+import bedroomStaged from '@/assets/gallery/bedroom-staged.jpg';
 
 const images = [
-  { title: 'Joshua Hibbert', url: 'https://picsum.photos/id/870/600/1000' },
-  { title: 'Joshua Earle', url: 'https://picsum.photos/id/883/600/1000' },
-  { title: 'Antoine Beauvillain', url: 'https://picsum.photos/id/478/600/1000' },
-  { title: 'Greg Rakozy', url: 'https://picsum.photos/id/903/600/1000' },
-  { title: 'Ramiro Checchi', url: 'https://picsum.photos/id/503/600/1000' }
+  { title: 'Modern Living Room - Before', url: beforeLivingRoom1 },
+  { title: 'Modern Living Room - After', url: afterLivingRoom1 },
+  { title: 'Open Concept Living - Before', url: beforeLivingRoom2 },
+  { title: 'Open Concept Living - After', url: afterLivingRoom2 },
+  { title: 'Cozy Room - Before', url: beforeRoom1 },
+  { title: 'Cozy Room - After', url: afterRoom1 },
+  { title: 'Master Bedroom - Before', url: beforeBedroom },
+  { title: 'Master Bedroom - After', url: afterBedroom },
+  { title: 'Styled Bedroom', url: bedroomStaged }
 ];
 
 const FLIP_SPEED = 750;
