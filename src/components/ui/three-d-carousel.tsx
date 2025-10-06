@@ -74,7 +74,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
   };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto">
+    <div className="relative w-full max-w-6xl mx-auto mb-8">
       {/* Carousel container */}
       <div className="relative h-[413px] overflow-visible">
         <div
@@ -134,7 +134,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
       </div>
 
       {/* Indicators */}
-      <div className="flex justify-center gap-2 mt-3 mb-8">
+      <div className="flex justify-center gap-2 mt-3">
         {items.map((_, index) => (
           <button
             key={index}
