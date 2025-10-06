@@ -1,5 +1,5 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
-import realEstateLogos from "@/assets/real-estate-logos.jpg";
+import realEstateLogos from "@/assets/real-estate-logos-transparent.png";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
