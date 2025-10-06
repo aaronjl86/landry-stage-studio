@@ -6,6 +6,7 @@ import afterLivingRoom2 from '@/assets/gallery/after-living-room-2.jpg';
 import beforeRoom1 from '@/assets/gallery/before-room-1.jpg';
 import afterRoom1 from '@/assets/gallery/after-room-1.jpg';
 import beforeBedroom from '@/assets/gallery/before-bedroom.jpg';
+import beforeBedroom2 from '@/assets/gallery/before-bedroom-2.jpg';
 import afterBedroom from '@/assets/gallery/after-bedroom.jpg';
 import bedroomStaged from '@/assets/gallery/bedroom-staged.jpg';
 import beforeDiningRoom from '@/assets/gallery/before-dining-room.webp';
@@ -20,6 +21,7 @@ export const GalleryCarousel = () => {
     { image: beforeRoom1, title: 'Cozy Room - Before' },
     { image: afterRoom1, title: 'Cozy Room - After' },
     { image: beforeBedroom, title: 'Master Bedroom - Before' },
+    { image: beforeBedroom2, title: 'Empty Bedroom - Before' },
     { image: afterBedroom, title: 'Master Bedroom - After' },
     { image: bedroomStaged, title: 'Styled Bedroom' },
     { image: beforeDiningRoom, title: 'Elegant Dining Room - Before' },
