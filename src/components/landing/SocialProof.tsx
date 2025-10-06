@@ -66,10 +66,10 @@ export const SocialProof = () => {
       <div className="bg-muted/30 rounded-lg p-4 text-center">
         <div className="text-sm font-medium mb-3">Trusted By</div>
         <div className="flex items-center justify-center gap-4 flex-wrap opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 mx-0 my-0 px-0 py-0">
-          <img src={kellerWilliamsLogo} alt="Keller Williams" className="h-21 object-contain" />
-          <img src={remaxLogo} alt="RE/MAX" className="h-21 object-contain" />
-          <img src={century21Logo} alt="Century 21" className="h-21 object-contain" />
-          <img src={coldwellBankerLogo} alt="Coldwell Banker" className="h-21 object-contain" />
+          <img src={kellerWilliamsLogo} alt="Keller Williams" className="h-20 object-contain" />
+          <img src={remaxLogo} alt="RE/MAX" className="h-20 object-contain" />
+          <img src={century21Logo} alt="Century 21" className="h-20 object-contain" />
+          <img src={coldwellBankerLogo} alt="Coldwell Banker" className="h-20 object-contain" />
         </div>
       </div>
     </div>;

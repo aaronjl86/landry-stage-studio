@@ -6,7 +6,6 @@ import { Pricing } from "@/components/landing/Pricing";
 import { FAQ } from "@/components/landing/FAQ";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { GalleryCarousel } from "@/components/landing/GalleryCarousel";
-import { LogoSizePreview } from "@/components/ui/logo-size-preview";
 
 
 const Index = () => {
@@ -14,9 +13,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
-      
-      {/* Logo Size Preview - TEMPORARY */}
-      <LogoSizePreview />
       
       {/* Gallery & Social Proof Section */}
       <section className="py-12 bg-muted/30">
