@@ -97,8 +97,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover rounded-xl"
-                    style={{ clipPath: 'inset(24px 0 0 0)' }}
+                    className="absolute inset-x-0 -top-6 w-full h-[calc(100%+24px)] object-cover"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                     <p className="text-white font-semibold text-sm">
