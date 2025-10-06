@@ -21,13 +21,13 @@ export const ImageSizePreview = () => {
         {sizes.map((size, index) => (
           <div key={index} className="flex flex-col items-center gap-2">
             <div 
-              className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border bg-card"
+              className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border bg-transparent"
               style={{ width: size.width, height: size.height }}
             >
               <img
                 src={beforeLivingRoom1}
                 alt={`Preview ${size.label}`}
-                className="absolute inset-x-0 -top-2 w-full h-[calc(100%+0.5rem)] object-cover block"
+                className="absolute inset-0 w-full h-full object-cover block"
               />
             </div>
             <span className="text-sm font-medium text-muted-foreground">{size.label}px</span>
