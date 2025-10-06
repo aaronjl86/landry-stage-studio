@@ -76,7 +76,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
   return (
     <div className="relative w-full max-w-6xl mx-auto">
       {/* Carousel container */}
-      <div className="relative h-[350px] overflow-hidden">
+      <div className="relative h-[420px] overflow-hidden">
         <div
           className="relative w-full h-full flex items-center"
           style={{ perspective: "1200px" }}
@@ -89,8 +89,8 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
                 className="absolute top-1/2 -translate-y-1/2 transition-all duration-600 ease-out"
                 style={{
                   ...style,
-                  width: "380px",
-                  height: "280px",
+                  width: "400px",
+                  height: "300px",
                 }}
               >
                 <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl">
