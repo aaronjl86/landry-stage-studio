@@ -93,11 +93,11 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
                   height: "300px",
                 }}
               >
-                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl">
+                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl bg-background">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-xl"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                     <p className="text-white font-semibold text-sm">
