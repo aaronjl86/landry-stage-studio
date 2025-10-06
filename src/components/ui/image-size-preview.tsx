@@ -27,7 +27,7 @@ export const ImageSizePreview = () => {
               <img
                 src={beforeLivingRoom1}
                 alt={`Preview ${size.label}`}
-                className="absolute inset-0 w-full h-full object-cover block scale-[1.08]"
+                className="absolute inset-x-0 -top-2 w-full h-[calc(100%+0.5rem)] object-cover block"
               />
             </div>
             <span className="text-sm font-medium text-muted-foreground">{size.label}px</span>
