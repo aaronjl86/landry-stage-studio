@@ -21,9 +21,6 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-2">
               See The Transformation
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Browse through our portfolio of stunning before-and-after staging examples
-            </p>
           </div>
           <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-start mb-8">
             <div className="flex justify-center">
