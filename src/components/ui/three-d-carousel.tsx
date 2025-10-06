@@ -76,7 +76,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
   return (
     <div className="relative w-full max-w-6xl mx-auto">
       {/* Carousel container */}
-      <div className="relative h-[420px] overflow-hidden">
+      <div className="relative h-[360px] overflow-hidden">
         <div
           className="relative w-full h-full flex items-start pt-2"
           style={{ perspective: "1200px" }}
@@ -98,7 +98,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover rounded-xl"
-                    style={{ objectPosition: "center 60%" }}
+                    style={{ clipPath: 'inset(24px 0 0 0)' }}
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                     <p className="text-white font-semibold text-sm">
@@ -113,7 +113,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-center gap-4 mt-4">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-16 z-20 flex justify-center gap-4">
         <Button
           variant="outline"
           size="icon"
@@ -135,7 +135,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
       </div>
 
       {/* Indicators */}
-      <div className="flex justify-center gap-2 mt-3">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-6 z-20 flex justify-center gap-2">
         {items.map((_, index) => (
           <button
             key={index}
