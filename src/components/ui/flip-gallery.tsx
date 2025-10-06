@@ -127,7 +127,7 @@ export default function FlipGallery() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black font-sans">
+    <div className="flex items-center justify-center">
       <div
         className="relative bg-white/10 border border-white/25 p-2"
         style={{ '--gallery-bg-color': 'rgba(255 255 255 / 0.075)' } as React.CSSProperties}
@@ -151,7 +151,7 @@ export default function FlipGallery() {
             type="button"
             onClick={() => updateIndex(-1)}
             title='Previous'
-            className='text-white opacity-75 hover:opacity-100 hover:scale-125 transition'
+            className='text-foreground opacity-75 hover:opacity-100 hover:scale-125 transition'
           >
             <ChevronLeft size={20} />
           </button>
@@ -159,7 +159,7 @@ export default function FlipGallery() {
             type="button"
             onClick={() => updateIndex(1)}
             title='Next'
-            className='text-white opacity-75 hover:opacity-100 hover:scale-125 transition'
+            className='text-foreground opacity-75 hover:opacity-100 hover:scale-125 transition'
           >
             <ChevronRight size={20} />
           </button>

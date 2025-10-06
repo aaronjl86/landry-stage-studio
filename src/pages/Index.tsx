@@ -4,12 +4,37 @@ import { Features } from "@/components/landing/Features";
 import { BeforeAfter } from "@/components/landing/BeforeAfter";
 import { Pricing } from "@/components/landing/Pricing";
 import { FAQ } from "@/components/landing/FAQ";
+import FlipGallery from "@/components/ui/flip-gallery";
+import { SocialProof } from "@/components/landing/SocialProof";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
       <Hero />
+      
+      {/* Gallery & Social Proof Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              See The Transformation
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Browse through our portfolio of stunning before-and-after staging examples
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="flex justify-center">
+              <FlipGallery />
+            </div>
+            <div>
+              <SocialProof />
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <Features />
       <div id="examples">
         <BeforeAfter />
