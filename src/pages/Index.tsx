@@ -4,8 +4,8 @@ import { Features } from "@/components/landing/Features";
 import { BeforeAfter } from "@/components/landing/BeforeAfter";
 import { Pricing } from "@/components/landing/Pricing";
 import { FAQ } from "@/components/landing/FAQ";
-import FlipGallery from "@/components/ui/flip-gallery";
 import { SocialProof } from "@/components/landing/SocialProof";
+import { GalleryCarousel } from "@/components/landing/GalleryCarousel";
 
 const Index = () => {
   return (
@@ -24,9 +24,9 @@ const Index = () => {
               Browse through our portfolio of stunning before-and-after staging examples
             </p>
           </div>
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8 items-center">
             <div className="flex justify-center">
-              <FlipGallery />
+              <GalleryCarousel />
             </div>
             <div>
               <SocialProof />
