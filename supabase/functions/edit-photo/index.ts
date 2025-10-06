@@ -88,8 +88,21 @@ serve(async (req) => {
 
     logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
 
-    // Add instruction to preserve room structure
-    const enhancedPrompt = `CRITICAL: Preserve the room's structure completely - do NOT modify walls, floors, ceiling, windows, doors, or any architectural features. Only modify the furniture, decor, and contents as specified below.\n\n${prompt}`;
+    // Add strict instruction to preserve room structure
+    const enhancedPrompt = `MANDATORY ARCHITECTURAL PRESERVATION RULES:
+1. DO NOT ALTER OR MODIFY ANY STRUCTURAL ELEMENTS
+2. KEEP ALL WINDOWS EXACTLY AS THEY ARE - do not cover, remove, or replace windows
+3. KEEP ALL WALLS EXACTLY AS THEY ARE - do not add, remove, or change wall positions
+4. KEEP ALL DOORS EXACTLY AS THEY ARE - preserve all door locations and types
+5. KEEP THE FLOOR EXACTLY AS IT IS - do not change flooring material or color
+6. KEEP THE CEILING EXACTLY AS IT IS - preserve ceiling height and features
+7. PRESERVE ALL ARCHITECTURAL DETAILS - moldings, trim, built-ins, fixtures
+
+ONLY MODIFY: furniture placement, furniture style, decorative items, and styling elements.
+
+Task: ${prompt}
+
+REMINDER: The room structure must remain 100% unchanged. Only stage/furnish the space.`;
 
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
