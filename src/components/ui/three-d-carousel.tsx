@@ -112,7 +112,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
       </div>
 
       {/* Navigation */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-16 z-20 flex justify-center gap-4">
+      <div className="flex justify-center gap-4 mt-4">
         <Button
           variant="outline"
           size="icon"
@@ -134,7 +134,7 @@ export default function ThreeDCarousel({ items }: ThreeDCarouselProps) {
       </div>
 
       {/* Indicators */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-6 z-20 flex justify-center gap-2">
+      <div className="flex justify-center gap-2 mt-3">
         {items.map((_, index) => (
           <button
             key={index}
