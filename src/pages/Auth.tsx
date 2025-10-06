@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
-import tlmLogo from "@/assets/tlm-logo-white.png";
+import { Header } from "@/components/landing/Header";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -53,14 +52,11 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[image:var(--gradient-subtle)] p-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <Link to="/" className="flex items-center justify-center mb-8">
-          <img src={tlmLogo} alt="The Landry Method" className="h-24" />
-        </Link>
-
-        <Card>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="flex items-center justify-center py-16 px-4">
+        <div className="w-full max-w-md">
+          <Card>
           <CardHeader>
             <CardTitle>{isLogin ? "Welcome Back" : "Create Account"}</CardTitle>
             <CardDescription>
@@ -129,6 +125,7 @@ export default function Auth() {
             </CardFooter>
           </form>
         </Card>
+        </div>
       </div>
     </div>
   );
