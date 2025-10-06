@@ -21,9 +21,9 @@ export const GalleryCarousel = () => {
     { image: beforeRoom1, title: 'Cozy Room - Before' },
     { image: afterRoom1, title: 'Cozy Room - After' },
     { image: beforeBedroom, title: 'Master Bedroom - Before' },
+    { image: bedroomStaged, title: 'Master Bedroom - After' },
     { image: beforeBedroom2, title: 'Empty Bedroom - Before' },
-    { image: afterBedroom, title: 'Master Bedroom - After' },
-    { image: bedroomStaged, title: 'Styled Bedroom' },
+    { image: afterBedroom, title: 'Empty Bedroom - After' },
     { image: beforeDiningRoom, title: 'Elegant Dining Room - Before' },
     { image: afterDiningRoom, title: 'Elegant Dining Room - After' },
   ];
