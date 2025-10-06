@@ -1,8 +1,5 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
-import kellerWilliamsLogo from "@/assets/logos/keller-williams.png";
-import remaxLogo from "@/assets/logos/remax.png";
-import century21Logo from "@/assets/logos/century21.png";
-import coldwellBankerLogo from "@/assets/logos/coldwell-banker.png";
+import realEstateLogos from "@/assets/real-estate-logos.jpg";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
@@ -65,11 +62,8 @@ export const SocialProof = () => {
       {/* Trust Badges */}
       <div className="bg-muted/30 rounded-lg p-4 text-center">
         <div className="text-sm font-medium mb-3">Trusted By</div>
-        <div className="flex items-center justify-center gap-4 flex-wrap opacity-90 hover:opacity-100 transition-all duration-300 mx-0 my-0 px-0 py-0">
-          <img src={kellerWilliamsLogo} alt="Keller Williams" className="h-24 object-contain" />
-          <img src={remaxLogo} alt="RE/MAX" className="h-24 object-contain" />
-          <img src={century21Logo} alt="Century 21" className="h-24 object-contain" />
-          <img src={coldwellBankerLogo} alt="Coldwell Banker" className="h-24 object-contain" />
+        <div className="flex items-center justify-center">
+          <img src={realEstateLogos} alt="Top Real Estate Companies" className="w-full max-w-2xl h-auto object-contain" />
         </div>
       </div>
     </div>;
