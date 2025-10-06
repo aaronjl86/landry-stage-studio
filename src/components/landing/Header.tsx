@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import tlmLogo from "@/assets/tlm-logo-white.png";
 import { useAuth } from "@/contexts/AuthContext";
-import { LogOut, Home, DollarSign, Info, Mail, Sparkles, ImageIcon, CreditCard, Menu, X } from "lucide-react";
+import { LogOut, Home, DollarSign, Info, Mail, Sparkles, ImageIcon, CreditCard, Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -11,80 +11,50 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ExpandableTabs, type TabItem, type Tab } from "@/components/ui/expandable-tabs";
 
 export const Header = () => {
   const { user, signOut } = useAuth();
-  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isActive = (path: string) => {
-    if (path === "/" && location.pathname === "/") return true;
-    if (path !== "/" && location.pathname.startsWith(path)) return true;
-    return false;
-  };
+  const baseTabs: TabItem[] = [
+    { title: "Home", icon: Home, path: "/" },
+    { title: "About", icon: Info, path: "/about" },
+    { title: "Contact", icon: Mail, path: "/contact" },
+    { title: "Pricing", icon: DollarSign, path: "/pricing" },
+  ];
 
+  const userTabs: TabItem[] = user
+    ? [
+        { type: "separator" },
+        { title: "Editor", icon: Sparkles, path: "/dashboard" },
+        { title: "Gallery", icon: ImageIcon, path: "/dashboard/gallery" },
+        { title: "Credits", icon: CreditCard, path: "/dashboard/credits" },
+      ]
+    : [];
+
+  const allTabs = [...baseTabs, ...userTabs];
+
+  // Mobile nav links for Sheet
   const navLinks = (
     <>
-      <Link 
-        to="/" 
-        onClick={() => setMobileMenuOpen(false)}
-        className={`text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground ${isActive("/") ? "text-primary" : ""}`}
-      >
-        <Home className="h-4 w-4" />
-        Home
-      </Link>
-      <Link 
-        to="/about" 
-        onClick={() => setMobileMenuOpen(false)}
-        className={`text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground ${isActive("/about") ? "text-primary" : ""}`}
-      >
-        <Info className="h-4 w-4" />
-        About
-      </Link>
-      <Link 
-        to="/contact" 
-        onClick={() => setMobileMenuOpen(false)}
-        className={`text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground ${isActive("/contact") ? "text-primary" : ""}`}
-      >
-        <Mail className="h-4 w-4" />
-        Contact
-      </Link>
-      <Link 
-        to="/pricing" 
-        onClick={() => setMobileMenuOpen(false)}
-        className={`text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground ${isActive("/pricing") ? "text-primary" : ""}`}
-      >
-        <DollarSign className="h-4 w-4" />
-        Pricing
-      </Link>
-      {user && (
-        <>
-          <Link 
-            to="/dashboard" 
+      {allTabs.map((item, index) => {
+        if (item.type === "separator") return null;
+        // Type guard - TypeScript now knows item is a Tab
+        const tab = item as Tab;
+        const Icon = tab.icon;
+        return (
+          <Link
+            key={tab.path || index}
+            to={tab.path}
             onClick={() => setMobileMenuOpen(false)}
-            className={`text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground ${isActive("/dashboard") && location.pathname === "/dashboard" ? "text-primary" : ""}`}
+            className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground"
           >
-            <Sparkles className="h-4 w-4" />
-            Editor
+            <Icon className="h-4 w-4" />
+            {tab.title}
           </Link>
-          <Link 
-            to="/dashboard/gallery" 
-            onClick={() => setMobileMenuOpen(false)}
-            className={`text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground ${isActive("/dashboard/gallery") ? "text-primary" : ""}`}
-          >
-            <ImageIcon className="h-4 w-4" />
-            Gallery
-          </Link>
-          <Link 
-            to="/dashboard/credits" 
-            onClick={() => setMobileMenuOpen(false)}
-            className={`text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 text-foreground ${isActive("/dashboard/credits") ? "text-primary" : ""}`}
-          >
-            <CreditCard className="h-4 w-4" />
-            Credits
-          </Link>
-        </>
-      )}
+        );
+      })}
     </>
   );
 
@@ -98,8 +68,8 @@ export const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 flex-1 justify-center">
-            {navLinks}
+          <nav className="hidden lg:flex items-center flex-1 justify-center">
+            <ExpandableTabs tabs={allTabs} />
           </nav>
 
           {/* Actions */}
