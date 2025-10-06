@@ -9,6 +9,8 @@ import afterRoom1 from '@/assets/gallery/after-room-1.jpg';
 import beforeBedroom from '@/assets/gallery/before-bedroom.jpg';
 import afterBedroom from '@/assets/gallery/after-bedroom.jpg';
 import bedroomStaged from '@/assets/gallery/bedroom-staged.jpg';
+import beforeDiningRoom from '@/assets/gallery/before-dining-room.webp';
+import afterDiningRoom from '@/assets/gallery/after-dining-room.webp';
 
 const images = [
   { title: 'Modern Living Room - Before', url: beforeLivingRoom1 },
@@ -19,7 +21,9 @@ const images = [
   { title: 'Cozy Room - After', url: afterRoom1 },
   { title: 'Master Bedroom - Before', url: beforeBedroom },
   { title: 'Master Bedroom - After', url: afterBedroom },
-  { title: 'Styled Bedroom', url: bedroomStaged }
+  { title: 'Styled Bedroom', url: bedroomStaged },
+  { title: 'Elegant Dining Room - Before', url: beforeDiningRoom },
+  { title: 'Elegant Dining Room - After', url: afterDiningRoom }
 ];
 
 const FLIP_SPEED = 750;
