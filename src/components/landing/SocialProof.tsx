@@ -14,7 +14,7 @@ export const SocialProof = () => {
     },
     {
       icon: TrendingUp,
-      value: "40%",
+      value: "73%",
       label: "Faster Sales"
     },
     {
@@ -28,7 +28,7 @@ export const SocialProof = () => {
     {
       name: "Sarah Johnson",
       role: "Real Estate Agent",
-      text: "This AI staging tool has completely transformed how I present properties. My listings sell 40% faster now!",
+      text: "This AI staging tool has completely transformed how I present properties. My listings sell 73% faster now!",
       rating: 5
     },
     {
