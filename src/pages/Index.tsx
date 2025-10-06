@@ -25,7 +25,7 @@ const Index = () => {
               Browse through our portfolio of stunning before-and-after staging examples
             </p>
           </div>
-          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-start">
+          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-start mb-8">
             <div className="flex justify-center">
               <GalleryCarousel />
             </div>
