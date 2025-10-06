@@ -112,7 +112,5 @@ export default function ThreeDCarousel({
       }} className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? "bg-primary w-8" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"}`} />)}
       </div>
 
-      {/* Spacer to prevent any visual overlap with following sections */}
-      <div aria-hidden="true" className="h-16 md:h-20 py-0 my-0" />
     </div>;
 }
