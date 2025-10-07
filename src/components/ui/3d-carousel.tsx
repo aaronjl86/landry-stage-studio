@@ -79,7 +79,7 @@ const Carousel = memo(
     const cardWidth = isScreenSizeSm ? 280 : 350
     const cardHeight = isScreenSizeSm ? 280 : 350
     const faceCount = cards.length
-    const radius = (cardWidth / 2) / Math.tan(Math.PI / faceCount)
+    const radius = cardWidth * 1.5
     const rotation = useMotionValue(0)
     const velocity = useMotionValue(0)
     
@@ -125,7 +125,8 @@ const Carousel = memo(
       <div
         className="flex h-full items-center justify-center bg-background"
         style={{
-          perspective: "2000px",
+          perspective: "2500px",
+          perspectiveOrigin: "50% 50%",
           transformStyle: "preserve-3d",
           willChange: "transform",
         }}
@@ -160,9 +161,7 @@ const Carousel = memo(
               style={{
                 width: `${cardWidth}px`,
                 height: `${cardHeight}px`,
-                top: "50%",
-                left: "50%",
-                transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px) translate(-50%, -50%)`,
+                transform: `translate(-50%, -50%) rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
                 backfaceVisibility: "visible",
               }}
               onClick={() => handleClick(item, i)}
