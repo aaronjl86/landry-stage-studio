@@ -22,11 +22,11 @@ const Index = () => {
               See The Transformation
             </h2>
           </div>
-          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-start mb-8">
-            <div className="flex justify-center">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-8 items-start mb-8 max-w-6xl mx-auto">
+            <div className="flex justify-center items-center">
               <GalleryCarousel />
             </div>
-            <div>
+            <div className="flex items-center">
               <SocialProof />
             </div>
           </div>
