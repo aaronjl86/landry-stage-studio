@@ -1,12 +1,10 @@
 "use client"
 
-import { memo, useEffect, useLayoutEffect, useMemo, useState } from "react"
+import { memo, useEffect, useLayoutEffect, useState } from "react"
 import {
   AnimatePresence,
   motion,
-  useAnimation,
   useMotionValue,
-  useTransform,
 } from "framer-motion"
 
 export const useIsomorphicLayoutEffect =
@@ -70,12 +68,10 @@ interface CarouselItem {
 const Carousel = memo(
   ({
     handleClick,
-    controls,
     cards,
     isCarouselActive,
   }: {
     handleClick: (item: CarouselItem, index: number) => void
-    controls: any
     cards: CarouselItem[]
     isCarouselActive: boolean
   }) => {
@@ -85,10 +81,45 @@ const Carousel = memo(
     const faceCount = cards.length
     const radius = (cardWidth / 2) / Math.tan(Math.PI / faceCount)
     const rotation = useMotionValue(0)
-    const transform = useTransform(
-      rotation,
-      (value) => `rotate3d(0, 1, 0, ${value}deg)`
-    )
+    const velocity = useMotionValue(0)
+    
+    // Auto-rotation with momentum
+    useEffect(() => {
+      if (!isCarouselActive) return
+      
+      const autoSpeed = 8 // degrees per second
+      const friction = 0.95
+      let lastTime = Date.now()
+      let animationFrameId: number
+      
+      const animate = () => {
+        const now = Date.now()
+        const delta = (now - lastTime) / 1000
+        lastTime = now
+        
+        const currentVelocity = velocity.get()
+        
+        if (Math.abs(currentVelocity) > 0.1) {
+          // Apply momentum and friction
+          rotation.set(rotation.get() + currentVelocity * delta)
+          velocity.set(currentVelocity * friction)
+        } else {
+          // Auto-rotate when no momentum
+          rotation.set(rotation.get() + autoSpeed * delta)
+          velocity.set(0)
+        }
+        
+        animationFrameId = requestAnimationFrame(animate)
+      }
+      
+      animationFrameId = requestAnimationFrame(animate)
+      
+      return () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId)
+        }
+      }
+    }, [isCarouselActive, rotation, velocity])
 
     return (
       <div
@@ -103,27 +134,22 @@ const Carousel = memo(
           drag={isCarouselActive ? "x" : false}
           className="relative origin-center cursor-grab active:cursor-grabbing"
           style={{
-            transform,
             rotateY: rotation,
+            rotateX: -12,
             transformStyle: "preserve-3d",
           }}
-          onDrag={(_, info) =>
-            isCarouselActive &&
-            rotation.set(rotation.get() + info.offset.x * 0.1)
-          }
-          onDragEnd={(_, info) =>
-            isCarouselActive &&
-            controls.start({
-              rotateY: rotation.get() + info.velocity.x * 0.1,
-              transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 30,
-                mass: 0.1,
-              },
-            })
-          }
-          animate={controls}
+          onDrag={(_, info) => {
+            if (isCarouselActive) {
+              rotation.set(rotation.get() + info.offset.x * 0.2)
+              velocity.set(0) // Stop auto-rotation during drag
+            }
+          }}
+          onDragEnd={(_, info) => {
+            if (isCarouselActive) {
+              // Apply fling momentum
+              velocity.set(info.velocity.x * 0.15)
+            }
+          }}
         >
           {cards.map((item, i) => (
             <motion.div
@@ -135,6 +161,7 @@ const Carousel = memo(
                 transform: `rotateY(${
                   i * (360 / faceCount)
                 }deg) translateZ(${radius}px)`,
+                backfaceVisibility: "visible",
               }}
               onClick={() => handleClick(item, i)}
             >
@@ -170,12 +197,10 @@ interface ThreeDPhotoCarouselProps {
 function ThreeDPhotoCarousel({ items }: ThreeDPhotoCarouselProps) {
   const [activeItem, setActiveItem] = useState<CarouselItem | null>(null)
   const [isCarouselActive, setIsCarouselActive] = useState(true)
-  const controls = useAnimation()
 
   const handleClick = (item: CarouselItem) => {
     setActiveItem(item)
     setIsCarouselActive(false)
-    controls.stop()
   }
 
   const handleClose = () => {
@@ -227,7 +252,6 @@ function ThreeDPhotoCarousel({ items }: ThreeDPhotoCarouselProps) {
       <div className="relative h-[500px] w-full overflow-hidden">
         <Carousel
           handleClick={handleClick}
-          controls={controls}
           cards={items}
           isCarouselActive={isCarouselActive}
         />
