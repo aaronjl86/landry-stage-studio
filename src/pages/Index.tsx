@@ -6,6 +6,7 @@ import { Pricing } from "@/components/landing/Pricing";
 import { FAQ } from "@/components/landing/FAQ";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { GalleryCarousel } from "@/components/landing/GalleryCarousel";
+import Footer4Col from "@/components/ui/footer-column";
 
 
 const Index = () => {
@@ -44,15 +45,7 @@ const Index = () => {
         <FAQ />
       </div>
       
-      {/* Footer */}
-      <footer className="border-t py-16 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center text-muted-foreground space-y-3">
-            <p className="font-medium">&copy; 2025 The Landry Method. All rights reserved.</p>
-            <p className="text-sm">AI-powered virtual staging for real estate professionals</p>
-          </div>
-        </div>
-      </footer>
+      <Footer4Col />
     </div>
   );
 };

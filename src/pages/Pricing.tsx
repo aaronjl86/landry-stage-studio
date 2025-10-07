@@ -3,6 +3,7 @@ import { Pricing as PricingSection } from "@/components/landing/Pricing";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import Footer4Col from "@/components/ui/footer-column";
 
 export default function Pricing() {
   return (
@@ -29,15 +30,7 @@ export default function Pricing() {
         <PricingSection />
       </main>
       
-      {/* Footer */}
-      <footer className="border-t py-12 bg-secondary/30 mt-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-muted-foreground">
-            <p>&copy; 2025 The Landry Method. All rights reserved.</p>
-            <p className="mt-2 text-sm">AI-powered virtual staging for real estate professionals</p>
-          </div>
-        </div>
-      </footer>
+      <Footer4Col />
     </div>
   );
 }
