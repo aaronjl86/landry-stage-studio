@@ -1,9 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-living-room.jpg";
+import { useState } from "react";
+import emptyRoom from "@/assets/before-empty-room.jpg";
+import stagedRoom from "@/assets/after-staged-room.jpg";
 
 export const Hero = () => {
+  const [sliderPosition, setSliderPosition] = useState(50);
+
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSliderPosition(Number(e.target.value));
+  };
+
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden py-12">
       {/* Background gradient */}
@@ -42,14 +50,64 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Hero Image */}
+          {/* Before/After Slider */}
           <div className="relative animate-scale-in">
-            <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
-            <img
-              src={heroImage}
-              alt="Professionally staged living room"
-              className="relative rounded-2xl shadow-2xl"
-            />
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+              {/* Before Image */}
+              <img
+                src={stagedRoom}
+                alt="Empty room before staging"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {/* After Image with clip-path */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+                }}
+              >
+                <img
+                  src={emptyRoom}
+                  alt="Professionally staged room"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Slider */}
+              <div className="absolute inset-0 flex items-center">
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={sliderPosition}
+                  onChange={handleSliderChange}
+                  className="absolute w-full h-full opacity-0 cursor-ew-resize z-10"
+                />
+                
+                {/* Slider Line */}
+                <div
+                  className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none"
+                  style={{ left: `${sliderPosition}%` }}
+                >
+                  {/* Slider Handle */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center">
+                    <div className="flex gap-1">
+                      <div className="w-0.5 h-4 bg-primary" />
+                      <div className="w-0.5 h-4 bg-primary" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Labels */}
+              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                Before
+              </div>
+              <div className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                After
+              </div>
+            </div>
           </div>
         </div>
       </div>
