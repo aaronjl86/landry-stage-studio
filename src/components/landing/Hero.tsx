@@ -57,7 +57,7 @@ export const Hero = () => {
               <img
                 src={stagedRoom}
                 alt="Empty room before staging"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover scale-110"
               />
 
               {/* After Image with clip-path */}
@@ -70,7 +70,7 @@ export const Hero = () => {
                 <img
                   src={emptyRoom}
                   alt="Professionally staged room"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover scale-110"
                 />
               </div>
 
