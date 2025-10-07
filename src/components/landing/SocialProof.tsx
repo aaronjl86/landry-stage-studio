@@ -1,9 +1,10 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
-import century21Logo from "@/assets/logos/century21.png";
-import coldwellBankerLogo from "@/assets/logos/coldwell-banker.png";
-import kellerWilliamsLogo from "@/assets/logos/keller-williams.png";
-import remaxLogo from "@/assets/logos/remax.png";
+import redOakRealty from "@/assets/logos/red-oak-realty.png";
+import austinRealEstate from "@/assets/logos/austin-real-estate.png";
+import kellerWilliams from "@/assets/logos/keller-williams-new.png";
+import leggettRealEstate from "@/assets/logos/leggett-real-estate.png";
+import johnTaylor from "@/assets/logos/john-taylor.png";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
@@ -69,29 +70,36 @@ export const SocialProof = () => {
         <Marquee className="py-4" pauseOnHover>
           <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
             <img
-              src={century21Logo}
-              alt="Century 21"
+              src={redOakRealty}
+              alt="Red Oak Realty"
               className="h-full w-auto object-contain"
             />
           </div>
           <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
             <img
-              src={coldwellBankerLogo}
-              alt="Coldwell Banker"
+              src={austinRealEstate}
+              alt="Austin Real Estate Experts"
               className="h-full w-auto object-contain"
             />
           </div>
           <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
             <img
-              src={kellerWilliamsLogo}
+              src={kellerWilliams}
               alt="Keller Williams"
               className="h-full w-auto object-contain"
             />
           </div>
           <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
             <img
-              src={remaxLogo}
-              alt="RE/MAX"
+              src={leggettRealEstate}
+              alt="Leggett International Real Estate"
+              className="h-full w-auto object-contain"
+            />
+          </div>
+          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+            <img
+              src={johnTaylor}
+              alt="John Taylor Luxury Real Estate"
               className="h-full w-auto object-contain"
             />
           </div>
