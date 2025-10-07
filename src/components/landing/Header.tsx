@@ -10,13 +10,25 @@ import {
   Sparkles, 
   ImageIcon, 
   CreditCard, 
-  LogIn
+  LogIn,
+  Menu
 } from "lucide-react";
-import { ExpandableTabs, type TabItem, type Tab } from "@/components/ui/expandable-tabs";
+import { ExpandableTabs, type TabItem } from "@/components/ui/expandable-tabs";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export const Header = () => {
   const { user, signOut } = useAuth();
-  
+  const isMobile = useIsMobile();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Main navigation tabs
   const mainTabs: TabItem[] = [
@@ -50,19 +62,109 @@ export const Header = () => {
   const allTabs = [...mainTabs, ...userTabs, ...authTabs];
 
 
+  const handleMobileNavClick = (onClick?: () => void) => {
+    setMobileMenuOpen(false);
+    if (onClick) onClick();
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between gap-4">
+        <div className="flex h-16 md:h-20 items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
-            <img src={tlmLogo} alt="The Landry Method" className="h-20" />
+            <img src={tlmLogo} alt="The Landry Method" className="h-14 md:h-20" />
           </Link>
 
-          <nav className="flex items-center flex-1 justify-center">
-            <ExpandableTabs tabs={allTabs} />
-          </nav>
+          {/* Desktop Navigation */}
+          {!isMobile && (
+            <nav className="flex items-center flex-1 justify-center">
+              <ExpandableTabs tabs={allTabs} />
+            </nav>
+          )}
 
+          {/* Mobile Navigation */}
+          {isMobile && (
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px] sm:w-[350px]">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-8">
+                  {/* Main Navigation */}
+                  <div className="flex flex-col gap-2">
+                    {mainTabs.map((tab) => {
+                      const Icon = tab.icon;
+                      return (
+                        <Link
+                          key={tab.path}
+                          to={tab.path}
+                          onClick={() => handleMobileNavClick()}
+                          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+                        >
+                          <Icon className="h-5 w-5" />
+                          <span className="text-base font-medium">{tab.title}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* User Tabs (if logged in) */}
+                  {user && (
+                    <>
+                      <div className="h-px bg-border my-2" />
+                      <div className="flex flex-col gap-2">
+                        {userTabs
+                          .filter((tab): tab is Extract<TabItem, { type?: never }> => tab.type !== "separator")
+                          .map((tab) => {
+                            const Icon = tab.icon;
+                            return (
+                              <Link
+                                key={tab.path}
+                                to={tab.path}
+                                onClick={() => handleMobileNavClick()}
+                                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+                              >
+                                <Icon className="h-5 w-5" />
+                                <span className="text-base font-medium">{tab.title}</span>
+                              </Link>
+                            );
+                          })}
+                      </div>
+                    </>
+                  )}
+
+                  {/* Auth Section */}
+                  <div className="h-px bg-border my-2" />
+                  {user ? (
+                    <Button
+                      variant="ghost"
+                      onClick={() => handleMobileNavClick(signOut)}
+                      className="justify-start gap-3 px-4 py-6 h-auto"
+                    >
+                      <LogOut className="h-5 w-5" />
+                      <span className="text-base font-medium">Sign Out</span>
+                    </Button>
+                  ) : (
+                    <Link
+                      to="/auth"
+                      onClick={() => handleMobileNavClick()}
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+                    >
+                      <LogIn className="h-5 w-5" />
+                      <span className="text-base font-medium">Sign In</span>
+                    </Link>
+                  )}
+                </nav>
+              </SheetContent>
+            </Sheet>
+          )}
         </div>
       </div>
     </header>
