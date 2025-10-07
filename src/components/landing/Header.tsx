@@ -3,7 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import tlmLogo from "@/assets/tlm-logo-white.png";
 import { useAuth } from "@/contexts/AuthContext";
-import { LogOut, Home, DollarSign, Info, Mail, Sparkles, ImageIcon, CreditCard, Menu } from "lucide-react";
+import { 
+  LogOut, 
+  Home, 
+  DollarSign, 
+  Info, 
+  Mail, 
+  Sparkles, 
+  ImageIcon, 
+  CreditCard, 
+  Menu, 
+  Zap, 
+  Eye, 
+  HelpCircle, 
+  Shield, 
+  FileText 
+} from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -17,13 +32,22 @@ export const Header = () => {
   const { user, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const baseTabs: TabItem[] = [
+  // Main navigation tabs
+  const mainTabs: TabItem[] = [
     { title: "Home", icon: Home, path: "/" },
     { title: "About", icon: Info, path: "/about" },
-    { title: "Contact", icon: Mail, path: "/contact" },
     { title: "Pricing", icon: DollarSign, path: "/pricing" },
   ];
 
+  // Quick access tabs
+  const quickTabs: TabItem[] = [
+    { type: "separator" },
+    { title: "Features", icon: Zap, path: "/#features" },
+    { title: "Examples", icon: Eye, path: "/#examples" },
+    { title: "FAQ", icon: HelpCircle, path: "/#faq" },
+  ];
+
+  // User product tabs (only show when logged in)
   const userTabs: TabItem[] = user
     ? [
         { type: "separator" },
@@ -33,7 +57,15 @@ export const Header = () => {
       ]
     : [];
 
-  const allTabs = [...baseTabs, ...userTabs];
+  // Contact & Legal tabs
+  const footerTabs: TabItem[] = [
+    { type: "separator" },
+    { title: "Contact", icon: Mail, path: "/contact" },
+    { title: "Privacy", icon: Shield, path: "/privacy-policy" },
+    { title: "Terms", icon: FileText, path: "/terms" },
+  ];
+
+  const allTabs = [...mainTabs, ...quickTabs, ...userTabs, ...footerTabs];
 
   // Mobile nav links for Sheet
   const navLinks = (
