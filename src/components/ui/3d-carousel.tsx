@@ -141,7 +141,7 @@ const Carousel = memo(
               <img
                 src={item.image}
                 alt={item.title}
-                className="pointer-events-none w-full rounded-lg object-cover aspect-square ring-2 ring-border"
+                className="pointer-events-none w-full rounded-lg object-cover aspect-square ring-2 ring-border scale-110"
               />
             </motion.div>
           ))}
