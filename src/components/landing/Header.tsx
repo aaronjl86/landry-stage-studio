@@ -56,7 +56,7 @@ export const Header = () => {
         <div className="flex h-20 items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
-            <img src={tlmLogo} alt="The Landry Method" className="h-21" />
+            <img src={tlmLogo} alt="The Landry Method" className="h-20" />
           </Link>
 
           <nav className="flex items-center flex-1 justify-center">
