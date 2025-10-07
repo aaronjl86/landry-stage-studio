@@ -68,7 +68,7 @@ export default function ThreeDCarousel({
   };
   return <div className="relative isolate w-full max-w-6xl mx-auto mb-16">
       {/* Carousel container */}
-      <div className="relative h-[413px] overflow-visible">
+      <div className="relative h-[375px] overflow-visible">
         <div className="relative w-full h-full flex items-center pt-0" style={{
         perspective: "1200px"
       }}>
@@ -76,8 +76,8 @@ export default function ThreeDCarousel({
           const style = getItemStyle(index);
           return <div key={index} className="absolute top-0 transition-all duration-600 ease-out" style={{
             ...style,
-            width: "550px",
-            height: "413px"
+            width: "500px",
+            height: "375px"
           }}>
                 <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl ring-1 ring-border bg-transparent">
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover object-[center_25%] transform scale-[1.14]" />
