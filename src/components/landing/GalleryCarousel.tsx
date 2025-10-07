@@ -1,4 +1,4 @@
-import ThreeDCarousel from "@/components/ui/three-d-carousel";
+import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
 import beforeLivingRoom1 from '@/assets/gallery/before-living-room-1.jpg';
 import afterLivingRoom1 from '@/assets/gallery/after-living-room-1.jpg';
 import beforeLivingRoom2 from '@/assets/gallery/before-living-room-2.jpg';
@@ -28,5 +28,5 @@ export const GalleryCarousel = () => {
     { image: afterDiningRoom, title: 'Elegant Dining Room - After' },
   ];
 
-  return <ThreeDCarousel items={carouselItems} />;
+  return <ThreeDPhotoCarousel items={carouselItems} />;
 };
