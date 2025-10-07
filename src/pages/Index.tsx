@@ -15,7 +15,7 @@ const Index = () => {
       <Hero />
       
       {/* Gallery & Social Proof Section */}
-      <section className="bg-muted/30">
+      <section className="bg-transparent">
         <div className="mx-auto">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold">
