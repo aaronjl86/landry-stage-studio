@@ -69,7 +69,7 @@ export default function ThreeDCarousel({
   return <div className="relative isolate w-full max-w-6xl mx-auto mb-16">
       {/* Carousel container */}
       <div className="relative h-[225px] overflow-visible">
-        <div className="relative w-full h-full flex items-center pt-0 -ml-32" style={{
+        <div className="relative w-full h-full flex items-center pt-0" style={{
         perspective: "1200px"
       }}>
           {items.map((item, index) => {
