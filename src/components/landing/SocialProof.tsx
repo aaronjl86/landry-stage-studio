@@ -1,6 +1,9 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
-import realEstateLogos from "@/assets/real-estate-logos-transparent.png";
+import century21Logo from "@/assets/logos/century21.png";
+import coldwellBankerLogo from "@/assets/logos/coldwell-banker.png";
+import kellerWilliamsLogo from "@/assets/logos/keller-williams.png";
+import remaxLogo from "@/assets/logos/remax.png";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
@@ -66,8 +69,29 @@ export const SocialProof = () => {
         <Marquee className="py-4" pauseOnHover>
           <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
             <img
-              src={realEstateLogos}
-              alt="Top Real Estate Companies"
+              src={century21Logo}
+              alt="Century 21"
+              className="h-full w-auto object-contain"
+            />
+          </div>
+          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+            <img
+              src={coldwellBankerLogo}
+              alt="Coldwell Banker"
+              className="h-full w-auto object-contain"
+            />
+          </div>
+          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+            <img
+              src={kellerWilliamsLogo}
+              alt="Keller Williams"
+              className="h-full w-auto object-contain"
+            />
+          </div>
+          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+            <img
+              src={remaxLogo}
+              alt="RE/MAX"
               className="h-full w-auto object-contain"
             />
           </div>
