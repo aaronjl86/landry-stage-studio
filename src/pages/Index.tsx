@@ -15,14 +15,14 @@ const Index = () => {
       <Hero />
       
       {/* Gallery & Social Proof Section */}
-      <section className="py-6 bg-muted/30">
+      <section className="py-3 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center mb-6">
+          <div className="text-center mb-3">
             <h2 className="text-3xl md:text-4xl font-bold mb-2">
               See The Transformation
             </h2>
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <GalleryCarousel />
           </div>
           <div className="max-w-4xl mx-auto">
