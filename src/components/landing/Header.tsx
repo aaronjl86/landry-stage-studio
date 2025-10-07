@@ -38,14 +38,7 @@ export const Header = () => {
     { title: "Home", icon: Home, path: "/" },
     { title: "About", icon: Info, path: "/about" },
     { title: "Pricing", icon: DollarSign, path: "/pricing" },
-  ];
-
-  // Quick access tabs
-  const quickTabs: TabItem[] = [
-    { type: "separator" },
-    { title: "Features", icon: Zap, path: "/#features" },
-    { title: "Examples", icon: Eye, path: "/#examples" },
-    { title: "FAQ", icon: HelpCircle, path: "/#faq" },
+    { title: "Contact", icon: Mail, path: "/contact" },
   ];
 
   // User product tabs (only show when logged in)
@@ -58,14 +51,6 @@ export const Header = () => {
       ]
     : [];
 
-  // Contact & Legal tabs
-  const footerTabs: TabItem[] = [
-    { type: "separator" },
-    { title: "Contact", icon: Mail, path: "/contact" },
-    { title: "Privacy", icon: Shield, path: "/privacy-policy" },
-    { title: "Terms", icon: FileText, path: "/terms" },
-  ];
-
   // Auth tabs (conditionally add based on user state)
   const authTabs: TabItem[] = user
     ? [
@@ -77,7 +62,7 @@ export const Header = () => {
         { title: "Sign In", icon: LogIn, path: "/auth" },
       ];
 
-  const allTabs = [...mainTabs, ...quickTabs, ...userTabs, ...footerTabs, ...authTabs];
+  const allTabs = [...mainTabs, ...userTabs, ...authTabs];
 
   // Mobile nav links for Sheet
   const navLinks = (
