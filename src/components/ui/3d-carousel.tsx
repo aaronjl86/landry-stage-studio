@@ -76,10 +76,10 @@ const Carousel = memo(
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cardWidth = isScreenSizeSm ? 280 : 350
-    const cardHeight = isScreenSizeSm ? 280 : 350
+    const cardWidth = isScreenSizeSm ? 220 : 280
+    const cardHeight = isScreenSizeSm ? 220 : 280
     const faceCount = cards.length
-    const radius = cardWidth * 1.5
+    const radius = isScreenSizeSm ? 500 : 700
     const rotation = useMotionValue(0)
     const velocity = useMotionValue(0)
     
@@ -125,8 +125,7 @@ const Carousel = memo(
       <div
         className="flex h-full items-center justify-center bg-background"
         style={{
-          perspective: "2500px",
-          perspectiveOrigin: "50% 50%",
+          perspective: "1200px",
           transformStyle: "preserve-3d",
           willChange: "transform",
         }}
@@ -136,10 +135,9 @@ const Carousel = memo(
           className="relative origin-center cursor-grab active:cursor-grabbing"
           style={{
             rotateY: rotation,
-            rotateX: -12,
             transformStyle: "preserve-3d",
-            width: `${2 * radius + cardWidth}px`,
-            height: `${cardHeight + 80}px`,
+            width: `${cardWidth}px`,
+            height: `${cardHeight}px`,
           }}
           onDrag={(_, info) => {
             if (isCarouselActive) {
@@ -157,12 +155,12 @@ const Carousel = memo(
           {cards.map((item, i) => (
             <motion.div
               key={`key-${item.image}-${i}`}
-              className="absolute origin-center rounded-3xl overflow-hidden shadow-2xl ring-1 ring-border cursor-pointer"
+              className="absolute left-1/2 top-1/2 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-border cursor-pointer"
               style={{
                 width: `${cardWidth}px`,
                 height: `${cardHeight}px`,
                 transform: `translate(-50%, -50%) rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
-                backfaceVisibility: "visible",
+                backfaceVisibility: "hidden",
               }}
               onClick={() => handleClick(item, i)}
             >
