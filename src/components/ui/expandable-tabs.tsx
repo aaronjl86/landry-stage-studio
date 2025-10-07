@@ -78,7 +78,7 @@ export function ExpandableTabs({
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             className={cn(
-              "relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
+              "relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-200",
               "hover:bg-muted/50",
               active && "bg-muted",
               active ? activeColor : "text-muted-foreground"
