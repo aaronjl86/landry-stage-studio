@@ -65,38 +65,38 @@ export const SocialProof = () => {
       </div>
 
       {/* Trust Badges */}
-      <div className="bg-muted/30 rounded-lg p-4 text-center overflow-hidden">
-        <div className="text-sm font-medium mb-3">Trusted By</div>
-        <Marquee className="py-4" pauseOnHover>
-          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+      <div className="bg-muted/30 rounded-lg p-8 text-center overflow-hidden">
+        <div className="text-lg font-semibold mb-6">Trusted By</div>
+        <Marquee className="py-8" pauseOnHover>
+          <div className="relative h-24 w-auto mx-12 flex items-center justify-center">
             <img
               src={redOakRealty}
               alt="Red Oak Realty"
               className="h-full w-auto object-contain"
             />
           </div>
-          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+          <div className="relative h-24 w-auto mx-12 flex items-center justify-center">
             <img
               src={austinRealEstate}
               alt="Austin Real Estate Experts"
               className="h-full w-auto object-contain"
             />
           </div>
-          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+          <div className="relative h-24 w-auto mx-12 flex items-center justify-center">
             <img
               src={kellerWilliams}
               alt="Keller Williams"
               className="h-full w-auto object-contain"
             />
           </div>
-          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+          <div className="relative h-24 w-auto mx-12 flex items-center justify-center">
             <img
               src={leggettRealEstate}
               alt="Leggett International Real Estate"
               className="h-full w-auto object-contain"
             />
           </div>
-          <div className="relative h-16 w-auto mx-8 flex items-center justify-center">
+          <div className="relative h-24 w-auto mx-12 flex items-center justify-center">
             <img
               src={johnTaylor}
               alt="John Taylor Luxury Real Estate"
