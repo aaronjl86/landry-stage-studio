@@ -73,7 +73,7 @@ export const Header = () => {
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
-            <img src={tlmLogo} alt="The Landry Method" className="h-14 md:h-20" />
+            <img src={tlmLogo} alt="The Landry Method" className="h-12 md:h-16" />
           </Link>
 
           {/* Desktop Navigation */}
