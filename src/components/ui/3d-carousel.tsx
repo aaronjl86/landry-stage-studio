@@ -80,7 +80,7 @@ const Carousel = memo(
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 1100 : 1800
+    const cylinderWidth = isScreenSizeSm ? 1300 : 2100
     const faceCount = cards.length
     const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
@@ -129,7 +129,7 @@ const Carousel = memo(
           {cards.map((item, i) => (
             <motion.div
               key={`key-${item.image}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-background p-2"
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-background p-1"
               style={{
                 width: `${faceWidth}px`,
                 transform: `rotateY(${
@@ -141,7 +141,7 @@ const Carousel = memo(
               <img
                 src={item.image}
                 alt={item.title}
-                className="pointer-events-none w-full rounded-xl object-cover aspect-square"
+                className="pointer-events-none w-full rounded-lg object-cover aspect-square ring-2 ring-border"
               />
             </motion.div>
           ))}
