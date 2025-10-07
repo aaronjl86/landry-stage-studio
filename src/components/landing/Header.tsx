@@ -97,7 +97,7 @@ export const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center flex-1 justify-end px-4">
+          <nav className="hidden lg:flex items-center flex-1 justify-center">
             <ExpandableTabs tabs={allTabs} />
           </nav>
 
