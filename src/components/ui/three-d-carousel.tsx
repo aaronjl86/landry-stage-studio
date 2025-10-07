@@ -66,7 +66,7 @@ export default function ThreeDCarousel({
       };
     }
   };
-  return <div className="relative isolate w-full max-w-2xl mx-auto mb-16">
+  return <div className="relative isolate w-full max-w-4xl mx-auto mb-16">
       {/* Carousel container */}
       <div className="relative h-[225px] overflow-visible">
         <div className="relative w-full h-full flex items-center pt-0" style={{
