@@ -80,10 +80,10 @@ const Carousel = memo(
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 1100 : 1800
+    const cardWidth = isScreenSizeSm ? 280 : 350
+    const cardHeight = isScreenSizeSm ? 280 : 350
     const faceCount = cards.length
-    const faceWidth = cylinderWidth / faceCount
-    const radius = cylinderWidth / (2 * Math.PI)
+    const radius = (cardWidth / 2) / Math.tan(Math.PI / faceCount)
     const rotation = useMotionValue(0)
     const transform = useTransform(
       rotation,
@@ -94,28 +94,27 @@ const Carousel = memo(
       <div
         className="flex h-full items-center justify-center bg-background"
         style={{
-          perspective: "1000px",
+          perspective: "2000px",
           transformStyle: "preserve-3d",
           willChange: "transform",
         }}
       >
         <motion.div
           drag={isCarouselActive ? "x" : false}
-          className="relative flex h-full origin-center cursor-grab justify-center active:cursor-grabbing"
+          className="relative origin-center cursor-grab active:cursor-grabbing"
           style={{
             transform,
             rotateY: rotation,
-            width: cylinderWidth,
             transformStyle: "preserve-3d",
           }}
           onDrag={(_, info) =>
             isCarouselActive &&
-            rotation.set(rotation.get() + info.offset.x * 0.05)
+            rotation.set(rotation.get() + info.offset.x * 0.1)
           }
           onDragEnd={(_, info) =>
             isCarouselActive &&
             controls.start({
-              rotateY: rotation.get() + info.velocity.x * 0.05,
+              rotateY: rotation.get() + info.velocity.x * 0.1,
               transition: {
                 type: "spring",
                 stiffness: 100,
@@ -129,31 +128,30 @@ const Carousel = memo(
           {cards.map((item, i) => (
             <motion.div
               key={`key-${item.image}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-3xl bg-background p-2"
+              className="absolute origin-center rounded-3xl overflow-hidden shadow-2xl ring-1 ring-border cursor-pointer"
               style={{
-                width: `${faceWidth}px`,
+                width: `${cardWidth}px`,
+                height: `${cardHeight}px`,
                 transform: `rotateY(${
                   i * (360 / faceCount)
                 }deg) translateZ(${radius}px)`,
               }}
               onClick={() => handleClick(item, i)}
             >
-              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl ring-1 ring-border">
-                <motion.img
-                  src={item.image}
-                  alt={item.title}
-                  layoutId={`img-${item.image}`}
-                  className="pointer-events-none w-full h-full object-cover"
-                  initial={{ filter: "blur(4px)" }}
-                  layout="position"
-                  animate={{ filter: "blur(0px)" }}
-                  transition={transition}
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                  <p className="text-white font-semibold text-sm">
-                    {item.title}
-                  </p>
-                </div>
+              <motion.img
+                src={item.image}
+                alt={item.title}
+                layoutId={`img-${item.image}`}
+                className="pointer-events-none w-full h-full object-cover"
+                initial={{ filter: "blur(4px)" }}
+                layout="position"
+                animate={{ filter: "blur(0px)" }}
+                transition={transition}
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <p className="text-white font-semibold text-sm">
+                  {item.title}
+                </p>
               </div>
             </motion.div>
           ))}
