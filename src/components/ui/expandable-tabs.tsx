@@ -8,6 +8,7 @@ export interface Tab {
   icon: LucideIcon;
   path: string;
   type?: never;
+  onClick?: () => void;
 }
 
 export interface Separator {
@@ -23,14 +24,12 @@ interface ExpandableTabsProps {
   tabs: TabItem[];
   activeColor?: string;
   className?: string;
-  onTabClick?: () => void;
 }
 
 export function ExpandableTabs({
   tabs,
   activeColor = "text-primary",
   className,
-  onTabClick,
 }: ExpandableTabsProps) {
   const location = useLocation();
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
@@ -64,11 +63,18 @@ export function ExpandableTabs({
         const active = isActive(tab.path);
         const hovered = hoveredIndex === index;
 
+        const handleClick = (e: React.MouseEvent) => {
+          if (tab.onClick) {
+            e.preventDefault();
+            tab.onClick();
+          }
+        };
+
         return (
           <Link
             key={tab.path || index}
             to={tab.path}
-            onClick={onTabClick}
+            onClick={handleClick}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             className={cn(

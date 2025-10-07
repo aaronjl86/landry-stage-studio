@@ -17,7 +17,8 @@ import {
   Eye, 
   HelpCircle, 
   Shield, 
-  FileText 
+  FileText,
+  LogIn
 } from "lucide-react";
 import {
   Sheet,
@@ -65,7 +66,18 @@ export const Header = () => {
     { title: "Terms", icon: FileText, path: "/terms" },
   ];
 
-  const allTabs = [...mainTabs, ...quickTabs, ...userTabs, ...footerTabs];
+  // Auth tabs (conditionally add based on user state)
+  const authTabs: TabItem[] = user
+    ? [
+        { type: "separator" },
+        { title: "Sign Out", icon: LogOut, path: "#", onClick: signOut },
+      ]
+    : [
+        { type: "separator" },
+        { title: "Sign In", icon: LogIn, path: "/auth" },
+      ];
+
+  const allTabs = [...mainTabs, ...quickTabs, ...userTabs, ...footerTabs, ...authTabs];
 
   // Mobile nav links for Sheet
   const navLinks = (
@@ -100,29 +112,12 @@ export const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center flex-1 justify-center">
+          <nav className="hidden lg:flex items-center flex-1 justify-end px-4">
             <ExpandableTabs tabs={allTabs} />
           </nav>
 
-          {/* Actions */}
-          <div className="flex items-center gap-3 flex-shrink-0">
-            {user ? (
-              <Button variant="ghost" size="lg" onClick={signOut} className="hidden lg:flex">
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
-            ) : (
-              <>
-                <Link to="/auth" className="hidden lg:block">
-                  <Button variant="ghost" size="lg">Sign In</Button>
-                </Link>
-                <Link to="/auth" className="hidden lg:block">
-                  <Button size="lg">Start Free Trial</Button>
-                </Link>
-              </>
-            )}
-
-            {/* Mobile Menu */}
+          {/* Mobile Menu */}
+          <div className="flex items-center lg:hidden">
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="lg:hidden">
