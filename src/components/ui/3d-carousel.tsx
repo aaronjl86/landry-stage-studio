@@ -129,7 +129,7 @@ const Carousel = memo(
           {cards.map((item, i) => (
             <motion.div
               key={`key-${item.image}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-background p-1 overflow-hidden"
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-background p-1"
               style={{
                 width: `${faceWidth}px`,
                 transform: `rotateY(${
@@ -141,7 +141,7 @@ const Carousel = memo(
               <img
                 src={item.image}
                 alt={item.title}
-                className="pointer-events-none block w-full h-full rounded-lg object-cover ring-2 ring-border"
+                className="pointer-events-none w-full rounded-lg object-cover aspect-square ring-2 ring-border scale-110"
               />
             </motion.div>
           ))}
