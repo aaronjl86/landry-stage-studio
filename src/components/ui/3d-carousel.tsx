@@ -137,6 +137,8 @@ const Carousel = memo(
             rotateY: rotation,
             rotateX: -12,
             transformStyle: "preserve-3d",
+            width: `${2 * radius + cardWidth}px`,
+            height: `${cardHeight + 80}px`,
           }}
           onDrag={(_, info) => {
             if (isCarouselActive) {
@@ -158,9 +160,9 @@ const Carousel = memo(
               style={{
                 width: `${cardWidth}px`,
                 height: `${cardHeight}px`,
-                transform: `rotateY(${
-                  i * (360 / faceCount)
-                }deg) translateZ(${radius}px)`,
+                top: "50%",
+                left: "50%",
+                transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px) translate(-50%, -50%)`,
                 backfaceVisibility: "visible",
               }}
               onClick={() => handleClick(item, i)}
