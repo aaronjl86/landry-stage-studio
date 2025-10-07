@@ -9,96 +9,78 @@ interface ThreeDCarouselProps {
 export default function ThreeDCarousel({
   items
 }: ThreeDCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [rotation, setRotation] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [dragDistance, setDragDistance] = useState(0);
-  const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
+  const [lastRotation, setLastRotation] = useState(0);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number>(Date.now());
 
-  // Auto-rotation effect
+  // Smooth continuous auto-rotation
   useEffect(() => {
-    if (!isDragging) {
-      autoRotateRef.current = setInterval(() => {
-        setCurrentIndex(prev => (prev + 1) % items.length);
-      }, 3500); // Slow auto-rotation every 3.5 seconds
-    }
+    if (isDragging) return;
+
+    const animate = () => {
+      const now = Date.now();
+      const delta = (now - lastTimeRef.current) / 1000; // Convert to seconds
+      lastTimeRef.current = now;
+
+      setRotation(prev => prev + (delta * 10)); // 10 degrees per second - slow and steady
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (autoRotateRef.current) {
-        clearInterval(autoRotateRef.current);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isDragging, items.length]);
+  }, [isDragging]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsAnimating(false), 600);
-    return () => clearTimeout(timer);
-  }, [currentIndex]);
-
-  // Mouse/Touch handlers for dragging
+  // Mouse/Touch handlers for smooth dragging
   const handleDragStart = (clientX: number) => {
     setIsDragging(true);
     setStartX(clientX);
-    setDragDistance(0);
+    setLastRotation(rotation);
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
   };
 
   const handleDragMove = (clientX: number) => {
     if (!isDragging) return;
     const distance = clientX - startX;
-    setDragDistance(distance);
-
-    // Fast rotation while dragging
-    if (Math.abs(distance) > 50) {
-      const direction = distance > 0 ? -1 : 1;
-      setCurrentIndex(prev => (prev + direction + items.length) % items.length);
-      setStartX(clientX);
-      setDragDistance(0);
-    }
+    const rotationChange = distance * 0.3; // Sensitivity factor
+    setRotation(lastRotation + rotationChange);
   };
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    setDragDistance(0);
+    lastTimeRef.current = Date.now(); // Reset time for smooth transition back to auto-rotate
   };
   const getItemStyle = (index: number) => {
-    const diff = (index - currentIndex + items.length) % items.length;
-    const itemsToShow = Math.min(5, items.length);
-    if (diff === 0) {
-      // Center item
-      return {
-        transform: "translateX(-50%) translateZ(0px) rotateY(0deg) scale(1.1)",
-        zIndex: 50,
-        opacity: 1,
-        left: "50%"
-      };
-    } else if (diff === 1 || diff === items.length - 1) {
-      // Adjacent items
-      const isRight = diff === 1;
-      return {
-        transform: `translateX(${isRight ? "50%" : "-150%"}) translateZ(-200px) rotateY(${isRight ? "-35deg" : "35deg"}) scale(0.85)`,
-        zIndex: 30,
-        opacity: 0.7,
-        left: isRight ? "50%" : "50%"
-      };
-    } else if (diff === 2 || diff === items.length - 2) {
-      // Further items
-      const isRight = diff === 2;
-      return {
-        transform: `translateX(${isRight ? "100%" : "-200%"}) translateZ(-400px) rotateY(${isRight ? "-55deg" : "55deg"}) scale(0.7)`,
-        zIndex: 20,
-        opacity: 0.5,
-        left: isRight ? "50%" : "50%"
-      };
-    } else {
-      // Hidden items
-      return {
-        transform: "translateX(-50%) translateZ(-600px) scale(0.5)",
-        zIndex: 10,
-        opacity: 0,
-        left: "50%"
-      };
-    }
+    const anglePerItem = 360 / items.length;
+    const itemAngle = (index * anglePerItem - rotation) % 360;
+    const normalizedAngle = ((itemAngle + 360) % 360);
+    
+    // Convert angle to position
+    const radians = (normalizedAngle * Math.PI) / 180;
+    const radius = 300;
+    const x = Math.sin(radians) * radius;
+    const z = Math.cos(radians) * radius;
+    
+    // Calculate scale and opacity based on z position
+    const scale = 0.7 + (z / radius) * 0.4; // 0.7 to 1.1
+    const opacity = 0.4 + (z / radius) * 0.6; // 0.4 to 1.0
+    const zIndex = Math.round(50 + z / 10);
+    
+    return {
+      transform: `translateX(-50%) translate3d(${x}px, 0, ${z}px) rotateY(${-normalizedAngle}deg) scale(${scale})`,
+      zIndex,
+      opacity,
+      left: "50%"
+    };
   };
   return <div className="relative isolate w-full max-w-4xl mx-auto mb-16">
       {/* Carousel container */}
@@ -117,7 +99,7 @@ export default function ThreeDCarousel({
       }}>
           {items.map((item, index) => {
           const style = getItemStyle(index);
-          return <div key={index} className="absolute top-0 transition-all duration-600 ease-out" style={{
+          return <div key={index} className="absolute top-0 transition-all duration-100 ease-linear" style={{
             ...style,
             width: "300px",
             height: "225px"
@@ -136,13 +118,19 @@ export default function ThreeDCarousel({
       </div>
 
       {/* Indicators */}
-      <div className="flex justify-center gap-2 mt-3">
-        {items.map((_, index) => <button key={index} onClick={() => {
-        if (!isAnimating) {
-          setIsAnimating(true);
-          setCurrentIndex(index);
-        }
-      }} className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? "bg-primary w-8" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"}`} />)}
+      <div className="flex justify-center gap-2 mt-8">
+        {items.map((_, index) => {
+        const anglePerItem = 360 / items.length;
+        const targetAngle = index * anglePerItem;
+        const currentNormalized = rotation % 360;
+        const diff = Math.abs(((targetAngle - currentNormalized + 540) % 360) - 180);
+        const isActive = diff < anglePerItem / 2;
+        
+        return <button key={index} onClick={() => {
+          setRotation(targetAngle);
+          setLastRotation(targetAngle);
+        }} className={`w-2 h-2 rounded-full transition-all ${isActive ? "bg-primary w-8" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"}`} />;
+      })}
       </div>
 
     </div>;
