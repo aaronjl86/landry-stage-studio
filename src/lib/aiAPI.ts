@@ -13,6 +13,19 @@ export const TEMPLATE_PROMPTS = {
     "Transform ONLY the lighting to twilight. DO NOT change the building structure, landscaping, or architectural features. Add warm interior lighting glowing from windows and create a golden hour sky. Preserve all structural elements.",
   "lawn-enhancement":
     "Enhance ONLY the landscaping and grass. DO NOT change the building, hardscaping, or structural elements. Make the grass look lush and green, trim overgrown areas. Keep all architecture exactly as is.",
+  "hdr-enhancement":
+    "Apply professional HDR processing to enhance dynamic range and detail. DO NOT change the room structure, walls, floors, ceiling, windows, or doors. Only improve the photo quality, colors, and exposure.",
+};
+
+// Template ID to prompt key mapping
+const TEMPLATE_ID_MAP: Record<string, keyof typeof TEMPLATE_PROMPTS> = {
+  "lighting-enhancement-v2": "lighting-enhancement",
+  "smart-declutter-v3": "decluttering",
+  "virtual-staging-v4": "virtual-staging",
+  "sky-replace-pro-v2": "sky-replacement",
+  "day-to-dusk-v3": "day-to-dusk",
+  "landscaping-enhance-v2": "lawn-enhancement",
+  "hdr-pro-v3": "hdr-enhancement",
 };
 
 export enum RealEstateTemplates {
@@ -121,8 +134,8 @@ export class AIProcessorAPI {
   combinePrompts(templateIds: string[], customPrompt?: string): string {
     const templatePrompts = templateIds
       .map((id) => {
-        const key = Object.keys(TEMPLATE_PROMPTS).find((k) => id.startsWith(k));
-        return key ? TEMPLATE_PROMPTS[key as keyof typeof TEMPLATE_PROMPTS] : null;
+        const promptKey = TEMPLATE_ID_MAP[id];
+        return promptKey ? TEMPLATE_PROMPTS[promptKey] : null;
       })
       .filter(Boolean);
 
