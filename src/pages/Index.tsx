@@ -15,9 +15,9 @@ const Index = () => {
       <Hero />
       
       {/* Gallery & Social Proof Section */}
-      <section className="bg-transparent">
+      <section className="bg-transparent py-12">
         <div className="mx-auto">
-          <div className="text-center">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold">
               See The Transformation
             </h2>

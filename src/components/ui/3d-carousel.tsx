@@ -148,17 +148,14 @@ const Carousel = memo(
                     animate={{ filter: "blur(0px)" }}
                     transition={transition}
                   />
-                  <div className="absolute top-3 left-3 right-3 flex items-start justify-between pointer-events-none">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      isAfter 
-                        ? 'bg-green-500/90 text-white' 
-                        : 'bg-orange-500/90 text-white'
-                    }`}>
+                  {/* Subtle Watermarks */}
+                  <div className="absolute top-3 left-3 pointer-events-none">
+                    <span className="text-xs font-medium text-white/80 drop-shadow-lg">
                       {isAfter ? 'AFTER' : 'BEFORE'}
                     </span>
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 pointer-events-none">
-                    <span className="block px-3 py-1.5 rounded-lg bg-black/70 text-white text-xs font-medium truncate">
+                  <div className="absolute bottom-3 right-3 pointer-events-none">
+                    <span className="text-xs text-white/70 drop-shadow-lg">
                       {roomType}
                     </span>
                   </div>
@@ -221,7 +218,7 @@ function ThreeDPhotoCarousel({ items }: { items: { image: string; title: string 
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="relative h-[500px] w-full overflow-hidden">
+      <div className="relative h-[600px] md:h-[700px] lg:h-[800px] w-full overflow-hidden">
         <Carousel
           handleClick={handleClick}
           controls={controls}
