@@ -38,15 +38,13 @@ export const Header = () => {
     { title: "Contact", icon: Mail, path: "/contact" },
   ];
 
-  // User product tabs (only show when logged in)
-  const userTabs: TabItem[] = user
-    ? [
-        { type: "separator" },
-        { title: "Editor", icon: Sparkles, path: "/dashboard" },
-        { title: "Gallery", icon: ImageIcon, path: "/dashboard/gallery" },
-        { title: "Credits", icon: CreditCard, path: "/dashboard/credits" },
-      ]
-    : [];
+  // User product tabs (always show, redirect to auth if not logged in)
+  const userTabs: TabItem[] = [
+    { type: "separator" },
+    { title: "Editor", icon: Sparkles, path: user ? "/dashboard" : "/auth" },
+    { title: "Gallery", icon: ImageIcon, path: user ? "/dashboard/gallery" : "/auth" },
+    { title: "Credits", icon: CreditCard, path: user ? "/dashboard/credits" : "/auth" },
+  ];
 
   // Auth tabs (conditionally add based on user state)
   const authTabs: TabItem[] = user
@@ -115,30 +113,26 @@ export const Header = () => {
                     })}
                   </div>
 
-                  {/* User Tabs (if logged in) */}
-                  {user && (
-                    <>
-                      <div className="h-px bg-border my-2" />
-                      <div className="flex flex-col gap-2">
-                        {userTabs
-                          .filter((tab): tab is Extract<TabItem, { type?: never }> => tab.type !== "separator")
-                          .map((tab) => {
-                            const Icon = tab.icon;
-                            return (
-                              <Link
-                                key={tab.path}
-                                to={tab.path}
-                                onClick={() => handleMobileNavClick()}
-                                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-                              >
-                                <Icon className="h-5 w-5" />
-                                <span className="text-base font-medium">{tab.title}</span>
-                              </Link>
-                            );
-                          })}
-                      </div>
-                    </>
-                  )}
+                  {/* User Tabs (always shown) */}
+                  <div className="h-px bg-border my-2" />
+                  <div className="flex flex-col gap-2">
+                    {userTabs
+                      .filter((tab): tab is Extract<TabItem, { type?: never }> => tab.type !== "separator")
+                      .map((tab) => {
+                        const Icon = tab.icon;
+                        return (
+                          <Link
+                            key={tab.path}
+                            to={tab.path}
+                            onClick={() => handleMobileNavClick()}
+                            className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+                          >
+                            <Icon className="h-5 w-5" />
+                            <span className="text-base font-medium">{tab.title}</span>
+                          </Link>
+                        );
+                      })}
+                  </div>
 
                   {/* Auth Section */}
                   <div className="h-px bg-border my-2" />
