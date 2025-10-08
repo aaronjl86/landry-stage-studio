@@ -92,10 +92,10 @@ const Carousel = memo(
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 1400 : 2600
-    const faceCount = 8 // fewer faces = more surface area per image
+    const cylinderWidth = isScreenSizeSm ? 1600 : 2200
+    const faceCount = 10
     const faceWidth = cylinderWidth / faceCount
-    const radius = cylinderWidth / (2 * Math.PI)
+    const radius = cylinderWidth / (2.5 * Math.PI) // slightly smaller radius = closer camera
     const rotation = useMotionValue(0)
     const transform = useTransform(
       rotation,
@@ -227,7 +227,10 @@ function ThreeDPhotoCarousel() {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="relative h-[80vh] w-full overflow-hidden">
+      <div
+        className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center"
+        style={{ perspective: "1200px" }}
+      >
         <Carousel
           handleClick={handleClick}
           controls={controls}
