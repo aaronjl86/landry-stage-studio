@@ -175,7 +175,7 @@ function ThreeDPhotoCarousel() {
   const [isCarouselActive, setIsCarouselActive] = useState(true)
   const controls = useAnimation()
   const cards = useMemo(
-    () => keywords.map((keyword) => `https://picsum.photos/200/300?${keyword}`),
+    () => keywords.map((keyword) => `https://picsum.photos/1000/1500?${keyword}`),
     []
   )
 
@@ -227,7 +227,7 @@ function ThreeDPhotoCarousel() {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="relative h-[500px] w-full overflow-hidden">
+      <div className="relative h-[80vh] w-full overflow-hidden">
         <Carousel
           handleClick={handleClick}
           controls={controls}
