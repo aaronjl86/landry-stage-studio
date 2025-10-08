@@ -58,8 +58,25 @@ export function useMediaQuery(
   return matches
 }
 
+const keywords = [
+  "night",
+  "city",
+  "sky",
+  "sunset",
+  "sunrise",
+  "winter",
+  "skyscraper",
+  "building",
+  "cityscape",
+  "architecture",
+  "street",
+  "lights",
+  "downtown",
+  "bridge",
+]
+
 const duration = 0.15
-const transition = { duration, ease: [0.32, 0.72, 0, 1] as any }
+const transition = { duration, ease: [0.32, 0.72, 0, 1] as any, filter: "blur(4px)" }
 const transitionOverlay = { duration: 0.5, ease: [0.32, 0.72, 0, 1] as any }
 
 const Carousel = memo(
@@ -71,11 +88,11 @@ const Carousel = memo(
   }: {
     handleClick: (imgUrl: string, index: number) => void
     controls: any
-    cards: { image: string; title: string }[]
+    cards: string[]
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 1600 : 2800
+    const cylinderWidth = isScreenSizeSm ? 1100 : 1800
     const faceCount = cards.length
     const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
@@ -87,7 +104,7 @@ const Carousel = memo(
 
     return (
       <div
-        className="flex h-full items-center justify-center"
+        className="flex h-full items-center justify-center bg-mauve-dark-2"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
@@ -121,58 +138,50 @@ const Carousel = memo(
           }
           animate={controls}
         >
-          {cards.map((card, i) => {
-            const isAfter = card.title.toLowerCase().includes('after')
-            const roomType = card.title.replace(/ - (Before|After)$/i, '').trim()
-            
-            return (
-              <motion.div
-                key={`key-${card.image}-${i}`}
-                className="absolute flex h-full origin-center items-center justify-center rounded-xl"
-                style={{
-                  width: `${faceWidth}px`,
-                  transform: `rotateY(${
-                    i * (360 / faceCount)
-                  }deg) translateZ(${radius}px)`,
-                }}
-                onClick={() => handleClick(card.image, i)}
-              >
-                <div className="relative w-full h-full overflow-hidden rounded-xl shadow-lg">
-                  <motion.img
-                    src={card.image}
-                    alt={card.title}
-                    layoutId={`img-${card.image}`}
-                    className="pointer-events-none block w-full h-full object-cover"
-                    initial={{ filter: "blur(4px)" }}
-                    layout="position"
-                    animate={{ filter: "blur(0px)" }}
-                    transition={transition}
-                  />
-                  {/* Subtle Watermarks */}
-                  <div className="absolute top-3 left-3 pointer-events-none">
-                    <span className="text-xs font-medium text-white/80 drop-shadow-lg">
-                      {isAfter ? 'AFTER' : 'BEFORE'}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-3 right-3 pointer-events-none">
-                    <span className="text-xs text-white/70 drop-shadow-lg">
-                      {roomType}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
+          {cards.map((imgUrl, i) => (
+            <motion.div
+              key={`key-${imgUrl}-${i}`}
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-mauve-dark-2 p-2"
+              style={{
+                width: `${faceWidth}px`,
+                transform: `rotateY(${
+                  i * (360 / faceCount)
+                }deg) translateZ(${radius}px)`,
+              }}
+              onClick={() => handleClick(imgUrl, i)}
+            >
+              <motion.img
+                src={imgUrl}
+                alt={`keyword_${i} ${imgUrl}`}
+                layoutId={`img-${imgUrl}`}
+                className="pointer-events-none  w-full rounded-xl object-cover aspect-square"
+                initial={{ filter: "blur(4px)" }}
+                layout="position"
+                animate={{ filter: "blur(0px)" }}
+                transition={transition}
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     )
   }
 )
 
-function ThreeDPhotoCarousel({ items }: { items: { image: string; title: string }[] }) {
+const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
+const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
+function ThreeDPhotoCarousel() {
   const [activeImg, setActiveImg] = useState<string | null>(null)
   const [isCarouselActive, setIsCarouselActive] = useState(true)
   const controls = useAnimation()
+  const cards = useMemo(
+    () => keywords.map((keyword) => `https://picsum.photos/200/300?${keyword}`),
+    []
+  )
+
+  useEffect(() => {
+    console.log("Cards loaded:", cards)
+  }, [cards])
 
   const handleClick = (imgUrl: string) => {
     setActiveImg(imgUrl)
@@ -204,13 +213,13 @@ function ThreeDPhotoCarousel({ items }: { items: { image: string; title: string 
               layoutId={`img-${activeImg}`}
               src={activeImg}
               className="max-w-full max-h-full rounded-lg shadow-lg"
-              initial={{ scale: 0.5 }}
-              animate={{ scale: 1 }}
+              initial={{ scale: 0.5 }} // Start with a smaller scale
+              animate={{ scale: 1 }} // Animate to full scale
               transition={{
                 delay: 0.5,
                 duration: 0.5,
                 ease: [0.25, 0.1, 0.25, 1],
-              }}
+              }} // Clean ease-out curve
               style={{
                 willChange: "transform",
               }}
@@ -218,11 +227,11 @@ function ThreeDPhotoCarousel({ items }: { items: { image: string; title: string 
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="relative h-[800px] md:h-[900px] lg:h-[1000px] w-full overflow-hidden">
+      <div className="relative h-[500px] w-full overflow-hidden">
         <Carousel
           handleClick={handleClick}
           controls={controls}
-          cards={items}
+          cards={cards}
           isCarouselActive={isCarouselActive}
         />
       </div>
