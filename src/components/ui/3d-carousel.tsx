@@ -92,10 +92,10 @@ const Carousel = memo(
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 1800 : 2600
-    const faceCount = 8
+    const cylinderWidth = isScreenSizeSm ? 1100 : 1800
+    const faceCount = cards.length
     const faceWidth = cylinderWidth / faceCount
-    const radius = cylinderWidth / (1.5 * Math.PI) // wider radius = gentler curvature, better separation
+    const radius = cylinderWidth / (2 * Math.PI)
     const rotation = useMotionValue(0)
     const transform = useTransform(
       rotation,
@@ -175,7 +175,7 @@ function ThreeDPhotoCarousel() {
   const [isCarouselActive, setIsCarouselActive] = useState(true)
   const controls = useAnimation()
   const cards = useMemo(
-    () => keywords.map((keyword) => `https://picsum.photos/1000/1500?${keyword}`),
+    () => keywords.map((keyword) => `https://picsum.photos/200/300?${keyword}`),
     []
   )
 
@@ -227,10 +227,7 @@ function ThreeDPhotoCarousel() {
           </motion.div>
         )}
       </AnimatePresence>
-      <div
-        className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center"
-        style={{ perspective: "1800px" }}
-      >
+      <div className="relative h-[500px] w-full overflow-hidden">
         <Carousel
           handleClick={handleClick}
           controls={controls}
