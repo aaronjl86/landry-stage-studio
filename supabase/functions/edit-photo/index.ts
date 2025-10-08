@@ -115,9 +115,8 @@ serve(async (req) => {
 
 ⛔ FORBIDDEN MODIFICATIONS (NEVER ALLOWED):
 - DO NOT add, remove, relocate, resize, or alter ANY windows in any way
-- DO NOT cover, obscure, block, or hide ANY windows with furniture, curtains, or any objects
-- DO NOT place furniture or objects in front of windows that would block the view
-- WINDOWS MUST REMAIN 100% VISIBLE AND UNOBSTRUCTED AT ALL TIMES
+- DO NOT cover or obscure windows with furniture or large objects
+- DO NOT place furniture in front of windows that would block the window opening
 - DO NOT add, remove, move, or change ANY walls or wall positions
 - DO NOT add, remove, move, or change ANY doors or doorways
 - DO NOT modify room dimensions, ceiling height, or floor plan layout
@@ -129,19 +128,19 @@ serve(async (req) => {
 - DO NOT alter window views or what is visible through windows
 
 ✅ ALLOWED MODIFICATIONS ONLY:
-- Add, remove, or rearrange furniture (sofas, tables, chairs, beds, etc.) - but NEVER in front of windows
-- Add or remove decorative items (art, plants, lamps, accessories) - but NEVER blocking windows
+- Add, remove, or rearrange furniture (sofas, tables, chairs, beds, etc.) - positioned away from blocking windows
+- Add or remove decorative items (art, plants, lamps, accessories)
 - Change wall paint colors (surface color only, not texture or material)
 - Add or change area rugs on top of existing flooring
 - Adjust lighting brightness and ambiance (not fixture placement)
-- Add minimal window treatments IF they do not obstruct or cover the window glass
+- Add window treatments (curtains, blinds, drapes, shades) - keep them open or decorative to maintain window visibility
 
 USER'S EDITING REQUEST: ${prompt}
 
 ⚠️ FINAL VERIFICATION: Before generating, confirm that:
-1. All windows remain in their exact original positions with ZERO modifications
-2. All windows are 100% visible and not covered, blocked, or obscured by anything
-3. No furniture or objects are placed in front of any windows
+1. All windows remain in their exact original positions with ZERO structural modifications
+2. Windows remain visible (window treatments like curtains are allowed if open/decorative)
+3. No furniture or large objects are placed blocking the window openings
 4. All walls remain in their exact original positions with no structural changes
 5. All doors remain in their exact original positions
 6. Room dimensions and architecture are 100% preserved
