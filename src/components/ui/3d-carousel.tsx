@@ -121,30 +121,51 @@ const Carousel = memo(
           }
           animate={controls}
         >
-          {cards.map((card, i) => (
-            <motion.div
-              key={`key-${card.image}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl p-2"
-              style={{
-                width: `${faceWidth}px`,
-                transform: `rotateY(${
-                  i * (360 / faceCount)
-                }deg) translateZ(${radius}px)`,
-              }}
-              onClick={() => handleClick(card.image, i)}
-            >
-              <motion.img
-                src={card.image}
-                alt={card.title}
-                layoutId={`img-${card.image}`}
-                className="pointer-events-none w-full rounded-xl object-cover aspect-square"
-                initial={{ filter: "blur(4px)" }}
-                layout="position"
-                animate={{ filter: "blur(0px)" }}
-                transition={transition}
-              />
-            </motion.div>
-          ))}
+          {cards.map((card, i) => {
+            const isAfter = card.title.toLowerCase().includes('after')
+            const roomType = card.title.replace(/ - (Before|After)$/i, '').trim()
+            
+            return (
+              <motion.div
+                key={`key-${card.image}-${i}`}
+                className="absolute flex h-full origin-center items-center justify-center rounded-xl p-2"
+                style={{
+                  width: `${faceWidth}px`,
+                  transform: `rotateY(${
+                    i * (360 / faceCount)
+                  }deg) translateZ(${radius}px)`,
+                }}
+                onClick={() => handleClick(card.image, i)}
+              >
+                <div className="relative w-full h-full">
+                  <motion.img
+                    src={card.image}
+                    alt={card.title}
+                    layoutId={`img-${card.image}`}
+                    className="pointer-events-none w-full h-full rounded-xl object-cover aspect-square"
+                    initial={{ filter: "blur(4px)" }}
+                    layout="position"
+                    animate={{ filter: "blur(0px)" }}
+                    transition={transition}
+                  />
+                  <div className="absolute top-3 left-3 right-3 flex items-start justify-between pointer-events-none">
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      isAfter 
+                        ? 'bg-green-500/90 text-white' 
+                        : 'bg-orange-500/90 text-white'
+                    }`}>
+                      {isAfter ? 'AFTER' : 'BEFORE'}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3 pointer-events-none">
+                    <span className="block px-3 py-1.5 rounded-lg bg-black/70 text-white text-xs font-medium truncate">
+                      {roomType}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
     )
