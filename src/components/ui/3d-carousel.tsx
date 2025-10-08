@@ -92,8 +92,8 @@ const Carousel = memo(
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 1100 : 1800
-    const faceCount = cards.length
+    const cylinderWidth = isScreenSizeSm ? 1400 : 2600
+    const faceCount = 8 // fewer faces = more surface area per image
     const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
     const rotation = useMotionValue(0)
