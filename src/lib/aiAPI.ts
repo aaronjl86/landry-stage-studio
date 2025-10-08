@@ -2,19 +2,19 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const TEMPLATE_PROMPTS = {
   "lighting-enhancement":
-    "Enhance ONLY the lighting and brightness. DO NOT change walls, floors, ceiling, windows, doors, or room structure. Balance the exposure, brighten dark areas, and create even, natural lighting throughout. Preserve the exact room architecture.",
+    "Enhance ONLY the lighting and brightness. ABSOLUTELY FORBIDDEN: changing walls, floors, ceiling, windows, doors, or any structural elements. Balance exposure, brighten dark areas, create even natural lighting. Preserve 100% of the room's architecture and structure.",
   decluttering:
-    "Remove ALL furniture, decor, personal items, and movable objects to create a completely empty room. DO NOT change walls, floors, ceiling, windows, doors, moldings, fixtures, or any permanent architectural features. Preserve the exact room structure, lighting, and architectural details. Result should be a clean, empty space ready for staging.",
+    "Remove ALL furniture, decor, personal items, and movable objects to create a completely empty room. ABSOLUTELY FORBIDDEN: changing walls, floors, ceiling, windows, doors, moldings, built-ins, fixtures, or any permanent architectural features. The room structure, dimensions, windows, doors, and all architectural elements must remain EXACTLY as they are. Result must be a clean empty space with perfect architectural preservation.",
   "virtual-staging":
-    "Add ONLY furniture and decor to this room. DO NOT change walls, floors, ceiling, windows, doors, or any room structure. Preserve the exact architecture. Add tasteful modern furniture like sofas, tables, lamps, and wall art that complement the existing space.",
+    "Add ONLY furniture and decor to this room. ABSOLUTELY FORBIDDEN: adding, removing, or moving walls, floors, ceiling, windows, doors, or any structural elements. The architecture must remain 100% unchanged. Add only movable furniture (sofas, tables, chairs, beds, lamps) and decorative items (art, plants, accessories) that work within the existing space.",
   "sky-replacement":
-    "Replace ONLY the sky in this exterior photo with a beautiful clear blue sky with white clouds. DO NOT change the building, landscaping, or any other elements. Maintain realistic lighting and colors.",
+    "Replace ONLY the sky in this exterior photo with a beautiful clear blue sky with white clouds. ABSOLUTELY FORBIDDEN: changing the building structure, windows, doors, roofline, or landscaping. Maintain realistic lighting and preserve all architectural elements exactly as they are.",
   "day-to-dusk":
-    "Transform ONLY the lighting to twilight. DO NOT change the building structure, landscaping, or architectural features. Add warm interior lighting glowing from windows and create a golden hour sky. Preserve all structural elements.",
+    "Transform ONLY the lighting to twilight/golden hour. ABSOLUTELY FORBIDDEN: changing building structure, windows, doors, landscaping, or any architectural features. Add warm interior lighting glow from windows and create twilight sky. All structural elements must remain exactly as photographed.",
   "lawn-enhancement":
-    "Enhance ONLY the landscaping and grass. DO NOT change the building, hardscaping, or structural elements. Make the grass look lush and green, trim overgrown areas. Keep all architecture exactly as is.",
+    "Enhance ONLY landscaping and grass. ABSOLUTELY FORBIDDEN: changing the building, hardscaping, driveways, walkways, or any structural elements. Make grass lush and green, trim overgrown areas. All architecture, pathways, and structures must remain exactly as they are.",
   "hdr-enhancement":
-    "Apply professional HDR processing to enhance dynamic range and detail. DO NOT change the room structure, walls, floors, ceiling, windows, or doors. Only improve the photo quality, colors, and exposure.",
+    "Apply professional HDR processing to enhance dynamic range, detail, colors, and exposure. ABSOLUTELY FORBIDDEN: changing room structure, walls, floors, ceiling, windows, doors, or any architectural elements. This is photo quality enhancement only - preserve 100% of the architectural structure.",
 };
 
 // Template ID to prompt key mapping

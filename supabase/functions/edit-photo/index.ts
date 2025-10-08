@@ -110,21 +110,39 @@ serve(async (req) => {
 
     logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
 
-    // Add strict instruction to preserve room structure
-    const enhancedPrompt = `MANDATORY ARCHITECTURAL PRESERVATION RULES:
-1. DO NOT ALTER OR MODIFY ANY STRUCTURAL ELEMENTS
-2. KEEP ALL WINDOWS EXACTLY AS THEY ARE - do not cover, remove, or replace windows
-3. KEEP ALL WALLS EXACTLY AS THEY ARE - do not add, remove, or change wall positions
-4. KEEP ALL DOORS EXACTLY AS THEY ARE - preserve all door locations and types
-5. KEEP THE FLOOR EXACTLY AS IT IS - do not change flooring material or color
-6. KEEP THE CEILING EXACTLY AS IT IS - preserve ceiling height and features
-7. PRESERVE ALL ARCHITECTURAL DETAILS - moldings, trim, built-ins, fixtures
+    // Add STRICT architectural preservation guardrails
+    const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION REQUIREMENTS - ABSOLUTE COMPLIANCE MANDATORY:
 
-ONLY MODIFY: furniture placement, furniture style, decorative items, and styling elements.
+⛔ FORBIDDEN MODIFICATIONS (NEVER ALLOWED):
+- DO NOT add, remove, relocate, resize, or alter ANY windows
+- DO NOT add, remove, move, or change ANY walls or wall positions
+- DO NOT add, remove, move, or change ANY doors or doorways
+- DO NOT modify room dimensions, ceiling height, or floor plan layout
+- DO NOT change structural elements: beams, columns, built-ins, moldings, trim
+- DO NOT alter permanent fixtures: light fixtures, outlets, vents, radiators
+- DO NOT modify flooring material or type (hardwood, tile, carpet pattern/texture)
+- DO NOT change ceiling features or architectural details
+- DO NOT add or remove archways, alcoves, or structural openings
+- DO NOT alter window views or what is visible through windows
 
-Task: ${prompt}
+✅ ALLOWED MODIFICATIONS ONLY:
+- Add, remove, or rearrange furniture (sofas, tables, chairs, beds, etc.)
+- Add or remove decorative items (art, plants, lamps, accessories)
+- Change wall paint colors (surface color only, not texture or material)
+- Add or change area rugs on top of existing flooring
+- Adjust lighting brightness and ambiance (not fixture placement)
+- Add or remove curtains/window treatments (not windows themselves)
 
-REMINDER: The room structure must remain 100% unchanged. Only stage/furnish the space.`;
+USER'S EDITING REQUEST: ${prompt}
+
+⚠️ FINAL VERIFICATION: Before generating, confirm that:
+1. All windows remain in their exact original positions with no modifications
+2. All walls remain in their exact original positions with no structural changes
+3. All doors remain in their exact original positions
+4. Room dimensions and architecture are 100% preserved
+5. Only furniture, decor, and styling elements have been modified
+
+If the request asks for ANY forbidden modification, you MUST refuse and only apply the allowed changes.`;
 
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
