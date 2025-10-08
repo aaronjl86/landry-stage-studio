@@ -4,7 +4,7 @@ export const TEMPLATE_PROMPTS = {
   "lighting-enhancement":
     "Enhance ONLY the lighting and brightness. DO NOT change walls, floors, ceiling, windows, doors, or room structure. Balance the exposure, brighten dark areas, and create even, natural lighting throughout. Preserve the exact room architecture.",
   decluttering:
-    "Remove ONLY personal items, clutter, and distracting objects. DO NOT change walls, floors, ceiling, windows, doors, or room structure. Keep all architectural features exactly as they are. Make the space look clean and organized.",
+    "Remove ALL furniture, decor, personal items, and movable objects to create a completely empty room. DO NOT change walls, floors, ceiling, windows, doors, moldings, fixtures, or any permanent architectural features. Preserve the exact room structure, lighting, and architectural details. Result should be a clean, empty space ready for staging.",
   "virtual-staging":
     "Add ONLY furniture and decor to this room. DO NOT change walls, floors, ceiling, windows, doors, or any room structure. Preserve the exact architecture. Add tasteful modern furniture like sofas, tables, lamps, and wall art that complement the existing space.",
   "sky-replacement":
