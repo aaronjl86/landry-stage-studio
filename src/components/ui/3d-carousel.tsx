@@ -228,12 +228,14 @@ function ThreeDPhotoCarousel() {
         )}
       </AnimatePresence>
       <div className="relative h-[500px] w-full overflow-hidden">
-        <Carousel
-          handleClick={handleClick}
-          controls={controls}
-          cards={cards}
-          isCarouselActive={isCarouselActive}
-        />
+        <div className="scale-[1.4] origin-center">
+          <Carousel
+            handleClick={handleClick}
+            controls={controls}
+            cards={cards}
+            isCarouselActive={isCarouselActive}
+          />
+        </div>
       </div>
     </motion.div>
   )
