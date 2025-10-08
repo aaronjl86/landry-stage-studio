@@ -114,7 +114,10 @@ serve(async (req) => {
     const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION REQUIREMENTS - ABSOLUTE COMPLIANCE MANDATORY:
 
 ⛔ FORBIDDEN MODIFICATIONS (NEVER ALLOWED):
-- DO NOT add, remove, relocate, resize, or alter ANY windows
+- DO NOT add, remove, relocate, resize, or alter ANY windows in any way
+- DO NOT cover, obscure, block, or hide ANY windows with furniture, curtains, or any objects
+- DO NOT place furniture or objects in front of windows that would block the view
+- WINDOWS MUST REMAIN 100% VISIBLE AND UNOBSTRUCTED AT ALL TIMES
 - DO NOT add, remove, move, or change ANY walls or wall positions
 - DO NOT add, remove, move, or change ANY doors or doorways
 - DO NOT modify room dimensions, ceiling height, or floor plan layout
@@ -126,21 +129,23 @@ serve(async (req) => {
 - DO NOT alter window views or what is visible through windows
 
 ✅ ALLOWED MODIFICATIONS ONLY:
-- Add, remove, or rearrange furniture (sofas, tables, chairs, beds, etc.)
-- Add or remove decorative items (art, plants, lamps, accessories)
+- Add, remove, or rearrange furniture (sofas, tables, chairs, beds, etc.) - but NEVER in front of windows
+- Add or remove decorative items (art, plants, lamps, accessories) - but NEVER blocking windows
 - Change wall paint colors (surface color only, not texture or material)
 - Add or change area rugs on top of existing flooring
 - Adjust lighting brightness and ambiance (not fixture placement)
-- Add or remove curtains/window treatments (not windows themselves)
+- Add minimal window treatments IF they do not obstruct or cover the window glass
 
 USER'S EDITING REQUEST: ${prompt}
 
 ⚠️ FINAL VERIFICATION: Before generating, confirm that:
-1. All windows remain in their exact original positions with no modifications
-2. All walls remain in their exact original positions with no structural changes
-3. All doors remain in their exact original positions
-4. Room dimensions and architecture are 100% preserved
-5. Only furniture, decor, and styling elements have been modified
+1. All windows remain in their exact original positions with ZERO modifications
+2. All windows are 100% visible and not covered, blocked, or obscured by anything
+3. No furniture or objects are placed in front of any windows
+4. All walls remain in their exact original positions with no structural changes
+5. All doors remain in their exact original positions
+6. Room dimensions and architecture are 100% preserved
+7. Only furniture, decor, and styling elements have been modified
 
 If the request asks for ANY forbidden modification, you MUST refuse and only apply the allowed changes.`;
 
