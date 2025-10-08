@@ -137,12 +137,12 @@ const Carousel = memo(
                 }}
                 onClick={() => handleClick(card.image, i)}
               >
-                <div className="relative w-full h-full">
+                <div className="relative">
                   <motion.img
                     src={card.image}
                     alt={card.title}
                     layoutId={`img-${card.image}`}
-                    className="pointer-events-none w-full h-full rounded-xl object-cover aspect-square"
+                    className="pointer-events-none w-full rounded-xl object-cover aspect-square"
                     initial={{ filter: "blur(4px)" }}
                     layout="position"
                     animate={{ filter: "blur(0px)" }}
