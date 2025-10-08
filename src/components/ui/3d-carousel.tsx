@@ -128,7 +128,7 @@ const Carousel = memo(
             return (
               <motion.div
                 key={`key-${card.image}-${i}`}
-                className="absolute flex h-full origin-center items-center justify-center rounded-xl p-2"
+                className="absolute flex h-full origin-center items-center justify-center rounded-xl"
                 style={{
                   width: `${faceWidth}px`,
                   transform: `rotateY(${
@@ -137,12 +137,12 @@ const Carousel = memo(
                 }}
                 onClick={() => handleClick(card.image, i)}
               >
-                <div className="relative">
+                <div className="relative overflow-hidden">
                   <motion.img
                     src={card.image}
                     alt={card.title}
                     layoutId={`img-${card.image}`}
-                    className="pointer-events-none w-full rounded-xl object-cover aspect-square border-4 border-border shadow-lg scale-[1.5]"
+                    className="pointer-events-none w-full h-full rounded-xl object-cover border-4 border-border shadow-lg scale-[2]"
                     initial={{ filter: "blur(4px)" }}
                     layout="position"
                     animate={{ filter: "blur(0px)" }}
