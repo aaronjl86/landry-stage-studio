@@ -76,28 +76,31 @@ serve(async (req) => {
     // Generate unique reference for idempotency
     const ref = `edit_${userId}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
-    // Consume credits using the database function
-    logger.info("Consuming credits", { correlationId, userId, amount: 1 });
-    const { data: creditResult, error: creditError } = await supabase.rpc("credits_consume", {
-      _user_id: userId,
-      _amount: 1,
-      _ref: ref,
-      _service: "edit-photo",
-    });
+    // TEMPORARY: Credit consumption disabled for testing
+    // logger.info("Consuming credits", { correlationId, userId, amount: 1 });
+    // const { data: creditResult, error: creditError } = await supabase.rpc("credits_consume", {
+    //   _user_id: userId,
+    //   _amount: 1,
+    //   _ref: ref,
+    //   _service: "edit-photo",
+    // });
 
-    if (creditError || !creditResult?.success) {
-      logger.warn("Credit consumption failed", { correlationId, userId, error: creditError, result: creditResult });
-      return new Response(
-        JSON.stringify({ 
-          error: creditResult?.error || "Failed to consume credits",
-          remaining: creditResult?.remaining 
-        }),
-        {
-          status: 402,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
-    }
+    // if (creditError || !creditResult?.success) {
+    //   logger.warn("Credit consumption failed", { correlationId, userId, error: creditError, result: creditResult });
+    //   return new Response(
+    //     JSON.stringify({ 
+    //       error: creditResult?.error || "Failed to consume credits",
+    //       remaining: creditResult?.remaining 
+    //     }),
+    //     {
+    //       status: 402,
+    //       headers: { ...corsHeaders, "Content-Type": "application/json" },
+    //     }
+    //   );
+    // }
+
+    // Mock credit result for testing
+    const creditResult = { success: true, remaining: 999 };
 
     // Call Lovable AI Gateway with Gemini image editing model
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
@@ -164,15 +167,15 @@ REMINDER: The room structure must remain 100% unchanged. Only stage/furnish the 
         error: errorText 
       });
 
-      // Refund credit since AI processing failed
-      await supabase.rpc("credits_refund", {
-        _user_id: userId,
-        _amount: 1,
-        _ref: `refund_${ref}`,
-        _original_ref: ref,
-        _service: "edit-photo",
-      });
-      logger.info("Credit refunded due to AI failure", { correlationId, userId });
+      // TEMPORARY: Credit refund disabled for testing
+      // await supabase.rpc("credits_refund", {
+      //   _user_id: userId,
+      //   _amount: 1,
+      //   _ref: `refund_${ref}`,
+      //   _original_ref: ref,
+      //   _service: "edit-photo",
+      // });
+      // logger.info("Credit refunded due to AI failure", { correlationId, userId });
 
       return new Response(
         JSON.stringify({ error: "AI processing failed" }),
@@ -191,15 +194,15 @@ REMINDER: The room structure must remain 100% unchanged. Only stage/furnish the 
     if (!editedImageUrl) {
       logger.error("No image in AI response", { correlationId, userId, response: JSON.stringify(aiData) });
 
-      // Refund credit since no image was returned
-      await supabase.rpc("credits_refund", {
-        _user_id: userId,
-        _amount: 1,
-        _ref: `refund_${ref}`,
-        _original_ref: ref,
-        _service: "edit-photo",
-      });
-      logger.info("Credit refunded due to missing image", { correlationId, userId });
+      // TEMPORARY: Credit refund disabled for testing
+      // await supabase.rpc("credits_refund", {
+      //   _user_id: userId,
+      //   _amount: 1,
+      //   _ref: `refund_${ref}`,
+      //   _original_ref: ref,
+      //   _service: "edit-photo",
+      // });
+      // logger.info("Credit refunded due to missing image", { correlationId, userId });
 
       return new Response(
         JSON.stringify({ error: "No edited image returned from AI" }),
