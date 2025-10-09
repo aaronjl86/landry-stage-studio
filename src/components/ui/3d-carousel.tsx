@@ -94,7 +94,7 @@ const Carousel = memo(
     showBefore: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const cylinderWidth = isScreenSizeSm ? 1200 : 1800
+    const cylinderWidth = isScreenSizeSm ? 1500 : 2400
     const faceCount = cards.length
     const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
@@ -103,28 +103,23 @@ const Carousel = memo(
       rotation,
       (value) => `rotate3d(0, 1, 0, ${value}deg)`
     )
-    
-    console.log("Carousel rendering:", { faceCount, faceWidth, radius, cylinderWidth, cardsLength: cards.length })
 
     return (
       <div
-        className="flex items-center justify-center bg-transparent"
+        className="flex h-full items-center justify-center bg-background"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
           willChange: "transform",
-          height: "500px",
-          width: "100%",
         }}
       >
         <motion.div
           drag={isCarouselActive ? "x" : false}
-          className="relative flex origin-center cursor-grab justify-center active:cursor-grabbing"
+          className="relative flex h-full origin-center cursor-grab justify-center active:cursor-grabbing"
           style={{
             transform,
             rotateY: rotation,
             width: cylinderWidth,
-            height: "400px",
             transformStyle: "preserve-3d",
           }}
           onDrag={(_, info) =>
@@ -148,10 +143,9 @@ const Carousel = memo(
           {cards.map((imgUrl, i) => (
             <motion.div
               key={`key-${imgUrl}-${i}`}
-              className="absolute flex origin-center items-center justify-center rounded-xl bg-card p-2"
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-card p-2"
               style={{
                 width: `${faceWidth}px`,
-                height: "400px",
                 transform: `rotateY(${
                   i * (360 / faceCount)
                 }deg) translateZ(${radius}px)`,
@@ -163,7 +157,7 @@ const Carousel = memo(
                   src={imgUrl}
                   alt={`Staging example ${i + 1}`}
                   layoutId={`img-${imgUrl}`}
-                  className="pointer-events-none w-full h-full rounded-xl object-cover"
+                  className="pointer-events-none w-full h-full rounded-xl object-cover aspect-square"
                   initial={{ filter: "blur(4px)" }}
                   layout="position"
                   animate={{ filter: "blur(0px)" }}
@@ -277,14 +271,16 @@ function ThreeDPhotoCarousel() {
         </button>
       </div>
 
-      <div className="relative h-[600px] w-full overflow-visible flex items-center justify-center px-4 bg-muted/20">
-        <Carousel
-          handleClick={handleClick}
-          controls={controls}
-          cards={cards}
-          isCarouselActive={isCarouselActive}
-          showBefore={showBefore}
-        />
+      <div className="relative h-[700px] w-full overflow-visible flex items-center justify-center">
+        <div className="scale-[1.4] origin-center">
+          <Carousel
+            handleClick={handleClick}
+            controls={controls}
+            cards={cards}
+            isCarouselActive={isCarouselActive}
+            showBefore={showBefore}
+          />
+        </div>
       </div>
 
       {/* Prompt Reference Section */}
