@@ -212,13 +212,15 @@ export function ThreeDPhotoCarousel() {
         {showAfter ? "Show Before" : "Show After"}
       </button>
 
-      <div className="w-full h-[500px] flex items-center justify-center">
-        <Carousel
-          handleClick={handleClick}
-          controls={controls}
-          cards={cards}
-          isCarouselActive={isCarouselActive}
-        />
+      <div className="w-full h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="w-full max-w-6xl h-full">
+          <Carousel
+            handleClick={handleClick}
+            controls={controls}
+            cards={cards}
+            isCarouselActive={isCarouselActive}
+          />
+        </div>
       </div>
 
       {/* Overlay when an image is clicked */}
