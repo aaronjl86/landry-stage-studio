@@ -85,13 +85,11 @@ const Carousel = memo(
     controls,
     cards,
     isCarouselActive,
-    showBefore,
   }: {
     handleClick: (imgUrl: string, index: number) => void
     controls: any
     cards: string[]
     isCarouselActive: boolean
-    showBefore: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
     const cylinderWidth = isScreenSizeSm ? 1500 : 2400
@@ -106,7 +104,7 @@ const Carousel = memo(
 
     return (
       <div
-        className="flex h-full items-center justify-center bg-background"
+        className="flex h-full items-center justify-center bg-mauve-dark-2"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
@@ -143,7 +141,7 @@ const Carousel = memo(
           {cards.map((imgUrl, i) => (
             <motion.div
               key={`key-${imgUrl}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-card p-2"
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-mauve-dark-2 p-2"
               style={{
                 width: `${faceWidth}px`,
                 transform: `rotateY(${
@@ -152,21 +150,16 @@ const Carousel = memo(
               }}
               onClick={() => handleClick(imgUrl, i)}
             >
-              <div className="relative w-full h-full">
-                <motion.img
-                  src={imgUrl}
-                  alt={`Staging example ${i + 1}`}
-                  layoutId={`img-${imgUrl}`}
-                  className="pointer-events-none w-full h-full rounded-xl object-cover aspect-square"
-                  initial={{ filter: "blur(4px)" }}
-                  layout="position"
-                  animate={{ filter: "blur(0px)" }}
-                  transition={transition}
-                />
-                <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-3 py-1 rounded-full font-medium">
-                  {showBefore ? "Before" : "After"}
-                </div>
-              </div>
+              <motion.img
+                src={imgUrl}
+                alt={`keyword_${i} ${imgUrl}`}
+                layoutId={`img-${imgUrl}`}
+                className="pointer-events-none  w-full rounded-xl object-cover aspect-square"
+                initial={{ filter: "blur(4px)" }}
+                layout="position"
+                animate={{ filter: "blur(0px)" }}
+                transition={transition}
+              />
             </motion.div>
           ))}
         </motion.div>
@@ -177,39 +170,13 @@ const Carousel = memo(
 
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
 const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
-
-const beforeImages = [
-  "/images/before/IMG_0029.jpeg",
-  "/images/before/IMG_0038.jpeg",
-  "/images/before/IMG_0033.jpeg",
-  "/images/before/IMG_2817.jpeg",
-  "/images/before/IMG_2826.jpeg",
-]
-
-const afterImages = [
-  "/images/after/Living-Room-With-Fireplace-Staged.jpeg",
-  "/images/after/edited_IMG_0038.jpeg",
-  "/images/after/edited_IMG_0033.jpeg",
-  "/images/after/edited_IMG_2817.jpeg",
-  "/images/after/edited_IMG_2826.jpeg",
-]
-
-const prompts = [
-  "Remove decor from fireplace and replace with art nouveau decor. Enhance every wall visible with textures, accents, and stylish designs. Furnish with curved Vladimir Kagan-style serpentine sofa in charcoal, live-edge walnut media console, oversized Yayoi Kusama infinity dot canvas, ceramic sculptural table lamps, and mid-century modern area rug",
-  "Add teakwood patio furniture and large potted plants",
-  "Stage with upholstered wingback bed in heathered linen, cerused oak nightstands with brass lamps, Matisse Blue Nude cutout prints above bed, and plush wool area rug in cream",
-  "Install live-edge acacia dining table with Prouvé chairs in navy, suspended Lindsey Adelman bubble chandelier, and Memphis Group-inspired credenza with vintage decanters and various small kitchen appliances on the countertops",
-  "Add bohemian style art and decor, boho bed set with rattan nightstands and hanging plants",
-]
-
 function ThreeDPhotoCarousel() {
   const [activeImg, setActiveImg] = useState<string | null>(null)
   const [isCarouselActive, setIsCarouselActive] = useState(true)
-  const [showBefore, setShowBefore] = useState(true)
   const controls = useAnimation()
   const cards = useMemo(
-    () => (showBefore ? beforeImages : afterImages),
-    [showBefore]
+    () => keywords.map((keyword) => `https://picsum.photos/200/300?${keyword}`),
+    []
   )
 
   useEffect(() => {
@@ -246,13 +213,13 @@ function ThreeDPhotoCarousel() {
               layoutId={`img-${activeImg}`}
               src={activeImg}
               className="max-w-full max-h-full rounded-lg shadow-lg"
-              initial={{ scale: 0.5 }}
-              animate={{ scale: 1 }}
+              initial={{ scale: 0.5 }} // Start with a smaller scale
+              animate={{ scale: 1 }} // Animate to full scale
               transition={{
                 delay: 0.5,
                 duration: 0.5,
                 ease: [0.25, 0.1, 0.25, 1],
-              }}
+              }} // Clean ease-out curve
               style={{
                 willChange: "transform",
               }}
@@ -260,17 +227,6 @@ function ThreeDPhotoCarousel() {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      {/* Toggle Button */}
-      <div className="flex justify-center mb-8">
-        <button
-          onClick={() => setShowBefore(!showBefore)}
-          className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold shadow-lg hover:bg-primary/90 transition-colors"
-        >
-          {showBefore ? "Show After" : "Show Before"}
-        </button>
-      </div>
-
       <div className="relative h-[700px] w-full overflow-visible flex items-center justify-center">
         <div className="scale-[1.4] origin-center">
           <Carousel
@@ -278,33 +234,9 @@ function ThreeDPhotoCarousel() {
             controls={controls}
             cards={cards}
             isCarouselActive={isCarouselActive}
-            showBefore={showBefore}
           />
         </div>
       </div>
-
-      {/* Prompt Reference Section */}
-      <section className="mt-16 w-full max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Prompt Reference</h2>
-        <p className="text-muted-foreground text-center mb-8">
-          See the exact prompts used to create these stunning transformations
-        </p>
-        <div className="space-y-4">
-          {prompts.map((prompt, index) => (
-            <div
-              key={index}
-              className="bg-muted/30 rounded-lg p-6 border border-border hover:border-primary/50 transition-colors"
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">
-                  {index + 1}
-                </div>
-                <p className="text-foreground leading-relaxed flex-1">{prompt}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
     </motion.div>
   )
 }
