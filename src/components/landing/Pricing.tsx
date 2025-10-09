@@ -69,10 +69,10 @@ export const Pricing = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-4xl md:text-5xl font-bold">
-            Simple, Transparent Pricing
+            Competitively Priced, Infinitely More Flexible
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. All plans include our AI-powered staging.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Get photorealistic virtual staging at prices comparable to other services—but with unlimited creative freedom and instant results you control.
           </p>
           
           {/* Billing Toggle */}

@@ -22,13 +22,13 @@ export const Hero = () => {
           {/* Content */}
           <div className="space-y-8 animate-fade-in text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Transform Empty Rooms into
+              Stage Any Space
               <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Stunning Spaces
+                Exactly How You Envision It
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-              AI-powered virtual staging for real estate professionals. Upload photos of empty rooms and get professionally staged images in seconds.
+              The only self-serve platform where YOU control the design. Upload your photos, write custom prompts, and get photorealistic staging in seconds—not days.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
@@ -45,8 +45,8 @@ export const Hero = () => {
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-muted-foreground">
               <div>✓ 3 Free Uploads</div>
-              <div>✓ No Credit Card</div>
-              <div>✓ Cancel Anytime</div>
+              <div>✓ Unlimited Creative Freedom</div>
+              <div>✓ Instant Results</div>
             </div>
           </div>
 

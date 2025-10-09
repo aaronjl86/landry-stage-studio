@@ -1,35 +1,35 @@
-import { Zap, Image, Clock, Shield, Users, TrendingUp } from "lucide-react";
+import { Zap, Image, Clock, Shield, Wand2, TrendingUp } from "lucide-react";
 
 const features = [
   {
+    icon: Wand2,
+    title: "Custom Prompts",
+    description: "Write exactly what you want to see. No preset templates—describe your vision in your own words and our AI brings it to life."
+  },
+  {
     icon: Zap,
-    title: "Lightning Fast",
-    description: "AI-powered staging in seconds, not days. Get your listings market-ready instantly."
+    title: "Instant Results",
+    description: "Get photorealistic staging in seconds, not days. No waiting for designers or back-and-forth revisions."
   },
   {
     icon: Image,
     title: "Photorealistic Quality",
-    description: "High-definition, professional-quality images that look like real staged rooms."
+    description: "High-definition, professional images at a fraction of the cost of physical staging—competitively priced with other virtual services."
   },
   {
     icon: Clock,
-    title: "Save Time & Money",
-    description: "No more expensive physical staging. Virtual staging costs 97% less than traditional methods."
+    title: "Self-Serve Platform",
+    description: "Complete control from start to finish. Upload, customize, and download—all on your own timeline, 24/7."
   },
   {
     icon: Shield,
-    title: "Commercial Rights",
-    description: "Full usage rights for all images. Use them anywhere in your marketing materials."
-  },
-  {
-    icon: Users,
-    title: "Multiple Styles",
-    description: "Choose from modern, traditional, minimalist, and more to match your target audience."
+    title: "Unlimited Creativity",
+    description: "Generate as many variations as you need. Try different styles, furniture arrangements, and details until it's perfect."
   },
   {
     icon: TrendingUp,
     title: "Sell Faster",
-    description: "Staged homes sell 73% faster and for 3-5% more than empty properties."
+    description: "Staged homes sell 73% faster and for 3-5% more. Now with the flexibility to showcase any style to your target buyers."
   }
 ];
 
@@ -39,10 +39,10 @@ export const Features = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold">
-            Why Choose The Landry Method?
+            Why The Landry Method is Different
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to create stunning property listings that sell faster
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            The only platform that gives you complete creative control with custom prompts, instant results, and photorealistic quality—all at competitive pricing
           </p>
         </div>
 

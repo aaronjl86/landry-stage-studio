@@ -1,6 +1,7 @@
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
+import { InteractiveDemo } from "@/components/landing/InteractiveDemo";
 import { Pricing } from "@/components/landing/Pricing";
 import { FAQ } from "@/components/landing/FAQ";
 import { SocialProof } from "@/components/landing/SocialProof";
@@ -23,6 +24,7 @@ const Index = () => {
       </section>
       
       <Features />
+      <InteractiveDemo />
       <div id="pricing">
         <Pricing />
       </div>
