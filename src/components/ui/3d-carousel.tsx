@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
-import { memo, useEffect, useLayoutEffect, useMemo, useState } from "react"
+import { memo, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import {
   motion,
   useAnimation,
   useMotionValue,
   useTransform,
-} from "framer-motion"
+} from 'framer-motion'
 
 // Gallery assets (bundle-safe)
 import before1 from "@/assets/gallery/before-living-room-1.jpg";
@@ -22,14 +22,14 @@ import after5 from "@/assets/gallery/after-dining-room.webp";
 
 // ========== UTILITIES ==========
 export const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 type UseMediaQueryOptions = {
   defaultValue?: boolean
   initializeWithValue?: boolean
 }
 
-const IS_SERVER = typeof window === "undefined"
+const IS_SERVER = typeof window === 'undefined'
 
 export function useMediaQuery(
   query: string,
@@ -89,15 +89,14 @@ const Carousel = memo(
     cards: string[]
     isCarouselActive: boolean
   }) => {
-    const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
+    const isScreenSizeSm = useMediaQuery('(max-width: 640px)')
     const cylinderWidth = isScreenSizeSm ? 1500 : 2400
     const faceCount = cards.length
-    const faceWidth = cylinderWidth / faceCount
     const radius = cylinderWidth / (2 * Math.PI)
     const rotation = useMotionValue(0)
     const transform = useTransform(
       rotation,
-      (value) => `rotate3d(0, 1, 0, ${value}deg)`
+      (value) => 'rotate3d(0, 1, 0, ' + value + 'deg)'
     )
 
     return (
@@ -120,7 +119,7 @@ const Carousel = memo(
             controls.start({
               rotateY: rotation.get() + info.velocity.x * 0.05,
               transition: {
-                type: "spring",
+                type: 'spring',
                 stiffness: 100,
                 damping: 30,
                 mass: 0.1,
@@ -169,6 +168,8 @@ const Carousel = memo(
     )
   }
 )
+
+Carousel.displayName = 'Carousel'
 
 // ========== MAIN COMPONENT ==========
 export function ThreeDPhotoCarousel() {
