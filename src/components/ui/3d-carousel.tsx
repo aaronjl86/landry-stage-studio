@@ -60,7 +60,7 @@ export function useMediaQuery(
 }
 
 // ========== IMAGE SETS ==========
-const beforeImages: string[] = [
+const beforeImages = [
   before1,
   before2,
   before3,
@@ -68,7 +68,7 @@ const beforeImages: string[] = [
   before5,
 ]
 
-const afterImages: string[] = [
+const afterImages = [
   after1,
   after2,
   after3,
@@ -86,7 +86,7 @@ const Carousel = memo(
   }: {
     handleClick: (imgUrl: string, index: number) => void
     controls: any
-    cards: string[]
+    cards: any[]
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery('(max-width: 640px)')
@@ -136,8 +136,9 @@ const Carousel = memo(
           }}
           className="h-full w-full"
         >
-          {cards.map((imgUrl, i) => {
+          {cards.map((img, i) => {
             const angle = (360 / faceCount) * i
+            const imgSrc = typeof img === 'string' ? img : img.src || img.default?.src || img
             return (
               <motion.div
                 key={i}
@@ -148,15 +149,15 @@ const Carousel = memo(
                   transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                   transformOrigin: "center center",
                 }}
-                onClick={() => handleClick(imgUrl, i)}
+                onClick={() => handleClick(imgSrc, i)}
               >
                 <motion.img
-                  src={imgUrl}
+                  src={imgSrc}
                   alt={`carousel-image-${i}`}
                   draggable={false}
                   loading="lazy"
-                  onLoad={() => console.log("✅ Carousel image loaded:", imgUrl)}
-                  onError={() => console.error("❌ Carousel image failed:", imgUrl)}
+                  onLoad={() => console.log("✅ Carousel image loaded:", imgSrc)}
+                  onError={() => console.error("❌ Carousel image failed:", imgSrc)}
                   style={{ backfaceVisibility: "hidden" }}
                   className="h-full w-full object-cover rounded-xl shadow-2xl"
                 />
