@@ -60,7 +60,7 @@ export function useMediaQuery(
 }
 
 // ========== IMAGE SETS ==========
-const beforeImages = [
+const beforeImages: string[] = [
   before1,
   before2,
   before3,
@@ -68,7 +68,7 @@ const beforeImages = [
   before5,
 ]
 
-const afterImages = [
+const afterImages: string[] = [
   after1,
   after2,
   after3,
@@ -86,7 +86,7 @@ const Carousel = memo(
   }: {
     handleClick: (imgUrl: string, index: number) => void
     controls: any
-    cards: any[]
+    cards: string[]
     isCarouselActive: boolean
   }) => {
     const isScreenSizeSm = useMediaQuery('(max-width: 640px)')
@@ -138,7 +138,6 @@ const Carousel = memo(
         >
           {cards.map((img, i) => {
             const angle = (360 / faceCount) * i
-            const imgSrc = typeof img === 'string' ? img : img.src || img.default?.src || img
             return (
               <motion.div
                 key={i}
@@ -149,15 +148,15 @@ const Carousel = memo(
                   transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                   transformOrigin: "center center",
                 }}
-                onClick={() => handleClick(imgSrc, i)}
+                onClick={() => handleClick(img, i)}
               >
                 <motion.img
-                  src={imgSrc}
+                  src={img}
                   alt={`carousel-image-${i}`}
                   draggable={false}
                   loading="lazy"
-                  onLoad={() => console.log("✅ Carousel image loaded:", imgSrc)}
-                  onError={() => console.error("❌ Carousel image failed:", imgSrc)}
+                  onLoad={() => console.log("✅ Carousel image loaded:", img)}
+                  onError={() => console.error("❌ Carousel image failed:", img)}
                   style={{ backfaceVisibility: "hidden" }}
                   className="h-full w-full object-cover rounded-xl shadow-2xl"
                 />
@@ -180,6 +179,14 @@ export function ThreeDPhotoCarousel() {
   const controls = useAnimation()
 
   const cards = useMemo(() => (showAfter ? afterImages : beforeImages), [showAfter])
+
+  // Debug logging
+  useEffect(() => {
+    console.log("🎨 3D Carousel Debug:")
+    console.log("- Cards count:", cards.length)
+    console.log("- Card URLs:", cards)
+    console.log("- Show After:", showAfter)
+  }, [cards, showAfter])
 
   const handleClick = (imgUrl: string) => {
     setActiveImg(imgUrl)
