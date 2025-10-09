@@ -2,13 +2,13 @@
 
 import { memo, useEffect, useLayoutEffect, useMemo, useState } from "react"
 import {
-  AnimatePresence,
   motion,
   useAnimation,
   useMotionValue,
   useTransform,
 } from "framer-motion"
 
+// ========== UTILITIES ==========
 export const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
 
@@ -27,58 +27,44 @@ export function useMediaQuery(
   }: UseMediaQueryOptions = {}
 ): boolean {
   const getMatches = (query: string): boolean => {
-    if (IS_SERVER) {
-      return defaultValue
-    }
+    if (IS_SERVER) return defaultValue
     return window.matchMedia(query).matches
   }
 
-  const [matches, setMatches] = useState<boolean>(() => {
-    if (initializeWithValue) {
-      return getMatches(query)
-    }
-    return defaultValue
-  })
+  const [matches, setMatches] = useState(() =>
+    initializeWithValue ? getMatches(query) : defaultValue
+  )
 
-  const handleChange = () => {
-    setMatches(getMatches(query))
-  }
+  const handleChange = () => setMatches(getMatches(query))
 
   useIsomorphicLayoutEffect(() => {
     const matchMedia = window.matchMedia(query)
     handleChange()
-
     matchMedia.addEventListener("change", handleChange)
-
-    return () => {
-      matchMedia.removeEventListener("change", handleChange)
-    }
+    return () => matchMedia.removeEventListener("change", handleChange)
   }, [query])
 
   return matches
 }
 
-const keywords = [
-  "night",
-  "city",
-  "sky",
-  "sunset",
-  "sunrise",
-  "winter",
-  "skyscraper",
-  "building",
-  "cityscape",
-  "architecture",
-  "street",
-  "lights",
-  "downtown",
-  "bridge",
+// ========== IMAGE SETS ==========
+const beforeImages: string[] = [
+  "/images/before/before-cozy-guest-room.jpeg",
+  "/images/before/before-empty-bedroom.png",
+  "/images/before/before-living-room-fireplace.jpeg",
+  "/images/before/before-modern-kitchen.jpeg",
+  "/images/before/before-outdoor-patio.jpeg",
 ]
 
-const duration = 0.15
-const transition = { duration, ease: [0.32, 0.72, 0, 1] as any, filter: "blur(4px)" }
-const transitionOverlay = { duration: 0.5, ease: [0.32, 0.72, 0, 1] as any }
+const afterImages: string[] = [
+  "/images/after/after-cozy-guest-room-modern.jpeg",
+  "/images/after/after-living-room-fireplace-staged.jpeg",
+  "/images/after/after-modern-kitchen-dining.jpeg",
+  "/images/after/after-outdoor-patio-staged.jpeg",
+  "/images/after/after-traditional-bedroom.jpeg",
+]
 
+// ========== MAIN CAROUSEL ==========
 const Carousel = memo(
   ({
     handleClick,
@@ -103,29 +89,22 @@ const Carousel = memo(
     )
 
     return (
-      <div
-        className="flex h-full items-center justify-center bg-mauve-dark-2"
+      <motion.div
+        className="relative flex h-full items-center justify-center bg-background"
         style={{
-          perspective: "1000px",
+          perspective: "2000px",
           transformStyle: "preserve-3d",
-          willChange: "transform",
+          touchAction: "pan-y",
         }}
-      >
-        <motion.div
-          drag={isCarouselActive ? "x" : false}
-          className="relative flex h-full origin-center cursor-grab justify-center active:cursor-grabbing"
-          style={{
-            transform,
-            rotateY: rotation,
-            width: cylinderWidth,
-            transformStyle: "preserve-3d",
-          }}
-          onDrag={(_, info) =>
-            isCarouselActive &&
+        drag="x"
+        dragElastic={0.02}
+        dragMomentum={false}
+        onDrag={(e, info) => {
+          if (isCarouselActive)
             rotation.set(rotation.get() + info.offset.x * 0.05)
-          }
-          onDragEnd={(_, info) =>
-            isCarouselActive &&
+        }}
+        onDragEnd={(e, info) => {
+          if (isCarouselActive)
             controls.start({
               rotateY: rotation.get() + info.velocity.x * 0.05,
               transition: {
@@ -135,53 +114,51 @@ const Carousel = memo(
                 mass: 0.1,
               },
             })
-          }
-          animate={controls}
+        }}
+        animate={controls}
+      >
+        <motion.div
+          style={{
+            transform,
+            transformStyle: "preserve-3d",
+            position: "relative",
+          }}
+          className="h-full"
         >
-          {cards.map((imgUrl, i) => (
-            <motion.div
-              key={`key-${imgUrl}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-mauve-dark-2 p-2"
-              style={{
-                width: `${faceWidth}px`,
-                transform: `rotateY(${
-                  i * (360 / faceCount)
-                }deg) translateZ(${radius}px)`,
-              }}
-              onClick={() => handleClick(imgUrl, i)}
-            >
-              <motion.img
-                src={imgUrl}
-                alt={`keyword_${i} ${imgUrl}`}
-                layoutId={`img-${imgUrl}`}
-                className="pointer-events-none  w-full rounded-xl object-cover aspect-square"
-                initial={{ filter: "blur(4px)" }}
-                layout="position"
-                animate={{ filter: "blur(0px)" }}
-                transition={transition}
-              />
-            </motion.div>
-          ))}
+          {cards.map((imgUrl, i) => {
+            const angle = (360 / faceCount) * i
+            return (
+              <motion.div
+                key={i}
+                className="absolute h-full w-full cursor-pointer"
+                style={{
+                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                  transformOrigin: "center center",
+                }}
+                onClick={() => handleClick(imgUrl, i)}
+              >
+                <motion.img
+                  src={imgUrl}
+                  alt={`carousel-image-${i}`}
+                  className="h-full w-full object-cover aspect-square rounded-xl shadow-2xl"
+                />
+              </motion.div>
+            )
+          })}
         </motion.div>
-      </div>
+      </motion.div>
     )
   }
 )
 
-const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
-const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
-function ThreeDPhotoCarousel() {
+// ========== MAIN COMPONENT ==========
+export function ThreeDPhotoCarousel() {
   const [activeImg, setActiveImg] = useState<string | null>(null)
   const [isCarouselActive, setIsCarouselActive] = useState(true)
+  const [showAfter, setShowAfter] = useState(false)
   const controls = useAnimation()
-  const cards = useMemo(
-    () => keywords.map((keyword) => `https://picsum.photos/200/300?${keyword}`),
-    []
-  )
 
-  useEffect(() => {
-    console.log("Cards loaded:", cards)
-  }, [cards])
+  const cards = useMemo(() => (showAfter ? afterImages : beforeImages), [showAfter])
 
   const handleClick = (imgUrl: string) => {
     setActiveImg(imgUrl)
@@ -195,50 +172,45 @@ function ThreeDPhotoCarousel() {
   }
 
   return (
-    <motion.div layout className="relative">
-      <AnimatePresence mode="sync">
-        {activeImg && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            layoutId={`img-container-${activeImg}`}
-            layout="position"
-            onClick={handleClose}
-            className="fixed inset-0 bg-black bg-opacity-10 flex items-center justify-center z-50 m-5 md:m-36 lg:mx-[19rem] rounded-3xl"
-            style={{ willChange: "opacity" }}
-            transition={transitionOverlay}
-          >
-            <motion.img
-              layoutId={`img-${activeImg}`}
-              src={activeImg}
-              className="max-w-full max-h-full rounded-lg shadow-lg"
-              initial={{ scale: 0.5 }} // Start with a smaller scale
-              animate={{ scale: 1 }} // Animate to full scale
-              transition={{
-                delay: 0.5,
-                duration: 0.5,
-                ease: [0.25, 0.1, 0.25, 1],
-              }} // Clean ease-out curve
-              style={{
-                willChange: "transform",
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <div className="relative h-[700px] w-full overflow-visible flex items-center justify-center">
-        <div className="scale-[1.4] origin-center">
-          <Carousel
-            handleClick={handleClick}
-            controls={controls}
-            cards={cards}
-            isCarouselActive={isCarouselActive}
-          />
-        </div>
+    <section className="flex flex-col items-center justify-center py-10">
+      <h2 className="text-3xl font-semibold text-center mb-4">
+        See The Transformation
+      </h2>
+
+      <button
+        onClick={() => setShowAfter(!showAfter)}
+        className="mb-8 px-6 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow transition"
+      >
+        {showAfter ? "Show Before" : "Show After"}
+      </button>
+
+      <div className="w-full h-[500px] flex items-center justify-center">
+        <Carousel
+          handleClick={handleClick}
+          controls={controls}
+          cards={cards}
+          isCarouselActive={isCarouselActive}
+        />
       </div>
-    </motion.div>
+
+      {/* Overlay when an image is clicked */}
+      {activeImg && (
+        <motion.div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleClose}
+        >
+          <motion.img
+            src={activeImg}
+            alt="Full size"
+            className="max-w-[90vw] max-h-[85vh] rounded-xl shadow-2xl object-contain"
+          />
+        </motion.div>
+      )}
+    </section>
   )
 }
 
-export { ThreeDPhotoCarousel }
+export default ThreeDPhotoCarousel
