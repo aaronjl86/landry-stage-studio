@@ -72,7 +72,7 @@ export function ExpandableTabs({
 
         return (
           <Link
-            key={tab.path || index}
+            key={`${tab.path}-${tab.title}`}
             to={tab.path}
             onClick={handleClick}
             onMouseEnter={() => setHoveredIndex(index)}
