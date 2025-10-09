@@ -123,7 +123,7 @@ const Carousel = memo(
             transformStyle: "preserve-3d",
             position: "relative",
           }}
-          className="h-full"
+          className="h-full w-full"
         >
           {cards.map((imgUrl, i) => {
             const angle = (360 / faceCount) * i
