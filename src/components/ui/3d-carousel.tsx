@@ -106,7 +106,7 @@ const Carousel = memo(
 
     return (
       <div
-        className="flex h-full items-center justify-center bg-mauve-dark-2"
+        className="flex h-full items-center justify-center bg-background"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
@@ -143,7 +143,7 @@ const Carousel = memo(
           {cards.map((imgUrl, i) => (
             <motion.div
               key={`key-${imgUrl}-${i}`}
-              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-mauve-dark-2 p-2"
+              className="absolute flex h-full origin-center items-center justify-center rounded-xl bg-card p-2"
               style={{
                 width: `${faceWidth}px`,
                 transform: `rotateY(${
