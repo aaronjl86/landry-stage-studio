@@ -140,6 +140,10 @@ const Carousel = memo(
                 <motion.img
                   src={imgUrl}
                   alt={`carousel-image-${i}`}
+                  draggable={false}
+                  onLoad={() => console.log("✅ Carousel image loaded:", imgUrl)}
+                  onError={() => console.error("❌ Carousel image failed:", imgUrl)}
+                  style={{ backfaceVisibility: "hidden" }}
                   className="h-full w-full object-cover aspect-square rounded-xl shadow-2xl"
                 />
               </motion.div>
