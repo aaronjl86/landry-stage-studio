@@ -8,6 +8,18 @@ import {
   useTransform,
 } from "framer-motion"
 
+// Gallery assets (bundle-safe)
+import before1 from "@/assets/gallery/before-living-room-1.jpg";
+import before2 from "@/assets/gallery/before-living-room-2.jpg";
+import before3 from "@/assets/gallery/before-bedroom.jpg";
+import before4 from "@/assets/gallery/before-bedroom-2.jpg";
+import before5 from "@/assets/gallery/before-dining-room.webp";
+import after1 from "@/assets/gallery/after-living-room-1.jpg";
+import after2 from "@/assets/gallery/after-living-room-2.jpg";
+import after3 from "@/assets/gallery/after-bedroom.jpg";
+import after4 from "@/assets/gallery/after-room-1.jpg";
+import after5 from "@/assets/gallery/after-dining-room.webp";
+
 // ========== UTILITIES ==========
 export const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
@@ -49,19 +61,19 @@ export function useMediaQuery(
 
 // ========== IMAGE SETS ==========
 const beforeImages: string[] = [
-  "/images/before/before-cozy-guest-room.jpeg",
-  "/images/before/before-empty-bedroom.png",
-  "/images/before/before-living-room-fireplace.jpeg",
-  "/images/before/before-modern-kitchen.jpeg",
-  "/images/before/before-outdoor-patio.jpeg",
+  before1,
+  before2,
+  before3,
+  before4,
+  before5,
 ]
 
 const afterImages: string[] = [
-  "/images/after/after-cozy-guest-room-modern.jpeg",
-  "/images/after/after-living-room-fireplace-staged.jpeg",
-  "/images/after/after-modern-kitchen-dining.jpeg",
-  "/images/after/after-outdoor-patio-staged.jpeg",
-  "/images/after/after-traditional-bedroom.jpeg",
+  after1,
+  after2,
+  after3,
+  after4,
+  after5,
 ]
 
 // ========== MAIN CAROUSEL ==========
