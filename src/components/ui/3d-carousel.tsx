@@ -1,14 +1,9 @@
 'use client'
 
-import { memo, useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import {
-  motion,
-  useAnimation,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion'
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Gallery assets (bundle-safe)
+// Gallery assets
 import before1 from "@/assets/gallery/before-living-room-1.jpg";
 import before2 from "@/assets/gallery/before-living-room-2.jpg";
 import before3 from "@/assets/gallery/before-bedroom.jpg";
@@ -20,227 +15,318 @@ import after3 from "@/assets/gallery/after-bedroom.jpg";
 import after4 from "@/assets/gallery/after-room-1.jpg";
 import after5 from "@/assets/gallery/after-dining-room.webp";
 
-// ========== UTILITIES ==========
-export const useIsomorphicLayoutEffect =
-  typeof window !== 'undefined' ? useLayoutEffect : useEffect
+// Before/After pairs
+const pairs = [
+  { before: before1, after: after1, title: "Modern Living Room" },
+  { before: before2, after: after2, title: "Open Concept Living" },
+  { before: before3, after: after3, title: "Master Bedroom" },
+  { before: before4, after: after4, title: "Guest Room" },
+  { before: before5, after: after5, title: "Elegant Dining Room" },
+];
 
-type UseMediaQueryOptions = {
-  defaultValue?: boolean
-  initializeWithValue?: boolean
-}
-
-const IS_SERVER = typeof window === 'undefined'
-
-export function useMediaQuery(
-  query: string,
-  {
-    defaultValue = false,
-    initializeWithValue = true,
-  }: UseMediaQueryOptions = {}
-): boolean {
-  const getMatches = (query: string): boolean => {
-    if (IS_SERVER) return defaultValue
-    return window.matchMedia(query).matches
-  }
-
-  const [matches, setMatches] = useState(() =>
-    initializeWithValue ? getMatches(query) : defaultValue
-  )
-
-  const handleChange = () => setMatches(getMatches(query))
-
-  useIsomorphicLayoutEffect(() => {
-    const matchMedia = window.matchMedia(query)
-    handleChange()
-    matchMedia.addEventListener("change", handleChange)
-    return () => matchMedia.removeEventListener("change", handleChange)
-  }, [query])
-
-  return matches
-}
-
-// ========== IMAGE SETS ==========
-const beforeImages: string[] = [
-  before1,
-  before2,
-  before3,
-  before4,
-  before5,
-]
-
-const afterImages: string[] = [
-  after1,
-  after2,
-  after3,
-  after4,
-  after5,
-]
-
-// ========== MAIN CAROUSEL ==========
-const Carousel = memo(
-  ({
-    handleClick,
-    controls,
-    cards,
-    isCarouselActive,
-  }: {
-    handleClick: (imgUrl: string, index: number) => void
-    controls: any
-    cards: string[]
-    isCarouselActive: boolean
-  }) => {
-    const isScreenSizeSm = useMediaQuery('(max-width: 640px)')
-    const cylinderWidth = isScreenSizeSm ? 1500 : 2400
-    const faceCount = cards.length
-    const radius = cylinderWidth / (2 * Math.PI)
-    const rotation = useMotionValue(0)
-    const transform = useTransform(
-      rotation,
-      (value) => 'rotate3d(0, 1, 0, ' + value + 'deg)'
-    )
-
-    return (
-      <motion.div
-        className="relative flex h-full items-center justify-center bg-background"
-        style={{
-          perspective: "2000px",
-          transformStyle: "preserve-3d",
-          touchAction: "pan-y",
-        }}
-        drag="x"
-        dragElastic={0.02}
-        dragMomentum={false}
-        onDrag={(e, info) => {
-          if (isCarouselActive)
-            rotation.set(rotation.get() + info.offset.x * 0.05)
-        }}
-        onDragEnd={(e, info) => {
-          if (isCarouselActive)
-            controls.start({
-              rotateY: rotation.get() + info.velocity.x * 0.05,
-              transition: {
-                type: 'spring',
-                stiffness: 100,
-                damping: 30,
-                mass: 0.1,
-              },
-            })
-        }}
-        animate={controls}
-      >
-        <motion.div
-          style={{
-            transform,
-            transformStyle: "preserve-3d",
-            position: "relative",
-          }}
-          className="h-full w-full"
-        >
-          {cards.map((img, i) => {
-            const angle = (360 / faceCount) * i
-            return (
-              <motion.div
-                key={i}
-                className="absolute inset-0 h-full w-full cursor-pointer"
-                style={{
-                  top: 0,
-                  left: 0,
-                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                  transformOrigin: "center center",
-                }}
-                onClick={() => handleClick(img, i)}
-              >
-                <motion.img
-                  src={img}
-                  alt={`carousel-image-${i}`}
-                  draggable={false}
-                  loading="lazy"
-                  onLoad={() => console.log("✅ Carousel image loaded:", img)}
-                  onError={() => console.error("❌ Carousel image failed:", img)}
-                  style={{ backfaceVisibility: "hidden" }}
-                  className="h-full w-full object-cover rounded-xl shadow-2xl"
-                />
-              </motion.div>
-            )
-          })}
-        </motion.div>
-      </motion.div>
-    )
-  }
-)
-
-Carousel.displayName = 'Carousel'
-
-// ========== MAIN COMPONENT ==========
 export function ThreeDPhotoCarousel() {
-  const [activeImg, setActiveImg] = useState<string | null>(null)
-  const [isCarouselActive, setIsCarouselActive] = useState(true)
-  const [showAfter, setShowAfter] = useState(false)
-  const controls = useAnimation()
+  const [rotation, setRotation] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [lastRotation, setLastRotation] = useState(0);
+  const [selectedPair, setSelectedPair] = useState<number | null>(null);
+  const [showAfter, setShowAfter] = useState(false);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number>(Date.now());
 
-  const cards = useMemo(() => (showAfter ? afterImages : beforeImages), [showAfter])
-
-  // Debug logging
+  // Smooth continuous auto-rotation
   useEffect(() => {
-    console.log("🎨 3D Carousel Debug:")
-    console.log("- Cards count:", cards.length)
-    console.log("- Card URLs:", cards)
-    console.log("- Show After:", showAfter)
-  }, [cards, showAfter])
+    if (isDragging || selectedPair !== null) return;
 
-  const handleClick = (imgUrl: string) => {
-    setActiveImg(imgUrl)
-    setIsCarouselActive(false)
-    controls.stop()
-  }
+    const animate = () => {
+      const now = Date.now();
+      const delta = (now - lastTimeRef.current) / 1000;
+      lastTimeRef.current = now;
+
+      setRotation((prev) => prev + delta * 8); // 8 degrees per second
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isDragging, selectedPair]);
+
+  // Mouse/Touch handlers
+  const handleDragStart = (clientX: number) => {
+    if (selectedPair !== null) return;
+    setIsDragging(true);
+    setStartX(clientX);
+    setLastRotation(rotation);
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+  };
+
+  const handleDragMove = (clientX: number) => {
+    if (!isDragging) return;
+    const distance = clientX - startX;
+    const rotationChange = distance * 0.3;
+    setRotation(lastRotation + rotationChange);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    lastTimeRef.current = Date.now();
+  };
+
+  const handlePairClick = (index: number) => {
+    setSelectedPair(index);
+    setShowAfter(false);
+  };
 
   const handleClose = () => {
-    setActiveImg(null)
-    setIsCarouselActive(true)
-  }
+    setSelectedPair(null);
+    setShowAfter(false);
+    lastTimeRef.current = Date.now();
+  };
+
+  const toggleBeforeAfter = () => {
+    setShowAfter(!showAfter);
+  };
+
+  const getItemStyle = (index: number) => {
+    const anglePerItem = 360 / pairs.length;
+    const itemAngle = (index * anglePerItem - rotation) % 360;
+    const normalizedAngle = ((itemAngle + 360) % 360);
+
+    const radians = (normalizedAngle * Math.PI) / 180;
+    const radius = 320;
+    const x = Math.sin(radians) * radius;
+    const z = Math.cos(radians) * radius;
+
+    const scale = 0.65 + (z / radius) * 0.45;
+    const opacity = 0.3 + (z / radius) * 0.7;
+    const zIndex = Math.round(50 + z / 10);
+
+    return {
+      transform: `translateX(-50%) translate3d(${x}px, 0, ${z}px) rotateY(${-normalizedAngle}deg) scale(${scale})`,
+      zIndex,
+      opacity,
+      left: "50%",
+    };
+  };
 
   return (
-    <section className="flex flex-col items-center justify-center py-10">
-      <h2 className="text-3xl font-semibold text-center mb-4">
-        See The Transformation
-      </h2>
+    <div className="relative isolate w-full max-w-5xl mx-auto mb-16 px-4">
+      {/* Full Screen Modal */}
+      <AnimatePresence>
+        {selectedPair !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 md:p-8"
+            onClick={handleClose}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-6xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={handleClose}
+                className="absolute -top-4 -right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
 
-      <button
-        onClick={() => setShowAfter(!showAfter)}
-        className="mb-8 px-6 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow transition"
+              {/* Image container with before/after toggle */}
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative aspect-[4/3] w-full">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={showAfter ? "after" : "before"}
+                      src={
+                        showAfter
+                          ? pairs[selectedPair].after
+                          : pairs[selectedPair].before
+                      }
+                      alt={
+                        showAfter
+                          ? `${pairs[selectedPair].title} - After`
+                          : `${pairs[selectedPair].title} - Before`
+                      }
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full object-cover"
+                    />
+                  </AnimatePresence>
+
+                  {/* Before/After Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span
+                      className={`px-4 py-2 rounded-full font-bold text-sm ${
+                        showAfter
+                          ? "bg-green-500 text-white"
+                          : "bg-gray-800 text-white"
+                      }`}
+                    >
+                      {showAfter ? "AFTER" : "BEFORE"}
+                    </span>
+                  </div>
+
+                  {/* Toggle Button */}
+                  <button
+                    onClick={toggleBeforeAfter}
+                    className="absolute bottom-4 right-4 bg-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                  >
+                    {showAfter ? "Show Before" : "Show After"}
+                  </button>
+                </div>
+
+                {/* Title */}
+                <div className="p-6 bg-gradient-to-r from-gray-50 to-white">
+                  <h3 className="text-2xl font-bold text-gray-900">
+                    {pairs[selectedPair].title}
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                    Click the button to compare before and after staging
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Carousel container */}
+      <div
+        className={`relative h-[250px] sm:h-[280px] md:h-[320px] overflow-visible select-none ${
+          selectedPair === null ? "cursor-grab active:cursor-grabbing" : ""
+        }`}
+        onMouseDown={(e) => handleDragStart(e.clientX)}
+        onMouseMove={(e) => handleDragMove(e.clientX)}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={handleDragEnd}
+        onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
+        onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
+        onTouchEnd={handleDragEnd}
       >
-        {showAfter ? "Show Before" : "Show After"}
-      </button>
+        <div
+          className="relative w-full h-full flex items-center"
+          style={{ perspective: "1200px" }}
+        >
+          {pairs.map((pair, index) => {
+            const style = getItemStyle(index);
+            return (
+              <div
+                key={index}
+                className="absolute top-1/2 -translate-y-1/2 transition-all duration-100 ease-linear"
+                style={{
+                  ...style,
+                  width: "280px",
+                  height: "210px",
+                }}
+              >
+                <div
+                  className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200 bg-white cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                  onClick={() => handlePairClick(index)}
+                >
+                  {/* Split view: Before (left) and After (right) */}
+                  <div className="relative w-full h-full flex">
+                    <div className="w-1/2 h-full relative overflow-hidden">
+                      <img
+                        src={pair.before}
+                        alt={`${pair.title} - Before`}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-2 left-2">
+                        <span className="px-2 py-1 bg-gray-800 text-white text-xs font-bold rounded">
+                          BEFORE
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-1/2 h-full relative overflow-hidden">
+                      <img
+                        src={pair.after}
+                        alt={`${pair.title} - After`}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-2 right-2">
+                        <span className="px-2 py-1 bg-green-500 text-white text-xs font-bold rounded">
+                          AFTER
+                        </span>
+                      </div>
+                    </div>
+                    {/* Divider */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-white transform -translate-x-1/2 z-10" />
+                  </div>
 
-      <div className="w-full h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="w-full max-w-6xl h-full">
-          <Carousel
-            handleClick={handleClick}
-            controls={controls}
-            cards={cards}
-            isCarouselActive={isCarouselActive}
-          />
+                  {/* Title overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                    <p className="text-white font-semibold text-xs text-center">
+                      {pair.title}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Overlay when an image is clicked */}
-      {activeImg && (
-        <motion.div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={handleClose}
-        >
-          <motion.img
-            src={activeImg}
-            alt="Full size"
-            className="max-w-[90vw] max-h-[85vh] rounded-xl shadow-2xl object-contain"
-          />
-        </motion.div>
-      )}
-    </section>
-  )
+      {/* Navigation dots */}
+      <div className="flex justify-center gap-2 mt-8">
+        {pairs.map((_, index) => {
+          const anglePerItem = 360 / pairs.length;
+          const targetAngle = index * anglePerItem;
+          const currentNormalized = rotation % 360;
+          const diff = Math.abs(
+            ((targetAngle - currentNormalized + 540) % 360) - 180
+          );
+          const isActive = diff < anglePerItem / 2;
+
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                setRotation(targetAngle);
+                setLastRotation(targetAngle);
+              }}
+              className={`h-2 rounded-full transition-all ${
+                isActive
+                  ? "bg-primary w-8"
+                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
+              }`}
+            />
+          );
+        })}
+      </div>
+
+      {/* Instruction text */}
+      <p className="text-center text-muted-foreground text-sm mt-6">
+        Drag to rotate • Click any image to view full before/after comparison
+      </p>
+    </div>
+  );
 }
 
-export default ThreeDPhotoCarousel
+export default ThreeDPhotoCarousel;
