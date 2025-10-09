@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { aiAPI, EditImageRequest } from "@/lib/aiAPI";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export type JobStatus = "pending" | "processing" | "completed" | "failed";
 
@@ -56,6 +57,23 @@ export function useAIProcessor() {
             progress: 100,
             processingTime,
           });
+
+          // Save to database
+          try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+              await supabase.from("uploads").insert({
+                user_id: user.id,
+                original_image_url: job.originalImage,
+                staged_image_url: result.editedImageData,
+                status: "completed",
+                credits_used: 1,
+              });
+            }
+          } catch (dbError) {
+            console.error("Error saving to database:", dbError);
+            // Don't fail the job if database save fails
+          }
 
           toast({
             title: "Success",
