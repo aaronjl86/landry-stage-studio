@@ -130,8 +130,10 @@ const Carousel = memo(
             return (
               <motion.div
                 key={i}
-                className="absolute h-full w-full cursor-pointer"
+                className="absolute inset-0 h-full w-full cursor-pointer"
                 style={{
+                  top: 0,
+                  left: 0,
                   transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                   transformOrigin: "center center",
                 }}
@@ -141,10 +143,11 @@ const Carousel = memo(
                   src={imgUrl}
                   alt={`carousel-image-${i}`}
                   draggable={false}
+                  loading="lazy"
                   onLoad={() => console.log("✅ Carousel image loaded:", imgUrl)}
                   onError={() => console.error("❌ Carousel image failed:", imgUrl)}
                   style={{ backfaceVisibility: "hidden" }}
-                  className="h-full w-full object-cover aspect-square rounded-xl shadow-2xl"
+                  className="h-full w-full object-cover rounded-xl shadow-2xl"
                 />
               </motion.div>
             )
