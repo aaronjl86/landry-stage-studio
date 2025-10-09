@@ -130,16 +130,26 @@ const Carousel = memo(
             return (
               <motion.div
                 key={i}
-                className="absolute h-full w-full cursor-pointer"
+                className="absolute h-full w-full cursor-pointer flex items-center justify-center bg-muted"
                 style={{
                   transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                   transformOrigin: "center center",
                 }}
                 onClick={() => handleClick(imgUrl, i)}
               >
-                <motion.img
+                <img
                   src={imgUrl}
                   alt={`carousel-image-${i}`}
+                  onError={(e) => {
+                    console.error("❌ Image failed to load:", imgUrl)
+                    e.currentTarget.style.display = "none"
+                    const placeholder = document.createElement("div")
+                    placeholder.innerText = "MISSING"
+                    placeholder.style.cssText =
+                      "color:red;font-weight:bold;font-size:20px;background:white;padding:10px;border:2px solid red;border-radius:8px"
+                    e.currentTarget.parentElement?.appendChild(placeholder)
+                  }}
+                  onLoad={() => console.log("✅ Image loaded:", imgUrl)}
                   className="h-full w-full object-cover aspect-square rounded-xl shadow-2xl"
                 />
               </motion.div>
