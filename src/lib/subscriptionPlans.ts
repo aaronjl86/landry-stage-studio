@@ -11,9 +11,8 @@ export const SUBSCRIPTION_PLANS = {
     features: [
       "10 uploads per month",
       "HD quality images",
-      "24-hour turnaround",
       "Email support",
-      "Basic editing tools"
+      "Editing tools"
     ],
   },
   professional: {
@@ -27,12 +26,10 @@ export const SUBSCRIPTION_PLANS = {
     description: "For active real estate professionals",
     features: [
       "50 uploads per month",
-      "Ultra HD quality images",
-      "12-hour turnaround",
+      "HD quality images",
       "Priority support",
-      "Advanced editing tools",
-      "Bulk upload",
-      "Custom branding"
+      "Editing tools",
+      "Bulk upload"
     ],
   },
   enterprise: {
@@ -46,8 +43,7 @@ export const SUBSCRIPTION_PLANS = {
     description: "For agencies and high-volume users",
     features: [
       "Unlimited uploads",
-      "4K quality images",
-      "2-hour turnaround",
+      "HD quality images",
       "Dedicated support",
       "Full editing suite",
       "API access",
