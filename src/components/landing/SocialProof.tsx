@@ -66,7 +66,7 @@ export const SocialProof = () => {
 
       {/* Testimonials */}
       <div className="space-y-2">
-        <h3 className="text-3xl font-semibold text-center mb-2">What Our Users Say</h3>
+        <h3 className="text-3xl font-semibold text-center mb-2 py-8">What Our Users Say</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {testimonials.map((testimonial, idx) => <div key={idx} className="bg-card border rounded-lg p-2 hover:border-primary/50 transition-colors">
               <div className="flex gap-1 mb-2">
