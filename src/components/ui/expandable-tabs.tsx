@@ -43,7 +43,7 @@ export function ExpandableTabs({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1 rounded-full border bg-background p-1 shadow-sm",
+        "inline-flex items-center gap-1.5 rounded-full border bg-background p-1.5 shadow-sm",
         className
       )}
     >
@@ -52,7 +52,7 @@ export function ExpandableTabs({
           return (
             <div
               key={`separator-${index}`}
-              className="h-8 w-px bg-border mx-1"
+              className="h-10 w-px bg-border mx-1"
             />
           );
         }
@@ -78,7 +78,7 @@ export function ExpandableTabs({
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             className={cn(
-              "relative inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200",
+              "relative inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
               "hover:bg-muted/50",
               active && "bg-muted",
               active ? activeColor : "text-muted-foreground"
@@ -86,7 +86,7 @@ export function ExpandableTabs({
           >
             <Icon
               className={cn(
-                "h-3.5 w-3.5 transition-transform duration-200",
+                "h-4 w-4 transition-transform duration-200",
                 hovered && "scale-110"
               )}
             />
