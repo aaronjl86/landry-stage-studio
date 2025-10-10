@@ -13,32 +13,41 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden py-12">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-[image:var(--gradient-hero)] opacity-10" />
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10">
+      {/* Animated Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-primary/30 opacity-30 animate-pulse" style={{ animationDuration: '8s' }} />
+      
+      {/* Decorative circles */}
+      <div className="absolute top-20 right-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
           {/* Content */}
           <div className="space-y-8 animate-fade-in text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Stage Any Space
-              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <div className="inline-block mb-4">
+              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold border border-primary/20">
+                ✨ AI-Powered Virtual Staging
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
+              <span className="block text-foreground drop-shadow-sm">Stage Any Space</span>
+              <span className="block mt-2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
                 Exactly How You Envision It
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-              The only self-serve platform where YOU control the design. Upload your photos, write custom prompts, and get photorealistic staging in seconds—not days.
+            <p className="text-xl md:text-2xl text-foreground/80 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              The only self-serve platform where <span className="text-primary font-bold">YOU control the design</span>. Upload your photos, write custom prompts, and get photorealistic staging in seconds—not days.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
-                <Button size="lg" className="group text-lg px-8">
+                <Button size="lg" className="group text-xl px-10 py-7 bg-gradient-to-r from-primary to-accent hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105">
                   Start Free Trial
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link to="/dashboard/gallery">
-                <Button size="lg" variant="outline" className="text-lg px-8">
+                <Button size="lg" variant="outline" className="text-xl px-10 py-7 border-2 hover:bg-primary/10 hover:border-primary transition-all duration-300">
                   View Examples
                 </Button>
               </Link>
@@ -52,7 +61,7 @@ export const Hero = () => {
 
           {/* Before/After Slider */}
           <div className="relative animate-scale-in">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform">
               {/* Before Image */}
               <img
                 src={stagedRoom}
