@@ -148,13 +148,11 @@ export function ImageGallery() {
 
   return (
     <div className="flex flex-col items-center justify-center bg-primary py-20 font-sans">
-      {currentDescription && (
-        <div className="max-w-[900px] w-full px-4 mb-6">
-          <p className="text-white text-center text-base sm:text-lg md:text-xl font-medium leading-relaxed">
-            {currentDescription}
-          </p>
-        </div>
-      )}
+      <div className="max-w-[900px] w-full px-4 mb-6">
+        <h3 className="text-white text-center text-3xl sm:text-4xl font-bold">
+          See the Transformation Right Before Your Eyes
+        </h3>
+      </div>
       <div className="relative">
         <div className="relative h-[80vmin] w-[80vmin] max-h-[900px] max-w-[900px] overflow-hidden rounded-[20px] bg-[#3a3a3a] shadow-[0_2.8px_2.2px_rgba(0,0,0,0.02),0_6.7px_5.3px_rgba(0,0,0,0.028),0_12.5px_10px_rgba(0,0,0,0.035),0_22.3px_17.9px_rgba(0,0,0,0.042),0_41.8px_33.4px_rgba(0,0,0,0.05),0_100px_80px_rgba(0,0,0,0.07)]">
         {gsapReady &&
@@ -222,6 +220,14 @@ export function ImageGallery() {
         </svg>
         </button>
       </div>
+      
+      {currentDescription && (
+        <div className="max-w-[900px] w-full px-4 mt-8">
+          <p className="text-white text-center text-base sm:text-lg md:text-xl font-medium leading-relaxed">
+            {currentDescription}
+          </p>
+        </div>
+      )}
     </div>
   )
 }
