@@ -4,10 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Footer4Col from "@/components/ui/footer-column";
-
 export default function Pricing() {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -20,17 +18,11 @@ export default function Pricing() {
           </Link>
         </div>
         
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your real estate staging needs
-          </p>
-        </div>
+        
         
         <PricingSection />
       </main>
       
       <Footer4Col />
-    </div>
-  );
+    </div>;
 }
