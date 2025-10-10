@@ -16,6 +16,7 @@ export interface EditingJob {
   customPrompt?: string;
   processingTime?: number;
   fileName: string;
+  isRedo?: boolean; // Flag to track if this is a redo/regeneration
 }
 
 export function useAIProcessor() {
@@ -58,21 +59,24 @@ export function useAIProcessor() {
             processingTime,
           });
 
-          // Save to database
-          try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (user) {
-              await supabase.from("uploads").insert({
-                user_id: user.id,
-                original_image_url: job.originalImage,
-                staged_image_url: result.editedImageData,
-                status: "completed",
-                credits_used: 1,
-              });
+          // Save to database ONLY if this is not a redo/regeneration
+          // Redos should not charge credits or create duplicate records
+          if (!job.isRedo) {
+            try {
+              const { data: { user } } = await supabase.auth.getUser();
+              if (user) {
+                await supabase.from("uploads").insert({
+                  user_id: user.id,
+                  original_image_url: job.originalImage,
+                  staged_image_url: result.editedImageData,
+                  status: "completed",
+                  credits_used: 1,
+                });
+              }
+            } catch (dbError) {
+              console.error("Error saving to database:", dbError);
+              // Don't fail the job if database save fails
             }
-          } catch (dbError) {
-            console.error("Error saving to database:", dbError);
-            // Don't fail the job if database save fails
           }
 
           toast({
@@ -145,13 +149,14 @@ export function useAIProcessor() {
       const job = jobs.find((j) => j.id === jobId);
       if (!job) return;
 
-      // Reset the job status and reprocess
+      // Reset the job status and mark as redo (won't charge credits)
       updateJob(jobId, {
         status: "pending",
         progress: 0,
         editedImage: undefined,
         error: undefined,
         processingTime: undefined,
+        isRedo: true, // Mark as redo so it doesn't charge credits
       });
 
       await processJob(job);

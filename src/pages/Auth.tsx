@@ -91,6 +91,7 @@ export default function Auth() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="you@example.com"
+                  autoComplete="email"
                 />
               </div>
 
@@ -104,6 +105,7 @@ export default function Auth() {
                   required
                   placeholder="••••••••"
                   minLength={6}
+                  autoComplete={isLogin ? "current-password" : "new-password"}
                 />
               </div>
             </CardContent>

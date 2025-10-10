@@ -1,11 +1,68 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  
+# Build environment settings
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--legacy-peer-deps"
 
+# Build settings
+[build.processing]
+  skip_processing = false
+  
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+# Redirects for SPA routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-[build.environment]
-  NODE_VERSION = "18"
+# Headers for security and caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# DEPLOYMENT NOTE: This app uses Supabase Edge Functions (hosted by Lovable Cloud)
+# Netlify only hosts the static frontend - no Netlify Functions needed
+# 
+# REQUIRED: Add these environment variables in Netlify Dashboard
+# Site settings → Environment variables → Add a variable
+# 
+# Environment variables (must be added manually in Netlify):
+# VITE_SUPABASE_PROJECT_ID=lcwhbgfcyzefwnoblkkd
+# VITE_SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxjd2hiZ2ZjeXplZndub2Jsa2tkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0OTAyNTQsImV4cCI6MjA3NTA2NjI1NH0.C_8p4biYHN9hCQc15k6zDPPQdhOgAnI_AHjVb-6n8NQ
+# VITE_SUPABASE_URL=https://lcwhbgfcyzefwnoblkkd.supabase.co
