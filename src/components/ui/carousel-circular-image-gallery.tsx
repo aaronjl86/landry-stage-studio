@@ -47,6 +47,13 @@ const images: ImageData[] = [{
   title: "Living Room - After",
   url: "/images/after/after-living-room-fireplace-staged.jpeg",
   description: "Remove decor from fireplace and replace with art nouveau decor. Enhance every wall visible with textures, accents, and stylish designs. Furnish with curved Vladimir Kagan-style serpentine sofa in charcoal, live-edge walnut media console, oversized Yayoi Kusama infinity dot canvas, ceramic sculptural table lamps, and mid-century modern area rug"
+}, {
+  title: "Dining Room - Before",
+  url: "/images/before/before-dining-room.png"
+}, {
+  title: "Dining Room - After",
+  url: "/images/after/after-dining-room.png",
+  description: "Add Rustic Wood and Metal Dining Room Table and Chairs, Country Farmhouse Drapes, Old Fashioned Vases with Fluffy Pompass Grass"
 }];
 
 // Main component for the Image Gallery
