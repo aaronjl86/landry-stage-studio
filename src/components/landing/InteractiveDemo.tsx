@@ -209,7 +209,7 @@ export const InteractiveDemo = () => {
                     {
                       feature: "Batch Processing",
                       traditional: "Manual, slow",
-                      landry: "5 images at once",
+                      landry: "15 images at once",
                       isGood: true,
                     },
                     {
