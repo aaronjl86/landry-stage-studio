@@ -13,26 +13,26 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
       {/* Animated Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-primary/30 opacity-30 animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 via-blue-400/30 to-cyan-500/30 opacity-40 animate-pulse" style={{ animationDuration: '8s' }} />
       
       {/* Decorative circles */}
-      <div className="absolute top-20 right-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
+      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
           {/* Content */}
           <div className="space-y-8 animate-fade-in text-center lg:text-left">
             <div className="inline-block mb-4">
-              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold border border-primary/20">
+              <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full text-base font-bold shadow-lg shadow-cyan-500/50">
                 ✨ AI-Powered Virtual Staging
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
-              <span className="block text-foreground drop-shadow-sm">Stage Any Space</span>
-              <span className="block mt-2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
+              <span className="block text-gray-900 drop-shadow-lg">Stage Any Space</span>
+              <span className="block mt-3 bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] drop-shadow-2xl">
                 Exactly How You Envision It
               </span>
             </h1>
@@ -41,9 +41,9 @@ export const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
-                <Button size="lg" className="group text-xl px-10 py-7 bg-gradient-to-r from-primary to-accent hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105">
+                <Button size="lg" className="group text-2xl px-12 py-8 bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:shadow-2xl hover:shadow-cyan-500/60 transition-all duration-300 hover:scale-110 font-bold">
                   Start Free Trial
-                  <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-3 h-7 w-7 transition-transform group-hover:translate-x-2" />
                 </Button>
               </Link>
               <Link to="/dashboard/gallery">
