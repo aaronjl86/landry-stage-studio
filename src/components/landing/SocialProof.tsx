@@ -8,7 +8,7 @@ import johnTaylor from "@/assets/logos/john-taylor.png";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
-    value: "10,000+",
+    value: "Thousands",
     label: "Properties Staged"
   }, {
     icon: Star,
@@ -38,6 +38,21 @@ export const SocialProof = () => {
     role: "Broker",
     text: "Game changer for my business. The before/after transformations are absolutely stunning.",
     rating: 5
+  }, {
+    name: "David Martinez",
+    role: "Luxury Agent",
+    text: "My clients are consistently impressed with the staging quality. It's like having a professional stager on demand!",
+    rating: 5
+  }, {
+    name: "Jennifer Lee",
+    role: "Real Estate Team Leader",
+    text: "We've staged over 200 properties with this tool. The ROI is incredible and our team loves how easy it is.",
+    rating: 5
+  }, {
+    name: "Robert Anderson",
+    role: "Investment Property Manager",
+    text: "Perfect for our rental portfolio. Quick turnaround and beautiful results every single time.",
+    rating: 5
   }];
   return <div className="space-y-2">
       {/* Stats */}
@@ -51,17 +66,19 @@ export const SocialProof = () => {
 
       {/* Testimonials */}
       <div className="space-y-2">
-        <h3 className="text-xl font-semibold text-center mb-2">What Our Users Say</h3>
-        {testimonials.map((testimonial, idx) => <div key={idx} className="bg-card border rounded-lg p-2 hover:border-primary/50 transition-colors">
-            <div className="flex gap-1 mb-2">
-              {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />)}
-            </div>
-            <p className="text-sm mb-2 italic">"{testimonial.text}"</p>
-            <div className="text-sm">
-              <div className="font-semibold">{testimonial.name}</div>
-              <div className="text-muted-foreground">{testimonial.role}</div>
-            </div>
-          </div>)}
+        <h3 className="text-3xl font-semibold text-center mb-2">What Our Users Say</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {testimonials.map((testimonial, idx) => <div key={idx} className="bg-card border rounded-lg p-2 hover:border-primary/50 transition-colors">
+              <div className="flex gap-1 mb-2">
+                {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />)}
+              </div>
+              <p className="text-sm mb-2 italic">"{testimonial.text}"</p>
+              <div className="text-sm">
+                <div className="font-semibold">{testimonial.name}</div>
+                <div className="text-muted-foreground">{testimonial.role}</div>
+              </div>
+            </div>)}
+        </div>
       </div>
 
       {/* Trust Badges */}
