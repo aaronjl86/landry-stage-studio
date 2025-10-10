@@ -33,12 +33,12 @@ export const SUBSCRIPTION_PLANS = {
   },
   enterprise: {
     name: "Enterprise",
-    monthlyPriceId: "price_1SF3cx3pODi329mxTwQjBJbv",
-    yearlyPriceId: "price_1SF3fk3pODi329mxfilFAFfg",
+    monthlyPriceId: "price_1SGoYo3pODi329mxkK7i2aFr",
+    yearlyPriceId: "price_1SGoYo3pODi329mxWdlyluQo",
     monthlyPrice: 149,
     yearlyPrice: 1490,
-    productId: "prod_TBQVXXiUUs3q4V",
-    yearlyProductId: "prod_TBQWpzxm0syW72",
+    productId: "prod_TDF27UEKGTyWdc",
+    yearlyProductId: "prod_TDF2OCFGCIQjcr",
     description: "For agencies and high-volume users",
     features: [
       "Everything in Professional plus",

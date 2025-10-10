@@ -17,6 +17,10 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Temporary Stripe scripts
+create-stripe-products.cjs
+stripe-new-ids.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
