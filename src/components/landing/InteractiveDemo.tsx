@@ -11,7 +11,6 @@ const examplePrompts = [
   "Luxurious master bedroom with king-size bed, elegant chandelier, and spa-like bathroom view",
   "Cozy family room with comfortable sectional, fireplace, and rustic farmhouse style",
   "Contemporary home office with standing desk, ergonomic chair, and tech-savvy workspace",
-  "Bright and airy kitchen with white cabinets, marble countertops, and stainless appliances",
 ];
 
 const differentiators = [
