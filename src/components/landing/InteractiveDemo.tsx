@@ -145,53 +145,133 @@ export const InteractiveDemo = () => {
           </div>
         </Card>
 
-        {/* Comparison Callout */}
-        <Card className="mt-12 p-8 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">Other Virtual Staging Services</h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive mt-1">✗</span>
-                  <span>Send photos and wait 24-48 hours for results</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive mt-1">✗</span>
-                  <span>Choose from limited preset design templates</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive mt-1">✗</span>
-                  <span>No control over specific details or styles</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive mt-1">✗</span>
-                  <span>Pay per revision or redesign request</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-primary">The Landry Method</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">✓</span>
-                  <span className="font-medium">Instant results in seconds, not days</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">✓</span>
-                  <span className="font-medium">Unlimited creative freedom with custom prompts</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">✓</span>
-                  <span className="font-medium">Control every detail—from furniture to lighting</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">✓</span>
-                  <span className="font-medium">Generate as many variations as you need</span>
-                </li>
-              </ul>
-            </div>
+        {/* Interactive Comparison Table */}
+        <div className="mt-12">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl md:text-4xl font-bold mb-3">
+              Why Choose The Landry Method?
+            </h3>
+            <p className="text-muted-foreground text-lg">
+              See how we compare to traditional virtual staging services
+            </p>
           </div>
-        </Card>
+          
+          <Card className="overflow-hidden border-2">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b-2">
+                    <th className="text-left p-4 md:p-6 bg-muted/30 font-bold text-lg md:text-xl w-1/3">
+                      Feature
+                    </th>
+                    <th className="text-center p-4 md:p-6 bg-muted/30 font-bold text-lg md:text-xl w-1/3">
+                      <span className="text-muted-foreground">Traditional Services</span>
+                    </th>
+                    <th className="text-center p-4 md:p-6 bg-primary/10 font-bold text-lg md:text-xl w-1/3">
+                      <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        The Landry Method
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    {
+                      feature: "Turnaround Time",
+                      traditional: "24-48 hours",
+                      landry: "Instant (seconds)",
+                      isGood: true,
+                    },
+                    {
+                      feature: "Design Control",
+                      traditional: "Limited templates",
+                      landry: "Full customization",
+                      isGood: true,
+                    },
+                    {
+                      feature: "Revisions",
+                      traditional: "Extra cost per change",
+                      landry: "Unlimited variations",
+                      isGood: true,
+                    },
+                    {
+                      feature: "Creative Freedom",
+                      traditional: "Preset options only",
+                      landry: "Describe any vision",
+                      isGood: true,
+                    },
+                    {
+                      feature: "Cost per Image",
+                      traditional: "$29-$99 each",
+                      landry: "From $2.90 each",
+                      isGood: true,
+                    },
+                    {
+                      feature: "Batch Processing",
+                      traditional: "Manual, slow",
+                      landry: "5 images at once",
+                      isGood: true,
+                    },
+                    {
+                      feature: "Quality",
+                      traditional: "Designer dependent",
+                      landry: "AI-powered HD/4K",
+                      isGood: true,
+                    },
+                    {
+                      feature: "Support",
+                      traditional: "Email only",
+                      landry: "Priority + Dedicated",
+                      isGood: true,
+                    },
+                  ].map((row, index) => (
+                    <tr
+                      key={index}
+                      className="border-b hover:bg-muted/20 transition-colors animate-fade-in"
+                      style={{ animationDelay: `${index * 0.05}s` }}
+                    >
+                      <td className="p-4 md:p-6 font-semibold text-sm md:text-base">
+                        {row.feature}
+                      </td>
+                      <td className="p-4 md:p-6 text-center text-muted-foreground text-sm md:text-base">
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="text-destructive text-xl">✗</span>
+                          <span>{row.traditional}</span>
+                        </div>
+                      </td>
+                      <td className="p-4 md:p-6 text-center bg-primary/5 text-sm md:text-base">
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="text-primary text-xl font-bold">✓</span>
+                          <span className="font-semibold text-primary">{row.landry}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            
+            {/* Bottom CTA */}
+            <div className="p-6 md:p-8 bg-gradient-to-r from-primary/10 to-accent/10 border-t-2">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="text-center md:text-left">
+                  <p className="font-bold text-lg mb-1">
+                    Experience the difference yourself
+                  </p>
+                  <p className="text-muted-foreground">
+                    Start with 3 free uploads • No credit card required
+                  </p>
+                </div>
+                <Link to="/auth">
+                  <Button size="lg" className="group whitespace-nowrap shadow-lg">
+                    Try Free Now
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
     </section>
   );
