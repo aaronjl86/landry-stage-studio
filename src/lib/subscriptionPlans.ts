@@ -25,10 +25,9 @@ export const SUBSCRIPTION_PLANS = {
     yearlyProductId: "prod_TBQVRIhUIBQWgL",
     description: "For active real estate professionals",
     features: [
+      "Everything in Starter plus",
       "50 uploads per month",
-      "HD quality images",
       "Priority support",
-      "Editing tools",
       "Bulk upload"
     ],
   },
@@ -42,13 +41,9 @@ export const SUBSCRIPTION_PLANS = {
     yearlyProductId: "prod_TBQWpzxm0syW72",
     description: "For agencies and high-volume users",
     features: [
+      "Everything in Professional plus",
       "Unlimited uploads",
-      "HD quality images",
-      "Dedicated support",
-      "Full editing suite",
-      "API access",
-      "White-label solution",
-      "Team collaboration"
+      "Dedicated support"
     ],
   },
 };
