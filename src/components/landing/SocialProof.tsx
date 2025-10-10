@@ -57,7 +57,7 @@ export const SocialProof = () => {
   return <div className="space-y-2">
       {/* Stats */}
       <div className="grid grid-cols-2 gap-2">
-        {stats.map((stat, idx) => <div key={idx} className={`bg-card border-4 rounded-lg p-2 text-center hover:border-primary/70 transition-colors py-2 border-primary/40 ${idx < 2 ? 'pt-4' : ''}`}>
+        {stats.map((stat, idx) => <div key={idx} className={`bg-card border-4 rounded-lg p-2 text-center hover:border-primary/70 transition-colors py-2 border-primary/40 ${idx < 2 ? 'mt-4' : ''}`}>
             <stat.icon className="h-5 w-5 mx-auto mb-2 text-primary" />
             <div className="text-2xl font-bold mb-1">{stat.value}</div>
             <div className="text-sm text-muted-foreground">{stat.label}</div>
