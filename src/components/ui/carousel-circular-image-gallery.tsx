@@ -280,7 +280,7 @@ function GalleryImage({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
-  return <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+  return <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet" className="h-full w-full">
       <defs>
         <clipPath id={`${id}_circleClip`}>
           <circle className="clip" cx="0" cy="0" r={circleRadius} ref={clip}></circle>
@@ -290,7 +290,7 @@ function GalleryImage({
         </clipPath>
       </defs>
       <g clipPath={`url(#${id}${inPlace ? "_squareClip" : "_circleClip"})`}>
-        <image width={width} height={height} href={url} className="pointer-events-none"></image>
+        <image width={width} height={height} href={url} className="pointer-events-none" preserveAspectRatio="xMidYMid meet"></image>
       </g>
     </svg>;
 }
