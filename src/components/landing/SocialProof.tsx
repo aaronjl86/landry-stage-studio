@@ -8,7 +8,7 @@ import johnTaylor from "@/assets/logos/john-taylor.png";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
-    value: "Thousands",
+    value: "10,000+",
     label: "Properties Staged"
   }, {
     icon: Star,
