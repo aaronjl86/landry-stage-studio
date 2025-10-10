@@ -69,8 +69,8 @@ export const SocialProof = () => {
         <h3 className="font-semibold text-center mb-2 py-8 text-5xl">What Our Users Say</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {testimonials.map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
-              <div className="flex gap-1 mb-2">
-                {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />)}
+              <div className="flex gap-1 mb-2 justify-center">
+                {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400 animate-fade-in hover:scale-110 transition-transform" style={{ animationDelay: `${i * 0.1}s` }} />)}
               </div>
               <p className="text-sm mb-2 italic">"{testimonial.text}"</p>
               <div className="text-sm">
