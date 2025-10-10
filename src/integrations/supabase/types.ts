@@ -65,12 +65,7 @@ export type Database = {
           email: string
           full_name: string | null
           id: string
-          period_end: string | null
-          period_start: string | null
-          plan_code: string | null
           quota: number | null
-          stripe_subscription_id: string | null
-          subscription_status: string | null
           updated_at: string | null
           used: number | null
         }
@@ -80,12 +75,7 @@ export type Database = {
           email: string
           full_name?: string | null
           id: string
-          period_end?: string | null
-          period_start?: string | null
-          plan_code?: string | null
           quota?: number | null
-          stripe_subscription_id?: string | null
-          subscription_status?: string | null
           updated_at?: string | null
           used?: number | null
         }
@@ -95,12 +85,7 @@ export type Database = {
           email?: string
           full_name?: string | null
           id?: string
-          period_end?: string | null
-          period_start?: string | null
-          plan_code?: string | null
           quota?: number | null
-          stripe_subscription_id?: string | null
-          subscription_status?: string | null
           updated_at?: string | null
           used?: number | null
         }
@@ -208,6 +193,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_payment_info: {
+        Row: {
+          created_at: string | null
+          id: string
+          period_end: string | null
+          period_start: string | null
+          plan_code: string | null
+          stripe_subscription_id: string | null
+          subscription_status: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          period_end?: string | null
+          period_start?: string | null
+          plan_code?: string | null
+          stripe_subscription_id?: string | null
+          subscription_status?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          period_end?: string | null
+          period_start?: string | null
+          plan_code?: string | null
+          stripe_subscription_id?: string | null
+          subscription_status?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
       }
       user_subscriptions: {
         Row: {

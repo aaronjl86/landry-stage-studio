@@ -22,15 +22,30 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
-    const { data: profile, error } = await supabase
+    // Get quota and used from profiles
+    const { data: profile, error: profileError } = await supabase
       .from("profiles")
-      .select("quota, used, plan_code, subscription_status, period_start, period_end")
+      .select("quota, used")
       .eq("id", userId)
       .single();
 
-    if (error || !profile) {
+    if (profileError || !profile) {
       return new Response(
         JSON.stringify({ error: "Failed to fetch credit balance" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Get payment info from secure admin-only table
+    const { data: paymentInfo, error: paymentError } = await supabase
+      .from("user_payment_info")
+      .select("plan_code, subscription_status, period_start, period_end")
+      .eq("user_id", userId)
+      .single();
+
+    if (paymentError || !paymentInfo) {
+      return new Response(
+        JSON.stringify({ error: "Failed to fetch payment information" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -42,10 +57,10 @@ serve(async (req) => {
         quota: profile.quota,
         used: profile.used,
         remaining,
-        plan_code: profile.plan_code,
-        subscription_status: profile.subscription_status,
-        period_start: profile.period_start,
-        period_end: profile.period_end,
+        plan_code: paymentInfo.plan_code,
+        subscription_status: paymentInfo.subscription_status,
+        period_start: paymentInfo.period_start,
+        period_end: paymentInfo.period_end,
       }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
