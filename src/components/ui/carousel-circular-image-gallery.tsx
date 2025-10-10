@@ -150,7 +150,7 @@ export function ImageGallery() {
     <div className="flex flex-col items-center justify-center bg-primary py-20 font-sans">
       <div className="max-w-[900px] w-full px-4 mb-6">
         <h3 className="text-white text-center text-3xl sm:text-4xl font-bold">
-          See the Transformation Right Before Your Eyes
+          Transformation, Engineered
         </h3>
       </div>
       <div className="relative">
