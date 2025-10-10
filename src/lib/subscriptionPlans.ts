@@ -42,7 +42,7 @@ export const SUBSCRIPTION_PLANS = {
     description: "For agencies and high-volume users",
     features: [
       "Everything in Professional plus",
-      "Unlimited uploads",
+      "400 uploads per month",
       "Dedicated support"
     ],
   },
