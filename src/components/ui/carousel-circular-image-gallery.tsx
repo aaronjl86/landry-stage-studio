@@ -131,7 +131,7 @@ export function ImageGallery() {
   const currentDescription = images[afterImageIndex]?.description;
   return <div className="flex flex-col items-center justify-center bg-primary py-20 font-sans">
       <div className="max-w-[900px] w-full px-4 mb-6">
-        <h3 className="text-center text-3xl text-white font-bold sm:text-6xl">
+        <h3 className="text-center text-3xl text-white font-bebas sm:text-6xl tracking-wide">
           Transformation, Engineered
         </h3>
       </div>
