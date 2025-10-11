@@ -290,7 +290,7 @@ function GalleryImage({
         </clipPath>
       </defs>
       <g clipPath={`url(#${id}${inPlace ? "_squareClip" : "_circleClip"})`}>
-        <image width={width} height={height} href={url} className="pointer-events-none" preserveAspectRatio="xMidYMid meet"></image>
+        <image width={width} height={height} href={url} className="pointer-events-none" preserveAspectRatio="xMidYMid slice"></image>
       </g>
     </svg>;
 }
