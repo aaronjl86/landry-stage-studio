@@ -49,7 +49,7 @@ export const Hero = () => {
                   <ArrowRight className="ml-3 h-7 w-7 transition-transform group-hover:translate-x-2" />
                 </Button>
               </Link>
-              <Link to="/dashboard/gallery">
+              <Link to="/public-gallery">
                 <Button size="lg" variant="outline" className="text-xl px-10 py-7 border-2 hover:bg-primary/10 hover:border-primary transition-all duration-300">
                   View Examples
                 </Button>
