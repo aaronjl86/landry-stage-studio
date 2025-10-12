@@ -42,15 +42,14 @@ export function AIPhotoEditor() {
       return;
     }
 
-    // TEMPORARY: Credit check disabled for testing
-    // if (credits < uploadedImages.length) {
-    //   toast({
-    //     title: "Insufficient Credits",
-    //     description: `You need ${uploadedImages.length} credits but only have ${credits}`,
-    //     variant: "destructive",
-    //   });
-    //   return;
-    // }
+    if (credits < uploadedImages.length) {
+      toast({
+        title: "Insufficient Credits",
+        description: `You need ${uploadedImages.length} credits but only have ${credits}`,
+        variant: "destructive",
+      });
+      return;
+    }
 
     await submitBatchEdit(uploadedImages, selectedTemplates, customPrompt, makePublic);
     await refreshCredits();
