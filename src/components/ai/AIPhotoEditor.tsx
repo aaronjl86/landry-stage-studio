@@ -56,9 +56,14 @@ export function AIPhotoEditor() {
     await refreshCredits();
   };
 
-  const handleUpgradeDialogClose = async () => {
-    console.log("Upgrade dialog closed - refreshing credits");
-    await refreshCredits();
+  const handleUpgradeDialogClose = () => {
+    console.log("Upgrade dialog closed - resetting editor state");
+    // Reset all form state so user can start fresh without stuck button
+    setUploadedImages([]);
+    setSelectedTemplates([]);
+    setCustomPrompt("");
+    setMakePublic(false);
+    // Note: Credits only refresh after actual subscription purchase or monthly renewal
   };
 
   const handleTestUpgradeDialog = () => {
