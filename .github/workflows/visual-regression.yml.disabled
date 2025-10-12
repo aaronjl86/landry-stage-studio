@@ -1,0 +1,16 @@
+# DISABLED: Visual Regression workflow
+# This workflow is disabled because Chromatic is not yet configured
+# To enable: rename this file to visual-regression.yml and set up CHROMATIC_PROJECT_TOKEN secret
+
+# name: Visual Regression
+# on: [pull_request]
+# jobs:
+#   chromatic:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: chromaui/action@v1
+#         with:
+#           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+#         env:
+#           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

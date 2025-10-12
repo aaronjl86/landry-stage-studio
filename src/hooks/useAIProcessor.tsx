@@ -88,16 +88,16 @@ export function useAIProcessor() {
         } else {
           throw new Error(result.error || "Processing failed");
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         updateJob(job.id, {
           status: "failed",
-          error: error.message,
+          error: error instanceof Error ? error.message : "Unknown error occurred",
           progress: 0,
         });
 
         toast({
           title: "Processing Failed",
-          description: error.message,
+          description: error instanceof Error ? error.message : "Unknown error occurred",
           variant: "destructive",
         });
       }

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -34,7 +34,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     subscription_end: null,
   });
 
+<<<<<<< HEAD
   const checkSubscriptionInternal = async (currentUser: User) => {
+=======
+  const checkSubscription = useCallback(async () => {
+    if (!user) return;
+
+>>>>>>> e374208 (Add image optimization with vite-plugin-image-optimizer - 83% file size reduction)
     try {
       const { data, error } = await supabase.functions.invoke('check-subscription');
       if (!error && data) {
@@ -43,8 +49,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.error('Failed to check subscription:', error);
     }
-  };
+  }, [user]);
 
+<<<<<<< HEAD
   const checkAdminStatusInternal = async (currentUser: User) => {
     try {
       // Use security definer function to bypass RLS safely
@@ -52,6 +59,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         _user_id: currentUser.id,
         _role: 'admin'
       });
+=======
+  const refreshCredits = useCallback(async () => {
+    if (!user) return;
+>>>>>>> e374208 (Add image optimization with vite-plugin-image-optimizer - 83% file size reduction)
 
       if (error) {
         console.error('Failed to check admin status via RPC:', error);
@@ -78,7 +89,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } else if (error) {
       console.error('Failed to refresh credits:', error);
     }
-  };
+  }, [user]);
 
   // Public wrappers for manual refresh
   const refreshCredits = async () => {
@@ -130,7 +141,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [checkSubscription, refreshCredits]);
 
   // Auto-refresh subscription status every minute
   useEffect(() => {
@@ -141,7 +152,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, 60000); // Check every minute
 
     return () => clearInterval(interval);
-  }, [user]);
+  }, [user, checkSubscription]);
 
   const signOut = async () => {
     await supabase.auth.signOut();

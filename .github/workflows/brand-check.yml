@@ -1,0 +1,17 @@
+name: Brand Integrity Check
+on: [pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { node-version: '20' }
+      - name: Check for hardcoded HEX
+        run: |
+          if grep -R "#[0-9a-fA-F]\\{3,6\\}" src/ --exclude=brand-tokens.ts; then
+            echo "❌ Hardcoded hex detected!"
+            exit 1
+          fi
+      - name: WCAG Contrast Scan
+        run: npx pa11y-ci --config .pa11yci.json

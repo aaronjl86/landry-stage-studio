@@ -83,10 +83,13 @@ export function EnhancedPhotoUpload({
           title: "Images Uploaded",
           description: `${newImages.length} image(s) compressed and ready`,
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         toast({
           title: "Upload Failed",
-          description: error.message,
+          description:
+            typeof error === "object" && error !== null && "message" in error
+              ? String((error as { message?: unknown }).message)
+              : String(error),
           variant: "destructive",
         });
       } finally {

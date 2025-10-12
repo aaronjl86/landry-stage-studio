@@ -1,0 +1,11 @@
+{
+  "color": {
+    "primary": {"midnight": "#0B1120","ironGray": "#2C2F36","cloud": "#FFFFFF"},
+    "accent": {"electricCyan": "#05F0FF"},
+    "semantic": {"aiLilac": "#C7B7FF"}
+  },
+  "motion": {
+    "pulse": "4s ease-in-out",
+    "drift": "8s linear"
+  }
+}

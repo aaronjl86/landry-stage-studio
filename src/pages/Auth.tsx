@@ -191,8 +191,8 @@ export default function Auth() {
         toast.success("Account created! Welcome to The Landry Method!");
         navigate("/dashboard");
       }
-    } catch (error: any) {
-      toast.error(error.message || "An error occurred");
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : "An error occurred");
     } finally {
       setLoading(false);
     }

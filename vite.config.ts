@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
+<<<<<<< HEAD
     react(),
     mode === "development" && componentTagger(),
     mode === "production" && ViteImageOptimizer({
@@ -32,6 +33,22 @@ export default defineConfig(({ mode }) => ({
       },
       avif: {
         quality: 70,
+=======
+    react(), 
+    mode === "development" && componentTagger(),
+    mode === "production" && ViteImageOptimizer({
+      png: {
+        quality: 85,
+      },
+      jpeg: {
+        quality: 80,
+      },
+      jpg: {
+        quality: 80,
+      },
+      webp: {
+        quality: 85,
+>>>>>>> e374208 (Add image optimization with vite-plugin-image-optimizer - 83% file size reduction)
       },
     })
   ].filter(Boolean),
@@ -40,6 +57,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+<<<<<<< HEAD
   build: {
     sourcemap: false,
     target: 'es2018',
@@ -55,3 +73,6 @@ export default defineConfig(({ mode }) => ({
     }
   }
 }));
+=======
+}));
+>>>>>>> e374208 (Add image optimization with vite-plugin-image-optimizer - 83% file size reduction)

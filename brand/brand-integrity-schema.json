@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Integrity Dashboard Schema",
+  "type": "object",
+  "properties": {
+    "timestamp": {"type": "string", "format": "date-time"},
+    "releaseVersion": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "ciStatus": {"type": "string", "enum": ["pass", "fail", "warning"]},
+    "contrastScore": {"type": "number","minimum":0,"maximum":1},
+    "visualRegressionPassRate": {"type":"number","minimum":0,"maximum":1},
+    "adoptionRateFigma": {"type":"number","minimum":0,"maximum":1},
+    "tokenUsageCompliance": {"type":"number","minimum":0,"maximum":1},
+    "motionConformance": {"type":"number","minimum":0,"maximum":1},
+    "brandIntegrityIndex": {"type":"number","description":"Composite 0–100"},
+    "auditNotes": {"type":"string"},
+    "auditor": {"type":"string"}
+  },
+  "required": [
+    "timestamp","releaseVersion","ciStatus",
+    "contrastScore","visualRegressionPassRate",
+    "adoptionRateFigma","tokenUsageCompliance",
+    "motionConformance","brandIntegrityIndex"
+  ]
+}

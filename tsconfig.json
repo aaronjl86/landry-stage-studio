@@ -1,6 +1,11 @@
 {
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  "exclude": [
+    "../Documents/TLM-Images/**/*",
+    "node_modules",
+    "dist"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
