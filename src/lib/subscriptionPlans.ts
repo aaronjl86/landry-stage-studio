@@ -1,7 +1,7 @@
 export const SUBSCRIPTION_PLANS = {
   starter: {
     name: "Starter",
-    monthlyPriceId: "price_1SF3ZN3pODi329mx0uqGFYz2",
+    monthlyPriceId: "price_1SF3SV3pODi329mxNoTux3jH",
     yearlyPriceId: "price_1SF3dq3pODi329mxs5VZbdJo",
     monthlyPrice: 29,
     yearlyPrice: 290,
@@ -17,7 +17,7 @@ export const SUBSCRIPTION_PLANS = {
   },
   professional: {
     name: "Professional",
-    monthlyPriceId: "price_1SF3bN3pODi329mxvDZO99kU",
+    monthlyPriceId: "price_1SF3dx3pODi329mxG03N9zue",
     yearlyPriceId: "price_1SF3e73pODi329mx35xLMDMT",
     monthlyPrice: 79,
     yearlyPrice: 790,
