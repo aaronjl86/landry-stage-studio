@@ -66,11 +66,6 @@ export function AIPhotoEditor() {
     // Note: Credits only refresh after actual subscription purchase or monthly renewal
   };
 
-  const handleTestUpgradeDialog = () => {
-    console.log("Test button clicked - opening upgrade dialog");
-    setRequiredCredits(4);
-    setShowUpgradeDialog(true);
-  };
 
   return (
     <div className="container mx-auto py-8 pb-32 space-y-6 relative">
@@ -172,14 +167,6 @@ export function AIPhotoEditor() {
         onClose={handleUpgradeDialogClose}
       />
 
-      {/* Test Button - Bottom Left Corner */}
-      <Button
-        onClick={handleTestUpgradeDialog}
-        className="fixed bottom-4 left-4 bg-green-600 hover:bg-green-700 text-white shadow-lg z-50"
-        size="sm"
-      >
-        Test Upgrade Dialog
-      </Button>
     </div>
   );
 }
