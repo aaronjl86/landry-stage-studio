@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        'bebas': ['Bebas Neue', 'sans-serif'],
+        'sans': ['Montserrat', 'sans-serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
