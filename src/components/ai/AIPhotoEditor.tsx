@@ -8,6 +8,7 @@ import { EnhancedPhotoUpload } from "./EnhancedPhotoUpload";
 import { EnhancedTemplateSelector } from "./EnhancedTemplateSelector";
 import { ProcessingQueue } from "./ProcessingQueue";
 import { BeforeAfterComparison } from "./BeforeAfterComparison";
+import { UpgradeDialog } from "./UpgradeDialog";
 import { useAIProcessor } from "@/hooks/useAIProcessor";
 import { toast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
@@ -19,6 +20,8 @@ export function AIPhotoEditor() {
   const [selectedTemplates, setSelectedTemplates] = useState<string[]>([]);
   const [customPrompt, setCustomPrompt] = useState("");
   const [makePublic, setMakePublic] = useState(false);
+  const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
+  const [requiredCredits, setRequiredCredits] = useState(0);
   
   const { jobs, isProcessing, submitBatchEdit, clearJobs, redoJob } = useAIProcessor();
   const { credits, refreshCredits } = useAuth();
@@ -43,11 +46,9 @@ export function AIPhotoEditor() {
     }
 
     if (credits < uploadedImages.length) {
-      toast({
-        title: "Insufficient Credits",
-        description: `You need ${uploadedImages.length} credits but only have ${credits}`,
-        variant: "destructive",
-      });
+      console.log("Insufficient credits - showing upgrade dialog");
+      setRequiredCredits(uploadedImages.length);
+      setShowUpgradeDialog(true);
       return;
     }
 
@@ -55,8 +56,19 @@ export function AIPhotoEditor() {
     await refreshCredits();
   };
 
+  const handleUpgradeDialogClose = async () => {
+    console.log("Upgrade dialog closed - refreshing credits");
+    await refreshCredits();
+  };
+
+  const handleTestUpgradeDialog = () => {
+    console.log("Test button clicked - opening upgrade dialog");
+    setRequiredCredits(4);
+    setShowUpgradeDialog(true);
+  };
+
   return (
-    <div className="container mx-auto py-8 pb-32 space-y-6">
+    <div className="container mx-auto py-8 pb-32 space-y-6 relative">
       <div className="text-center space-y-2">
         <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
           AI Photo Virtual Staging
@@ -146,6 +158,23 @@ export function AIPhotoEditor() {
       <BeforeAfterComparison jobs={jobs} onRedoJob={redoJob} />
         </>
       )}
+
+      <UpgradeDialog
+        open={showUpgradeDialog}
+        onOpenChange={setShowUpgradeDialog}
+        requiredCredits={requiredCredits}
+        currentCredits={credits}
+        onClose={handleUpgradeDialogClose}
+      />
+
+      {/* Test Button - Bottom Left Corner */}
+      <Button
+        onClick={handleTestUpgradeDialog}
+        className="fixed bottom-4 left-4 bg-green-600 hover:bg-green-700 text-white shadow-lg z-50"
+        size="sm"
+      >
+        Test Upgrade Dialog
+      </Button>
     </div>
   );
 }
