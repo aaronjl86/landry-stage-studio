@@ -15,11 +15,11 @@ export const Hero = () => {
       animationDuration: '8s'
     }} />
       
-      {/* Decorative circles */}
-      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{
+      {/* Decorative circles - responsive sizes */}
+      <div className="absolute top-10 md:top-20 -right-20 md:right-20 w-[200px] h-[200px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{
       animationDuration: '6s'
     }} />
-      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl animate-pulse" style={{
+      <div className="absolute bottom-10 md:bottom-20 -left-20 md:left-20 w-[250px] h-[250px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] bg-blue-400/20 rounded-full blur-3xl animate-pulse" style={{
       animationDuration: '7s',
       animationDelay: '1s'
     }} />
