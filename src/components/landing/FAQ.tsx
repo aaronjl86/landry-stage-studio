@@ -16,11 +16,11 @@ const faqs = [
   },
   {
     question: "How long does it take to stage a room?",
-    answer: "Most rooms are staged within seconds. Turnaround times vary by plan: Starter (24 hours), Professional (12 hours), and Enterprise (2 hours). However, the AI processing itself is nearly instant."
+    answer: "AI processing is nearly instant! You'll see your staged images within seconds of uploading. All plans include our fast AI processing with varying levels of support response times based on your subscription tier."
   },
   {
     question: "Can I customize the staging style?",
-    answer: "Yes! Professional and Enterprise plans include advanced editing tools that let you choose from various design styles (modern, traditional, minimalist, etc.) and adjust furniture placement."
+    answer: "Yes! All plans include editing tools to choose from various design styles (modern, traditional, minimalist, luxury, contemporary, etc.). Professional and Enterprise plans offer advanced editing capabilities and custom branding options."
   },
   {
     question: "Do you offer refunds?",
