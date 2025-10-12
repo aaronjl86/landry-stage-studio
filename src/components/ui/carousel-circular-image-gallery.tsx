@@ -27,6 +27,13 @@ const images: ImageData[] = [{
   url: "/images/after/after-traditional-bedroom.jpeg",
   description: "Add sleigh bed in aged mahogany, Art Nouveau iris-motif framed prints, bergère reading chair with faux fur throw, full-length arched leaning mirror, and jewel-tone Persian runner"
 }, {
+  title: "Modern Kitchen - Before",
+  url: "/images/before/before-modern-kitchen.jpeg"
+}, {
+  title: "Modern Kitchen - After",
+  url: "/images/after/after-modern-kitchen-dining.jpeg",
+  description: "Install live-edge acacia dining table with Prouvé chairs in navy, suspended Lindsey Adelman bubble chandelier, and Memphis Group-inspired credenza with vintage decanters and various small kitchen appliances on the countertops"
+}, {
   title: "Outdoor Patio - Before",
   url: "/images/before/before-outdoor-patio.jpeg"
 }, {
