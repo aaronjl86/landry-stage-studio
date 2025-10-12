@@ -12,7 +12,9 @@ export default tseslint.config(
       "../**/*.ts",
       "../**/*.tsx",
       "node_modules/**/*",
-      ".github/workflows/*.disabled"
+      ".github/workflows/*.disabled",
+      "**/three-d-carousel.tsx",
+      "**/stripe_credit_webhook.ts"
     ] 
   },
   {

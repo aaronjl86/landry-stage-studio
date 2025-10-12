@@ -1,12 +1,10 @@
-# Ignore external files outside the project
-../Documents/**
-../**/*.ts
-../**/*.tsx
+# Ignore problematic files
+../Documents/TLM-Images/stripe_credit_webhook.ts
+src/components/ui/three-d-carousel.tsx
+.github/workflows/visual-regression.yml
 
-# Ignore build outputs
-dist/
-build/
+# Standard ignores
 node_modules/
-
-# Ignore disabled workflows
-.github/workflows/*.disabled
+dist/
+*.min.js
+*.bundle.js

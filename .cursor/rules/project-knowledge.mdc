@@ -1,0 +1,392 @@
+---
+description: "Comprehensive project knowledge base for The Landry Method - AI-powered virtual staging platform for real estate professionals. Contains product overview, user personas, technical architecture, subscription plans, design system, authentication flow, database schema, edge functions, payment integration, SEO requirements, error handling, performance considerations, and behavioral guidelines for AI development."
+autoAttach: true
+---
+
+# The Landry Method - Project Knowledge File
+
+## Product Overview
+**The Landry Method** is an AI-powered virtual staging platform designed specifically for real estate professionals. It transforms empty or poorly staged property photos into professionally staged, market-ready images using advanced AI technology.
+
+### Core Value Proposition
+- Transform empty rooms into beautifully staged spaces in minutes
+- Professional-quality results without the cost of physical staging
+- Batch processing capabilities for high-volume users
+- Multiple styling templates for different property types
+
+---
+
+## User Personas & Journeys
+
+### Primary Users
+1. **Real Estate Agents** - Individual agents staging 5-20 properties/month
+2. **Real Estate Brokers** - Managing multiple agents, need bulk capabilities
+3. **Real Estate Agencies** - High-volume users requiring unlimited processing
+
+### User Journey
+1. **Discovery** → Land on homepage, view before/after examples
+2. **Sign Up** → Create account (email authentication, auto-confirm enabled)
+3. **Onboarding** → Choose subscription plan (Starter/Professional/Enterprise)
+4. **Usage** → Upload photos → Select templates → Process → Download results
+5. **Management** → Track credits, view gallery, manage subscription
+
+---
+
+## Subscription Plans
+
+### Starter Plan ($29/month, $290/year)
+- 10 uploads per month
+- HD quality images
+- 24-hour turnaround
+- Email support
+- Basic editing tools
+- **Target**: Individual agents just getting started
+
+### Professional Plan ($79/month, $790/year)
+- 50 uploads per month
+- Ultra HD quality images
+- 12-hour turnaround
+- Priority support
+- Advanced editing tools
+- Bulk upload
+- Custom branding
+- **Target**: Active real estate professionals
+
+### Enterprise Plan ($149/month, $1490/year)
+- Unlimited uploads
+- 4K quality images
+- 2-hour turnaround
+- Dedicated support
+- Full editing suite
+- API access
+- White-label solution
+- Team collaboration
+- **Target**: Agencies and high-volume users
+
+---
+
+## Technical Architecture
+
+### Frontend Stack
+- **Framework**: React 18 + TypeScript
+- **Routing**: React Router v6
+- **Styling**: Tailwind CSS with custom design system
+- **UI Components**: Shadcn UI (Radix primitives)
+- **State Management**: React hooks + Tanstack Query
+- **Build Tool**: Vite
+
+### Backend (Lovable Cloud/Supabase)
+- **Authentication**: Supabase Auth (email-based, auto-confirm enabled)
+- **Database**: PostgreSQL via Supabase
+- **Edge Functions**: Deno-based serverless functions
+- **Storage**: Supabase Storage for images
+- **Payments**: Stripe integration
+
+### AI Processing
+- **Model**: Google Gemini 2.5 Flash (default)
+- **Capabilities**: Image editing, virtual staging, style transfer
+- **Templates**: Predefined prompts for different room types and styles
+- **Processing**: Batch processing with controlled concurrency (5 at a time)
+
+---
+
+## Key Features
+
+### 1. AI Photo Editor
+- Drag-and-drop photo upload
+- Multiple image batch processing
+- Template-based editing (predefined styles)
+- Custom prompt support
+- Real-time processing queue with progress tracking
+- Before/After comparison viewer
+
+### 2. Template System
+Available editing templates:
+- Lighting enhancement
+- Room decluttering
+- Modern staging
+- Luxury staging
+- Minimalist staging
+- Traditional staging
+- Contemporary staging
+- Room type specific (bedroom, living room, kitchen, etc.)
+
+### 3. Credit System
+- Credits consumed per image processed
+- Balance tracking in real-time
+- Credit refresh based on subscription plan
+- Credit balance displayed in dashboard
+
+### 4. Processing Queue
+- Multiple jobs processed simultaneously (max 5 concurrent)
+- Individual job status tracking (pending, processing, completed, failed)
+- Progress indicators per job
+- Retry capability for failed jobs
+- Processing time metrics
+- Remove/clear completed jobs
+
+### 5. Gallery
+- View all processed images
+- Before/After comparison
+- Download individual or bulk images
+- Filter and search capabilities
+
+---
+
+## Design System
+
+### Color Scheme
+- **Primary**: Brand colors defined in HSL format
+- **Secondary**: Complementary colors for CTAs
+- **Muted**: Background and subtle elements
+- **Accent**: Highlights and interactive elements
+- **Destructive**: Error states
+
+### Design Principles
+1. **Semantic Tokens Only** - Never use direct colors (e.g., text-white, bg-black)
+2. **Dark/Light Mode Support** - All components adapt to theme
+3. **Responsive First** - Mobile-first design approach
+4. **Accessibility** - WCAG compliant, proper ARIA labels
+5. **Component Reusability** - Leverage Shadcn variants, avoid custom styles
+
+### Typography
+- Headings: Clear hierarchy (H1-H6)
+- Body: Readable, appropriate line heights
+- Semantic HTML: Use proper heading structure for SEO
+
+---
+
+## Page Structure
+
+### Public Pages
+- **/** (Index) - Landing page with hero, features, pricing, FAQ
+- **/auth** - Login/Signup forms
+- **/pricing** - Detailed pricing comparison
+- **/about** - Company information
+- **/contact** - Contact form
+
+### Protected Pages (Require Authentication)
+- **/dashboard** - Main AI photo editor interface
+- **/dashboard/gallery** - View processed images
+- **/dashboard/credits** - Credit balance and management
+
+---
+
+## Authentication Flow
+
+### Sign Up
+1. User enters email and password
+2. Auto-confirm enabled (no email verification required)
+3. Profile created in `profiles` table
+4. Initial credits assigned based on plan
+5. Redirect to dashboard
+
+### Sign In
+1. Email/password authentication
+2. Session established
+3. Credits loaded from profile
+4. Subscription status checked
+5. Access granted to protected routes
+
+### Session Management
+- JWT-based authentication
+- Session refresh on app load
+- Auth state persisted across page reloads
+- Sign out clears all local auth state
+
+---
+
+## Database Schema
+
+### Key Tables
+- **profiles** - User information, credit balance, subscription details
+- **processed_images** - Metadata for all processed images
+- **subscriptions** - Active subscriptions linked to Stripe
+
+### RLS Policies
+- Users can only view/edit their own data
+- Public access for landing page content
+- Authenticated access for processing features
+
+---
+
+## Edge Functions
+
+### edit-photo
+- **Purpose**: Process image editing requests
+- **Input**: Image data, prompt, MIME type
+- **Output**: Edited image data, remaining credits
+- **Features**: Rate limiting, credit consumption, error handling with refunds
+
+### get-credit-balance
+- **Purpose**: Fetch user's current credit balance
+- **Output**: Quota, used, remaining credits, plan code
+
+### check-subscription
+- **Purpose**: Verify active subscription status
+- **Output**: Subscription details, plan information
+
+### create-checkout
+- **Purpose**: Create Stripe checkout session
+- **Input**: Price ID, subscription type
+- **Output**: Checkout session URL
+
+### customer-portal
+- **Purpose**: Generate Stripe customer portal link
+- **Output**: Portal URL for subscription management
+
+---
+
+## Payment Integration (Stripe)
+
+### Product IDs
+- Starter Monthly: `prod_TBQJMyrLlsGRqG`
+- Professional Monthly: `prod_TBQUBPKwJmhXr2`
+- Enterprise Monthly: `prod_TBQVXXiUUs3q4V`
+- (Yearly variants available)
+
+### Price IDs
+- Stored in `src/lib/subscriptionPlans.ts`
+- Mapped to monthly/yearly billing cycles
+
+### Checkout Flow
+1. User selects plan on pricing page
+2. Create checkout session via edge function
+3. Redirect to Stripe hosted checkout
+4. Webhook handles successful payment
+5. Subscription activated, credits assigned
+
+---
+
+## SEO Implementation
+
+### Requirements (Applied to All Pages)
+- **Title tags**: Include main keywords, <60 characters
+- **Meta descriptions**: 160 characters max, natural keyword integration
+- **H1 tags**: Single H1 per page matching primary intent
+- **Semantic HTML**: header, main, section, article, nav, footer
+- **Image optimization**: Descriptive alt attributes with keywords
+- **Structured data**: JSON-LD for products, services, FAQs
+- **Performance**: Lazy loading for images, defer non-critical scripts
+- **Mobile optimization**: Responsive design, proper viewport meta tag
+- **Clean URLs**: Descriptive, crawlable internal links
+
+---
+
+## Error Handling
+
+### AI Processing Errors
+- Display user-friendly error messages via toast
+- Refund credits on processing failure
+- Provide retry capability
+- Log errors for debugging
+
+### Authentication Errors
+- Clear error messages on invalid credentials
+- Handle expired sessions gracefully
+- Redirect to auth page when unauthenticated
+
+### Payment Errors
+- Stripe error messages displayed to user
+- Graceful fallback for failed transactions
+- Support contact information provided
+
+---
+
+## Performance Considerations
+
+### Image Optimization
+- Compress images before upload (via browser-image-compression)
+- Lazy load gallery images
+- Efficient image formats (WebP where supported)
+
+### Batch Processing
+- Controlled concurrency (5 images max simultaneously)
+- Progress tracking per job
+- Prevent UI blocking during processing
+
+### Caching
+- Tanstack Query for API response caching
+- Static asset caching via Vite
+- Edge function response caching where appropriate
+
+---
+
+## Behavioral Guidelines for AI
+
+### What to Preserve
+- Never edit preconfigured files (config.toml, client.ts, types.ts, .env)
+- Maintain design system consistency (use semantic tokens)
+- Keep authentication flow intact
+- Preserve RLS policies and security measures
+
+### What to Prioritize
+- Component reusability over one-off solutions
+- Semantic HTML for SEO
+- Accessibility (ARIA labels, keyboard navigation)
+- Responsive design (mobile-first)
+- Error handling with user-friendly messages
+
+### What to Avoid
+- Direct color usage (use design tokens)
+- Modifying Supabase reserved schemas (auth, storage, realtime)
+- Anonymous sign-ups (always use email/password auth)
+- CHECK constraints for time-based validations (use triggers)
+- Editing read-only files
+
+---
+
+## Common User Requests
+
+### "Add a new template"
+→ Update `TEMPLATE_PROMPTS` in `src/lib/aiAPI.ts`
+
+### "Change pricing"
+→ Update `src/lib/subscriptionPlans.ts` and Stripe product settings
+
+### "Modify credit allocation"
+→ Update edge function `get-credit-balance` and subscription logic
+
+### "Add a new page"
+→ Create page component in `src/pages/`, add route in `src/App.tsx`
+
+### "Update design/colors"
+→ Modify `src/index.css` and `tailwind.config.ts` design tokens
+
+---
+
+## Testing Checklist
+
+### Before Deployment
+- [ ] All routes accessible and render correctly
+- [ ] Authentication flow works (signup, login, logout)
+- [ ] AI processing completes successfully
+- [ ] Credits deducted and displayed correctly
+- [ ] Before/After comparison displays properly
+- [ ] Gallery loads all processed images
+- [ ] Stripe checkout flow completes
+- [ ] Responsive on mobile, tablet, desktop
+- [ ] Dark/light mode both functional
+- [ ] SEO meta tags present on all pages
+
+---
+
+## Future Roadmap Ideas
+- API access for enterprise users
+- Team collaboration features
+- Custom branding/white-label
+- Mobile app (React Native)
+- Additional AI models/templates
+- Video staging capabilities
+- 3D virtual tours
+- Integration with MLS platforms
+
+---
+
+## Support & Resources
+- Documentation: Lovable docs at docs.lovable.dev
+- Community: Lovable Discord
+- Stripe: Dashboard for payment management
+- Backend: Access via Lovable Cloud backend viewer
+
+Generated comprehensive knowledge file covering product vision, user journeys, technical architecture, design system, features, and behavioral guidelines for your real estate virtual staging platform.

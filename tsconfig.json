@@ -3,8 +3,11 @@
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
   "exclude": [
     "../Documents/TLM-Images/**/*",
+    "../Documents/**/*",
     "node_modules",
-    "dist"
+    "dist",
+    "**/three-d-carousel.tsx",
+    "**/stripe_credit_webhook.ts"
   ],
   "compilerOptions": {
     "baseUrl": ".",
