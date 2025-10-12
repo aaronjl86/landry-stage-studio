@@ -94,10 +94,16 @@ export const Hero = () => {
               </div>
 
               {/* Labels */}
-              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+              <div 
+                className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300"
+                style={{ opacity: sliderPosition > 10 ? 1 : 0 }}
+              >
                 Before
               </div>
-              <div className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+              <div 
+                className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300"
+                style={{ opacity: sliderPosition < 90 ? 1 : 0 }}
+              >
                 After
               </div>
             </div>
