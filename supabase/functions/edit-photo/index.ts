@@ -107,43 +107,12 @@ serve(async (req) => {
 
     logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
 
-    // Add STRICT architectural preservation guardrails
-    const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION REQUIREMENTS - ABSOLUTE COMPLIANCE MANDATORY:
+    // CRITICAL ARCHITECTURAL PRESERVATION RULE
+    const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION RULE:
 
-⛔ FORBIDDEN MODIFICATIONS (NEVER ALLOWED):
-- DO NOT add, remove, relocate, resize, or alter ANY windows in any way
-- DO NOT cover or obscure windows with furniture or large objects
-- DO NOT place furniture in front of windows that would block the window opening
-- DO NOT add, remove, move, or change ANY walls or wall positions
-- DO NOT add, remove, move, or change ANY doors or doorways
-- DO NOT modify room dimensions, ceiling height, or floor plan layout
-- DO NOT change structural elements: beams, columns, built-ins, moldings, trim
-- DO NOT alter permanent fixtures: light fixtures, outlets, vents, radiators
-- DO NOT modify flooring material or type (hardwood, tile, carpet pattern/texture)
-- DO NOT change ceiling features or architectural details
-- DO NOT add or remove archways, alcoves, or structural openings
-- DO NOT alter window views or what is visible through windows
+Do not modify the core architectural layout of the room. This includes prohibiting any changes such as adding or removing structural walls, windows, doors, or fixed architectural features (e.g., fireplaces, built-in shelving, or permanent fixtures). All design adjustments must remain strictly cosmetic or surface-level—for example, alterations to lighting, furniture, materials, textures, or decor are acceptable.
 
-✅ ALLOWED MODIFICATIONS ONLY:
-- Add, remove, or rearrange furniture (sofas, tables, chairs, beds, etc.) - positioned away from blocking windows
-- Add or remove decorative items (art, plants, lamps, accessories)
-- Change wall paint colors (surface color only, not texture or material)
-- Add or change area rugs on top of existing flooring
-- Adjust lighting brightness and ambiance (not fixture placement)
-- Add window treatments (curtains, blinds, drapes, shades) - keep them open or decorative to maintain window visibility
-
-USER'S EDITING REQUEST: ${prompt}
-
-⚠️ FINAL VERIFICATION: Before generating, confirm that:
-1. All windows remain in their exact original positions with ZERO structural modifications
-2. Windows remain visible (window treatments like curtains are allowed if open/decorative)
-3. No furniture or large objects are placed blocking the window openings
-4. All walls remain in their exact original positions with no structural changes
-5. All doors remain in their exact original positions
-6. Room dimensions and architecture are 100% preserved
-7. Only furniture, decor, and styling elements have been modified
-
-If the request asks for ANY forbidden modification, you MUST refuse and only apply the allowed changes.`;
+USER'S EDITING REQUEST: ${prompt}`;
 
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
