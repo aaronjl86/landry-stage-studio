@@ -67,16 +67,11 @@ export function AIPhotoEditor() {
       </div>
 
       <Card className="p-6 card-professional">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-semibold">Credit Balance</h3>
-            <p className="text-sm text-muted-foreground">
-              You have {credits} credits remaining
-            </p>
-          </div>
-          <Button onClick={refreshCredits} variant="outline" size="sm">
-            Refresh
-          </Button>
+        <div>
+          <h3 className="text-lg font-semibold">Credit Balance</h3>
+          <p className="text-sm text-muted-foreground">
+            You have {credits} credits remaining
+          </p>
         </div>
       </Card>
 
