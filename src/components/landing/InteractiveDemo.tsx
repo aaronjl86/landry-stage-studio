@@ -41,66 +41,66 @@ export const InteractiveDemo = () => {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-muted/30">
+    <section className="py-12 md:py-20 lg:py-28 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
-        <div className="text-center space-y-6 mb-16">
-          <Badge className="text-sm px-4 py-1.5 bg-primary/10 text-primary hover:bg-primary/20">
+        <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-16">
+          <Badge className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 bg-primary/10 text-primary hover:bg-primary/20">
             ⚡ Unmatched Customization
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto px-2">
             The Only Self-Serve Platform Where{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               YOU Control Everything
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
             Unlike other virtual staging services, you don't wait for designers or settle for preset templates. 
             Upload your photos and describe your exact vision—as detailed or simple as you want.
           </p>
         </div>
 
         {/* Differentiators Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {differentiators.map((item) => {
             const Icon = item.icon;
             return (
-              <Card key={item.title} className="p-6 text-center bg-card/50 backdrop-blur border-2 hover:border-primary/50 transition-all">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Icon className="h-8 w-8 text-primary" />
+              <Card key={item.title} className="p-4 sm:p-6 text-center bg-card/50 backdrop-blur border-2 hover:border-primary/50 transition-all">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">{item.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground">{item.description}</p>
               </Card>
             );
           })}
         </div>
 
         {/* Interactive Prompt Demo */}
-        <Card className="p-8 md:p-12 bg-card shadow-2xl">
-          <div className="space-y-6">
-            <div className="text-center space-y-2 mb-8">
-              <h3 className="text-2xl font-bold">Try It Yourself</h3>
-              <p className="text-muted-foreground">
+        <Card className="p-4 sm:p-6 md:p-8 lg:p-12 bg-card shadow-2xl">
+          <div className="space-y-4 sm:space-y-6">
+            <div className="text-center space-y-2 mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold">Try It Yourself</h3>
+              <p className="text-sm sm:text-base text-muted-foreground px-2">
                 See how easy it is to create custom staging descriptions. Write anything you want!
               </p>
             </div>
 
             {/* Example Prompts */}
             <div className="space-y-3">
-              <label className="text-sm font-semibold block">
+              <label className="text-xs sm:text-sm font-semibold block px-1">
                 Click an example or write your own custom prompt:
               </label>
-              <div className="grid gap-3">
+              <div className="grid gap-2 sm:gap-3">
                 {examplePrompts.map((prompt, index) => (
                   <Button
                     key={index}
                     variant={selectedExample === index ? "default" : "outline"}
-                    className="justify-start text-left h-auto py-3 px-4"
+                    className="justify-start text-left h-auto py-2.5 sm:py-3 px-3 sm:px-4 whitespace-normal"
                     onClick={() => handleExampleClick(index, prompt)}
                   >
-                    <Sparkles className="h-4 w-4 mr-2 flex-shrink-0" />
-                    <span className="text-sm">{prompt}</span>
+                    <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 flex-shrink-0 mt-0.5" />
+                    <span className="text-xs sm:text-sm leading-snug">{prompt}</span>
                   </Button>
                 ))}
               </div>
@@ -108,7 +108,7 @@ export const InteractiveDemo = () => {
 
             {/* Custom Prompt Input */}
             <div className="space-y-3">
-              <label className="text-sm font-semibold block">
+              <label className="text-xs sm:text-sm font-semibold block px-1">
                 Or write your completely custom prompt:
               </label>
               <Textarea
@@ -118,24 +118,24 @@ export const InteractiveDemo = () => {
                   setSelectedExample(null);
                 }}
                 placeholder="Describe your vision... Be as detailed or as simple as you like. Modern, traditional, luxury, cozy, minimalist—whatever style you want. Mention furniture, colors, lighting, artwork, plants, anything!"
-                className="min-h-[120px] text-base resize-none"
+                className="min-h-[100px] sm:min-h-[120px] text-sm sm:text-base resize-none"
               />
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground px-1">
                 {customPrompt.length} characters • No limits on creativity
               </p>
             </div>
 
             {/* CTA */}
-            <div className="pt-6 border-t">
-              <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+            <div className="pt-4 sm:pt-6 border-t">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-between">
                 <div className="text-center sm:text-left">
-                  <p className="font-semibold mb-1">Ready to stage your own properties?</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="font-semibold text-sm sm:text-base mb-1">Ready to stage your own properties?</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
                 <Link to="/auth">
-                  <Button size="lg" className="group whitespace-nowrap">
+                  <Button size="lg" className="group whitespace-nowrap w-full sm:w-auto">
                     Get Started Free
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
@@ -146,30 +146,30 @@ export const InteractiveDemo = () => {
         </Card>
 
         {/* Interactive Comparison Table */}
-        <div className="mt-12">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl md:text-4xl font-bold mb-3">
+        <div className="mt-8 sm:mt-10 md:mt-12">
+          <div className="text-center mb-6 sm:mb-8 px-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
               Why Choose The Landry Method?
             </h3>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
               See how we compare to traditional virtual staging services
             </p>
           </div>
           
           <Card className="overflow-hidden border-2">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[500px]">
                 <thead>
                   <tr className="border-b-2">
-                    <th className="text-left p-4 md:p-6 bg-muted/30 font-bold text-lg md:text-xl w-1/3">
+                    <th className="text-left p-3 sm:p-4 md:p-6 bg-muted/30 font-bold text-sm sm:text-base md:text-lg lg:text-xl w-1/3">
                       Feature
                     </th>
-                    <th className="text-center p-4 md:p-6 bg-muted/30 font-bold text-lg md:text-xl w-1/3">
-                      <span className="text-muted-foreground">Traditional Services</span>
+                    <th className="text-center p-3 sm:p-4 md:p-6 bg-muted/30 font-bold text-xs sm:text-sm md:text-base lg:text-lg w-1/3">
+                      <span className="text-muted-foreground">Traditional</span>
                     </th>
-                    <th className="text-center p-4 md:p-6 bg-primary/10 font-bold text-lg md:text-xl w-1/3">
+                    <th className="text-center p-3 sm:p-4 md:p-6 bg-primary/10 font-bold text-xs sm:text-sm md:text-base lg:text-lg w-1/3">
                       <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        The Landry Method
+                        Landry Method
                       </span>
                     </th>
                   </tr>
@@ -230,19 +230,19 @@ export const InteractiveDemo = () => {
                       className="border-b hover:bg-muted/20 transition-colors animate-fade-in"
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >
-                      <td className="p-4 md:p-6 font-semibold text-sm md:text-base">
+                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 font-semibold text-xs sm:text-sm md:text-base">
                         {row.feature}
                       </td>
-                      <td className="p-4 md:p-6 text-center text-muted-foreground text-sm md:text-base">
-                        <div className="flex items-center justify-center gap-2">
-                          <span className="text-destructive text-xl">✗</span>
-                          <span>{row.traditional}</span>
+                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center text-muted-foreground text-xs sm:text-sm md:text-base">
+                        <div className="flex items-center justify-center gap-1 sm:gap-2">
+                          <span className="text-destructive text-base sm:text-lg md:text-xl flex-shrink-0">✗</span>
+                          <span className="leading-tight">{row.traditional}</span>
                         </div>
                       </td>
-                      <td className="p-4 md:p-6 text-center bg-primary/5 text-sm md:text-base">
-                        <div className="flex items-center justify-center gap-2">
-                          <span className="text-primary text-xl font-bold">✓</span>
-                          <span className="font-semibold text-primary">{row.landry}</span>
+                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center bg-primary/5 text-xs sm:text-sm md:text-base">
+                        <div className="flex items-center justify-center gap-1 sm:gap-2">
+                          <span className="text-primary text-base sm:text-lg md:text-xl font-bold flex-shrink-0">✓</span>
+                          <span className="font-semibold text-primary leading-tight">{row.landry}</span>
                         </div>
                       </td>
                     </tr>
@@ -252,18 +252,18 @@ export const InteractiveDemo = () => {
             </div>
             
             {/* Bottom CTA */}
-            <div className="p-6 md:p-8 bg-gradient-to-r from-primary/10 to-accent/10 border-t-2">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-r from-primary/10 to-accent/10 border-t-2">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
                 <div className="text-center md:text-left">
-                  <p className="font-bold text-lg mb-1">
+                  <p className="font-bold text-base sm:text-lg mb-1">
                     Experience the difference yourself
                   </p>
-                  <p className="text-muted-foreground">
+                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
-                <Link to="/auth">
-                  <Button size="lg" className="group whitespace-nowrap shadow-lg">
+                <Link to="/auth" className="w-full sm:w-auto">
+                  <Button size="lg" className="group whitespace-nowrap shadow-lg w-full sm:w-auto">
                     Try Free Now
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
