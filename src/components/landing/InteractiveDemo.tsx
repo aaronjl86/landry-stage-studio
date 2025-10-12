@@ -158,18 +158,18 @@ export const InteractiveDemo = () => {
           
           <Card className="overflow-hidden border-2">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[500px]">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b-2">
-                    <th className="text-left p-3 sm:p-4 md:p-6 bg-muted/30 font-bold text-sm sm:text-base md:text-lg lg:text-xl w-1/3">
+                    <th className="text-left p-2 sm:p-3 md:p-4 lg:p-6 bg-muted/30 font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl w-1/3">
                       Feature
                     </th>
-                    <th className="text-center p-3 sm:p-4 md:p-6 bg-muted/30 font-bold text-xs sm:text-sm md:text-base lg:text-lg w-1/3">
-                      <span className="text-muted-foreground">Traditional</span>
+                    <th className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-muted/30 font-bold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg w-1/3">
+                      <span className="text-muted-foreground">Traditional Services</span>
                     </th>
-                    <th className="text-center p-3 sm:p-4 md:p-6 bg-primary/10 font-bold text-xs sm:text-sm md:text-base lg:text-lg w-1/3">
+                    <th className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-primary/10 font-bold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg w-1/3">
                       <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        Landry Method
+                        The Landry Method
                       </span>
                     </th>
                   </tr>
@@ -230,19 +230,19 @@ export const InteractiveDemo = () => {
                       className="border-b hover:bg-muted/20 transition-colors animate-fade-in"
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >
-                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 font-semibold text-xs sm:text-sm md:text-base">
+                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
                         {row.feature}
                       </td>
-                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center text-muted-foreground text-xs sm:text-sm md:text-base">
-                        <div className="flex items-center justify-center gap-1 sm:gap-2">
-                          <span className="text-destructive text-base sm:text-lg md:text-xl flex-shrink-0">✗</span>
-                          <span className="leading-tight">{row.traditional}</span>
+                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center text-muted-foreground text-[10px] sm:text-xs md:text-sm lg:text-base">
+                        <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2">
+                          <span className="text-destructive text-sm sm:text-base md:text-lg lg:text-xl flex-shrink-0">✗</span>
+                          <span className="leading-tight break-words">{row.traditional}</span>
                         </div>
                       </td>
-                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center bg-primary/5 text-xs sm:text-sm md:text-base">
-                        <div className="flex items-center justify-center gap-1 sm:gap-2">
-                          <span className="text-primary text-base sm:text-lg md:text-xl font-bold flex-shrink-0">✓</span>
-                          <span className="font-semibold text-primary leading-tight">{row.landry}</span>
+                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center bg-primary/5 text-[10px] sm:text-xs md:text-sm lg:text-base">
+                        <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2">
+                          <span className="text-primary text-sm sm:text-base md:text-lg lg:text-xl font-bold flex-shrink-0">✓</span>
+                          <span className="font-semibold text-primary leading-tight break-words">{row.landry}</span>
                         </div>
                       </td>
                     </tr>
