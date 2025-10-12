@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { Sparkles, Loader2 } from "lucide-react";
 import { EnhancedPhotoUpload } from "./EnhancedPhotoUpload";
 import { EnhancedTemplateSelector } from "./EnhancedTemplateSelector";
@@ -16,6 +18,7 @@ export function AIPhotoEditor() {
   >([]);
   const [selectedTemplates, setSelectedTemplates] = useState<string[]>([]);
   const [customPrompt, setCustomPrompt] = useState("");
+  const [makePublic, setMakePublic] = useState(false);
   
   const { jobs, isProcessing, submitBatchEdit, clearJobs, redoJob } = useAIProcessor();
   const { credits, refreshCredits } = useAuth();
@@ -49,7 +52,7 @@ export function AIPhotoEditor() {
     //   return;
     // }
 
-    await submitBatchEdit(uploadedImages, selectedTemplates, customPrompt);
+    await submitBatchEdit(uploadedImages, selectedTemplates, customPrompt, makePublic);
     await refreshCredits();
   };
 
@@ -88,6 +91,24 @@ export function AIPhotoEditor() {
         customPrompt={customPrompt}
         onCustomPromptChange={setCustomPrompt}
       />
+
+      <Card className="p-4 bg-muted/50">
+        <div className="flex items-start gap-3">
+          <Checkbox 
+            id="make-public"
+            checked={makePublic}
+            onCheckedChange={(checked) => setMakePublic(checked === true)}
+          />
+          <div className="space-y-1">
+            <Label htmlFor="make-public" className="text-sm font-medium cursor-pointer">
+              Share in Public Gallery
+            </Label>
+            <p className="text-xs text-muted-foreground">
+              Allow others to see your staged photos in the public showcase gallery
+            </p>
+          </div>
+        </div>
+      </Card>
 
       <div className="flex justify-center gap-4">
         <Button

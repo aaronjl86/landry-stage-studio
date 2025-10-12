@@ -129,6 +129,7 @@ export type Database = {
           created_at: string | null
           credits_used: number
           id: string
+          is_public: boolean
           original_image_url: string
           staged_image_url: string | null
           status: string
@@ -138,6 +139,7 @@ export type Database = {
           created_at?: string | null
           credits_used?: number
           id?: string
+          is_public?: boolean
           original_image_url: string
           staged_image_url?: string | null
           status?: string
@@ -147,6 +149,7 @@ export type Database = {
           created_at?: string | null
           credits_used?: number
           id?: string
+          is_public?: boolean
           original_image_url?: string
           staged_image_url?: string | null
           status?: string

@@ -16,7 +16,8 @@ export interface EditingJob {
   customPrompt?: string;
   processingTime?: number;
   fileName: string;
-  isRedo?: boolean; // Flag to track if this is a redo/regeneration
+  isRedo?: boolean;
+  isPublic?: boolean;
 }
 
 export function useAIProcessor() {
@@ -65,13 +66,14 @@ export function useAIProcessor() {
             try {
               const { data: { user } } = await supabase.auth.getUser();
               if (user) {
-                await supabase.from("uploads").insert({
-                  user_id: user.id,
-                  original_image_url: job.originalImage,
-                  staged_image_url: result.editedImageData,
-                  status: "completed",
-                  credits_used: 1,
-                });
+        await supabase.from("uploads").insert({
+          user_id: user.id,
+          original_image_url: job.originalImage,
+          staged_image_url: result.editedImageData,
+          status: "completed",
+          credits_used: 1,
+          is_public: job.isPublic || false,
+        });
               }
             } catch (dbError) {
               console.error("Error saving to database:", dbError);
@@ -107,7 +109,8 @@ export function useAIProcessor() {
     async (
       images: { data: string; name: string }[],
       templateIds: string[],
-      customPrompt?: string
+      customPrompt?: string,
+      isPublic?: boolean
     ) => {
       const newJobs: EditingJob[] = images.map((img) => ({
         id: crypto.randomUUID(),
@@ -117,6 +120,7 @@ export function useAIProcessor() {
         progress: 0,
         templateIds,
         customPrompt,
+        isPublic,
       }));
 
       setJobs((prev) => [...prev, ...newJobs]);

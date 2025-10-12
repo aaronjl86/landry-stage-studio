@@ -33,6 +33,7 @@ export const Header = () => {
   // Main navigation tabs
   const mainTabs: TabItem[] = [
     { title: "Home", icon: Home, path: "/" },
+    { title: "Public Gallery", icon: ImageIcon, path: "/public-gallery" },
     { title: "About", icon: Info, path: "/about" },
     { title: "Pricing", icon: DollarSign, path: "/pricing" },
     { title: "Contact", icon: Mail, path: "/contact" },

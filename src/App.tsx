@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Gallery from "./pages/Gallery";
+import PublicGallery from "./pages/PublicGallery";
 import Credits from "./pages/Credits";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/public-gallery" element={<PublicGallery />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/gallery" element={<Gallery />} />
             <Route path="/dashboard/credits" element={<Credits />} />
