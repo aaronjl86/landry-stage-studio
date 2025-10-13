@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Header } from "@/components/landing/Header";
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -14,7 +15,22 @@ export default function Auth() {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [deviceFingerprint, setDeviceFingerprint] = useState<string>("");
   const navigate = useNavigate();
+
+  // Initialize device fingerprint on mount
+  useEffect(() => {
+    const initFingerprint = async () => {
+      try {
+        const fp = await FingerprintJS.load();
+        const result = await fp.get();
+        setDeviceFingerprint(result.visitorId);
+      } catch (error) {
+        console.error('Fingerprint init failed:', error);
+      }
+    };
+    initFingerprint();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +38,7 @@ export default function Auth() {
 
     try {
       if (isLogin) {
+        // Login flow unchanged
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -30,16 +47,44 @@ export default function Auth() {
         toast.success("Welcome back!");
         navigate("/dashboard");
       } else {
+        // Pre-validate signup to check for abuse patterns
+        const { data: validationResult, error: validationError } = 
+          await supabase.functions.invoke('validate-signup', {
+            body: {
+              email,
+              deviceFingerprint,
+            }
+          });
+
+        if (validationError) {
+          toast.error("Validation failed. Please try again.");
+          setLoading(false);
+          return;
+        }
+
+        if (!validationResult?.allowed) {
+          toast.error(validationResult?.message || "Signup not allowed. Please contact support if you believe this is an error.");
+          setLoading(false);
+          return;
+        }
+
+        if (validationResult.requires_verification) {
+          toast.warning("Your account requires additional verification.");
+        }
+
+        // Proceed with signup, pass metadata
         const { error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             data: {
               full_name: fullName,
+              device_fingerprint: deviceFingerprint,
             },
             emailRedirectTo: `${window.location.origin}/dashboard`,
           },
         });
+        
         if (error) throw error;
         toast.success("Account created! Welcome to The Landry Method!");
         navigate("/dashboard");
