@@ -14,6 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
+      blacklisted_identifiers: {
+        Row: {
+          blocked_until: string | null
+          created_at: string | null
+          id: string
+          identifier_type: string
+          identifier_value: string
+          permanent: boolean | null
+          reason: string | null
+        }
+        Insert: {
+          blocked_until?: string | null
+          created_at?: string | null
+          id?: string
+          identifier_type: string
+          identifier_value: string
+          permanent?: boolean | null
+          reason?: string | null
+        }
+        Update: {
+          blocked_until?: string | null
+          created_at?: string | null
+          id?: string
+          identifier_type?: string
+          identifier_value?: string
+          permanent?: boolean | null
+          reason?: string | null
+        }
+        Relationships: []
+      }
+      blocked_email_domains: {
+        Row: {
+          created_at: string | null
+          domain: string
+          id: string
+          reason: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          domain: string
+          id?: string
+          reason?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          domain?: string
+          id?: string
+          reason?: string | null
+        }
+        Relationships: []
+      }
       credit_transactions: {
         Row: {
           amount: number
@@ -60,34 +111,97 @@ export type Database = {
       }
       profiles: {
         Row: {
+          abuse_flags: Json | null
           avatar_url: string | null
+          card_verified: boolean | null
           created_at: string | null
+          device_fingerprint: string | null
           email: string
+          email_verified: boolean | null
           full_name: string | null
           id: string
+          phone_verified: boolean | null
           quota: number | null
+          risk_level: string | null
+          signup_ip: unknown | null
           updated_at: string | null
           used: number | null
         }
         Insert: {
+          abuse_flags?: Json | null
           avatar_url?: string | null
+          card_verified?: boolean | null
           created_at?: string | null
+          device_fingerprint?: string | null
           email: string
+          email_verified?: boolean | null
           full_name?: string | null
           id: string
+          phone_verified?: boolean | null
           quota?: number | null
+          risk_level?: string | null
+          signup_ip?: unknown | null
           updated_at?: string | null
           used?: number | null
         }
         Update: {
+          abuse_flags?: Json | null
           avatar_url?: string | null
+          card_verified?: boolean | null
           created_at?: string | null
+          device_fingerprint?: string | null
           email?: string
+          email_verified?: boolean | null
           full_name?: string | null
           id?: string
+          phone_verified?: boolean | null
           quota?: number | null
+          risk_level?: string | null
+          signup_ip?: unknown | null
           updated_at?: string | null
           used?: number | null
+        }
+        Relationships: []
+      }
+      signup_attempts: {
+        Row: {
+          created_at: string | null
+          device_fingerprint: string | null
+          email: string
+          email_domain: string
+          id: string
+          ip_address: unknown
+          metadata: Json | null
+          risk_score: number | null
+          status: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          device_fingerprint?: string | null
+          email: string
+          email_domain: string
+          id?: string
+          ip_address: unknown
+          metadata?: Json | null
+          risk_score?: number | null
+          status?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          device_fingerprint?: string | null
+          email?: string
+          email_domain?: string
+          id?: string
+          ip_address?: unknown
+          metadata?: Json | null
+          risk_score?: number | null
+          status?: string | null
+          user_agent?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -282,6 +396,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_signup_abuse: {
+        Args: { _device_fingerprint?: string; _email: string; _ip: unknown }
+        Returns: Json
+      }
       credits_consume: {
         Args: {
           _amount: number
