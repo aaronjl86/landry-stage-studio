@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import tlmLogo from "@/assets/tlm-logo-white.png";
+import tlmLogoVideo from "@/assets/tlm-logo-animated.mp4";
 import { useAuth } from "@/contexts/AuthContext";
 import { 
   LogOut, 
@@ -72,7 +72,15 @@ export const Header = () => {
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
-            <img src={tlmLogo} alt="The Landry Method" className="h-12 md:h-16" />
+            <video 
+              src={tlmLogoVideo} 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="h-12 md:h-16"
+              aria-label="The Landry Method"
+            />
           </Link>
 
           {/* Desktop Navigation */}
