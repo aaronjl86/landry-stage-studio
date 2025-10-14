@@ -80,7 +80,7 @@ export const Header = () => {
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
-            <video src={tlmLogoVideo} autoPlay loop muted playsInline aria-label="The Landry Method" className="h-22 md:h-20" />
+            <video src={tlmLogoVideo} autoPlay loop muted playsInline aria-label="The Landry Method" className="h-21 md:h-20" />
           </Link>
 
           {/* Desktop Navigation */}
