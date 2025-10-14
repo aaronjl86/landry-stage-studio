@@ -11,7 +11,8 @@ export const Hero = () => {
   };
   return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
       {/* Animated Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 via-blue-400/30 to-cyan-500/30 opacity-40 animate-pulse" style={{
+      <div className="absolute inset-0 opacity-40 animate-pulse" style={{
+      backgroundColor: '#36eee0',
       animationDuration: '8s'
     }} />
       
