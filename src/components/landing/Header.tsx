@@ -77,10 +77,10 @@ export const Header = () => {
   };
   return <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 md:h-20 items-center justify-between gap-4">
+        <div className="flex h-[220px] items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
-            <video src={tlmLogoVideo} autoPlay loop muted playsInline aria-label="The Landry Method" className="h-21 md:h-20" />
+            <video src={tlmLogoVideo} autoPlay loop muted playsInline aria-label="The Landry Method" style={{ height: '200px', width: 'auto' }} className="object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
