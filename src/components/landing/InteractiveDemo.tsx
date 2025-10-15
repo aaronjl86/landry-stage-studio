@@ -32,7 +32,7 @@ export const InteractiveDemo = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-16">
-          <Badge className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[hsl(280,70%,70%)]/10 via-[hsl(265,65%,55%)]/10 to-[hsl(290,75%,65%)]/10 hover:from-[hsl(280,70%,70%)]/20 hover:via-[hsl(265,65%,55%)]/20 hover:to-[hsl(290,75%,65%)]/20">
+          <Badge className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[hsl(270,60%,85%)]/10 via-[hsl(280,55%,75%)]/10 to-[hsl(290,50%,70%)]/10 hover:from-[hsl(270,60%,85%)]/20 hover:via-[hsl(280,55%,75%)]/20 hover:to-[hsl(290,50%,70%)]/20">
             <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">⚡ Unmatched Customization</span>
           </Badge>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto px-2">
