@@ -79,7 +79,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-[160px] items-center justify-between gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center flex-shrink-0">
+          <Link to="/" className="flex items-center flex-shrink-0 -ml-4">
             <video src={tlmLogoVideo} autoPlay loop muted playsInline aria-label="The Landry Method" style={{ height: '140px', width: 'auto' }} className="object-contain" />
           </Link>
 
