@@ -76,10 +76,10 @@ export const SocialProof = () => {
               animationDelay: `${i * 0.1}s`
             }} />)}
               </div>
-              <p className="text-sm mb-2 italic">"{testimonial.text}"</p>
+              <p className="text-sm mb-2 italic font-bold">"{testimonial.text}"</p>
               <div className="text-sm">
-                <div className="font-semibold">{testimonial.name}</div>
-                <div className="text-muted-foreground">{testimonial.role}</div>
+                <div className="font-bold">{testimonial.name}</div>
+                <div className="text-muted-foreground font-bold">{testimonial.role}</div>
               </div>
             </div>)}
         </div>
