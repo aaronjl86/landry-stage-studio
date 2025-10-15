@@ -61,8 +61,8 @@ export const SocialProof = () => {
             <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] mx-auto mb-2 flex items-center justify-center shadow-lg shadow-purple-500/40">
               <stat.icon className="h-8 w-8 text-white stroke-[2.5]" />
             </div>
-            <div className="text-2xl font-bold mb-1">{stat.value}</div>
-            <div className="text-sm text-muted-foreground">{stat.label}</div>
+            <div className="text-3xl font-bold mb-1">{stat.value}</div>
+            <div className="text-base text-muted-foreground">{stat.label}</div>
           </div>)}
       </div>
 
