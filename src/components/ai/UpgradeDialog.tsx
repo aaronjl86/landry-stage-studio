@@ -98,7 +98,7 @@ export function UpgradeDialog({
               <ul className="space-y-2">
                 {SUBSCRIPTION_PLANS.starter.features.map((feature, idx) => (
                   <li key={idx} className="text-sm flex items-center gap-2">
-                    <span className="text-blue-600">✓</span> {feature}
+                    <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">✓</span> {feature}
                   </li>
                 ))}
               </ul>

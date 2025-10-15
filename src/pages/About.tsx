@@ -39,7 +39,7 @@ export default function About() {
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="text-center p-6 bg-card rounded-lg border">
-                <Target className="h-12 w-12 mx-auto mb-4 text-primary" />
+                <Target className="h-12 w-12 mx-auto mb-4 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />
                 <h3 className="text-xl font-bold mb-2">Our Vision</h3>
                 <p className="text-muted-foreground">
                   Make professional virtual staging accessible to every real estate professional
@@ -47,7 +47,7 @@ export default function About() {
               </div>
               
               <div className="text-center p-6 bg-card rounded-lg border">
-                <Users className="h-12 w-12 mx-auto mb-4 text-primary" />
+                <Users className="h-12 w-12 mx-auto mb-4 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />
                 <h3 className="text-xl font-bold mb-2">Our Team</h3>
                 <p className="text-muted-foreground">
                   A dedicated team of AI experts and real estate professionals
@@ -55,7 +55,7 @@ export default function About() {
               </div>
               
               <div className="text-center p-6 bg-card rounded-lg border">
-                <Zap className="h-12 w-12 mx-auto mb-4 text-primary" />
+                <Zap className="h-12 w-12 mx-auto mb-4 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />
                 <h3 className="text-xl font-bold mb-2">Our Technology</h3>
                 <p className="text-muted-foreground">
                   Cutting-edge AI that delivers professional results in seconds
@@ -67,19 +67,19 @@ export default function About() {
               <h2 className="text-2xl font-bold mb-4">Why Choose Us?</h2>
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
+                  <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent mr-2">✓</span>
                   <span>Fast and affordable virtual staging that saves time and money</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
+                  <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent mr-2">✓</span>
                   <span>Professional-quality results that help properties sell faster</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
+                  <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent mr-2">✓</span>
                   <span>Easy-to-use platform designed specifically for real estate professionals</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
+                  <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent mr-2">✓</span>
                   <span>Constantly improving AI technology for better results</span>
                 </li>
               </ul>

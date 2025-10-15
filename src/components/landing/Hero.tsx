@@ -41,7 +41,7 @@ export const Hero = () => {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              The only self-serve platform where <span className="text-primary font-bold">YOU control the design</span>. Upload your photos, write custom prompts, and get photorealistic staging in seconds—not days.
+              The only self-serve platform where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Upload your photos, write custom prompts, and get photorealistic staging in seconds—not days.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">

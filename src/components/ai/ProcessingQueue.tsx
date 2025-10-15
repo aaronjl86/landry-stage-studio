@@ -18,7 +18,7 @@ export function ProcessingQueue({ jobs }: ProcessingQueueProps) {
       case "failed":
         return <X className="h-4 w-4 text-destructive" />;
       case "processing":
-        return <Loader2 className="h-4 w-4 animate-spin text-primary" />;
+        return <Loader2 className="h-4 w-4 animate-spin bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />;
       default:
         return <Clock className="h-4 w-4 text-muted-foreground" />;
     }

@@ -278,7 +278,7 @@ export default function Terms() {
           <section>
             <h2>11. Privacy and Data Protection</h2>
             <p>
-              Your privacy is important to us. Please review our <Link to="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link> to understand how we collect, use, and protect your information.
+              Your privacy is important to us. Please review our <Link to="/privacy-policy" className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent hover:underline">Privacy Policy</Link> to understand how we collect, use, and protect your information.
             </p>
             <p>
               Key points:

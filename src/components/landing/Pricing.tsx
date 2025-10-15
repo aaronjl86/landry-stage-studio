@@ -85,8 +85,8 @@ export const Pricing = () => {
             </button>
             <span className={`text-sm ${isYearly ? 'font-bold' : 'text-muted-foreground'}`}>
               Yearly
-              <span className="ml-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                Save 17%
+              <span className="ml-2 text-xs bg-gradient-to-r from-[hsl(280,70%,70%)]/10 via-[hsl(265,65%,55%)]/10 to-[hsl(290,75%,65%)]/10 px-2 py-1 rounded-full">
+                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">Save 17%</span>
               </span>
             </span>
           </div>
@@ -129,7 +129,7 @@ export const Pricing = () => {
                   <ul className="space-y-3">
                     {plan.features.map(feature => (
                       <li key={feature} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <Check className="h-5 w-5 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent flex-shrink-0 mt-0.5" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
