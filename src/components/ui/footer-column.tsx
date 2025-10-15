@@ -12,10 +12,10 @@ export default function Footer4Col() {
             <div className="flex items-center gap-2">
               <img src={tlmLogoWhite} alt="The Landry Method" className="h-8 w-auto" />
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/90 font-medium">
               AI-powered virtual staging for real estate professionals
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/80 font-medium">
               &copy; 2025 The Landry Method. All rights reserved.
             </p>
           </div>
@@ -25,32 +25,32 @@ export default function Footer4Col() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/about" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/pricing" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link to="/#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/#features" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Features
                 </Link>
               </li>
               <li>
-                <Link to="/#examples" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/#examples" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Examples
                 </Link>
               </li>
               <li>
-                <Link to="/#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/#faq" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   FAQ
                 </Link>
               </li>
@@ -62,22 +62,22 @@ export default function Footer4Col() {
             <h3 className="font-semibold mb-4">Product</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/dashboard" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Dashboard
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard/gallery" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/dashboard/gallery" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard/credits" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/dashboard/credits" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Credits
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/contact" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -89,12 +89,12 @@ export default function Footer4Col() {
             <h3 className="font-semibold mb-4">Legal</h3>
             <ul className="space-y-2 mb-6">
               <li>
-                <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/privacy-policy" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/terms" className="text-sm text-foreground/90 font-medium hover:text-foreground transition-colors">
                   Terms & Conditions
                 </Link>
               </li>

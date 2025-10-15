@@ -54,7 +54,7 @@ export const InteractiveDemo = () => {
               YOU Control Everything
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
+          <p className="text-base sm:text-lg md:text-xl text-foreground font-semibold max-w-3xl mx-auto px-2">
             Unlike other virtual staging services, you don't wait for designers or settle for preset templates. 
             Upload your photos and describe your exact vision—as detailed or simple as you want.
           </p>
@@ -70,7 +70,7 @@ export const InteractiveDemo = () => {
                   <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">{item.title}</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">{item.description}</p>
+                <p className="text-sm sm:text-base text-foreground font-medium">{item.description}</p>
               </Card>
             );
           })}
@@ -81,7 +81,7 @@ export const InteractiveDemo = () => {
           <div className="space-y-4 sm:space-y-6">
             <div className="text-center space-y-2 mb-6 sm:mb-8">
               <h3 className="text-xl sm:text-2xl font-bold">Try It Yourself</h3>
-              <p className="text-sm sm:text-base text-muted-foreground px-2">
+              <p className="text-sm sm:text-base text-foreground font-medium px-2">
                 See how easy it is to create custom staging descriptions. Write anything you want!
               </p>
             </div>
@@ -120,7 +120,7 @@ export const InteractiveDemo = () => {
                 placeholder="Describe your vision... Be as detailed or as simple as you like. Modern, traditional, luxury, cozy, minimalist—whatever style you want. Mention furniture, colors, lighting, artwork, plants, anything!"
                 className="min-h-[100px] sm:min-h-[120px] text-sm sm:text-base resize-none"
               />
-              <p className="text-xs sm:text-sm text-muted-foreground px-1">
+              <p className="text-xs sm:text-sm text-foreground/80 font-medium px-1">
                 {customPrompt.length} characters • No limits on creativity
               </p>
             </div>
@@ -130,7 +130,7 @@ export const InteractiveDemo = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-between">
                 <div className="text-center sm:text-left">
                   <p className="font-semibold text-sm sm:text-base mb-1">Ready to stage your own properties?</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm text-foreground/80 font-medium">
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
@@ -151,7 +151,7 @@ export const InteractiveDemo = () => {
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
               Why Choose The Landry Method?
             </h3>
-            <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
+            <p className="text-foreground font-semibold text-sm sm:text-base md:text-lg">
               See how we compare to traditional virtual staging services
             </p>
           </div>
@@ -165,7 +165,7 @@ export const InteractiveDemo = () => {
                       Feature
                     </th>
                     <th className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-muted/30 font-bold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg w-1/3">
-                      <span className="text-muted-foreground">Traditional Services</span>
+                      <span className="text-foreground font-bold">Traditional Services</span>
                     </th>
                     <th className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-primary/10 font-bold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg w-1/3">
                       <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -233,7 +233,7 @@ export const InteractiveDemo = () => {
                       <td className="p-2 sm:p-3 md:p-4 lg:p-6 font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
                         {row.feature}
                       </td>
-                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center text-muted-foreground text-[10px] sm:text-xs md:text-sm lg:text-base">
+                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center text-foreground/90 text-[10px] sm:text-xs md:text-sm lg:text-base">
                         <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2">
                           <span className="text-destructive text-sm sm:text-base md:text-lg lg:text-xl flex-shrink-0">✗</span>
                           <span className="leading-tight break-words">{row.traditional}</span>
@@ -258,7 +258,7 @@ export const InteractiveDemo = () => {
                   <p className="font-bold text-base sm:text-lg mb-1">
                     Experience the difference yourself
                   </p>
-                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
+                  <p className="text-xs sm:text-sm md:text-base text-foreground/90 font-medium">
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
