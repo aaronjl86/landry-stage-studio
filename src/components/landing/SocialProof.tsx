@@ -62,7 +62,7 @@ export const SocialProof = () => {
               <stat.icon className="h-8 w-8 text-white stroke-[2.5]" />
             </div>
             <div className="text-3xl font-bold mb-1">{stat.value}</div>
-            <div className="text-lg text-muted-foreground">{stat.label}</div>
+            <div className="text-lg text-muted-foreground font-bold">{stat.label}</div>
           </div>)}
       </div>
 
