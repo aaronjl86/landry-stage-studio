@@ -52,8 +52,8 @@ export const InteractiveDemo = () => {
           {differentiators.map(item => {
           const Icon = item.icon;
           return <Card key={item.title} className="p-4 sm:p-6 text-center bg-white backdrop-blur border-2 hover:border-primary/50 transition-all">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg shadow-purple-500/30">
+                  <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">{item.title}</h3>
                 <p className="text-sm sm:text-base text-foreground font-medium">{item.description}</p>
@@ -78,7 +78,7 @@ export const InteractiveDemo = () => {
               </label>
               <div className="grid gap-2 sm:gap-3">
                 {examplePrompts.map((prompt, index) => <Button key={index} variant={selectedExample === index ? "default" : "outline"} className="justify-start text-left h-auto py-2.5 sm:py-3 px-3 sm:px-4 whitespace-normal" onClick={() => handleExampleClick(index, prompt)}>
-                    <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 flex-shrink-0 mt-0.5" />
+                    <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 flex-shrink-0 mt-0.5 text-[hsl(265,65%,55%)]" />
                     <span className="text-xs sm:text-sm leading-snug">{prompt}</span>
                   </Button>)}
               </div>

@@ -39,7 +39,9 @@ export default function About() {
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="text-center p-6 bg-card rounded-lg border">
-                <Target className="h-12 w-12 mx-auto mb-4 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center shadow-lg shadow-purple-500/25">
+                  <Target className="h-8 w-8 text-white" />
+                </div>
                 <h3 className="text-xl font-bold mb-2">Our Vision</h3>
                 <p className="text-muted-foreground">
                   Make professional virtual staging accessible to every real estate professional
@@ -47,7 +49,9 @@ export default function About() {
               </div>
               
               <div className="text-center p-6 bg-card rounded-lg border">
-                <Users className="h-12 w-12 mx-auto mb-4 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center shadow-lg shadow-purple-500/25">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
                 <h3 className="text-xl font-bold mb-2">Our Team</h3>
                 <p className="text-muted-foreground">
                   A dedicated team of AI experts and real estate professionals
@@ -55,7 +59,9 @@ export default function About() {
               </div>
               
               <div className="text-center p-6 bg-card rounded-lg border">
-                <Zap className="h-12 w-12 mx-auto mb-4 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center shadow-lg shadow-purple-500/25">
+                  <Zap className="h-8 w-8 text-white" />
+                </div>
                 <h3 className="text-xl font-bold mb-2">Our Technology</h3>
                 <p className="text-muted-foreground">
                   Cutting-edge AI that delivers professional results in seconds

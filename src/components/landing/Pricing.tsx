@@ -129,7 +129,7 @@ export const Pricing = () => {
                   <ul className="space-y-3">
                     {plan.features.map(feature => (
                       <li key={feature} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent flex-shrink-0 mt-0.5" />
+                        <Check className="h-5 w-5 text-[hsl(265,65%,55%)] flex-shrink-0 mt-0.5" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
