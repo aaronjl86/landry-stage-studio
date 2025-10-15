@@ -4,7 +4,7 @@ import tlmLogoWhite from "@/assets/tlm-logo-white.png";
 
 export default function Footer4Col() {
   return (
-    <footer className="border-t bg-secondary/30">
+    <footer className="border-t" style={{ backgroundColor: '#36eee0' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Column 1: Company Info */}
