@@ -137,7 +137,7 @@ All colors MUST be HSL.
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-100% - var(--gap)));
+    transform: translateX(-50%);
   }
 }
 

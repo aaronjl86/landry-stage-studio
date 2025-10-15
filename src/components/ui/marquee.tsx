@@ -16,24 +16,25 @@ export function Marquee({
   repeat = 2,
 }: MarqueeProps) {
   return (
-    <div
-      className={cn(
-        "group flex overflow-hidden [--duration:40s] [--gap:1rem]",
-        className
-      )}
-    >
-      {Array.from({ length: repeat }).map((_, i) => (
+    	<div
+        className={cn(
+          "group flex overflow-hidden [--duration:40s] [--gap:1rem]",
+          className
+        )}
+      >
         <div
-          key={i}
           className={cn(
-            "flex shrink-0 gap-[var(--gap)] animate-marquee",
+            "flex w-max items-center gap-[var(--gap)] animate-marquee",
             pauseOnHover && "group-hover:[animation-play-state:paused]",
             reverse && "[animation-direction:reverse]"
           )}
         >
-          {children}
+          {Array.from({ length: repeat }).map((_, i) => (
+            <div key={i} className="flex items-center gap-[var(--gap)]" aria-hidden={i > 0 ? true : undefined}>
+              {children}
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
   );
 }
