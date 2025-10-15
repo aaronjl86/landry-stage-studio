@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "How long does it take to stage a room?",
-    answer: "AI processing is nearly instant! You'll see your staged images within seconds of uploading. All plans include our fast AI processing with varying levels of support response times based on your subscription tier."
+    answer: "AI processing typically completes within seconds! Batch uploads may take a few minutes depending on queue volume. All plans include instant AI processing. Support response times vary by tier: Starter (24h), Professional (12h), Enterprise (2h)."
   },
   {
     question: "Can I customize the staging style?",
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: "Do you offer refunds?",
-    answer: "We offer a 30-day money-back guarantee. If you're not satisfied with our service, contact our support team for a full refund, no questions asked."
+    answer: "We offer a 30-day money-back guarantee from your initial purchase date. If you're not satisfied with our service, contact support@thelandrymethod.com for a refund. Credits used during the trial period will be deducted from your refund amount."
   },
   {
     question: "Can I cancel my subscription anytime?",

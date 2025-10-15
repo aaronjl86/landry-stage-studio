@@ -71,13 +71,19 @@ export default function PrivacyPolicy() {
           <section>
             <h2>AI Processing and Data Usage</h2>
             <p>
-              Your uploaded images are processed using Google Gemini AI technology. The images are:
+              Your uploaded images are processed using Google Gemini AI models (including Gemini 2.5 Flash and other variants). The images are:
             </p>
             <ul>
               <li>Sent to AI processing services only for the purpose of virtual staging</li>
               <li>Not used to train AI models without your explicit consent</li>
               <li>Deleted from temporary processing storage after completion</li>
               <li>Stored securely in your account gallery for your access</li>
+            </ul>
+
+            <h3>Free Trial Information</h3>
+            <ul>
+              <li><strong>Free Trial Tracking:</strong> Email addresses and device fingerprints to prevent free trial abuse</li>
+              <li>Free trial data is retained for fraud prevention purposes even after account deletion</li>
             </ul>
           </section>
 
@@ -209,7 +215,7 @@ export default function PrivacyPolicy() {
             <ul>
               <li><strong>Email:</strong> privacy@thelandrymethod.com</li>
               <li><strong>Support:</strong> support@thelandrymethod.com</li>
-              <li><strong>Mail:</strong> The Landry Method Privacy Team, [Address]</li>
+              <li><strong>Mail:</strong> The Landry Method Privacy Team, Address available upon request (contact privacy@thelandrymethod.com)</li>
             </ul>
             <p>
               We will respond to your request within 30 days.

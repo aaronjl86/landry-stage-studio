@@ -112,11 +112,10 @@ export default function Terms() {
 
             <h3>4.4 Refund Policy</h3>
             <ul>
-              <li>Monthly subscriptions: Refunds available within 7 days of initial purchase</li>
-              <li>Annual subscriptions: Refunds available within 14 days of initial purchase</li>
-              <li>Credits used will be deducted from refund amount</li>
-              <li>No refunds for partial months or unused credits</li>
+              <li>All subscriptions: 30-day money-back guarantee from initial purchase date</li>
+              <li>Credits used during the refund period will be deducted from refund amount at the rate of $2.90 per credit for Starter, $1.58 per credit for Professional, and $0.37 per credit for Enterprise</li>
               <li>Refunds processed to original payment method within 5-10 business days</li>
+              <li>Refund requests must be submitted to support@thelandrymethod.com</li>
             </ul>
 
             <h3>4.5 Plan Changes and Cancellation</h3>
@@ -126,6 +125,14 @@ export default function Terms() {
               <li>Cancellations can be made through your account settings or customer portal</li>
               <li>Access continues until the end of your paid period</li>
               <li>No pro-rated refunds for mid-cycle cancellations</li>
+            </ul>
+
+            <h3>4.6 Free Trial</h3>
+            <ul>
+              <li>New users receive 3 free image uploads to evaluate the Service</li>
+              <li>No credit card required for free trial</li>
+              <li>Free trial credits do not expire but cannot be replenished without a paid subscription</li>
+              <li>One free trial per user; additional accounts to access more free trials are prohibited</li>
             </ul>
           </section>
 
@@ -145,6 +152,7 @@ export default function Terms() {
             <ul>
               <li>You own all rights to the staged images we generate from your uploads</li>
               <li>You may use processed images for any lawful commercial or personal purpose</li>
+              <li>You may create unlimited variations within your monthly credit allocation</li>
               <li>You are responsible for ensuring compliance with real estate advertising regulations</li>
               <li>You must not claim that AI-generated staging represents actual physical staging</li>
             </ul>
@@ -225,9 +233,10 @@ export default function Terms() {
 
             <h3>8.2 Processing Times</h3>
             <ul>
-              <li>Processing times are estimates and may vary based on system load</li>
-              <li>Turnaround times: Starter (24h), Professional (12h), Enterprise (2h)</li>
-              <li>Complex images may require additional processing time</li>
+              <li>AI image processing completes in seconds for standard uploads</li>
+              <li>Batch processing may take longer depending on queue volume (typically under 5 minutes)</li>
+              <li>Support response times: Starter (24h), Professional (12h), Enterprise (2h)</li>
+              <li>Complex images or custom requests may require additional processing time</li>
             </ul>
 
             <h3>8.3 AI Limitations</h3>
@@ -301,7 +310,7 @@ export default function Terms() {
             <h2>13. Governing Law and Dispute Resolution</h2>
             <h3>13.1 Governing Law</h3>
             <p>
-              These Terms are governed by the laws of [Your Jurisdiction], without regard to conflict of law principles.
+              These Terms are governed by the laws of the State of Oregon, without regard to conflict of law principles.
             </p>
 
             <h3>13.2 Dispute Resolution</h3>
@@ -311,7 +320,8 @@ export default function Terms() {
             <ul>
               <li>First, contact us at legal@thelandrymethod.com to resolve informally</li>
               <li>If unresolved, disputes shall be settled through binding arbitration</li>
-              <li>Arbitration will be conducted under the rules of [Arbitration Association]</li>
+              <li>Arbitration will be conducted under the Commercial Arbitration Rules of the American Arbitration Association</li>
+              <li>The arbitration venue shall be Portland, Oregon</li>
               <li>You waive the right to participate in class actions</li>
             </ul>
 
@@ -324,6 +334,9 @@ export default function Terms() {
               <li>Breach of confidentiality</li>
               <li>Unauthorized access to systems</li>
             </ul>
+            <p>
+              Any court proceedings shall be brought exclusively in the state or federal courts located in Multnomah County, Oregon, and you consent to the personal jurisdiction of such courts.
+            </p>
           </section>
 
           <section>
@@ -362,7 +375,7 @@ export default function Terms() {
             <ul>
               <li><strong>Email:</strong> legal@thelandrymethod.com</li>
               <li><strong>Support:</strong> support@thelandrymethod.com</li>
-              <li><strong>Mail:</strong> The Landry Method Legal Department, [Address]</li>
+              <li><strong>Mail:</strong> The Landry Method Legal Department, Address available upon request (contact support@thelandrymethod.com)</li>
             </ul>
           </section>
 
