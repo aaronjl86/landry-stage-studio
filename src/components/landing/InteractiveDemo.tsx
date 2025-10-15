@@ -41,7 +41,7 @@ export const InteractiveDemo = () => {
   };
 
   return (
-    <section className="py-12 md:py-20 lg:py-28 bg-muted/30">
+    <section className="py-12 md:py-20 lg:py-28" style={{ backgroundColor: '#36eee0' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-16">
