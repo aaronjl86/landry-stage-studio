@@ -141,7 +141,7 @@ export const InteractiveDemo = () => {
                       <span className="text-foreground font-bold">Traditional Services</span>
                     </th>
                     <th className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-primary/10 font-bold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg w-1/3">
-                      <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                      <span className="text-[hsl(265,65%,55%)] font-bold">
                         The Landry Method
                       </span>
                     </th>
@@ -202,8 +202,8 @@ export const InteractiveDemo = () => {
                       </td>
                       <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center bg-primary/5 text-[10px] sm:text-xs md:text-sm lg:text-base">
                         <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2">
-                          <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent text-sm sm:text-base md:text-lg lg:text-xl font-bold flex-shrink-0">✓</span>
-                          <span className="font-semibold bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent leading-tight break-words">{row.landry}</span>
+                          <span className="text-[hsl(265,65%,55%)] text-sm sm:text-base md:text-lg lg:text-xl font-bold flex-shrink-0">✓</span>
+                          <span className="font-semibold text-[hsl(265,65%,55%)] leading-tight break-words">{row.landry}</span>
                         </div>
                       </td>
                     </tr>)}
