@@ -58,8 +58,8 @@ export const SocialProof = () => {
       {/* Stats */}
       <div className="grid grid-cols-2 gap-2">
         {stats.map((stat, idx) => <div key={idx} className={`bg-card border-4 rounded-lg p-2 text-center hover:border-primary/70 transition-colors py-2 border-primary/40 ${idx < 2 ? 'mt-4' : ''}`}>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] mx-auto mb-2 flex items-center justify-center shadow-md shadow-purple-500/20">
-              <stat.icon className="h-4 w-4 text-white" />
+            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] mx-auto mb-2 flex items-center justify-center shadow-lg shadow-purple-500/40">
+              <stat.icon className="h-8 w-8 text-white stroke-[2.5]" />
             </div>
             <div className="text-2xl font-bold mb-1">{stat.value}</div>
             <div className="text-sm text-muted-foreground">{stat.label}</div>
