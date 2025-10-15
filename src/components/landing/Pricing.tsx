@@ -80,7 +80,7 @@ export const Pricing = () => {
             <span className={`text-sm ${!isYearly ? 'font-bold' : 'text-muted-foreground'}`}>
               Monthly
             </span>
-            <button onClick={() => setIsYearly(!isYearly)} className="relative w-14 h-7 bg-primary rounded-full transition-colors">
+            <button onClick={() => setIsYearly(!isYearly)} className="relative w-14 h-7 bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(265,65%,55%)] rounded-full transition-colors">
               <div className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-transform ${isYearly ? 'translate-x-8' : 'translate-x-1'}`} />
             </button>
             <span className={`text-sm ${isYearly ? 'font-bold' : 'text-muted-foreground'}`}>
