@@ -76,11 +76,11 @@ export const Header = () => {
     if (onClick) onClick();
   };
   return <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 overflow-x-hidden">
-      <div className="container mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="flex h-[100px] md:h-[160px] items-center justify-between gap-2 md:gap-4">
+      <div className="container mx-auto px-1 sm:px-6 lg:px-8">
+        <div className="flex h-[80px] md:h-[160px] items-center justify-between gap-1 md:gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center flex-shrink-0 max-w-[70%] md:max-w-none">
-            <video src={tlmLogoVideo} autoPlay loop muted playsInline aria-label="The Landry Method" className="h-[70px] md:h-[140px] w-auto object-contain" />
+          <Link to="/" className="flex items-center flex-shrink min-w-0">
+            <video src={tlmLogoVideo} autoPlay loop muted playsInline aria-label="The Landry Method" className="h-[60px] md:h-[140px] w-auto object-contain max-w-full" />
           </Link>
 
           {/* Desktop Navigation */}
