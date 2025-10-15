@@ -5,48 +5,35 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Upload, Wand2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const examplePrompts = [
-  "Modern minimalist living room with Scandinavian furniture, natural light, and indoor plants",
-  "Luxurious master bedroom with king-size bed, elegant chandelier, and spa-like bathroom view",
-  "Cozy family room with comfortable sectional, fireplace, and rustic farmhouse style",
-  "Contemporary home office with standing desk, ergonomic chair, and tech-savvy workspace",
-];
-
-const differentiators = [
-  {
-    title: "Your Images",
-    description: "Upload any property photo",
-    icon: Upload,
-  },
-  {
-    title: "Your Prompts",
-    description: "Describe your exact vision",
-    icon: Wand2,
-  },
-  {
-    title: "Your Results",
-    description: "Get photorealistic staging in seconds",
-    icon: Sparkles,
-  },
-];
-
+const examplePrompts = ["Modern minimalist living room with Scandinavian furniture, natural light, and indoor plants", "Luxurious master bedroom with king-size bed, elegant chandelier, and spa-like bathroom view", "Cozy family room with comfortable sectional, fireplace, and rustic farmhouse style", "Contemporary home office with standing desk, ergonomic chair, and tech-savvy workspace"];
+const differentiators = [{
+  title: "Your Images",
+  description: "Upload any property photo",
+  icon: Upload
+}, {
+  title: "Your Prompts",
+  description: "Describe your exact vision",
+  icon: Wand2
+}, {
+  title: "Your Results",
+  description: "Get photorealistic staging in seconds",
+  icon: Sparkles
+}];
 export const InteractiveDemo = () => {
   const [customPrompt, setCustomPrompt] = useState("");
   const [selectedExample, setSelectedExample] = useState<number | null>(null);
-
   const handleExampleClick = (index: number, prompt: string) => {
     setSelectedExample(index);
     setCustomPrompt(prompt);
   };
-
-  return (
-    <section className="py-12 md:py-20 lg:py-28" style={{ backgroundColor: '#36eee0' }}>
+  return <section className="py-12 md:py-20 lg:py-28" style={{
+    backgroundColor: '#36eee0'
+  }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-16">
           <Badge className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[hsl(280,70%,70%)]/10 via-[hsl(265,65%,55%)]/10 to-[hsl(290,75%,65%)]/10 hover:from-[hsl(280,70%,70%)]/20 hover:via-[hsl(265,65%,55%)]/20 hover:to-[hsl(290,75%,65%)]/20">
-            <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">⚡ Unmatched Customization</span>
+            <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-slate-50">⚡ Unmatched Customization</span>
           </Badge>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto px-2">
             The Only Self-Serve Platform Where{" "}
@@ -62,18 +49,16 @@ export const InteractiveDemo = () => {
 
         {/* Differentiators Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
-          {differentiators.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Card key={item.title} className="p-4 sm:p-6 text-center bg-white backdrop-blur border-2 hover:border-primary/50 transition-all">
+          {differentiators.map(item => {
+          const Icon = item.icon;
+          return <Card key={item.title} className="p-4 sm:p-6 text-center bg-white backdrop-blur border-2 hover:border-primary/50 transition-all">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <Icon className="h-6 w-6 sm:h-8 sm:w-8 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">{item.title}</h3>
                 <p className="text-sm sm:text-base text-foreground font-medium">{item.description}</p>
-              </Card>
-            );
-          })}
+              </Card>;
+        })}
         </div>
 
         {/* Interactive Prompt Demo */}
@@ -92,17 +77,10 @@ export const InteractiveDemo = () => {
                 Click an example or write your own custom prompt:
               </label>
               <div className="grid gap-2 sm:gap-3">
-                {examplePrompts.map((prompt, index) => (
-                  <Button
-                    key={index}
-                    variant={selectedExample === index ? "default" : "outline"}
-                    className="justify-start text-left h-auto py-2.5 sm:py-3 px-3 sm:px-4 whitespace-normal"
-                    onClick={() => handleExampleClick(index, prompt)}
-                  >
+                {examplePrompts.map((prompt, index) => <Button key={index} variant={selectedExample === index ? "default" : "outline"} className="justify-start text-left h-auto py-2.5 sm:py-3 px-3 sm:px-4 whitespace-normal" onClick={() => handleExampleClick(index, prompt)}>
                     <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 flex-shrink-0 mt-0.5" />
                     <span className="text-xs sm:text-sm leading-snug">{prompt}</span>
-                  </Button>
-                ))}
+                  </Button>)}
               </div>
             </div>
 
@@ -111,15 +89,10 @@ export const InteractiveDemo = () => {
               <label className="text-xs sm:text-sm font-semibold block px-1">
                 Or write your completely custom prompt:
               </label>
-              <Textarea
-                value={customPrompt}
-                onChange={(e) => {
-                  setCustomPrompt(e.target.value);
-                  setSelectedExample(null);
-                }}
-                placeholder="Describe your vision... Be as detailed or as simple as you like. Modern, traditional, luxury, cozy, minimalist—whatever style you want. Mention furniture, colors, lighting, artwork, plants, anything!"
-                className="min-h-[100px] sm:min-h-[120px] text-sm sm:text-base resize-none"
-              />
+              <Textarea value={customPrompt} onChange={e => {
+              setCustomPrompt(e.target.value);
+              setSelectedExample(null);
+            }} placeholder="Describe your vision... Be as detailed or as simple as you like. Modern, traditional, luxury, cozy, minimalist—whatever style you want. Mention furniture, colors, lighting, artwork, plants, anything!" className="min-h-[100px] sm:min-h-[120px] text-sm sm:text-base resize-none" />
               <p className="text-xs sm:text-sm text-foreground/80 font-medium px-1">
                 {customPrompt.length} characters • No limits on creativity
               </p>
@@ -175,61 +148,49 @@ export const InteractiveDemo = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    {
-                      feature: "Turnaround Time",
-                      traditional: "24-48 hours",
-                      landry: "Instant (seconds)",
-                      isGood: true,
-                    },
-                    {
-                      feature: "Design Control",
-                      traditional: "Limited templates",
-                      landry: "Full customization",
-                      isGood: true,
-                    },
-                    {
-                      feature: "Revisions",
-                      traditional: "Extra cost per change",
-                      landry: "Unlimited variations",
-                      isGood: true,
-                    },
-                    {
-                      feature: "Creative Freedom",
-                      traditional: "Preset options only",
-                      landry: "Describe any vision",
-                      isGood: true,
-                    },
-                    {
-                      feature: "Cost per Image",
-                      traditional: "$29-$99 each",
-                      landry: "From $2.90 each",
-                      isGood: true,
-                    },
-                    {
-                      feature: "Batch Processing",
-                      traditional: "Manual, slow",
-                      landry: "15 images at once",
-                      isGood: true,
-                    },
-                    {
-                      feature: "Quality",
-                      traditional: "Designer dependent",
-                      landry: "AI-powered HD/4K",
-                      isGood: true,
-                    },
-                    {
-                      feature: "Support",
-                      traditional: "Email only",
-                      landry: "Priority + Dedicated",
-                      isGood: true,
-                    },
-                  ].map((row, index) => (
-                    <tr
-                      key={index}
-                      className="border-b hover:bg-muted/20 transition-colors animate-fade-in"
-                      style={{ animationDelay: `${index * 0.05}s` }}
-                    >
+                  {[{
+                  feature: "Turnaround Time",
+                  traditional: "24-48 hours",
+                  landry: "Instant (seconds)",
+                  isGood: true
+                }, {
+                  feature: "Design Control",
+                  traditional: "Limited templates",
+                  landry: "Full customization",
+                  isGood: true
+                }, {
+                  feature: "Revisions",
+                  traditional: "Extra cost per change",
+                  landry: "Unlimited variations",
+                  isGood: true
+                }, {
+                  feature: "Creative Freedom",
+                  traditional: "Preset options only",
+                  landry: "Describe any vision",
+                  isGood: true
+                }, {
+                  feature: "Cost per Image",
+                  traditional: "$29-$99 each",
+                  landry: "From $2.90 each",
+                  isGood: true
+                }, {
+                  feature: "Batch Processing",
+                  traditional: "Manual, slow",
+                  landry: "15 images at once",
+                  isGood: true
+                }, {
+                  feature: "Quality",
+                  traditional: "Designer dependent",
+                  landry: "AI-powered HD/4K",
+                  isGood: true
+                }, {
+                  feature: "Support",
+                  traditional: "Email only",
+                  landry: "Priority + Dedicated",
+                  isGood: true
+                }].map((row, index) => <tr key={index} className="border-b hover:bg-muted/20 transition-colors animate-fade-in" style={{
+                  animationDelay: `${index * 0.05}s`
+                }}>
                       <td className="p-2 sm:p-3 md:p-4 lg:p-6 font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
                         {row.feature}
                       </td>
@@ -245,8 +206,7 @@ export const InteractiveDemo = () => {
                           <span className="font-semibold bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent leading-tight break-words">{row.landry}</span>
                         </div>
                       </td>
-                    </tr>
-                  ))}
+                    </tr>)}
                 </tbody>
               </table>
             </div>
@@ -273,6 +233,5 @@ export const InteractiveDemo = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
