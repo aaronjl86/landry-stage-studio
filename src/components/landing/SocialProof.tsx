@@ -100,6 +100,21 @@ export const SocialProof = () => {
           <div className="relative h-24 w-40 flex items-center justify-center">
             <img src={johnTaylor} alt="John Taylor Luxury Real Estate" className="h-full w-full object-contain" />
           </div>
+          <div className="relative h-24 w-40 flex items-center justify-center">
+            <img src={redOakRealty} alt="Red Oak Realty" className="h-full w-full object-contain" />
+          </div>
+          <div className="relative h-24 w-40 flex items-center justify-center">
+            <img src={austinRealEstate} alt="Austin Real Estate Experts" className="h-full w-full object-contain" />
+          </div>
+          <div className="relative h-24 w-40 flex items-center justify-center">
+            <img src={kellerWilliams} alt="Keller Williams" className="h-full w-full object-contain" />
+          </div>
+          <div className="relative h-24 w-40 flex items-center justify-center">
+            <img src={leggettRealEstate} alt="Leggett International Real Estate" className="h-full w-full object-contain" />
+          </div>
+          <div className="relative h-24 w-40 flex items-center justify-center">
+            <img src={johnTaylor} alt="John Taylor Luxury Real Estate" className="h-full w-full object-contain" />
+          </div>
         </Marquee>
       </div>
     </div>;
