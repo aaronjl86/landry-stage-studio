@@ -13,10 +13,12 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <Hero />
+      <section className="overflow-hidden">
+        <Hero />
+      </section>
       
       {/* Gallery & Social Proof Section */}
-      <section className="bg-transparent py-12">
+      <section className="bg-transparent py-12 overflow-hidden">
         <div className="mx-auto">
           <GalleryCarousel />
           <SocialProof />
