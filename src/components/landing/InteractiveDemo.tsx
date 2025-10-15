@@ -129,96 +129,110 @@ export const InteractiveDemo = () => {
             </p>
           </div>
           
-          <Card className="overflow-hidden border-2">
+          <Card className="overflow-hidden border-2 shadow-xl">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b-2">
-                    <th className="text-left p-2 sm:p-3 md:p-4 lg:p-6 bg-muted/30 font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl w-1/3">
+                  <tr className="border-b-2 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
+                    <th className="text-left p-3 md:p-4 font-bold text-sm md:text-base lg:text-lg w-2/5">
                       Feature
                     </th>
-                    <th className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-muted/30 font-bold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg w-1/3">
-                      <span className="text-foreground font-bold">Traditional Services</span>
+                    <th className="text-center p-3 md:p-4 font-bold text-xs md:text-sm lg:text-base w-3/10">
+                      Traditional
                     </th>
-                    <th className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-primary/10 font-bold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg w-1/3">
-                      <span className="text-[hsl(265,65%,55%)] font-bold">
-                        The Landry Method
-                      </span>
+                    <th className="text-center p-3 md:p-4 font-bold text-xs md:text-sm lg:text-base w-3/10">
+                      <span className="text-[hsl(265,65%,55%)]">The Landry Method</span>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[{
-                  feature: "Turnaround Time",
-                  traditional: "24-48 hours",
-                  landry: "Instant (seconds)",
-                  isGood: true
-                }, {
-                  feature: "Design Control",
-                  traditional: "Limited templates",
-                  landry: "Full customization",
-                  isGood: true
-                }, {
-                  feature: "Revisions",
-                  traditional: "Extra cost per change",
-                  landry: "Unlimited variations",
-                  isGood: true
-                }, {
-                  feature: "Creative Freedom",
-                  traditional: "Preset options only",
-                  landry: "Describe any vision",
-                  isGood: true
-                }, {
-                  feature: "Cost per Image",
-                  traditional: "$29-$99 each",
-                  landry: "From $2.90 each",
-                  isGood: true
-                }, {
-                  feature: "Batch Processing",
-                  traditional: "Manual, slow",
-                  landry: "15 images at once",
-                  isGood: true
-                }, {
-                  feature: "Quality",
-                  traditional: "Designer dependent",
-                  landry: "AI-powered HD/4K",
-                  isGood: true
-                }, {
-                  feature: "Support",
-                  traditional: "Email only",
-                  landry: "Priority + Dedicated",
-                  isGood: true
-                }].map((row, index) => <tr key={index} className="border-b hover:bg-muted/20 transition-colors animate-fade-in" style={{
-                  animationDelay: `${index * 0.05}s`
-                }}>
-                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
-                        {row.feature}
-                      </td>
-                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center text-foreground/90 text-[10px] sm:text-xs md:text-sm lg:text-base">
-                        <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2">
-                          <span className="text-destructive text-sm sm:text-base md:text-lg lg:text-xl flex-shrink-0">✗</span>
-                          <span className="leading-tight break-words">{row.traditional}</span>
+                  {[
+                    {
+                      emoji: "⚡",
+                      feature: "Turnaround Time",
+                      traditional: "24-48 hours",
+                      landry: "Instant (seconds)"
+                    },
+                    {
+                      emoji: "🎨",
+                      feature: "Design Control",
+                      traditional: "Limited templates",
+                      landry: "Full customization"
+                    },
+                    {
+                      emoji: "🔄",
+                      feature: "Revisions",
+                      traditional: "Extra cost",
+                      landry: "Unlimited"
+                    },
+                    {
+                      emoji: "✨",
+                      feature: "Creative Freedom",
+                      traditional: "Preset options",
+                      landry: "Describe anything"
+                    },
+                    {
+                      emoji: "💰",
+                      feature: "Cost per Image",
+                      traditional: "$29-$99",
+                      landry: "From $2.90"
+                    },
+                    {
+                      emoji: "📦",
+                      feature: "Batch Processing",
+                      traditional: "Manual, slow",
+                      landry: "15 images at once"
+                    },
+                    {
+                      emoji: "🎯",
+                      feature: "Quality",
+                      traditional: "Variable",
+                      landry: "AI-powered HD/4K"
+                    },
+                    {
+                      emoji: "💬",
+                      feature: "Support",
+                      traditional: "Email only",
+                      landry: "Priority + Dedicated"
+                    }
+                  ].map((row, index) => (
+                    <tr 
+                      key={index} 
+                      className="border-b hover:bg-muted/30 transition-colors animate-fade-in"
+                      style={{ animationDelay: `${index * 0.05}s` }}
+                    >
+                      <td className="p-3 md:p-4 text-xs md:text-sm lg:text-base">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg md:text-xl">{row.emoji}</span>
+                          <span className="font-semibold">{row.feature}</span>
                         </div>
                       </td>
-                      <td className="p-2 sm:p-3 md:p-4 lg:p-6 text-center bg-primary/5 text-[10px] sm:text-xs md:text-sm lg:text-base">
-                        <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2">
-                          <span className="text-[hsl(265,65%,55%)] text-sm sm:text-base md:text-lg lg:text-xl font-bold flex-shrink-0">✓</span>
-                          <span className="font-semibold text-[hsl(265,65%,55%)] leading-tight break-words">{row.landry}</span>
+                      <td className="p-3 md:p-4 text-center text-xs md:text-sm">
+                        <div className="flex items-center justify-center gap-1 md:gap-2">
+                          <span className="text-destructive text-base md:text-lg">✗</span>
+                          <span className="text-muted-foreground">{row.traditional}</span>
                         </div>
                       </td>
-                    </tr>)}
+                      <td className="p-3 md:p-4 text-center bg-primary/5 text-xs md:text-sm">
+                        <div className="flex items-center justify-center gap-1 md:gap-2">
+                          <span className="text-[hsl(265,65%,55%)] text-base md:text-lg font-bold">✓</span>
+                          <span className="font-semibold text-[hsl(265,65%,55%)]">{row.landry}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
             
             {/* Bottom CTA */}
-            <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-r from-primary/10 to-accent/10 border-t-2">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+            <div className="p-4 md:p-6 bg-gradient-to-r from-primary/10 to-accent/10 border-t-2">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
                 <div className="text-center md:text-left">
-                  <p className="font-bold text-base sm:text-lg mb-1">
+                  <p className="font-bold text-base md:text-lg mb-1">
                     Experience the difference yourself
                   </p>
-                  <p className="text-xs sm:text-sm md:text-base text-foreground/90 font-medium">
+                  <p className="text-xs md:text-sm text-foreground/90 font-medium">
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
