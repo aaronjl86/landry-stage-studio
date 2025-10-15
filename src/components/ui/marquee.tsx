@@ -26,7 +26,7 @@ export function Marquee({
         <div
           key={i}
           className={cn(
-            "flex shrink-0 justify-around [gap:var(--gap)] animate-marquee",
+            "flex shrink-0 gap-[var(--gap)] animate-marquee",
             pauseOnHover && "group-hover:[animation-play-state:paused]",
             reverse && "[animation-direction:reverse]"
           )}
