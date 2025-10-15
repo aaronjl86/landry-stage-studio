@@ -99,7 +99,8 @@ export const Pricing = () => {
             const isLoading = loadingPlan === plan.key;
 
             return (
-              <Card key={plan.name} className={`relative transition-all hover:shadow-xl ${plan.popular ? 'border-primary shadow-[var(--shadow-card)] scale-105' : ''} ${currentPlan ? 'border-2 border-primary' : ''}`}>
+              <Card key={plan.name} className={`relative transition-all hover:shadow-xl border-2 border-transparent bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(290,75%,65%)] p-[2px] ${plan.popular ? 'shadow-[var(--shadow-card)] scale-105' : ''}`}>
+                <div className="bg-card rounded-lg h-full flex flex-col">
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                     <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold whitespace-nowrap">Most Popular</span>
@@ -154,6 +155,7 @@ export const Pricing = () => {
                     )}
                   </Button>
                 </CardFooter>
+                </div>
               </Card>
             );
           })}
