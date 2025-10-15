@@ -11,7 +11,7 @@ import Footer4Col from "@/components/ui/footer-column";
 
 const Index = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen">
       <Header />
       <Hero />
       
