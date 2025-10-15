@@ -9,7 +9,7 @@ export const Hero = () => {
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPosition(Number(e.target.value));
   };
-  return <section className="relative min-h-[90vh] flex items-center overflow-x-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
+  return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
       {/* Animated Background gradient */}
       <div className="absolute inset-0 opacity-40 animate-pulse" style={{
       backgroundColor: '#36eee0',
