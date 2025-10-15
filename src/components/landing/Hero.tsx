@@ -51,9 +51,7 @@ export const Hero = () => {
                 </Button>
               </Link>
               <Link to="/public-gallery">
-                <Button size="lg" variant="outline" className="text-xl px-10 py-7 border-2 hover:bg-primary/10 hover:border-primary transition-all duration-300">
-                  View Examples
-                </Button>
+                
               </Link>
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-muted-foreground">
@@ -95,16 +93,14 @@ export const Hero = () => {
               </div>
 
               {/* Labels */}
-              <div 
-                className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300"
-                style={{ opacity: sliderPosition > 10 ? 1 : 0 }}
-              >
+              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300" style={{
+              opacity: sliderPosition > 10 ? 1 : 0
+            }}>
                 Before
               </div>
-              <div 
-                className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300"
-                style={{ opacity: sliderPosition < 90 ? 1 : 0 }}
-              >
+              <div className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300" style={{
+              opacity: sliderPosition < 90 ? 1 : 0
+            }}>
                 After
               </div>
             </div>
