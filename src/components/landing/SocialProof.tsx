@@ -5,6 +5,12 @@ import austinRealEstate from "@/assets/logos/austin-real-estate.png";
 import kellerWilliams from "@/assets/logos/keller-williams-new.png";
 import leggettRealEstate from "@/assets/logos/leggett-real-estate.png";
 import johnTaylor from "@/assets/logos/john-taylor.png";
+import sarahJohnson from "@/assets/testimonials/sarah-johnson.jpg";
+import michaelChen from "@/assets/testimonials/michael-chen.jpg";
+import emmaWilliams from "@/assets/testimonials/emma-williams.jpg";
+import davidMartinez from "@/assets/testimonials/david-martinez.jpg";
+import jenniferLee from "@/assets/testimonials/jennifer-lee.jpg";
+import robertAnderson from "@/assets/testimonials/robert-anderson.jpg";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
@@ -27,32 +33,38 @@ export const SocialProof = () => {
     name: "Sarah Johnson",
     role: "Real Estate Agent",
     text: "This AI staging tool has completely transformed how I present properties. My listings sell 73% faster now!",
-    rating: 5
+    rating: 5,
+    image: sarahJohnson
   }, {
     name: "Michael Chen",
     role: "Property Developer",
     text: "The quality is incredible and it saves me thousands on traditional staging. Highly recommended!",
-    rating: 5
+    rating: 5,
+    image: michaelChen
   }, {
     name: "Emma Williams",
     role: "Broker",
     text: "Game changer for my business. The before/after transformations are absolutely stunning.",
-    rating: 5
+    rating: 5,
+    image: emmaWilliams
   }, {
     name: "David Martinez",
     role: "Luxury Agent",
     text: "My clients are consistently impressed with the staging quality. It's like having a professional stager on demand!",
-    rating: 5
+    rating: 5,
+    image: davidMartinez
   }, {
     name: "Jennifer Lee",
     role: "Real Estate Team Leader",
     text: "We've staged over 200 properties with this tool. The ROI is incredible and our team loves how easy it is.",
-    rating: 5
+    rating: 5,
+    image: jenniferLee
   }, {
     name: "Robert Anderson",
     role: "Investment Property Manager",
     text: "Perfect for our rental portfolio. Quick turnaround and beautiful results every single time.",
-    rating: 5
+    rating: 5,
+    image: robertAnderson
   }];
   return <div className="space-y-2">
       {/* Stats */}
@@ -71,6 +83,11 @@ export const SocialProof = () => {
         <h3 className="font-semibold text-center mb-2 py-8 text-5xl">What Our Users Say</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {testimonials.map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
+              <img 
+                src={testimonial.image} 
+                alt={testimonial.name}
+                className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30"
+              />
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400 animate-fade-in hover:scale-110 transition-transform" style={{
               animationDelay: `${i * 0.1}s`
