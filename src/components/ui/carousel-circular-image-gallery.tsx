@@ -147,17 +147,9 @@ export function ImageGallery() {
         </div>
         </div>
 
-        <button className="absolute left-[calc(50%-40vmin-120px)] sm:left-[calc(50%-450px-20px)] top-1/2 z-[101] flex h-14 w-14 sm:h-16 sm:w-16 -translate-y-1/2 -translate-x-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-white/40 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-white/50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" onClick={prev} disabled={disabled} aria-label="Previous Image">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-800 transition-transform duration-300 group-hover:-translate-x-0.5">
-          <path d="M15 18l-6-6 6-6" />
-        </svg>
-        </button>
+        
 
-        <button className="absolute right-[calc(50%-40vmin-120px)] sm:right-[calc(50%-450px-20px)] top-1/2 z-[101] flex h-14 w-14 sm:h-16 sm:w-16 -translate-y-1/2 translate-x-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-white/40 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-white/50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" onClick={next} disabled={disabled} aria-label="Next Image">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-800 transition-transform duration-300 group-hover:translate-x-0.5">
-          <path d="M9 18l6-6-6-6" />
-        </svg>
-        </button>
+        
       </div>
       
       {currentDescription && <div className="max-w-[900px] w-full px-4 mt-8">
