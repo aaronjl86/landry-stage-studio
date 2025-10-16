@@ -36,7 +36,7 @@ const Index = () => {
         <Pricing />
       </div>
       <div id="faq">
-        
+        <FAQ />
       </div>
       
       <Footer4Col />
