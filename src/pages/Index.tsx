@@ -14,10 +14,29 @@ const Index = () => {
         <Hero />
       </section>
       
+      {/* Video Section with Transparent Background */}
+      <section className="bg-primary py-16 overflow-hidden">
+        <div className="container mx-auto px-4 flex justify-center">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full max-w-4xl h-auto"
+            style={{
+              mixBlendMode: 'multiply',
+              filter: 'contrast(1.2) brightness(1.8)'
+            }}
+          >
+            <source src="/src/assets/spatial-intelligence-motion.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+      
       {/* Gallery & Social Proof Section */}
       <section className="bg-transparent py-12 overflow-hidden">
         <div className="mx-auto">
-          <GalleryCarousel className="bg-[#8097a8]/[0.01]" />
+          <GalleryCarousel />
           <SocialProof />
         </div>
       </section>
