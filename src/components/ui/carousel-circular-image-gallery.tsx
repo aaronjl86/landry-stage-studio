@@ -129,8 +129,8 @@ export function ImageGallery() {
   const pairIndex = Math.floor(opened / 2);
   const afterImageIndex = pairIndex * 2 + 1;
   const currentDescription = images[afterImageIndex]?.description;
-  return <div className="flex flex-col items-center justify-center bg-primary py-20 font-sans">
-      <div className="max-w-[900px] w-full px-4 mb-6">
+  return <div className="flex flex-col items-center justify-center bg-primary pt-4 pb-20 font-sans">
+      <div className="max-w-[900px] w-full px-4 mb-0">
         <h3 className="text-center text-6xl text-white tracking-wide font-extrabold font-montserrat md:text-8xl">
       </h3>
       </div>
