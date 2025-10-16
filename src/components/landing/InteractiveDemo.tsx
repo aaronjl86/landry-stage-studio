@@ -55,8 +55,8 @@ export const InteractiveDemo = () => {
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg shadow-purple-500/30">
                   <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">{item.title}</h3>
-                <p className="text-sm sm:text-base text-foreground font-medium">{item.description}</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">{item.title}</h3>
+                <p className="text-base sm:text-lg md:text-xl text-foreground font-medium">{item.description}</p>
               </Card>;
         })}
         </div>
@@ -65,35 +65,35 @@ export const InteractiveDemo = () => {
         <Card className="p-4 sm:p-6 md:p-8 lg:p-12 bg-card shadow-2xl">
           <div className="space-y-4 sm:space-y-6">
             <div className="text-center space-y-2 mb-6 sm:mb-8">
-              <h3 className="text-xl sm:text-2xl font-bold">Try It Yourself</h3>
-              <p className="text-sm sm:text-base text-foreground font-medium px-2">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold">Try It Yourself</h3>
+              <p className="text-base sm:text-lg md:text-xl text-foreground font-medium px-2">
                 See how easy it is to create custom staging descriptions. Write anything you want!
               </p>
             </div>
 
             {/* Example Prompts */}
             <div className="space-y-3">
-              <label className="text-xs sm:text-sm font-semibold block px-1">
+              <label className="text-sm sm:text-base md:text-lg font-semibold block px-1">
                 Click an example or write your own custom prompt:
               </label>
               <div className="grid gap-2 sm:gap-3">
                 {examplePrompts.map((prompt, index) => <Button key={index} variant={selectedExample === index ? "default" : "outline"} className="justify-start text-left h-auto py-2.5 sm:py-3 px-3 sm:px-4 whitespace-normal" onClick={() => handleExampleClick(index, prompt)}>
                     <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 flex-shrink-0 mt-0.5 text-[hsl(265,65%,55%)]" />
-                    <span className="text-xs sm:text-sm leading-snug">{prompt}</span>
+                    <span className="text-sm sm:text-base md:text-lg leading-snug">{prompt}</span>
                   </Button>)}
               </div>
             </div>
 
             {/* Custom Prompt Input */}
             <div className="space-y-3">
-              <label className="text-xs sm:text-sm font-semibold block px-1">
+              <label className="text-sm sm:text-base md:text-lg font-semibold block px-1">
                 Or write your completely custom prompt:
               </label>
               <Textarea value={customPrompt} onChange={e => {
               setCustomPrompt(e.target.value);
               setSelectedExample(null);
-            }} placeholder="Describe your vision... Be as detailed or as simple as you like. Modern, traditional, luxury, cozy, minimalist—whatever style you want. Mention furniture, colors, lighting, artwork, plants, anything!" className="min-h-[100px] sm:min-h-[120px] text-sm sm:text-base resize-none" />
-              <p className="text-xs sm:text-sm text-foreground/80 font-medium px-1">
+            }} placeholder="Describe your vision... Be as detailed or as simple as you like. Modern, traditional, luxury, cozy, minimalist—whatever style you want. Mention furniture, colors, lighting, artwork, plants, anything!" className="min-h-[100px] sm:min-h-[120px] text-base sm:text-lg md:text-xl resize-none" />
+              <p className="text-sm sm:text-base md:text-lg text-foreground/80 font-medium px-1">
                 {customPrompt.length} characters • No limits on creativity
               </p>
             </div>
@@ -102,8 +102,8 @@ export const InteractiveDemo = () => {
             <div className="pt-4 sm:pt-6 border-t">
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-between">
                 <div className="text-center sm:text-left">
-                  <p className="font-semibold text-sm sm:text-base mb-1">Ready to stage your own properties?</p>
-                  <p className="text-xs sm:text-sm text-foreground/80 font-medium">
+                  <p className="font-semibold text-base sm:text-lg md:text-xl mb-1">Ready to stage your own properties?</p>
+                  <p className="text-sm sm:text-base md:text-lg text-foreground/80 font-medium">
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
