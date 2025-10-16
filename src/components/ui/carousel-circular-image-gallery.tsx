@@ -132,7 +132,7 @@ export function ImageGallery() {
   return <div className="flex flex-col items-center justify-center bg-primary py-20 font-sans">
       <div className="max-w-[900px] w-full px-4 mb-6">
         <h3 className="text-center text-5xl text-white tracking-wide font-extrabold md:text-7xl">
-          Transformation, Engineered
+          Spacial Intelligence in Motion
         </h3>
       </div>
       <div className="relative">
