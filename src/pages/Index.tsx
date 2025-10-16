@@ -17,6 +17,22 @@ const Index = () => {
         <Hero />
       </section>
       
+      {/* Video Section */}
+      <section className="bg-transparent py-12 overflow-hidden">
+        <div className="mx-auto flex justify-center items-center">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="max-w-2xl w-full mix-blend-screen"
+            style={{ filter: 'contrast(1.2)' }}
+          >
+            <source src="/src/assets/tlm-logo-animated.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+      
       {/* Gallery & Social Proof Section */}
       <section className="bg-transparent py-12 overflow-hidden">
         <div className="mx-auto">
