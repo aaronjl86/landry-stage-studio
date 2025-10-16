@@ -15,9 +15,9 @@ const Index = () => {
       </section>
       
       {/* Gallery & Social Proof Section */}
-      <section className="bg-transparent py-12 overflow-hidden">
+      <section className="bg-transparent pb-12 overflow-hidden">
         <div className="mx-auto">
-          <GalleryCarousel className="bg-[#8097a8]/[0.01]" />
+          <GalleryCarousel />
           <SocialProof />
         </div>
       </section>
