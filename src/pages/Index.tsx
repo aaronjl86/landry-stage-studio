@@ -17,6 +17,11 @@ const Index = () => {
       {/* Gallery & Social Proof Section */}
       <section className="bg-transparent pb-12 overflow-hidden">
         <div className="mx-auto">
+          <div className="text-center mb-12 px-4">
+            <h2 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Spatial Intelligence in Motion
+            </h2>
+          </div>
           <GalleryCarousel />
           <SocialProof />
         </div>
