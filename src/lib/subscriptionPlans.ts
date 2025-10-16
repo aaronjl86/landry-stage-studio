@@ -11,8 +11,18 @@ export const SUBSCRIPTION_PLANS = {
     features: [
       "10 uploads per month",
       "HD quality images",
+      "AI-powered virtual staging",
+      "Multiple room types supported",
+      "Photorealistic results",
       "Email support",
-      "Editing tools"
+      "Drag-and-drop upload",
+      "Multiple image formats supported",
+      "Pre-designed staging templates",
+      "Multiple style options",
+      "Before/After comparison viewer",
+      "Download processed images",
+      "Personal gallery access",
+      "No watermarks"
     ],
   },
   professional: {
@@ -25,10 +35,26 @@ export const SUBSCRIPTION_PLANS = {
     yearlyProductId: "prod_TBQVRIhUIBQWgL",
     description: "For active real estate professionals",
     features: [
-      "Everything in Starter plus",
       "50 uploads per month",
+      "Ultra HD quality images",
+      "AI-powered virtual staging",
+      "Multiple room types supported",
+      "Photorealistic results",
+      "Batch processing capabilities",
       "Priority support",
-      "Bulk upload"
+      "Drag-and-drop upload",
+      "Multiple image formats supported",
+      "Bulk upload",
+      "Pre-designed staging templates",
+      "Multiple style options",
+      "Room-specific templates",
+      "Before/After comparison viewer",
+      "Download processed images",
+      "Personal gallery access",
+      "Image history tracking",
+      "No watermarks",
+      "Processing queue management",
+      "Retry failed jobs"
     ],
   },
   enterprise: {
@@ -41,9 +67,26 @@ export const SUBSCRIPTION_PLANS = {
     yearlyProductId: "prod_TDF2OCFGCIQjcr",
     description: "For agencies and high-volume users",
     features: [
-      "Everything in Professional plus",
       "400 uploads per month",
-      "Dedicated support"
+      "4K quality images",
+      "AI-powered virtual staging",
+      "Multiple room types supported",
+      "Photorealistic results",
+      "Batch processing capabilities",
+      "Dedicated support",
+      "Drag-and-drop upload",
+      "Multiple image formats supported",
+      "Bulk upload",
+      "Pre-designed staging templates",
+      "Multiple style options",
+      "Room-specific templates",
+      "Before/After comparison viewer",
+      "Download processed images",
+      "Personal gallery access",
+      "Image history tracking",
+      "No watermarks",
+      "Processing queue management",
+      "Retry failed jobs"
     ],
   },
 };
