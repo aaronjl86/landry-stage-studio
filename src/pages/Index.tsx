@@ -27,8 +27,8 @@ const Index = () => {
             playsInline
             className="max-w-3xl w-full"
             style={{ 
-              mixBlendMode: 'screen',
-              filter: 'contrast(2) brightness(1.5)'
+              mixBlendMode: 'multiply',
+              filter: 'contrast(1.2) brightness(1.8)'
             }}
           >
             <source src="/src/assets/spatial-intelligence-motion.mp4" type="video/mp4" />
