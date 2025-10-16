@@ -7,6 +7,7 @@ import { FAQ } from "@/components/landing/FAQ";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { GalleryCarousel } from "@/components/landing/GalleryCarousel";
 import Footer4Col from "@/components/ui/footer-column";
+import spatialIntelligenceTitle from "@/assets/spatial-intelligence-motion.png";
 const Index = () => {
   return <div className="min-h-screen">
       <Header />
@@ -18,9 +19,11 @@ const Index = () => {
       <section className="bg-transparent pb-12 overflow-hidden">
         <div className="mx-auto">
           <div className="text-center mb-12 px-4">
-            <h2 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Spatial Intelligence in Motion
-            </h2>
+            <img 
+              src={spatialIntelligenceTitle} 
+              alt="Spatial Intelligence in Motion" 
+              className="mx-auto max-w-full h-auto"
+            />
           </div>
           <GalleryCarousel />
           <SocialProof />
