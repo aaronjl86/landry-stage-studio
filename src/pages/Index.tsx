@@ -16,7 +16,7 @@ const Index = () => {
       </section>
       
       {/* Gallery & Social Proof Section */}
-      <section className="bg-transparent pb-12 overflow-hidden">
+      <section className="bg-primary pb-12 overflow-hidden">
         <div className="mx-auto">
           <div className="text-center mb-12 px-4">
             <img 
