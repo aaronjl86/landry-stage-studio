@@ -121,10 +121,10 @@ export const InteractiveDemo = () => {
         {/* Interactive Comparison Table */}
         <div className="mt-8 sm:mt-10 md:mt-12 max-w-5xl mx-auto">
           <div className="text-center mb-6 sm:mb-8 px-2">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3">
               Why Choose The Landry Method?
             </h3>
-            <p className="text-foreground font-semibold text-sm sm:text-base md:text-lg">
+            <p className="text-foreground font-semibold text-base sm:text-lg md:text-xl">
               See how we compare to traditional virtual staging services
             </p>
           </div>
@@ -134,13 +134,13 @@ export const InteractiveDemo = () => {
               <table className="w-full table-fixed">
                 <thead>
                   <tr className="border-b-2 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
-                    <th className="text-center p-2 md:p-3 font-bold text-sm md:text-base w-1/3">
+                    <th className="text-center p-2 md:p-3 font-bold text-base md:text-lg w-1/3">
                       Feature
                     </th>
-                    <th className="text-center p-2 md:p-3 font-bold text-sm md:text-base w-1/3">
+                    <th className="text-center p-2 md:p-3 font-bold text-base md:text-lg w-1/3">
                       Traditional
                     </th>
-                    <th className="text-center p-2 md:p-3 font-bold text-sm md:text-base w-1/3">
+                    <th className="text-center p-2 md:p-3 font-bold text-base md:text-lg w-1/3">
                       <span className="text-[hsl(265,65%,55%)]">The Landry Method</span>
                     </th>
                   </tr>
@@ -201,21 +201,21 @@ export const InteractiveDemo = () => {
                       className="border-b hover:bg-muted/30 transition-colors animate-fade-in"
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >
-                      <td className="p-2 md:p-3 text-center text-xs md:text-sm">
+                      <td className="p-2 md:p-3 text-center text-sm md:text-base">
                         <div className="flex items-center justify-center gap-1.5">
-                          <span className="text-base">{row.emoji}</span>
+                          <span className="text-lg">{row.emoji}</span>
                           <span className="font-semibold">{row.feature}</span>
                         </div>
                       </td>
-                      <td className="p-2 md:p-3 text-center text-xs md:text-sm">
+                      <td className="p-2 md:p-3 text-center text-sm md:text-base">
                         <div className="flex items-center justify-center gap-1.5">
-                          <span className="text-destructive text-base">✗</span>
+                          <span className="text-destructive text-lg">✗</span>
                           <span className="text-muted-foreground">{row.traditional}</span>
                         </div>
                       </td>
-                      <td className="p-2 md:p-3 text-center bg-primary/5 text-xs md:text-sm">
+                      <td className="p-2 md:p-3 text-center bg-primary/5 text-sm md:text-base">
                         <div className="flex items-center justify-center gap-1.5">
-                          <span className="text-[hsl(265,65%,55%)] text-base font-bold">✓</span>
+                          <span className="text-[hsl(265,65%,55%)] text-lg font-bold">✓</span>
                           <span className="font-semibold text-[hsl(265,65%,55%)]">{row.landry}</span>
                         </div>
                       </td>
@@ -229,10 +229,10 @@ export const InteractiveDemo = () => {
             <div className="p-4 md:p-6 bg-gradient-to-r from-primary/10 to-accent/10 border-t-2">
               <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
                 <div className="text-center md:text-left">
-                  <p className="font-bold text-base md:text-lg mb-1">
+                  <p className="font-bold text-lg md:text-xl mb-1">
                     Experience the difference yourself
                   </p>
-                  <p className="text-xs md:text-sm text-foreground/90 font-medium">
+                  <p className="text-sm md:text-base text-foreground/90 font-medium">
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
