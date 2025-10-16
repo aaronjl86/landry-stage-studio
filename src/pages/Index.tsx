@@ -15,7 +15,7 @@ const Index = () => {
         <Hero />
       </section>
       
-      {/* Gallery & Social Proof Section */}
+      {/* Gallery Section */}
       <section className="bg-primary pb-12 overflow-hidden">
         <div className="mx-auto">
           <div className="text-center mb-12 px-4">
@@ -26,6 +26,12 @@ const Index = () => {
             />
           </div>
           <GalleryCarousel />
+        </div>
+      </section>
+      
+      {/* Social Proof Section */}
+      <section className="bg-background py-12">
+        <div className="container mx-auto px-4">
           <SocialProof />
         </div>
       </section>
