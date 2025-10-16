@@ -18,7 +18,7 @@ const Index = () => {
       {/* Gallery Section */}
       <section className="bg-primary pb-12 overflow-hidden">
         <div className="mx-auto">
-          <div className="text-center mb-12 px-4">
+          <div className="text-center mb-4 px-4">
             <img 
               src={spatialIntelligenceTitle} 
               alt="Spatial Intelligence in Motion" 
