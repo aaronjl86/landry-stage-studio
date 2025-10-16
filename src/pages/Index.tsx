@@ -17,19 +17,35 @@ const Index = () => {
       {/* Video Section with Transparent Background */}
       <section className="bg-primary py-16 overflow-hidden">
         <div className="container mx-auto px-4 flex justify-center">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full max-w-4xl h-auto"
-            style={{
-              mixBlendMode: 'multiply',
-              filter: 'contrast(1.5) brightness(4)'
-            }}
-          >
-            <source src="/src/assets/spatial-intelligence-motion.mp4" type="video/mp4" />
-          </video>
+          <div className="relative w-full max-w-4xl" style={{ isolation: 'isolate' }}>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto"
+              style={{
+                mixBlendMode: 'multiply',
+                filter: 'contrast(1.3) brightness(1.8) saturate(1.2)'
+              }}
+            >
+              <source src="/src/assets/spatial-intelligence-motion.mp4" type="video/mp4" />
+            </video>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-auto"
+              style={{
+                mixBlendMode: 'screen',
+                filter: 'invert(1) hue-rotate(180deg) saturate(2) brightness(2.4) contrast(1.4)',
+                opacity: 0.7
+              }}
+            >
+              <source src="/src/assets/spatial-intelligence-motion.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </section>
       
