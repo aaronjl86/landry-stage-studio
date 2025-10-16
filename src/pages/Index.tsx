@@ -7,39 +7,19 @@ import { FAQ } from "@/components/landing/FAQ";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { GalleryCarousel } from "@/components/landing/GalleryCarousel";
 import Footer4Col from "@/components/ui/footer-column";
-
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       <section className="overflow-hidden">
         <Hero />
       </section>
       
-      {/* Video Section */}
-      <section className="bg-primary py-16 overflow-hidden">
-        <div className="flex justify-center items-center">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="max-w-3xl w-full"
-            style={{ 
-              mixBlendMode: 'multiply',
-              filter: 'contrast(1.2) brightness(1.8)'
-            }}
-          >
-            <source src="/src/assets/spatial-intelligence-motion.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </section>
-      
       {/* Gallery & Social Proof Section */}
-      <section className="overflow-hidden">
-        <GalleryCarousel />
-        <SocialProof />
+      <section className="bg-transparent py-12 overflow-hidden">
+        <div className="mx-auto">
+          <GalleryCarousel className="bg-[#8097a8]/[0.01]" />
+          <SocialProof />
+        </div>
       </section>
       
       <Features />
@@ -52,8 +32,6 @@ const Index = () => {
       </div>
       
       <Footer4Col />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
