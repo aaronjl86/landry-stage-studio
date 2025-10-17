@@ -138,16 +138,24 @@ export default function PrivacyPolicy() {
           <section>
             <h2>Cookies and Tracking</h2>
             <p>
-              We use cookies and similar technologies to:
+              We use cookies and similar technologies (including localStorage) to:
             </p>
             <ul>
-              <li>Maintain your login session</li>
-              <li>Remember your preferences</li>
-              <li>Analyze platform usage</li>
-              <li>Improve user experience</li>
+              <li>Maintain your login session and authentication</li>
+              <li>Remember your preferences (theme, sidebar state)</li>
+              <li>Analyze platform usage and performance</li>
+              <li>Improve user experience and functionality</li>
             </ul>
             <p>
-              You can control cookies through your browser settings, but some features may not function properly without them.
+              We categorize cookies into Essential (required for functionality), Functional (enhance experience), and Analytics (performance monitoring). 
+              You can manage your cookie preferences at any time through our cookie consent banner or in your browser settings. 
+              For detailed information about the cookies we use and how to control them, please see our{" "}
+              <Link to="/cookie-policy" className="text-primary hover:underline font-medium">
+                Cookie Policy
+              </Link>.
+            </p>
+            <p>
+              Please note that disabling essential cookies may affect your ability to use certain features of our service.
             </p>
           </section>
 

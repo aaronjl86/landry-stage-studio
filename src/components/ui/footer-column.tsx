@@ -94,6 +94,11 @@ export default function Footer4Col() {
                 </Link>
               </li>
               <li>
+                <Link to="/cookie-policy" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
                 <Link to="/terms" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
                   Terms & Conditions
                 </Link>
