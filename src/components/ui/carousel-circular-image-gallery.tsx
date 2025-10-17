@@ -62,8 +62,34 @@ export function ImageGallery() {
   const [inPlace, setInPlace] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [gsapReady, setGsapReady] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const autoplayTimer = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer to load GSAP only when carousel is visible
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: '100px' }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     // This effect loads the GSAP library and its plugin from a CDN with defer behavior.
     const loadScripts = () => {
       if (window.gsap && window.MotionPathPlugin) {
@@ -89,7 +115,7 @@ export function ImageGallery() {
       document.body.appendChild(gsapScript);
     };
     loadScripts();
-  }, []);
+  }, [isVisible]);
   const onClick = (index: number) => {
     if (!disabled) setOpened(index);
   };
@@ -131,7 +157,7 @@ export function ImageGallery() {
   const pairIndex = Math.floor(opened / 2);
   const afterImageIndex = pairIndex * 2 + 1;
   const currentDescription = images[afterImageIndex]?.description;
-  return <div className="flex flex-col items-center justify-center bg-primary pt-4 pb-20 font-sans">
+  return <div ref={containerRef} className="flex flex-col items-center justify-center bg-primary pt-4 pb-20 font-sans">
       <div className="max-w-[900px] w-full px-4 mb-0">
         <h3 className="text-center text-6xl text-white tracking-wide font-extrabold font-montserrat md:text-8xl">
       </h3>
