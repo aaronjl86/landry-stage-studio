@@ -19,7 +19,7 @@ const differentiators = [{
   description: "Get photorealistic staging in seconds",
   icon: Sparkles
 }];
-export const InteractiveDemo = () => {
+const InteractiveDemo = () => {
   const [customPrompt, setCustomPrompt] = useState("");
   const [selectedExample, setSelectedExample] = useState<number | null>(null);
   const handleExampleClick = (index: number, prompt: string) => {
@@ -35,12 +35,12 @@ export const InteractiveDemo = () => {
           <Badge className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] text-white hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300">
             ⚡ Unmatched Customization
           </Badge>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto px-2">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto px-2">
             The Only Self-Serve Platform Where{" "}
             <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">
               YOU Control Everything
             </span>
-          </h2>
+          </h3>
           <p className="text-base sm:text-lg md:text-xl text-foreground font-semibold max-w-3xl mx-auto px-2">
             Unlike other virtual staging services, you don't wait for designers or settle for preset templates. 
             Upload your photos and describe your exact vision—as detailed or simple as you want.
@@ -55,7 +55,7 @@ export const InteractiveDemo = () => {
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg shadow-purple-500/30">
                   <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">{item.title}</h3>
+                <h4 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">{item.title}</h4>
                 <p className="text-base sm:text-lg md:text-xl text-foreground font-medium">{item.description}</p>
               </Card>;
         })}
@@ -65,7 +65,7 @@ export const InteractiveDemo = () => {
         <Card className="p-4 sm:p-6 md:p-8 lg:p-12 bg-card shadow-2xl">
           <div className="space-y-4 sm:space-y-6">
             <div className="text-center space-y-2 mb-6 sm:mb-8">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold">Try It Yourself</h3>
+              <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold">Try It Yourself</h4>
               <p className="text-base sm:text-lg md:text-xl text-foreground font-medium px-2">
                 See how easy it is to create custom staging descriptions. Write anything you want!
               </p>
@@ -121,9 +121,9 @@ export const InteractiveDemo = () => {
         {/* Interactive Comparison Table */}
         <div className="mt-8 sm:mt-10 md:mt-12 max-w-5xl mx-auto">
           <div className="text-center mb-6 sm:mb-8 px-2">
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3">
+            <h4 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3">
               Why Choose The Landry Method?
-            </h3>
+            </h4>
             <p className="text-foreground font-semibold text-base sm:text-lg md:text-xl">
               See how we compare to traditional virtual staging services
             </p>
@@ -249,3 +249,5 @@ export const InteractiveDemo = () => {
       </div>
     </section>;
 };
+
+export default InteractiveDemo;

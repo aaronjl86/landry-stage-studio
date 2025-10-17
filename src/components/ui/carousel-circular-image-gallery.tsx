@@ -14,45 +14,45 @@ interface ImageData {
 }
 const images: ImageData[] = [{
   title: "Cozy Bedroom - Before",
-  url: "/images/before/before-cozy-guest-room.jpeg"
+  url: "/images/before/before-cozy-guest-room.webp"
 }, {
   title: "Cozy Bedroom - After",
-  url: "/images/after/after-cozy-guest-room-modern.jpeg",
+  url: "/images/after/after-cozy-guest-room-modern.webp",
   description: "Stage with upholstered wingback bed in heathered linen, cerused oak nightstands with brass lamps, Matisse Blue Nude cutout prints above bed, and plush wool area rug in cream"
 }, {
   title: "Guest Bedroom - Before",
-  url: "/images/before/before-empty-bedroom.png"
+  url: "/images/before/before-empty-bedroom.webp"
 }, {
   title: "Guest Bedroom - After",
-  url: "/images/after/after-traditional-bedroom.jpeg",
+  url: "/images/after/after-traditional-bedroom.webp",
   description: "Add sleigh bed in aged mahogany, Art Nouveau iris-motif framed prints, bergère reading chair with faux fur throw, full-length arched leaning mirror, and jewel-tone Persian runner"
 }, {
   title: "Modern Kitchen - Before",
-  url: "/images/before/before-modern-kitchen.jpeg"
+  url: "/images/before/before-modern-kitchen.webp"
 }, {
   title: "Modern Kitchen - After",
-  url: "/images/after/after-modern-kitchen-dining.jpeg",
+  url: "/images/after/after-modern-kitchen-dining.webp",
   description: "Install live-edge acacia dining table with Prouvé chairs in navy, suspended Lindsey Adelman bubble chandelier, and Memphis Group-inspired credenza with vintage decanters and various small kitchen appliances on the countertops"
 }, {
   title: "Outdoor Patio - Before",
-  url: "/images/before/before-outdoor-patio.jpeg"
+  url: "/images/before/before-outdoor-patio.webp"
 }, {
   title: "Outdoor Patio - After",
-  url: "/images/after/after-outdoor-patio-staged.jpeg",
+  url: "/images/after/after-outdoor-patio-staged.webp",
   description: "Add teakwood patio furniture and large potted plants"
 }, {
   title: "Living Room - Before",
-  url: "/images/before/before-living-room-fireplace.jpeg"
+  url: "/images/before/before-living-room-fireplace.webp"
 }, {
   title: "Living Room - After",
-  url: "/images/after/after-living-room-fireplace-staged.jpeg",
+  url: "/images/after/after-living-room-fireplace-staged.webp",
   description: "Remove decor from fireplace and replace with art nouveau decor. Enhance every wall visible with textures, accents, and stylish designs. Furnish with curved Vladimir Kagan-style serpentine sofa in charcoal, live-edge walnut media console, oversized Yayoi Kusama infinity dot canvas, ceramic sculptural table lamps, and mid-century modern area rug"
 }, {
   title: "Dining Room - Before",
-  url: "/images/before/before-dining-room.png"
+  url: "/images/before/before-dining-room.webp"
 }, {
   title: "Dining Room - After",
-  url: "/images/after/after-dining-room.png",
+  url: "/images/after/after-dining-room.webp",
   description: "Add Rustic Wood and Metal Dining Room Table and Chairs, Country Farmhouse Drapes, Old Fashioned Vases with Fluffy Pompass Grass"
 }];
 

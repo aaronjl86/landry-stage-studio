@@ -26,7 +26,7 @@ const plans = [
   },
 ];
 
-export const Pricing = () => {
+const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const { user, subscription } = useAuth();
@@ -163,3 +163,5 @@ export const Pricing = () => {
       </div>
     </section>;
 };
+
+export default Pricing;

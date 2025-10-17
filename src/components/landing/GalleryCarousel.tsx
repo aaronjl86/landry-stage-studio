@@ -1,5 +1,7 @@
 import { ImageGallery } from "@/components/ui/carousel-circular-image-gallery"
 
-export const GalleryCarousel = () => {
+const GalleryCarousel = () => {
   return <ImageGallery />
 }
+
+export default GalleryCarousel

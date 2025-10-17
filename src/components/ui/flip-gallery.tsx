@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import beforeLivingRoom1 from '@/assets/gallery/before-living-room-1.jpg';
-import afterLivingRoom1 from '@/assets/gallery/after-living-room-1.jpg';
-import beforeLivingRoom2 from '@/assets/gallery/before-living-room-2.jpg';
-import afterLivingRoom2 from '@/assets/gallery/after-living-room-2.jpg';
-import beforeRoom1 from '@/assets/gallery/before-room-1.jpg';
-import afterRoom1 from '@/assets/gallery/after-room-1.jpg';
-import beforeBedroom from '@/assets/gallery/before-bedroom.jpg';
-import afterBedroom from '@/assets/gallery/after-bedroom.jpg';
-import bedroomStaged from '@/assets/gallery/bedroom-staged.jpg';
+import beforeLivingRoom1 from '@/assets/gallery/before-living-room-1.webp';
+import afterLivingRoom1 from '@/assets/gallery/after-living-room-1.webp';
+import beforeLivingRoom2 from '@/assets/gallery/before-living-room-2.webp';
+import afterLivingRoom2 from '@/assets/gallery/after-living-room-2.webp';
+import beforeRoom1 from '@/assets/gallery/before-room-1.webp';
+import afterRoom1 from '@/assets/gallery/after-room-1.webp';
+import beforeBedroom from '@/assets/gallery/before-bedroom.webp';
+import afterBedroom from '@/assets/gallery/after-bedroom.webp';
+import bedroomStaged from '@/assets/gallery/bedroom-staged.webp';
 import beforeDiningRoom from '@/assets/gallery/before-dining-room.webp';
 import afterDiningRoom from '@/assets/gallery/after-dining-room.webp';
 

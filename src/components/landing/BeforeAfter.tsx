@@ -1,6 +1,6 @@
 import { useState } from "react";
-import emptyRoom from "@/assets/before-empty-room.jpg";
-import stagedRoom from "@/assets/after-staged-room.jpg";
+import emptyRoom from "@/assets/before-empty-room.webp";
+import stagedRoom from "@/assets/after-staged-room.webp";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -13,12 +13,12 @@ export const BeforeAfter = () => {
     <section className="py-20 md:py-28 bg-secondary/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h3 className="text-4xl md:text-5xl font-bold">
             See the
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent ml-3">
               Transformation
             </span>
-          </h2>
+          </h3>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Drag the slider to compare empty rooms with our AI-staged versions
           </p>

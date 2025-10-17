@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import tlmLogoFooter from "@/assets/tlm-logo-footer.png";
+import tlmLogoFooter from "@/assets/tlm-logo-footer.webp";
 
 export default function Footer4Col() {
   return (
@@ -10,7 +10,7 @@ export default function Footer4Col() {
           {/* Column 1: Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src={tlmLogoFooter} alt="The Landry Method logo" className="h-16 md:h-20 w-auto" />
+              <img src={tlmLogoFooter} alt="The Landry Method logo" className="h-16 md:h-20 w-auto" width="200" height="80" loading="lazy" />
             </div>
             <p className="text-lg text-foreground font-medium">
               AI-powered virtual staging for real estate professionals
