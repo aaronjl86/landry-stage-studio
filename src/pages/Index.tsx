@@ -3,7 +3,7 @@ import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
 import { SocialProof } from "@/components/landing/SocialProof";
-import spatialIntelligenceTitle from "@/assets/spatial-intelligence-motion.webp";
+import spatialIntelligenceTitle from "@/assets/spatial-intelligence-motion.png";
 
 // Lazy load heavy components
 const GalleryCarousel = lazy(() => import("@/components/landing/GalleryCarousel"));
