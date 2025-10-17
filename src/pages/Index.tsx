@@ -19,12 +19,8 @@ const Index = () => {
       <section className="bg-primary pb-12 overflow-hidden">
         <div className="mx-auto">
           <div className="text-center mb-4 px-4">
-            <img 
-              src={spatialIntelligenceTitle} 
-              alt="Spatial Intelligence in Motion" 
-              className="mx-auto max-w-full h-auto"
-            />
-            <p className="text-muted-foreground text-lg mt-4">
+            <img src={spatialIntelligenceTitle} alt="Spatial Intelligence in Motion" className="mx-auto max-w-full h-auto" />
+            <p className="mt-4 text-5xl text-[#b21bd7] font-normal my-px mx-0">
               Turning empty rooms into persuasive visuals.
             </p>
           </div>
