@@ -1,16 +1,16 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
-import redOakRealty from "@/assets/logos/red-oak-realty.webp";
-import austinRealEstate from "@/assets/logos/austin-real-estate.webp";
-import kellerWilliams from "@/assets/logos/keller-williams-new.webp";
-import leggettRealEstate from "@/assets/logos/leggett-real-estate.webp";
-import johnTaylor from "@/assets/logos/john-taylor.webp";
-import sarahJohnson from "@/assets/testimonials/sarah-johnson.webp";
-import michaelChen from "@/assets/testimonials/michael-chen.webp";
-import emmaWilliams from "@/assets/testimonials/emma-williams.webp";
-import davidMartinez from "@/assets/testimonials/david-martinez.webp";
-import jenniferLee from "@/assets/testimonials/jennifer-lee.webp";
-import robertAnderson from "@/assets/testimonials/robert-anderson.webp";
+import redOakRealty from "@/assets/logos/red-oak-realty.png";
+import austinRealEstate from "@/assets/logos/austin-real-estate.png";
+import kellerWilliams from "@/assets/logos/keller-williams-new.png";
+import leggettRealEstate from "@/assets/logos/leggett-real-estate.png";
+import johnTaylor from "@/assets/logos/john-taylor.png";
+import sarahJohnson from "@/assets/testimonials/sarah-johnson.jpg";
+import michaelChen from "@/assets/testimonials/michael-chen.jpg";
+import emmaWilliams from "@/assets/testimonials/emma-williams.jpg";
+import davidMartinez from "@/assets/testimonials/david-martinez.jpg";
+import jenniferLee from "@/assets/testimonials/jennifer-lee.jpg";
+import robertAnderson from "@/assets/testimonials/robert-anderson.jpg";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import emptyRoom from "@/assets/before-empty-room.webp";
-import stagedRoom from "@/assets/after-staged-room.webp";
+import emptyRoom from "@/assets/before-empty-room.jpg";
+import stagedRoom from "@/assets/after-staged-room.jpg";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);

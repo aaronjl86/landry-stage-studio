@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import tlmLogoFooter from "@/assets/tlm-logo-footer.webp";
+import tlmLogoFooter from "@/assets/tlm-logo-footer.png";
 
 export default function Footer4Col() {
   return (
