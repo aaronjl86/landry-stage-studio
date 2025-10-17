@@ -31,6 +31,9 @@ export const BeforeAfter = () => {
               src={stagedRoom}
               alt="Empty room before staging"
               className="absolute inset-0 w-full h-full object-cover"
+              width="1200"
+              height="900"
+              loading="lazy"
             />
 
             {/* After Image with clip-path */}
@@ -44,6 +47,9 @@ export const BeforeAfter = () => {
                 src={emptyRoom}
                 alt="Professionally staged room"
                 className="w-full h-full object-cover"
+                width="1200"
+                height="900"
+                loading="lazy"
               />
             </div>
 
@@ -56,6 +62,7 @@ export const BeforeAfter = () => {
                 value={sliderPosition}
                 onChange={handleSliderChange}
                 className="absolute w-full h-full opacity-0 cursor-ew-resize z-10"
+                aria-label="Slide to compare before and after staging"
               />
               
               {/* Slider Line */}

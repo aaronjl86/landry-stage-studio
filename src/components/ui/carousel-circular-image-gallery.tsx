@@ -64,7 +64,7 @@ export function ImageGallery() {
   const [gsapReady, setGsapReady] = useState(false);
   const autoplayTimer = useRef<number | null>(null);
   useEffect(() => {
-    // This effect loads the GSAP library and its plugin from a CDN.
+    // This effect loads the GSAP library and its plugin from a CDN with defer behavior.
     const loadScripts = () => {
       if (window.gsap && window.MotionPathPlugin) {
         window.gsap.registerPlugin(window.MotionPathPlugin);
@@ -73,9 +73,11 @@ export function ImageGallery() {
       }
       const gsapScript = document.createElement("script");
       gsapScript.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+      gsapScript.defer = true;
       gsapScript.onload = () => {
         const motionPathScript = document.createElement("script");
         motionPathScript.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js";
+        motionPathScript.defer = true;
         motionPathScript.onload = () => {
           if (window.gsap && window.MotionPathPlugin) {
             window.gsap.registerPlugin(window.MotionPathPlugin);

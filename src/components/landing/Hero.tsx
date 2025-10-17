@@ -65,18 +65,41 @@ export const Hero = () => {
           <div className="relative animate-scale-in">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform">
               {/* Before Image */}
-              <img src={stagedRoom} alt="Empty room before staging" className="absolute inset-0 w-full h-full object-cover scale-110" />
+              <img 
+                src={stagedRoom} 
+                alt="Empty room ready for virtual staging" 
+                className="absolute inset-0 w-full h-full object-cover scale-110"
+                width="800"
+                height="600"
+                loading="eager"
+                fetchPriority="high"
+              />
 
               {/* After Image with clip-path */}
               <div className="absolute inset-0" style={{
               clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
             }}>
-                <img src={emptyRoom} alt="Professionally staged room" className="w-full h-full object-cover scale-110" />
+                <img 
+                  src={emptyRoom} 
+                  alt="Professionally staged room showcasing modern design" 
+                  className="w-full h-full object-cover scale-110"
+                  width="800"
+                  height="600"
+                  loading="eager"
+                />
               </div>
 
               {/* Slider */}
               <div className="absolute inset-0 flex items-center">
-                <input type="range" min="0" max="100" value={sliderPosition} onChange={handleSliderChange} className="absolute w-full h-full opacity-0 cursor-ew-resize z-10" />
+                <input 
+                  type="range" 
+                  min="0" 
+                  max="100" 
+                  value={sliderPosition} 
+                  onChange={handleSliderChange} 
+                  className="absolute w-full h-full opacity-0 cursor-ew-resize z-10"
+                  aria-label="Before and after comparison slider"
+                />
                 
                 {/* Slider Line */}
                 <div className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none" style={{

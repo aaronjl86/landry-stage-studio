@@ -151,6 +151,7 @@ export default function FlipGallery() {
             type="button"
             onClick={() => updateIndex(-1)}
             title='Previous'
+            aria-label="View previous image"
             className='text-foreground opacity-75 hover:opacity-100 hover:scale-125 transition'
           >
             <ChevronLeft size={20} />
@@ -159,6 +160,7 @@ export default function FlipGallery() {
             type="button"
             onClick={() => updateIndex(1)}
             title='Next'
+            aria-label="View next image"
             className='text-foreground opacity-75 hover:opacity-100 hover:scale-125 transition'
           >
             <ChevronRight size={20} />
