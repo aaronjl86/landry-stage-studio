@@ -24,6 +24,9 @@ const Index = () => {
               alt="Spatial Intelligence in Motion" 
               className="mx-auto max-w-full h-auto"
             />
+            <p className="text-muted-foreground text-lg mt-4">
+              Turning empty rooms into persuasive visuals.
+            </p>
           </div>
           <GalleryCarousel />
         </div>
