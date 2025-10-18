@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import emptyRoom from "@/assets/demo-empty-room.jpg";
-import stagedRoom from "@/assets/demo-bedroom.jpg";
+const emptyRoom = "/images/before/before-living-room-fireplace.jpeg";
+const stagedRoom = "/images/after/after-living-room-fireplace-staged.jpeg";
 export const Hero = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,10 +64,10 @@ export const Hero = () => {
           {/* Before/After Slider */}
           <div className="relative animate-scale-in">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform">
-              {/* Before Image */}
+              {/* Before Image - Empty Room (Left side) */}
               <img 
-                src={stagedRoom} 
-                alt="Empty room ready for virtual staging" 
+                src={emptyRoom} 
+                alt="Empty living room before virtual staging" 
                 className="absolute inset-0 w-full h-full object-cover scale-110"
                 width="800"
                 height="600"
@@ -75,13 +75,13 @@ export const Hero = () => {
                 fetchPriority="high"
               />
 
-              {/* After Image with clip-path */}
+              {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute inset-0" style={{
               clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
             }}>
                 <img 
-                  src={emptyRoom} 
-                  alt="Professionally staged room showcasing modern design" 
+                  src={stagedRoom} 
+                  alt="Professionally staged living room with modern design" 
                   className="w-full h-full object-cover scale-110"
                   width="800"
                   height="600"
