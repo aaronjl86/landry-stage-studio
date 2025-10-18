@@ -51,10 +51,7 @@ export const SUBSCRIPTION_PLANS = {
       "Before/After comparison viewer",
       "Download processed images",
       "Personal gallery access",
-      "Image history tracking",
-      "No watermarks",
-      "Processing queue management",
-      "Retry failed jobs"
+      "No watermarks"
     ],
   },
   enterprise: {
@@ -83,10 +80,7 @@ export const SUBSCRIPTION_PLANS = {
       "Before/After comparison viewer",
       "Download processed images",
       "Personal gallery access",
-      "Image history tracking",
-      "No watermarks",
-      "Processing queue management",
-      "Retry failed jobs"
+      "No watermarks"
     ],
   },
 };
