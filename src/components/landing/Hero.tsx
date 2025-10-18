@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import beforeRoom from "@/assets/before-empty-room.jpg";
-import afterRoom from "@/assets/after-staged-room.jpg";
+import beforeRoom from "@/assets/before-empty-room.webp";
+import afterRoom from "@/assets/after-staged-room.webp";
 const emptyRoom = beforeRoom;
 const stagedRoom = afterRoom;
 export const Hero = () => {
@@ -38,7 +38,7 @@ export const Hero = () => {
             </div>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
               <span className="block text-gray-900 drop-shadow-lg">Stage Any Space</span>
-              <span className="block mt-3 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] drop-shadow-2xl font-extrabold">
+              <span className="block mt-3 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent drop-shadow-2xl font-extrabold">
                 Exactly How You Envision It
               </span>
             </h1>

@@ -1,10 +1,10 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
-import redOakRealty from "@/assets/logos/red-oak-realty-opt.png";
-import austinRealEstate from "@/assets/logos/austin-real-estate-opt.png";
-import kellerWilliams from "@/assets/logos/keller-williams-opt.png";
-import leggettRealEstate from "@/assets/logos/leggett-real-estate-opt.png";
-import johnTaylor from "@/assets/logos/john-taylor-opt.png";
+import redOakRealty from "@/assets/logos/red-oak-realty-opt.webp";
+import austinRealEstate from "@/assets/logos/austin-real-estate-opt.webp";
+import kellerWilliams from "@/assets/logos/keller-williams-opt.webp";
+import leggettRealEstate from "@/assets/logos/leggett-real-estate-opt.webp";
+import johnTaylor from "@/assets/logos/john-taylor-opt.webp";
 import sarahJohnson from "@/assets/testimonials/sarah-johnson.jpg";
 import michaelChen from "@/assets/testimonials/michael-chen.jpg";
 import emmaWilliams from "@/assets/testimonials/emma-williams.jpg";
