@@ -1,6 +1,6 @@
 import { useState } from "react";
-import emptyRoom from "@/assets/before-empty-room.jpg";
-import stagedRoom from "@/assets/after-staged-room.jpg";
+const emptyRoom = "/images/before/before-living-room-fireplace.jpeg";
+const stagedRoom = "/images/after/after-living-room-fireplace-staged.jpeg";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -26,26 +26,26 @@ export const BeforeAfter = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-            {/* Before Image */}
+            {/* Before Image - Empty room on left */}
             <img
-              src={stagedRoom}
-              alt="Empty room before staging"
+              src={emptyRoom}
+              alt="Empty living room before staging"
               className="absolute inset-0 w-full h-full object-cover"
               width="1200"
               height="900"
               loading="lazy"
             />
 
-            {/* After Image with clip-path */}
+            {/* After Image with clip-path - Staged on right */}
             <div
               className="absolute inset-0"
-              style={{
-                clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+            style={{
+                clipPath: `inset(0 0 0 ${sliderPosition}%)`,
               }}
             >
               <img
-                src={emptyRoom}
-                alt="Professionally staged room"
+                src={stagedRoom}
+                alt="Staged living room after virtual staging"
                 className="w-full h-full object-cover"
                 width="1200"
                 height="900"
