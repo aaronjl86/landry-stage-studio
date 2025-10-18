@@ -1,10 +1,10 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
-import redOakRealty from "@/assets/logos/red-oak-realty.png";
-import austinRealEstate from "@/assets/logos/austin-real-estate.png";
-import kellerWilliams from "@/assets/logos/keller-williams-new.png";
-import leggettRealEstate from "@/assets/logos/leggett-real-estate.png";
-import johnTaylor from "@/assets/logos/john-taylor.png";
+import redOakRealty from "@/assets/logos/red-oak-realty-opt.png";
+import austinRealEstate from "@/assets/logos/austin-real-estate-opt.png";
+import kellerWilliams from "@/assets/logos/keller-williams-opt.png";
+import leggettRealEstate from "@/assets/logos/leggett-real-estate-opt.png";
+import johnTaylor from "@/assets/logos/john-taylor-opt.png";
 import sarahJohnson from "@/assets/testimonials/sarah-johnson.jpg";
 import michaelChen from "@/assets/testimonials/michael-chen.jpg";
 import emmaWilliams from "@/assets/testimonials/emma-williams.jpg";
@@ -110,19 +110,59 @@ export const SocialProof = () => {
         <div className="text-5xl font-semibold mb-4 rounded-none">Trusted By</div>
         <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img src={redOakRealty} alt="Red Oak Realty" className="h-full w-full object-contain" width="192" height="112" loading="lazy" />
+            <img 
+              src={redOakRealty} 
+              alt="Red Oak Realty" 
+              className="h-full w-full object-contain" 
+              width="192" 
+              height="112" 
+              loading="lazy" 
+              decoding="async"
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img src={austinRealEstate} alt="Austin Real Estate Experts" className="h-full w-full object-contain" width="192" height="112" loading="lazy" />
+            <img 
+              src={austinRealEstate} 
+              alt="Austin Real Estate Experts" 
+              className="h-full w-full object-contain" 
+              width="192" 
+              height="112" 
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img src={kellerWilliams} alt="Keller Williams" className="h-full w-full object-contain" width="192" height="112" loading="lazy" />
+            <img 
+              src={kellerWilliams} 
+              alt="Keller Williams" 
+              className="h-full w-full object-contain" 
+              width="192" 
+              height="112" 
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img src={leggettRealEstate} alt="Leggett International Real Estate" className="h-full w-full object-contain" width="192" height="112" loading="lazy" />
+            <img 
+              src={leggettRealEstate} 
+              alt="Leggett International Real Estate" 
+              className="h-full w-full object-contain" 
+              width="192" 
+              height="112" 
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img src={johnTaylor} alt="John Taylor Luxury Real Estate" className="h-full w-full object-contain" width="192" height="112" loading="lazy" />
+            <img 
+              src={johnTaylor} 
+              alt="John Taylor Luxury Real Estate" 
+              className="h-full w-full object-contain" 
+              width="192" 
+              height="112" 
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </Marquee>
       </div>
