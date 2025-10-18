@@ -134,13 +134,13 @@ const InteractiveDemo = () => {
               <table className="w-full table-fixed">
                 <thead>
                   <tr className="border-b-2 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
-                    <th className="text-center p-2 md:p-3 font-bold text-base md:text-lg w-1/3">
+                    <th className="text-center p-2 md:p-3 font-bold text-sm md:text-base w-1/3">
                       Feature
                     </th>
-                    <th className="text-center p-2 md:p-3 font-bold text-base md:text-lg w-1/3">
+                    <th className="text-center p-2 md:p-3 font-bold text-sm md:text-base w-1/3">
                       Traditional
                     </th>
-                    <th className="text-center p-2 md:p-3 font-bold text-base md:text-lg w-1/3">
+                    <th className="text-center p-2 md:p-3 font-bold text-sm md:text-base w-1/3">
                       <span className="text-[hsl(265,65%,55%)]">The Landry Method</span>
                     </th>
                   </tr>
@@ -201,19 +201,19 @@ const InteractiveDemo = () => {
                       className="border-b hover:bg-muted/30 transition-colors animate-fade-in"
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >
-                      <td className="p-2 md:p-3 text-center text-sm md:text-base">
+                      <td className="p-2 md:p-3 text-center text-xs md:text-sm">
                         <div className="flex items-center justify-center gap-1.5">
                           <span className="text-lg">{row.emoji}</span>
                           <span className="font-semibold">{row.feature}</span>
                         </div>
                       </td>
-                      <td className="p-2 md:p-3 text-center text-sm md:text-base">
+                      <td className="p-2 md:p-3 text-center text-xs md:text-sm">
                         <div className="flex items-center justify-center gap-1.5">
                           <span className="text-destructive text-lg">✗</span>
                           <span className="text-muted-foreground">{row.traditional}</span>
                         </div>
                       </td>
-                      <td className="p-2 md:p-3 text-center bg-primary/5 text-sm md:text-base">
+                      <td className="p-2 md:p-3 text-center bg-primary/5 text-xs md:text-sm">
                         <div className="flex items-center justify-center gap-1.5">
                           <span className="text-[hsl(265,65%,55%)] text-lg font-bold">✓</span>
                           <span className="font-semibold text-[hsl(265,65%,55%)]">{row.landry}</span>
