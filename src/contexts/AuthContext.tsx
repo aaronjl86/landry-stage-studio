@@ -134,7 +134,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    // Graceful fallback for screens that don't need auth context.
+    // This keeps the public bundle smaller by allowing us to mount
+    // the AuthProvider only on routes that need it.
+    return {
+      user: null,
+      session: null,
+      credits: 0,
+      loading: false,
+      subscription: { subscribed: false, product_id: null, subscription_end: null },
+      signOut: async () => {},
+      refreshCredits: async () => {},
+      checkSubscription: async () => {},
+    } as const satisfies AuthContextType;
   }
   return context;
 };

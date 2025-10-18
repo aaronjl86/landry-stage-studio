@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CookieBanner } from "@/components/CookieBanner";
 
@@ -48,42 +48,45 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <AuthProvider>
-          <Toaster />
-          <Sonner />
-          {ProdSpeedInsights ? (
-            <Suspense fallback={null}>
-              <ProdSpeedInsights />
-            </Suspense>
-          ) : null}
-          <BrowserRouter>
-            <Suspense
-              fallback={
-                <div className="min-h-[50vh] flex items-center justify-center">
-                  <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
-                </div>
-              }
-            >
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/cookie-policy" element={<CookiePolicy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/public-gallery" element={<PublicGallery />} />
+        <Toaster />
+        <Sonner />
+        {ProdSpeedInsights ? (
+          <Suspense fallback={null}>
+            <ProdSpeedInsights />
+          </Suspense>
+        ) : null}
+        <BrowserRouter>
+          <Suspense
+            fallback={
+              <div className="min-h-[50vh] flex items-center justify-center">
+                <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/public-gallery" element={<PublicGallery />} />
+
+              {/* Wrap only dashboard routes with AuthProvider to keep public bundle smaller */}
+              <Route element={<AuthProvider><Outlet /></AuthProvider>}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/dashboard/gallery" element={<Gallery />} />
                 <Route path="/dashboard/credits" element={<Credits />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-            <CookieBanner />
-          </BrowserRouter>
-        </AuthProvider>
+              </Route>
+
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <CookieBanner />
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );
