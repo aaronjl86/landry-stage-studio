@@ -42,7 +42,7 @@ export const Features = () => {
             Why The Landry Method is Different
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            The only platform that gives you complete creative control with custom prompts, instant results, and photorealistic quality—all at competitive pricing
+            Process entire properties in the time it takes to schedule a single designer call. Upload 15 photos at once, watch them transform in real-time, and have your listings market-ready before lunch.
           </p>
         </div>
 
