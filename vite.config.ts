@@ -50,7 +50,6 @@ export default defineConfig(({ mode }) => ({
           'query': ['@tanstack/react-query']
         }
       }
-    },
-    minify: 'terser'
+    }
   }
 }));
