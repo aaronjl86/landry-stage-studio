@@ -2,28 +2,24 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import beforeRoom from "@/assets/before-empty-room.jpg";
-import afterRoom from "@/assets/after-staged-room.jpg";
+import beforeRoomAvif from "@/assets/before-empty-room.avif";
+import beforeRoomWebp from "@/assets/before-empty-room.webp";
+import beforeRoomJpg from "@/assets/before-empty-room.jpg";
+import afterRoomAvif from "@/assets/after-staged-room.avif";
+import afterRoomWebp from "@/assets/after-staged-room.webp";
+import afterRoomJpg from "@/assets/after-staged-room.jpg";
 export const Hero = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPosition(Number(e.target.value));
   };
   return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
-      {/* Animated Background gradient */}
-      <div className="absolute inset-0 opacity-40 animate-pulse" style={{
-      backgroundColor: '#36eee0',
-      animationDuration: '8s'
-    }} />
+      {/* GPU-Accelerated Background - CSS only, no JS animations */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 animate-pulse" />
       
-      {/* Decorative circles - responsive sizes */}
-      <div className="absolute top-10 md:top-20 -right-20 md:right-20 w-[200px] h-[200px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{
-      animationDuration: '6s'
-    }} />
-      <div className="absolute bottom-10 md:bottom-20 -left-20 md:left-20 w-[250px] h-[250px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] bg-blue-400/20 rounded-full blur-3xl animate-pulse" style={{
-      animationDuration: '7s',
-      animationDelay: '1s'
-    }} />
+      {/* Simplified decorative circles - GPU composited */}
+      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse [animation-duration:6s]" />
+      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl animate-pulse [animation-duration:7s] [animation-delay:1s]" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
@@ -63,30 +59,38 @@ export const Hero = () => {
 
           {/* Before/After Slider */}
           <div className="relative animate-scale-in">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform">
               {/* Before Image - Empty Room (Left side) */}
-              <img 
-                src={beforeRoom} 
-                alt="Empty living room before virtual staging" 
-                className="absolute inset-0 w-full h-full object-cover scale-110"
-                width="800"
-                height="600"
-                loading="eager"
-                fetchPriority="high"
-              />
+              <picture>
+                <source srcSet={beforeRoomAvif} type="image/avif" />
+                <source srcSet={beforeRoomWebp} type="image/webp" />
+                <img 
+                  src={beforeRoomJpg} 
+                  alt="Empty living room before virtual staging" 
+                  className="absolute inset-0 w-full h-full object-cover scale-110"
+                  width="800"
+                  height="600"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </picture>
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute inset-0" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
-                <img 
-                  src={afterRoom} 
-                  alt="Professionally staged living room with modern design" 
-                  className="w-full h-full object-cover scale-110"
-                  width="800"
-                  height="600"
-                  loading="eager"
-                />
+                <picture>
+                  <source srcSet={afterRoomAvif} type="image/avif" />
+                  <source srcSet={afterRoomWebp} type="image/webp" />
+                  <img 
+                    src={afterRoomJpg} 
+                    alt="Professionally staged living room with modern design" 
+                    className="w-full h-full object-cover scale-110"
+                    width="800"
+                    height="600"
+                    loading="eager"
+                  />
+                </picture>
               </div>
 
               {/* Slider */}

@@ -1,5 +1,6 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
+import { useState, useEffect, useRef } from "react";
 import redOakRealty from "@/assets/logos/red-oak-realty-opt.webp";
 import austinRealEstate from "@/assets/logos/austin-real-estate-opt.webp";
 import kellerWilliams from "@/assets/logos/keller-williams-opt.webp";
@@ -12,6 +13,35 @@ import davidMartinez from "@/assets/testimonials/david-martinez.webp";
 import jenniferLee from "@/assets/testimonials/jennifer-lee.webp";
 import robertAnderson from "@/assets/testimonials/robert-anderson.webp";
 export const SocialProof = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showMarquee, setShowMarquee] = useState(false);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowMarquee(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    if (marqueeRef.current) {
+      observer.observe(marqueeRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [{
     icon: Users,
     value: "10,000+",
@@ -82,7 +112,7 @@ export const SocialProof = () => {
       <div className="space-y-2">
         <h3 className="font-semibold text-center mb-2 py-8 text-5xl">What Our Users Say</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          {testimonials.map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
+          {(isMobile ? testimonials.slice(0, 3) : testimonials).map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
               <img 
                 src={testimonial.image} 
                 alt={`${testimonial.name} - ${testimonial.role}`}
@@ -106,9 +136,10 @@ export const SocialProof = () => {
       </div>
 
       {/* Trust Badges */}
-      <div className="bg-muted/30 rounded-lg p-6 text-center overflow-hidden">
+      <div ref={marqueeRef} className="bg-muted/30 rounded-lg p-6 text-center overflow-hidden">
         <div className="text-5xl font-semibold mb-4 rounded-none">Trusted By</div>
-        <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
+        {showMarquee && (
+          <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
             <img 
               src={redOakRealty} 
@@ -165,6 +196,7 @@ export const SocialProof = () => {
             />
           </div>
         </Marquee>
+        )}
       </div>
     </div>;
 };
