@@ -2,8 +2,19 @@ import { Download, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EditingJob } from "@/hooks/useAIProcessor";
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
+// Lazy import heavy libs at call-time to keep initial bundle light
+let _saveAs: typeof import("file-saver").saveAs | null = null;
+async function getSaveAs() {
+  if (_saveAs) return _saveAs;
+  const mod = await import("file-saver");
+  _saveAs = mod.saveAs;
+  return _saveAs;
+}
+
+async function createZip() {
+  const { default: JSZip } = await import("jszip");
+  return new JSZip();
+}
 
 interface BeforeAfterComparisonProps {
   jobs: EditingJob[];
@@ -23,7 +34,7 @@ export function BeforeAfterComparison({ jobs, onRedoJob }: BeforeAfterComparison
   };
 
   const downloadAllAsZip = async () => {
-    const zip = new JSZip();
+    const zip = await createZip();
 
     for (const job of completedJobs) {
       if (job.editedImage) {
@@ -33,6 +44,7 @@ export function BeforeAfterComparison({ jobs, onRedoJob }: BeforeAfterComparison
     }
 
     const blob = await zip.generateAsync({ type: "blob" });
+    const saveAs = await getSaveAs();
     saveAs(blob, "edited_photos.zip");
   };
 
