@@ -40,16 +40,6 @@ export default function Footer4Col() {
                 </Link>
               </li>
               <li>
-                <Link to="/#features" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link to="/#examples" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Examples
-                </Link>
-              </li>
-              <li>
                 <Link to="/#faq" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
                   FAQ
                 </Link>
