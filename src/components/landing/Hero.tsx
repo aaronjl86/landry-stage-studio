@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import beforeRoom from "@/assets/before-empty-room.webp";
-import afterRoom from "@/assets/after-staged-room.webp";
-const emptyRoom = beforeRoom;
-const stagedRoom = afterRoom;
+import beforeRoomAvif from "@/assets/before-empty-room.avif";
+import beforeRoomWebp from "@/assets/before-empty-room.webp";
+import beforeRoomJpg from "@/assets/before-empty-room.jpg";
+import afterRoomWebp from "@/assets/after-staged-room.webp";
+import afterRoomJpg from "@/assets/after-staged-room.jpg";
 export const Hero = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,28 +68,35 @@ export const Hero = () => {
           <div className="relative animate-scale-in">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform">
               {/* Before Image - Empty Room (Left side) */}
-              <img 
-                src={emptyRoom} 
-                alt="Empty living room before virtual staging" 
-                className="absolute inset-0 w-full h-full object-cover scale-110"
-                width="800"
-                height="600"
-                loading="eager"
-                fetchPriority="high"
-              />
+              <picture>
+                <source srcSet={beforeRoomAvif} type="image/avif" />
+                <source srcSet={beforeRoomWebp} type="image/webp" />
+                <img 
+                  src={beforeRoomJpg} 
+                  alt="Empty living room before virtual staging" 
+                  className="absolute inset-0 w-full h-full object-cover scale-110"
+                  width="800"
+                  height="600"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </picture>
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute inset-0" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
-                <img 
-                  src={stagedRoom} 
-                  alt="Professionally staged living room with modern design" 
-                  className="w-full h-full object-cover scale-110"
-                  width="800"
-                  height="600"
-                  loading="eager"
-                />
+                <picture>
+                  <source srcSet={afterRoomWebp} type="image/webp" />
+                  <img 
+                    src={afterRoomJpg} 
+                    alt="Professionally staged living room with modern design" 
+                    className="w-full h-full object-cover scale-110"
+                    width="800"
+                    height="600"
+                    loading="eager"
+                  />
+                </picture>
               </div>
 
               {/* Slider */}
