@@ -24,7 +24,7 @@ const Index = () => {
           <div className="text-center mb-4 px-4">
             <h2 className="sr-only">Gallery Showcase</h2>
             <img src={spatialIntelligenceTitle} alt="Spatial Intelligence in Motion" className="mx-auto max-w-full h-auto" width="800" height="200" loading="lazy" />
-            <p className="mt-4 text-5xl text-[#b21bd7] font-normal my-px mx-0">
+            <p className="mt-4 my-px mx-0 text-stone-950 text-center font-normal text-xl">
               Turning empty rooms into persuasive visuals.
             </p>
           </div>
