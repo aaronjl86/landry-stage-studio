@@ -33,17 +33,16 @@ const InteractiveDemo = () => {
         {/* Header */}
         <div className="text-center space-y-4 md:space-y-6 mb-10 md:mb-16">
           <Badge className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] text-white hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300">
-            ⚡ Unmatched Customization
+            ⚡ From Upload to Listing in Minutes
           </Badge>
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto px-2">
-            The Only Self-Serve Platform Where{" "}
+            Close Deals Faster With{" "}
             <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">
-              YOU Control Everything
+              Show-Ready Properties in Seconds
             </span>
           </h3>
           <p className="text-base sm:text-lg md:text-xl text-foreground font-semibold max-w-3xl mx-auto px-2">
-            Unlike other virtual staging services, you don't wait for designers or settle for preset templates. 
-            Upload your photos and describe your exact vision—as detailed or simple as you want.
+            Stop losing buyers to empty rooms. Transform vacant properties into move-in ready listings before your competition even gets their photos back from the designer.
           </p>
         </div>
 
