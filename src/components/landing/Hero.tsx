@@ -77,7 +77,7 @@ export const Hero = () => {
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute inset-0" style={{
-              clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
+              clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
                 <img 
                   src={stagedRoom} 
