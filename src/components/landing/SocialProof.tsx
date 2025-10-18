@@ -5,12 +5,12 @@ import austinRealEstate from "@/assets/logos/austin-real-estate-opt.webp";
 import kellerWilliams from "@/assets/logos/keller-williams-opt.webp";
 import leggettRealEstate from "@/assets/logos/leggett-real-estate-opt.webp";
 import johnTaylor from "@/assets/logos/john-taylor-opt.webp";
-import sarahJohnson from "@/assets/testimonials/sarah-johnson.jpg";
-import michaelChen from "@/assets/testimonials/michael-chen.jpg";
-import emmaWilliams from "@/assets/testimonials/emma-williams.jpg";
-import davidMartinez from "@/assets/testimonials/david-martinez.jpg";
-import jenniferLee from "@/assets/testimonials/jennifer-lee.jpg";
-import robertAnderson from "@/assets/testimonials/robert-anderson.jpg";
+import sarahJohnson from "@/assets/testimonials/sarah-johnson.webp";
+import michaelChen from "@/assets/testimonials/michael-chen.webp";
+import emmaWilliams from "@/assets/testimonials/emma-williams.webp";
+import davidMartinez from "@/assets/testimonials/david-martinez.webp";
+import jenniferLee from "@/assets/testimonials/jennifer-lee.webp";
+import robertAnderson from "@/assets/testimonials/robert-anderson.webp";
 export const SocialProof = () => {
   const stats = [{
     icon: Users,
