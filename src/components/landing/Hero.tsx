@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-const emptyRoom = "/Proof of Concept Images/Before-Living-Room-Fireplace.jpeg";
-const stagedRoom = "/Proof of Concept Images/After-Living-Room-Fireplace.jpeg";
+import beforeRoom from "@/assets/before-empty-room.jpg";
+import afterRoom from "@/assets/after-staged-room.jpg";
+const emptyRoom = beforeRoom;
+const stagedRoom = afterRoom;
 export const Hero = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
