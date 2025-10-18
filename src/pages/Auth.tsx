@@ -7,7 +7,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Header } from "@/components/landing/Header";
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+// Load FingerprintJS lazily to avoid adding it to the initial bundle
+// We'll import it only when needed inside the effect.
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -22,6 +23,7 @@ export default function Auth() {
   useEffect(() => {
     const initFingerprint = async () => {
       try {
+        const FingerprintJS = await import('@fingerprintjs/fingerprintjs');
         const fp = await FingerprintJS.load();
         const result = await fp.get();
         setDeviceFingerprint(result.visitorId);

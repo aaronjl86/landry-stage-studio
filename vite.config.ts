@@ -31,4 +31,30 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Improve caching and split big deps into separate chunks
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Core framework
+          react: ["react", "react-dom"],
+          // Router separate so home route can load faster
+          router: ["react-router-dom"],
+          // Data fetching
+          query: ["@tanstack/react-query"],
+          // Icons are tree-shaken but still sizable at scale
+          icons: ["lucide-react"],
+          // Third-party heavy libs that should not bloat initial load
+          supabase: ["@supabase/supabase-js"],
+        },
+      },
+    },
+    // Generate smaller modern bundles
+    target: "es2020",
+    modulePreload: { polyfill: false },
+    cssMinify: true,
+    sourcemap: false,
+    // Tweak chunk size warnings to surface large bundles
+    chunkSizeWarningLimit: 700,
+  },
 }));
