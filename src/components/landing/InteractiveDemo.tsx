@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Upload, Wand2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-const examplePrompts = ["Modern minimalist living room with Scandinavian furniture, natural light, and indoor plants", "Luxurious master bedroom with king-size bed, elegant chandelier, and spa-like bathroom view", "Cozy family room with comfortable sectional, fireplace, and rustic farmhouse style", "Contemporary home office with standing desk, ergonomic chair, and tech-savvy workspace"];
+const examplePrompts = ["Modern minimalist living room with Scandinavian furniture, natural light, and indoor plants", "Luxurious master bedroom with king-size bed, elegant chandelier, and spa-like bathroom view", "Cozy family room with comfortable sectional, rustic farmhouse style, and warm textures", "Contemporary home office with standing desk, ergonomic chair, and tech-savvy workspace"];
 const differentiators = [{
   title: "Your Images",
   description: "Upload any property photo",
