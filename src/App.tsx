@@ -28,7 +28,8 @@ const App = () => (
       <AuthProvider>
         <Toaster />
         <Sonner />
-        <SpeedInsights />
+        {/* Defer SpeedInsights to avoid any chance of affecting LCP */}
+        {typeof window !== 'undefined' && setTimeout(() => {}, 0) && <SpeedInsights />}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import tlmLogoVideo from "@/assets/tlm-logo-animated.mp4";
+import tlmLogoWhite from "@/assets/tlm-logo-white.png";
 import { useAuth } from "@/contexts/AuthContext";
 import { LogOut, Home, DollarSign, Info, Mail, Sparkles, ImageIcon, CreditCard, LogIn, Menu } from "lucide-react";
 import { ExpandableTabs, type TabItem } from "@/components/ui/expandable-tabs";
@@ -75,12 +76,32 @@ export const Header = () => {
     setMobileMenuOpen(false);
     if (onClick) onClick();
   };
-  return <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  return <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 will-change-transform">
       <div className="container mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex h-[100px] md:h-[160px] items-center justify-between gap-2 md:gap-4">
-          {/* Logo */}
+          {/* Logo: static image on mobile to minimize bytes; video on larger screens with no preload */}
           <Link to="/" className="flex items-center flex-shrink-0 max-w-[70%] md:max-w-none">
-            <video src={tlmLogoVideo} autoPlay muted playsInline aria-label="The Landry Method" className="h-[70px] md:h-[140px] w-auto object-contain" />
+            {isMobile ? (
+              <img
+                src={tlmLogoWhite}
+                alt="The Landry Method"
+                className="h-[70px] md:h-[140px] w-auto object-contain"
+                width={280}
+                height={140}
+                loading="eager"
+                decoding="async"
+              />
+            ) : (
+              <video
+                src={tlmLogoVideo}
+                autoPlay
+                muted
+                playsInline
+                preload="none"
+                aria-label="The Landry Method"
+                className="h-[70px] md:h-[140px] w-auto object-contain"
+              />
+            )}
           </Link>
 
           {/* Desktop Navigation - Large screens only */}
