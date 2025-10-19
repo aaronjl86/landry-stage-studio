@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { User, Session } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
+import type { User, Session } from "@supabase/supabase-js";
 
 interface SubscriptionInfo {
   subscribed: boolean;
@@ -36,6 +35,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!user) return;
 
     try {
+      const { supabase } = await import("@/integrations/supabase/client");
       const { data, error } = await supabase.functions.invoke('check-subscription');
       if (!error && data) {
         setSubscription(data);
@@ -48,6 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const refreshCredits = async () => {
     if (!user) return;
 
+    const { supabase } = await import("@/integrations/supabase/client");
     const { data, error } = await supabase
       .from("profiles")
       .select("quota, used")
@@ -60,40 +61,46 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        // Refresh credits and subscription when user logs in
-        if (session?.user) {
-          setTimeout(() => {
-            refreshCredits();
-            checkSubscription();
-          }, 0);
-        } else {
-          setCredits(0);
-          setSubscription({ subscribed: false, product_id: null, subscription_end: null });
-        }
-      }
-    );
+    let unsubscribe: (() => void) | undefined;
 
-    // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    (async () => {
+      const { supabase } = await import("@/integrations/supabase/client");
+
+      // Set up auth state listener
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(
+        (event, session) => {
+          setSession(session);
+          setUser(session?.user ?? null);
+
+          // Refresh credits and subscription when user logs in
+          if (session?.user) {
+            setTimeout(() => {
+              refreshCredits();
+              checkSubscription();
+            }, 0);
+          } else {
+            setCredits(0);
+            setSubscription({ subscribed: false, product_id: null, subscription_end: null });
+          }
+        }
+      );
+      unsubscribe = () => subscription.unsubscribe();
+
+      // Check for existing session
+      const { data: { session } } = await supabase.auth.getSession();
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
-      
+
       if (session?.user) {
         setTimeout(() => {
           refreshCredits();
           checkSubscription();
         }, 0);
       }
-    });
+    })();
 
-    return () => subscription.unsubscribe();
+    return () => unsubscribe?.();
   }, []);
 
   // Auto-refresh subscription status every minute
@@ -108,6 +115,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [user]);
 
   const signOut = async () => {
+    const { supabase } = await import("@/integrations/supabase/client");
     await supabase.auth.signOut();
     setUser(null);
     setSession(null);
