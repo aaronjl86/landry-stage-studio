@@ -41,6 +41,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    cssCodeSplit: false, // Bundle all CSS into one file
+    cssTarget: 'chrome90', // Target modern browsers for smaller CSS
+    minify: 'esbuild', // Fast minification
     rollupOptions: {
       output: {
         manualChunks: {
