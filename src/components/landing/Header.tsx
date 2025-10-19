@@ -84,18 +84,18 @@ export const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          {!isMobile && <nav className="flex items-center flex-1 justify-center">
-              <ExpandableTabs tabs={allTabs} />
-            </nav>}
+          <nav className="hidden md:flex items-center flex-1 justify-center">
+            <ExpandableTabs tabs={allTabs} />
+          </nav>
 
           {/* Mobile Navigation */}
-          {isMobile && <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
-              </SheetTrigger>
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
               <SheetContent side="right" className="w-[280px] sm:w-[350px]">
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
@@ -137,7 +137,7 @@ export const Header = () => {
                     </Link>}
                 </nav>
               </SheetContent>
-            </Sheet>}
+            </Sheet>
         </div>
       </div>
     </header>;
