@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Header } from "@/components/landing/Header";
+import { HeaderBare } from "@/components/landing/HeaderBare";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
 import { SocialProof } from "@/components/landing/SocialProof";
@@ -11,7 +11,8 @@ const FAQ = lazy(() => import("@/components/landing/FAQ"));
 const Footer4Col = lazy(() => import("@/components/ui/footer-column"));
 const Index = () => {
   return <div className="min-h-screen">
-      <Header />
+      {/* Lightweight header on home to keep initial JS minimal */}
+      <HeaderBare />
       <section className="overflow-hidden">
         <Hero />
       </section>

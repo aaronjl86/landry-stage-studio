@@ -120,6 +120,7 @@ export const SocialProof = () => {
                 width="80"
                 height="80"
                 loading="lazy"
+                decoding="async"
               />
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400 animate-fade-in hover:scale-110 transition-transform" style={{

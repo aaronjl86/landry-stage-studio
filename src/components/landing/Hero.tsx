@@ -14,12 +14,12 @@ export const Hero = () => {
     setSliderPosition(Number(e.target.value));
   };
   return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
-      {/* GPU-Accelerated Background - CSS only, no JS animations */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 animate-pulse" />
+      {/* GPU-Accelerated Background - reduce animations on mobile to improve LCP */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 md:animate-pulse" />
       
-      {/* Simplified decorative circles - GPU composited */}
-      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse [animation-duration:6s]" />
-      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl animate-pulse [animation-duration:7s] [animation-delay:1s]" />
+      {/* Simplified decorative circles - hide on mobile to reduce paint cost */}
+      <div className="hidden md:block absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse [animation-duration:6s]" />
+      <div className="hidden md:block absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl animate-pulse [animation-duration:7s] [animation-delay:1s]" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
@@ -30,9 +30,9 @@ export const Hero = () => {
                 ✨ AI-Powered Virtual Staging
               </span>
             </div>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
-              <span className="block text-gray-900 drop-shadow-lg">Stage Any Space</span>
-              <span className="block mt-3 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent drop-shadow-2xl font-extrabold">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight">
+              <span className="block text-gray-900 font-extrabold drop-shadow-none md:drop-shadow-lg">Stage Any Space</span>
+              <span className="block mt-3 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent drop-shadow-none md:drop-shadow-2xl font-extrabold">
                 Exactly How You Envision It
               </span>
             </h1>
@@ -41,14 +41,12 @@ export const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
-                <Button size="lg" className="group text-2xl px-12 py-8 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] hover:shadow-2xl hover:shadow-purple-500/60 transition-all duration-300 hover:scale-110 font-bold">
+                <Button size="lg" className="group text-2xl px-12 py-8 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] hover:shadow-2xl hover:shadow-purple-500/60 transition-transform duration-300 md:hover:scale-110 font-bold">
                   Start Free Trial
                   <ArrowRight className="ml-3 h-7 w-7 transition-transform group-hover:translate-x-2" />
                 </Button>
               </Link>
-              <Link to="/public-gallery">
-                
-              </Link>
+              {/* Public gallery link button intentionally removed to avoid empty focusable element */}
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-muted-foreground">
               <div>✓ 3 Free Uploads</div>
@@ -67,7 +65,7 @@ export const Hero = () => {
                 <img 
                   src={beforeRoomJpg} 
                   alt="Empty living room before virtual staging" 
-                  className="absolute inset-0 w-full h-full object-cover scale-110"
+                  className="absolute inset-0 w-full h-full object-cover"
                   width="800"
                   height="600"
                   loading="eager"
@@ -85,10 +83,10 @@ export const Hero = () => {
                   <img 
                     src={afterRoomJpg} 
                     alt="Professionally staged living room with modern design" 
-                    className="w-full h-full object-cover scale-110"
+                    className="w-full h-full object-cover"
                     width="800"
                     height="600"
-                    loading="eager"
+                    loading="lazy"
                   />
                 </picture>
               </div>
