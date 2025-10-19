@@ -17,6 +17,9 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Generated AVIF assets (built at CI/build time)
+public/assets/*.avif
+
 # Temporary Stripe scripts
 create-stripe-products.cjs
 stripe-new-ids.json
