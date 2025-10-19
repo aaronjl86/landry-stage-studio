@@ -83,15 +83,15 @@ export const Header = () => {
             <video src={tlmLogoVideo} autoPlay muted playsInline aria-label="The Landry Method" className="h-[70px] md:h-[140px] w-auto object-contain" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center flex-1 justify-center">
+          {/* Desktop Navigation - Large screens only */}
+          <nav className="hidden lg:flex items-center flex-1 justify-center">
             <ExpandableTabs tabs={allTabs} />
           </nav>
 
-          {/* Mobile Navigation */}
+          {/* Mobile/Tablet Navigation - Hamburger menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="lg:hidden">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
