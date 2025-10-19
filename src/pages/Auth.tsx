@@ -22,7 +22,8 @@ export default function Auth() {
   const [deviceFingerprint, setDeviceFingerprint] = useState<string>("");
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const isResetMode = searchParams.get("mode") === "reset";
+  // Check for both custom mode parameter and Supabase's recovery type
+  const isResetMode = searchParams.get("mode") === "reset" || searchParams.get("type") === "recovery";
 
   // Initialize device fingerprint on mount
   useEffect(() => {
@@ -37,6 +38,19 @@ export default function Auth() {
     };
     initFingerprint();
   }, []);
+
+  // Check for recovery session on mount (when user clicks email link)
+  useEffect(() => {
+    const checkRecoverySession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      // If there's a session and we have recovery type in URL, user came from email
+      if (session && (searchParams.get("type") === "recovery" || searchParams.get("mode") === "reset")) {
+        // Session is already established by Supabase, just show the reset form
+        console.log("Recovery session detected");
+      }
+    };
+    checkRecoverySession();
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
