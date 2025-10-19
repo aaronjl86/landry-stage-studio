@@ -25,6 +25,11 @@ export default function Auth() {
   // Check for both custom mode parameter and Supabase's recovery type
   const isResetMode = searchParams.get("mode") === "reset" || searchParams.get("type") === "recovery";
 
+  // Recovery state handling
+  const [hasRecoverySession, setHasRecoverySession] = useState(false);
+  const [recoveryError, setRecoveryError] = useState<string | null>(null);
+  const [isCheckingRecovery, setIsCheckingRecovery] = useState(false);
+
   // Initialize device fingerprint on mount
   useEffect(() => {
     const initFingerprint = async () => {
@@ -39,17 +44,55 @@ export default function Auth() {
     initFingerprint();
   }, []);
 
-  // Check for recovery session on mount (when user clicks email link)
+  // Bootstrap recovery session when arriving from email link
   useEffect(() => {
-    const checkRecoverySession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      // If there's a session and we have recovery type in URL, user came from email
-      if (session && (searchParams.get("type") === "recovery" || searchParams.get("mode") === "reset")) {
-        // Session is already established by Supabase, just show the reset form
-        console.log("Recovery session detected");
+    const bootstrapRecovery = async () => {
+      if (!(searchParams.get("type") === "recovery" || searchParams.get("mode") === "reset")) {
+        setHasRecoverySession(false);
+        setRecoveryError(null);
+        return;
+      }
+
+      setIsCheckingRecovery(true);
+      setRecoveryError(null);
+
+      try {
+        // Try supported flows in order
+        const code = searchParams.get("code");
+        const tokenHash = searchParams.get("token_hash");
+        if (code) {
+          const { error } = await supabase.auth.exchangeCodeForSession(code);
+          if (error) throw error;
+        } else if (searchParams.get("type") === "recovery" && tokenHash) {
+          const { error } = await supabase.auth.verifyOtp({ type: "recovery", token_hash: tokenHash });
+          if (error) throw error;
+        }
+
+        // Confirm we now have a session
+        const { data: { session } } = await supabase.auth.getSession();
+        const ok = !!session;
+        setHasRecoverySession(ok);
+
+        // Clean sensitive params from URL
+        const url = new URL(window.location.href);
+        url.hash = "";
+        const qs = new URLSearchParams(url.search);
+        ["code", "token_hash", "error_code", "error_description"].forEach(k => qs.delete(k));
+        url.search = qs.toString() ? `?${qs.toString()}` : "";
+        window.history.replaceState({}, "", url.toString());
+
+        if (!ok) {
+          setRecoveryError("This reset link has expired or is invalid. Please request a new link.");
+        }
+      } catch (err: any) {
+        setHasRecoverySession(false);
+        setRecoveryError("This reset link has expired or is invalid. Please request a new link.");
+      } finally {
+        setIsCheckingRecovery(false);
       }
     };
-    checkRecoverySession();
+
+    bootstrapRecovery();
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -122,7 +165,7 @@ export default function Auth() {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
-        redirectTo: `${window.location.origin}/auth?mode=reset`,
+        redirectTo: `${window.location.origin}/auth?type=recovery`,
       });
 
       if (error) throw error;
@@ -153,6 +196,13 @@ export default function Auth() {
     setLoading(true);
 
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        setRecoveryError("Your reset link is missing or expired. Please request a new link.");
+        toast.error("Reset link invalid or expired. Please request a new link.");
+        return;
+      }
+
       const { error } = await supabase.auth.updateUser({
         password: newPassword,
       });
@@ -178,49 +228,92 @@ export default function Auth() {
               // Reset Password Mode
               <>
                 <CardHeader>
-                  <CardTitle>Set New Password</CardTitle>
+                  <CardTitle>
+                    {isCheckingRecovery
+                      ? "Checking reset link..."
+                      : hasRecoverySession
+                        ? "Set New Password"
+                        : "Reset Link Invalid or Expired"}
+                  </CardTitle>
                   <CardDescription>
-                    Enter your new password below
+                    {isCheckingRecovery
+                      ? "Please wait while we validate your reset link."
+                      : hasRecoverySession
+                        ? "Enter your new password below"
+                        : (recoveryError || "This reset link is invalid or has expired. You can request a new one below.")}
                   </CardDescription>
                 </CardHeader>
 
-                <form onSubmit={handleUpdatePassword}>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="newPassword">New Password</Label>
-                      <Input
-                        id="newPassword"
-                        type="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        required
-                        placeholder="••••••••"
-                        minLength={6}
-                        autoComplete="new-password"
-                      />
-                    </div>
+                {isCheckingRecovery ? null : hasRecoverySession ? (
+                  <form onSubmit={handleUpdatePassword}>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="newPassword">New Password</Label>
+                        <Input
+                          id="newPassword"
+                          type="password"
+                          value={newPassword}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          required
+                          placeholder="••••••••"
+                          minLength={6}
+                          autoComplete="new-password"
+                        />
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="confirmPassword">Confirm Password</Label>
-                      <Input
-                        id="confirmPassword"
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                        placeholder="••••••••"
-                        minLength={6}
-                        autoComplete="new-password"
-                      />
-                    </div>
-                  </CardContent>
+                      <div className="space-y-2">
+                        <Label htmlFor="confirmPassword">Confirm Password</Label>
+                        <Input
+                          id="confirmPassword"
+                          type="password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          required
+                          placeholder="••••••••"
+                          minLength={6}
+                          autoComplete="new-password"
+                        />
+                      </div>
+                    </CardContent>
 
-                  <CardFooter>
-                    <Button type="submit" className="w-full" disabled={loading}>
-                      {loading ? "Updating..." : "Update Password"}
-                    </Button>
-                  </CardFooter>
-                </form>
+                    <CardFooter>
+                      <Button type="submit" className="w-full" disabled={loading}>
+                        {loading ? "Updating..." : "Update Password"}
+                      </Button>
+                    </CardFooter>
+                  </form>
+                ) : (
+                  <form onSubmit={handlePasswordReset}>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="resetEmail">Email</Label>
+                        <Input
+                          id="resetEmail"
+                          type="email"
+                          value={resetEmail}
+                          onChange={(e) => setResetEmail(e.target.value)}
+                          required
+                          placeholder="you@example.com"
+                          autoComplete="email"
+                        />
+                      </div>
+                    </CardContent>
+
+                    <CardFooter className="flex flex-col gap-4">
+                      <Button type="submit" className="w-full" disabled={loading}>
+                        {loading ? "Sending..." : "Send New Reset Link"}
+                      </Button>
+
+                      <button
+                        type="button"
+                        onClick={() => navigate("/auth")}
+                        className="text-sm text-muted-foreground hover:bg-gradient-to-r hover:from-[hsl(280,70%,70%)] hover:via-[hsl(265,65%,55%)] hover:to-[hsl(290,75%,65%)] hover:bg-clip-text hover:text-transparent transition-colors"
+                      >
+                        Back to Sign In
+                      </button>
+                    </CardFooter>
+                  </form>
+                )}
               </>
             ) : isForgotPassword ? (
               // Forgot Password Mode
