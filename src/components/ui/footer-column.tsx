@@ -10,7 +10,7 @@ export default function Footer4Col() {
           {/* Column 1: Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src={tlmLogoFooter} alt="The Landry Method logo" className="h-16 md:h-20 w-auto" width="200" height="80" loading="lazy" />
+              <img src={tlmLogoFooter} alt="The Landry Method logo" className="h-16 md:h-20 w-auto" width="200" height="80" loading="lazy" decoding="async" />
             </div>
             <p className="text-lg text-foreground font-medium">
               AI-powered virtual staging for real estate professionals

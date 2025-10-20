@@ -34,6 +34,7 @@ export const BeforeAfter = () => {
               width="1200"
               height="900"
               loading="lazy"
+              decoding="async"
             />
 
             {/* After Image with clip-path - Staged on right */}
@@ -50,6 +51,7 @@ export const BeforeAfter = () => {
                 width="1200"
                 height="900"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 

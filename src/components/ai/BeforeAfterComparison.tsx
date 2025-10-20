@@ -85,6 +85,8 @@ export function BeforeAfterComparison({ jobs, onRedoJob }: BeforeAfterComparison
                       src={job.originalImage}
                       alt="Original"
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
@@ -96,6 +98,8 @@ export function BeforeAfterComparison({ jobs, onRedoJob }: BeforeAfterComparison
                       src={job.editedImage}
                       alt="Edited"
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

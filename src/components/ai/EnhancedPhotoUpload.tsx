@@ -164,6 +164,8 @@ export function EnhancedPhotoUpload({
                     src={img.objectUrl}
                     alt={img.name}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <Button

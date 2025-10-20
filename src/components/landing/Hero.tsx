@@ -64,15 +64,16 @@ export const Hero = () => {
               <picture>
                 <source srcSet={beforeRoomAvif} type="image/avif" />
                 <source srcSet={beforeRoomWebp} type="image/webp" />
-                <img 
-                  src={beforeRoomJpg} 
-                  alt="Empty living room before virtual staging" 
-                  className="absolute inset-0 w-full h-full object-cover scale-110"
-                  width="800"
-                  height="600"
-                  loading="eager"
-                  fetchPriority="high"
-                />
+              <img 
+                src={beforeRoomJpg} 
+                alt="Empty living room before virtual staging" 
+                className="absolute inset-0 w-full h-full object-cover scale-110"
+                width="800"
+                height="600"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
               </picture>
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
@@ -82,14 +83,16 @@ export const Hero = () => {
                 <picture>
                   <source srcSet={afterRoomAvif} type="image/avif" />
                   <source srcSet={afterRoomWebp} type="image/webp" />
-                  <img 
-                    src={afterRoomJpg} 
-                    alt="Professionally staged living room with modern design" 
-                    className="w-full h-full object-cover scale-110"
-                    width="800"
-                    height="600"
-                    loading="eager"
-                  />
+                <img 
+                  src={afterRoomJpg} 
+                  alt="Professionally staged living room with modern design" 
+                  className="w-full h-full object-cover scale-110"
+                  width="800"
+                  height="600"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                />
                 </picture>
               </div>
 

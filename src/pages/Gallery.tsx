@@ -110,6 +110,8 @@ export default function Gallery() {
                         src={upload.original_image_url}
                         alt="Original"
                         className="w-full h-48 object-cover rounded-lg"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div>
@@ -118,6 +120,8 @@ export default function Gallery() {
                         src={upload.staged_image_url}
                         alt="Staged"
                         className="w-full h-48 object-cover rounded-lg"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>
