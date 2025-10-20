@@ -1,11 +1,19 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
 import { useState, useEffect, useRef } from "react";
-import redOakRealty from "@/assets/logos/red-oak-realty-opt.webp";
-import austinRealEstate from "@/assets/logos/austin-real-estate-opt.webp";
-import kellerWilliams from "@/assets/logos/keller-williams-opt.webp";
-import leggettRealEstate from "@/assets/logos/leggett-real-estate-opt.webp";
-import johnTaylor from "@/assets/logos/john-taylor-opt.webp";
+// WebP versions
+import redOakRealtyWebP from "@/assets/logos/red-oak-realty-opt.webp";
+import austinRealEstateWebP from "@/assets/logos/austin-real-estate-opt.webp";
+import kellerWilliamsWebP from "@/assets/logos/keller-williams-opt.webp";
+import leggettRealEstateWebP from "@/assets/logos/leggett-real-estate-opt.webp";
+import johnTaylorWebP from "@/assets/logos/john-taylor-opt.webp";
+
+// PNG fallbacks
+import redOakRealtyPNG from "@/assets/logos/red-oak-realty-opt.png";
+import austinRealEstatePNG from "@/assets/logos/austin-real-estate-opt.png";
+import kellerWilliamsPNG from "@/assets/logos/keller-williams-opt.png";
+import leggettRealEstatePNG from "@/assets/logos/leggett-real-estate-opt.png";
+import johnTaylorPNG from "@/assets/logos/john-taylor-opt.png";
 import sarahJohnson from "@/assets/testimonials/sarah-johnson.webp";
 import michaelChen from "@/assets/testimonials/michael-chen.webp";
 import emmaWilliams from "@/assets/testimonials/emma-williams.webp";
@@ -142,59 +150,74 @@ export const SocialProof = () => {
         {showMarquee && (
           <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img 
-              src={redOakRealty} 
-              alt="Red Oak Realty" 
-              className="h-full w-full object-contain" 
-              width="192" 
-              height="112" 
-              loading="lazy" 
-              decoding="async"
-            />
+            <picture>
+              <source srcSet={redOakRealtyWebP} type="image/webp" />
+              <img 
+                src={redOakRealtyPNG} 
+                alt="Red Oak Realty" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy" 
+                decoding="async"
+              />
+            </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img 
-              src={austinRealEstate} 
-              alt="Austin Real Estate Experts" 
-              className="h-full w-full object-contain" 
-              width="192" 
-              height="112" 
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source srcSet={austinRealEstateWebP} type="image/webp" />
+              <img 
+                src={austinRealEstatePNG} 
+                alt="Austin Real Estate Experts" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img 
-              src={kellerWilliams} 
-              alt="Keller Williams" 
-              className="h-full w-full object-contain" 
-              width="192" 
-              height="112" 
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source srcSet={kellerWilliamsWebP} type="image/webp" />
+              <img 
+                src={kellerWilliamsPNG} 
+                alt="Keller Williams" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img 
-              src={leggettRealEstate} 
-              alt="Leggett International Real Estate" 
-              className="h-full w-full object-contain" 
-              width="192" 
-              height="112" 
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source srcSet={leggettRealEstateWebP} type="image/webp" />
+              <img 
+                src={leggettRealEstatePNG} 
+                alt="Leggett International Real Estate" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <img 
-              src={johnTaylor} 
-              alt="John Taylor Luxury Real Estate" 
-              className="h-full w-full object-contain" 
-              width="192" 
-              height="112" 
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source srcSet={johnTaylorWebP} type="image/webp" />
+              <img 
+                src={johnTaylorPNG} 
+                alt="John Taylor Luxury Real Estate" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
         </Marquee>
         )}
