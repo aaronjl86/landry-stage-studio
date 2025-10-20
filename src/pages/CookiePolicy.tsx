@@ -114,11 +114,11 @@ export default function CookiePolicy() {
               <div className="border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-3">Analytics Cookies</h3>
                 <p className="mb-4 text-muted-foreground">
-                  Currently, we use Vercel Speed Insights for performance monitoring. These cookies help us understand how visitors interact with our website and identify areas for improvement.
+                  These cookies help us understand how visitors interact with our website and identify areas for improvement.
                 </p>
                 <div className="space-y-3">
                   <div className="bg-muted/50 rounded p-4">
-                    <p className="font-medium">Vercel Speed Insights</p>
+                    <p className="font-medium">Performance Analytics</p>
                     <p className="text-sm text-muted-foreground mt-1">
                       <strong>Purpose:</strong> Performance monitoring and analytics
                     </p>
@@ -206,9 +206,6 @@ export default function CookiePolicy() {
               We may use third-party service providers who may set cookies on your device. These include:
             </p>
             <ul className="list-disc pl-6 space-y-2 mt-4">
-              <li>
-                <strong>Vercel Speed Insights:</strong> For performance monitoring and analytics
-              </li>
               <li>
                 <strong>Stripe:</strong> For secure payment processing (when you subscribe)
               </li>

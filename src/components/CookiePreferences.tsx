@@ -129,7 +129,7 @@ export function CookiePreferences({ open, onOpenChange, onSave }: CookiePreferen
                   These cookies help us understand how visitors interact with our website by collecting anonymous information.
                 </p>
                 <div className="text-xs text-muted-foreground mt-2 space-y-1">
-                  <p>• Performance monitoring (Vercel Speed Insights)</p>
+                  <p>• Performance monitoring and page analytics</p>
                   <p>• Usage statistics and page views</p>
                   <p>• Error tracking and debugging</p>
                 </div>
