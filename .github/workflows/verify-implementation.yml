@@ -1,0 +1,89 @@
+name: Verify Implementation (Proof-of-Work)
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    name: Build, Run Lighthouse, Attach Proof
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      # Serve the built site locally for Lighthouse
+      - name: Start static server (background)
+        run: |
+          npx http-server ./dist -p 4173 --silent &
+          echo $! > server.pid
+        # If your build outputs to something other than ./dist, change path above.
+
+      # Run Lighthouse via official Action (synthetic proof)
+      - name: Run Lighthouse (mobile)
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: 'http://localhost:4173/'
+          uploadArtifacts: true
+          configPath: ./.lighthouserc.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Stop server
+        if: always()
+        run: |
+          kill -9 $(cat server.pid) || true
+
+      # Produce a clean code-diff summary against the PR base
+      - name: Generate diff summary
+        run: |
+          echo "### 🔎 Changed files" >> proof.md
+          git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} >> proof.md
+          echo "" >> proof.md
+          echo "### 🧾 Line-level diff (truncated)" >> proof.md
+          git diff --unified=3 --no-color ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | head -n 500 >> proof.md
+
+      # Upload Lighthouse HTML/JSON reports and the diff as downloadable artifacts
+      - name: Upload proof artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: proof-of-implementation
+          path: |
+            .lighthouseci/*
+            proof.md
+
+      # Post a sticky PR comment with links and summary (visible proof in the thread)
+      - name: Post PR Proof Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: proof-of-implementation
+          message: |
+            ✅ **Automated Proof Attached**
+
+            - **Lighthouse reports:** downloaded artifacts named `proof-of-implementation`
+            - **Changed files:** see summary below
+            - **Thresholds:** enforced via .lighthouserc.json
+
+            <details><summary>Diff summary (first 500 lines)</summary>
+
+            ```diff
+            ${{ steps.generate_diff_summary.outputs.diff || '' }}
+            ```
+            </details>
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
