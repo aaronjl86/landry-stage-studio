@@ -29,7 +29,7 @@ const plans = [
 const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
-  const { user, subscription } = useAuth();
+  const { user, subscription, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const handleSubscribe = async (planKey: string, priceId: string) => {
@@ -65,6 +65,27 @@ const Pricing = () => {
     if (!subscription.subscribed) return false;
     return subscription.product_id === productId || subscription.product_id === yearlyProductId;
   };
+
+  // Admins shouldn't see subscription prompts
+  if (isAdmin) {
+    return (
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center space-y-4">
+            <div className="inline-block bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(290,75%,65%)] text-white px-6 py-3 rounded-full text-lg font-semibold mb-4">
+              🎉 Admin Account - Unlimited Access
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold">
+              You have full admin access
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              As an administrator, you have unlimited credits and full access to all features. No subscription required.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return <section className="py-20 md:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">

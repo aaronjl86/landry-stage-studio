@@ -14,6 +14,7 @@ interface AuthContextType {
   credits: number;
   loading: boolean;
   subscription: SubscriptionInfo;
+  isAdmin: boolean;
   signOut: () => Promise<void>;
   refreshCredits: () => Promise<void>;
   checkSubscription: () => Promise<void>;
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [credits, setCredits] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [subscription, setSubscription] = useState<SubscriptionInfo>({
     subscribed: false,
     product_id: null,
@@ -42,6 +44,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error('Failed to check subscription:', error);
+    }
+  };
+
+  const checkAdminStatus = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", user.id)
+        .eq("role", "admin")
+        .maybeSingle();
+
+      setIsAdmin(!error && !!data);
+    } catch (error) {
+      console.error('Failed to check admin status:', error);
+      setIsAdmin(false);
     }
   };
 
@@ -71,9 +91,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setTimeout(() => {
             refreshCredits();
             checkSubscription();
+            checkAdminStatus();
           }, 0);
         } else {
           setCredits(0);
+          setIsAdmin(false);
           setSubscription({ subscribed: false, product_id: null, subscription_end: null });
         }
       }
@@ -89,6 +111,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setTimeout(() => {
           refreshCredits();
           checkSubscription();
+          checkAdminStatus();
         }, 0);
       }
     });
@@ -112,6 +135,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     setSession(null);
     setCredits(0);
+    setIsAdmin(false);
     setSubscription({ subscribed: false, product_id: null, subscription_end: null });
   };
 
@@ -121,7 +145,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       session, 
       credits, 
       loading, 
-      subscription, 
+      subscription,
+      isAdmin,
       signOut, 
       refreshCredits,
       checkSubscription 

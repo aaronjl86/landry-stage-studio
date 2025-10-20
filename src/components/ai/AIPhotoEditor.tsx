@@ -24,7 +24,7 @@ export function AIPhotoEditor() {
   const [requiredCredits, setRequiredCredits] = useState(0);
   
   const { jobs, isProcessing, submitBatchEdit, clearJobs, redoJob } = useAIProcessor();
-  const { credits, refreshCredits } = useAuth();
+  const { credits, refreshCredits, isAdmin } = useAuth();
 
   const handleProcess = async () => {
     if (uploadedImages.length === 0) {
@@ -79,11 +79,18 @@ export function AIPhotoEditor() {
       </div>
 
       <Card className="p-6 card-professional">
-        <div>
-          <h3 className="text-lg font-semibold">Credit Balance</h3>
-          <p className="text-sm text-muted-foreground">
-            You have {credits} credits remaining
-          </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-semibold">Credit Balance</h3>
+            <p className="text-sm text-muted-foreground">
+              You have {credits} credits remaining
+            </p>
+          </div>
+          {isAdmin && (
+            <div className="bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(290,75%,65%)] text-white px-4 py-2 rounded-full text-sm font-semibold">
+              👑 Admin
+            </div>
+          )}
         </div>
       </Card>
 
