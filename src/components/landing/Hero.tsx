@@ -31,13 +31,13 @@ export const Hero = () => {
               </span>
             </div>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
-              <span className="block text-gray-900 drop-shadow-lg">Virtual Staging Real Estate</span>
+              <span className="block text-gray-900 drop-shadow-lg">Transform Empty Spaces</span>
               <span className="block mt-3 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent drop-shadow-2xl font-extrabold">
-                AI-Powered Staging That Sells Faster
+                With AI Virtual Staging
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-              The <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-extrabold">ONLY</span> self-serve virtual staging software where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Skip expensive physical staging—upload your real estate photos, choose furniture styles, and get professional staged photos in 24 hours. Perfect for real estate agents seeking photorealistic results that attract home buyers.
+              The <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-extrabold">ONLY</span> self-serve platform where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Upload photos, describe your vision, and watch AI create stunning staged homes in seconds. No expensive physical staging, no waiting weeks—just professional results that help properties sell faster.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
