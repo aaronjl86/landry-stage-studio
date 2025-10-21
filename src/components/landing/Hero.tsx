@@ -46,12 +46,6 @@ export const Hero = () => {
                   <ArrowRight className="ml-3 h-7 w-7 transition-transform group-hover:translate-x-2" />
                 </Button>
               </Link>
-              <Link to="/public-gallery" aria-label="View public gallery examples">
-                <Button size="lg" variant="outline" className="group text-2xl px-12 py-8">
-                  View Gallery
-                  <ArrowRight className="ml-3 h-7 w-7 transition-transform group-hover:translate-x-2" />
-                </Button>
-              </Link>
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-muted-foreground">
               <div>✓ 3 Free Uploads</div>

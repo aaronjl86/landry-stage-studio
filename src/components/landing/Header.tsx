@@ -21,10 +21,6 @@ export const Header = () => {
     icon: Home,
     path: "/"
   }, {
-    title: "Public Gallery",
-    icon: ImageIcon,
-    path: "/public-gallery"
-  }, {
     title: "About",
     icon: Info,
     path: "/about"
@@ -80,7 +76,15 @@ export const Header = () => {
         <div className="flex h-[100px] md:h-[160px] items-center justify-between gap-2 md:gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0 max-w-[70%] md:max-w-none">
-            <video src={tlmLogoVideo} autoPlay muted playsInline aria-label="The Landry Method" className="h-[70px] md:h-[140px] w-auto object-contain" />
+            <video 
+              src={tlmLogoVideo} 
+              autoPlay={!isMobile} 
+              muted 
+              playsInline 
+              aria-label="The Landry Method" 
+              className="h-[70px] md:h-[140px] w-auto object-contain"
+              poster="/assets/tlm-logo-footer.png"
+            />
           </Link>
 
           {/* Desktop Navigation - Large screens only */}

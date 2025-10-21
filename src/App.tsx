@@ -11,7 +11,6 @@ const Index = lazy(() => import("./pages/Index"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Gallery = lazy(() => import("./pages/Gallery"));
-const PublicGallery = lazy(() => import("./pages/PublicGallery"));
 const Credits = lazy(() => import("./pages/Credits"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const About = lazy(() => import("./pages/About"));
@@ -39,7 +38,6 @@ const App = () => (
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/cookie-policy" element={<CookiePolicy />} />
               <Route path="/terms" element={<Terms />} />
-              <Route path="/public-gallery" element={<PublicGallery />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard/gallery" element={<Gallery />} />
               <Route path="/dashboard/credits" element={<Credits />} />
