@@ -14,12 +14,12 @@ import austinRealEstatePNG from "@/assets/logos/austin-real-estate-opt.png";
 import kellerWilliamsPNG from "@/assets/logos/keller-williams-opt.png";
 import leggettRealEstatePNG from "@/assets/logos/leggett-real-estate-opt.png";
 import johnTaylorPNG from "@/assets/logos/john-taylor-opt.png";
-import sarahJohnson from "@/assets/testimonials/sarah-johnson.webp";
-import michaelChen from "@/assets/testimonials/michael-chen.webp";
-import emmaWilliams from "@/assets/testimonials/emma-williams.webp";
-import davidMartinez from "@/assets/testimonials/david-martinez.webp";
-import jenniferLee from "@/assets/testimonials/jennifer-lee.webp";
-import robertAnderson from "@/assets/testimonials/robert-anderson.webp";
+import sarahJohnson from "@/assets/testimonials/sarah-johnson-opt.webp";
+import michaelChen from "@/assets/testimonials/michael-chen-opt.webp";
+import emmaWilliams from "@/assets/testimonials/emma-williams-opt.webp";
+import davidMartinez from "@/assets/testimonials/david-martinez-opt.webp";
+import jenniferLee from "@/assets/testimonials/jennifer-lee-opt.webp";
+import robertAnderson from "@/assets/testimonials/robert-anderson-opt.webp";
 export const SocialProof = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showMarquee, setShowMarquee] = useState(false);

@@ -21,9 +21,8 @@ The only self-serve platform where YOU control design. Upload photos, custom pro
     <link rel="stylesheet" href="/src/index.css" media="print" onload="this.media='all';this.onload=null">
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
-    <!-- Preload BOTH hero images (before + after) for instant render -->
-    <link rel="preload" as="image" href="/src/assets/before-empty-room.avif" type="image/avif" fetchpriority="high">
-    <link rel="preload" as="image" href="/src/assets/after-staged-room.avif" type="image/avif" fetchpriority="high">
+    <!-- Preload ONLY the LCP image (before image) for instant render -->
+    <link rel="preload" as="image" href="/src/assets/before-empty-room.avif" type="image/avif" fetchpriority="high" crossorigin>
     
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/JnAcBf9SLBhYGtYjqKR9ELOZZLW2/social-images/social-1760050704749-Screenshot 2025-10-09 at 3.55.52 PM 2.png">
