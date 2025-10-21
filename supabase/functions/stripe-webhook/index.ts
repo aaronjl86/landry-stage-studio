@@ -177,8 +177,7 @@ serve(async (req) => {
   } catch (err: any) {
     logStep('ERROR: Webhook processing failed', { error: err.message });
     return new Response(JSON.stringify({ 
-      error: 'Webhook error', 
-      message: err.message 
+      error: 'Webhook processing failed' 
     }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -49,13 +49,31 @@ serve(async (req) => {
     if (!prompt || !imageData || !mimeType) {
       logger.warn("Invalid input", { correlationId, userId, hasPrompt: !!prompt, hasImage: !!imageData });
       return new Response(
-        JSON.stringify({ error: "Missing required fields: prompt, imageData, mimeType" }),
+        JSON.stringify({ error: "Missing required fields" }),
         {
           status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         }
       );
     }
+
+    // Validate prompt length and sanitize (prevent injection attacks)
+    if (prompt.length > 500) {
+      logger.warn("Prompt too long", { correlationId, userId, length: prompt.length });
+      return new Response(
+        JSON.stringify({ error: "Prompt must be 500 characters or less" }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    // Sanitize prompt: remove newlines and excessive whitespace
+    const sanitizedPrompt = prompt
+      .replace(/[\r\n]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
 
     // Validate image size (max 10MB base64)
     if (imageData.length > 10 * 1024 * 1024 * 1.37) {
@@ -112,7 +130,7 @@ serve(async (req) => {
 
 Do not modify the core architectural layout of the room. This includes prohibiting any changes such as adding or removing structural walls, windows, doors, or fixed architectural features (e.g., fireplaces, built-in shelving, or permanent fixtures). All design adjustments must remain strictly cosmetic or surface-level—for example, alterations to lighting, furniture, materials, textures, or decor are acceptable.
 
-USER'S EDITING REQUEST: ${prompt}`;
+USER'S EDITING REQUEST: ${sanitizedPrompt}`;
 
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -166,7 +184,7 @@ USER'S EDITING REQUEST: ${prompt}`;
       logger.info("Credit refunded due to AI failure", { correlationId, userId });
 
       return new Response(
-        JSON.stringify({ error: "AI processing failed" }),
+        JSON.stringify({ error: "Processing failed. Please try again." }),
         {
           status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -193,7 +211,7 @@ USER'S EDITING REQUEST: ${prompt}`;
       logger.info("Credit refunded due to missing image", { correlationId, userId });
 
       return new Response(
-        JSON.stringify({ error: "No edited image returned from AI" }),
+        JSON.stringify({ error: "Processing failed. Please try again." }),
         {
           status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -222,7 +240,7 @@ USER'S EDITING REQUEST: ${prompt}`;
     });
 
     return new Response(
-      JSON.stringify({ error: "Internal server error", correlationId }),
+      JSON.stringify({ error: "An unexpected error occurred. Please try again." }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

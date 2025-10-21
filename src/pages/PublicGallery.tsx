@@ -24,11 +24,10 @@ export default function PublicGallery() {
 
   const fetchPublicUploads = async () => {
     try {
+      // Use the public_uploads view which excludes user_id for privacy
       const { data, error } = await supabase
-        .from("uploads")
-        .select("id, original_image_url, staged_image_url, created_at")
-        .eq("is_public", true)
-        .eq("status", "completed")
+        .from("public_uploads")
+        .select("*")
         .order("created_at", { ascending: false })
         .limit(50);
 
