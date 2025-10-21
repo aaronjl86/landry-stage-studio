@@ -49,16 +49,20 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          // Core React and React ecosystem (must load together)
-          if (id.includes('react') || id.includes('react-dom') || 
-              id.includes('react-router') || id.includes('@tanstack/react-query') ||
-              id.includes('next-themes')) {
-            return 'react-vendor';
+          // FIRST: Core React only (highest priority - must load before everything)
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react-core';
           }
           
-          // Radix UI components (heavy, used on multiple pages)
+          // SECOND: React ecosystem libraries (depend on react-core)
+          if (id.includes('react-router') || id.includes('@tanstack/react-query') || 
+              id.includes('next-themes')) {
+            return 'react-ecosystem';
+          }
+          
+          // THIRD: Radix UI components (depend on React)
           if (id.includes('@radix-ui')) {
-            return 'radix-vendor';
+            return 'ui-vendor';
           }
           
           // Supabase (used only after auth)
