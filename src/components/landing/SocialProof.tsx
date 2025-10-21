@@ -24,26 +24,32 @@ export const SocialProof = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showMarquee, setShowMarquee] = useState(false);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+  
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setShowMarquee(true);
-        observer.disconnect();
-      }
-    }, {
-      threshold: 0.1
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowMarquee(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
     if (marqueeRef.current) {
       observer.observe(marqueeRef.current);
     }
+    
     return () => observer.disconnect();
   }, []);
+
   const stats = [{
     icon: Users,
     value: "10,000+",
@@ -112,17 +118,24 @@ export const SocialProof = () => {
 
       {/* Testimonials */}
       <div className="space-y-2">
-        <h3 className="font-semibold text-center mb-2 py-8 text-5xl bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 bg-clip-text text-transparent">We're onboarding our first wave of real estate professionals for early access. In exchange for your honest feedback, we'll enhance your first listing free of charge.</h3>
-        <p className="text-center text-muted-foreground italic mb-4 text-sm">Sample feedback illustrating the type of client experience we aim to deliver. Real testimonials coming soon.</p>
+        <h3 className="font-semibold text-center mb-2 py-8 text-5xl">What Our Users Say</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {(isMobile ? testimonials.slice(0, 3) : testimonials).map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
-              <img src={testimonial.image} alt={`${testimonial.name} - ${testimonial.role}`} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30 blur-sm" width="80" height="80" loading="lazy" decoding="async" />
+              <img 
+                src={testimonial.image} 
+                alt={`${testimonial.name} - ${testimonial.role}`}
+                className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30"
+                width="80"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400 animate-fade-in hover:scale-110 transition-transform" style={{
               animationDelay: `${i * 0.1}s`
             }} />)}
               </div>
-              <p className="mb-2 italic font-bold text-base">"{testimonial.text}"</p>
+              <p className="text-base mb-2 italic font-bold">"{testimonial.text}"</p>
               <div className="text-base">
                 <div className="font-bold">{testimonial.name}</div>
                 <div className="text-muted-foreground font-bold">{testimonial.role}</div>
@@ -133,39 +146,81 @@ export const SocialProof = () => {
 
       {/* Trust Badges */}
       <div ref={marqueeRef} className="bg-muted/30 rounded-lg p-6 text-center overflow-hidden">
-        <div className="text-5xl font-semibold mb-4 rounded-none">Want your project featured here? Try your first free enhancement.</div>
-        {showMarquee && <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
+        <div className="text-5xl font-semibold mb-4 rounded-none">Trusted By</div>
+        {showMarquee && (
+          <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={redOakRealtyWebP} type="image/webp" />
-              <img src={redOakRealtyPNG} alt="Red Oak Realty" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
+              <img 
+                src={redOakRealtyPNG} 
+                alt="Red Oak Realty" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy" 
+                decoding="async"
+              />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={austinRealEstateWebP} type="image/webp" />
-              <img src={austinRealEstatePNG} alt="Austin Real Estate Experts" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
+              <img 
+                src={austinRealEstatePNG} 
+                alt="Austin Real Estate Experts" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={kellerWilliamsWebP} type="image/webp" />
-              <img src={kellerWilliamsPNG} alt="Keller Williams" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
+              <img 
+                src={kellerWilliamsPNG} 
+                alt="Keller Williams" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={leggettRealEstateWebP} type="image/webp" />
-              <img src={leggettRealEstatePNG} alt="Leggett International Real Estate" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
+              <img 
+                src={leggettRealEstatePNG} 
+                alt="Leggett International Real Estate" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={johnTaylorWebP} type="image/webp" />
-              <img src={johnTaylorPNG} alt="John Taylor Luxury Real Estate" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
+              <img 
+                src={johnTaylorPNG} 
+                alt="John Taylor Luxury Real Estate" 
+                className="h-full w-full object-contain" 
+                width="192" 
+                height="112" 
+                loading="lazy"
+                decoding="async"
+              />
             </picture>
           </div>
-        </Marquee>}
+        </Marquee>
+        )}
       </div>
     </div>;
 };
