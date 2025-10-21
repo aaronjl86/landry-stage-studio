@@ -39,7 +39,7 @@ export const Hero = () => {
                 <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">YOUR</span>
                 <span className="text-gray-900"> vision and </span>
                 <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">YOUR</span>
-                <span className="text-gray-900 mx-px"> listings to life in </span>
+                <span className="text-gray-900 mx-px">listings to life in </span>
                 <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">SECONDS</span>
               </span>
             </h1>
