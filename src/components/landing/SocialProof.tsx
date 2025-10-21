@@ -138,31 +138,31 @@ export const SocialProof = () => {
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={redOakRealtyWebP} type="image/webp" />
-              <img src={redOakRealtyPNG} alt="Red Oak Realty" className="h-full w-full object-contain" width="192" height="112" loading="lazy" decoding="async" />
+              <img src={redOakRealtyPNG} alt="Red Oak Realty" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={austinRealEstateWebP} type="image/webp" />
-              <img src={austinRealEstatePNG} alt="Austin Real Estate Experts" className="h-full w-full object-contain" width="192" height="112" loading="lazy" decoding="async" />
+              <img src={austinRealEstatePNG} alt="Austin Real Estate Experts" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={kellerWilliamsWebP} type="image/webp" />
-              <img src={kellerWilliamsPNG} alt="Keller Williams" className="h-full w-full object-contain" width="192" height="112" loading="lazy" decoding="async" />
+              <img src={kellerWilliamsPNG} alt="Keller Williams" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={leggettRealEstateWebP} type="image/webp" />
-              <img src={leggettRealEstatePNG} alt="Leggett International Real Estate" className="h-full w-full object-contain" width="192" height="112" loading="lazy" decoding="async" />
+              <img src={leggettRealEstatePNG} alt="Leggett International Real Estate" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
             </picture>
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
               <source srcSet={johnTaylorWebP} type="image/webp" />
-              <img src={johnTaylorPNG} alt="John Taylor Luxury Real Estate" className="h-full w-full object-contain" width="192" height="112" loading="lazy" decoding="async" />
+              <img src={johnTaylorPNG} alt="John Taylor Luxury Real Estate" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
             </picture>
           </div>
         </Marquee>}
