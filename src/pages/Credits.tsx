@@ -15,6 +15,18 @@ export default function Credits() {
   const [isLoadingPortal, setIsLoadingPortal] = useState(false);
 
   useEffect(() => {
+    document.title = "Credits Management | Virtual Staging Account - The Landry Method";
+    
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Manage your virtual staging credits and subscription. View your current balance and upgrade your plan for more AI photo editing.');
+  }, []);
+
+  useEffect(() => {
     if (!loading && !user) {
       navigate("/auth");
     }

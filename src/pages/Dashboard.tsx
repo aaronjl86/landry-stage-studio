@@ -9,6 +9,18 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "AI Photo Editor | Virtual Staging Dashboard - The Landry Method";
+    
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Access your AI photo editor dashboard. Upload real estate photos and create professionally staged images in seconds.');
+  }, []);
+
+  useEffect(() => {
     if (!loading && !user) {
       navigate("/auth");
     }
