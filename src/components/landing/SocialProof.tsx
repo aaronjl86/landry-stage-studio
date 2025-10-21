@@ -133,7 +133,7 @@ export const SocialProof = () => {
 
       {/* Trust Badges */}
       <div ref={marqueeRef} className="bg-muted/30 rounded-lg p-6 text-center overflow-hidden">
-        <div className="text-5xl font-semibold mb-4 rounded-none">Trusted By</div>
+        <div className="text-5xl font-semibold mb-4 rounded-none">Want your project featured here? Try your first free enhancement.</div>
         {showMarquee && <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
             <picture>
