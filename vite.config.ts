@@ -49,8 +49,10 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          // Core React chunks (loaded on every page)
-          if (id.includes('react') || id.includes('react-dom')) {
+          // Core React and React ecosystem (must load together)
+          if (id.includes('react') || id.includes('react-dom') || 
+              id.includes('react-router') || id.includes('@tanstack/react-query') ||
+              id.includes('next-themes')) {
             return 'react-vendor';
           }
           
