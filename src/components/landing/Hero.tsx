@@ -71,8 +71,8 @@ export const Hero = () => {
                 width="800"
                 height="600"
                 loading="eager"
-                fetchPriority="high"
                 decoding="async"
+                {...({ fetchpriority: 'high' } as any)}
               />
               </picture>
 
@@ -90,8 +90,8 @@ export const Hero = () => {
                   width="800"
                   height="600"
                   loading="eager"
-                  fetchPriority="high"
                   decoding="async"
+                  {...({ fetchpriority: 'low' } as any)}
                 />
                 </picture>
               </div>
