@@ -49,7 +49,35 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (id.includes('node_modules')) return 'vendor';
+          // Core React chunks (loaded on every page)
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'react-vendor';
+          }
+          
+          // Radix UI components (heavy, used on multiple pages)
+          if (id.includes('@radix-ui')) {
+            return 'radix-vendor';
+          }
+          
+          // Supabase (used only after auth)
+          if (id.includes('@supabase')) {
+            return 'supabase-vendor';
+          }
+          
+          // AI/processing libraries (dashboard only)
+          if (id.includes('browser-image-compression') || id.includes('jszip')) {
+            return 'processing-vendor';
+          }
+          
+          // Animation libraries
+          if (id.includes('framer-motion')) {
+            return 'animation-vendor';
+          }
+          
+          // Everything else
+          if (id.includes('node_modules')) {
+            return 'common-vendor';
+          }
         }
       }
     }
