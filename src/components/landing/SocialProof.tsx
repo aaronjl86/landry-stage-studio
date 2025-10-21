@@ -116,7 +116,7 @@ export const SocialProof = () => {
         <p className="text-center text-muted-foreground italic mb-4 text-sm">Sample feedback illustrating the type of client experience we aim to deliver. Real testimonials coming soon.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {(isMobile ? testimonials.slice(0, 3) : testimonials).map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
-              <img src={testimonial.image} alt={`${testimonial.name} - ${testimonial.role}`} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30" width="80" height="80" loading="lazy" decoding="async" />
+              <img src={testimonial.image} alt={`${testimonial.name} - ${testimonial.role}`} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30 blur-sm" width="80" height="80" loading="lazy" decoding="async" />
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400 animate-fade-in hover:scale-110 transition-transform" style={{
               animationDelay: `${i * 0.1}s`
