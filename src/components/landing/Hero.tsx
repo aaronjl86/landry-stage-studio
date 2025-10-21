@@ -13,7 +13,7 @@ export const Hero = () => {
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPosition(Number(e.target.value));
   };
-  return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
+  return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100" aria-label="AI-Powered Virtual Staging Hero">
       {/* GPU-Accelerated Background - CSS only, no JS animations */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 animate-pulse" />
       
@@ -72,6 +72,7 @@ export const Hero = () => {
                 height="600"
                 loading="eager"
                 decoding="async"
+                sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px"
                 {...({ fetchpriority: 'high' } as any)}
               />
               </picture>
@@ -89,8 +90,9 @@ export const Hero = () => {
                   className="w-full h-full object-cover scale-110"
                   width="800"
                   height="600"
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
+                  sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px"
                   {...({ fetchpriority: 'low' } as any)}
                 />
                 </picture>

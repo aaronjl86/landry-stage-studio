@@ -1,6 +1,6 @@
 import { useState } from "react";
-const emptyRoom = "/Proof of Concept Images/Before-Living-Room-Fireplace.jpeg";
-const stagedRoom = "/Proof of Concept Images/After-Living-Room-Fireplace.jpeg";
+const emptyRoom = "/images/before/before-living-room-fireplace.jpeg";
+const stagedRoom = "/images/after/after-living-room-fireplace-staged.jpeg";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -35,6 +35,7 @@ export const BeforeAfter = () => {
               height="900"
               loading="lazy"
               decoding="async"
+              sizes="(max-width: 1024px) 90vw, 800px"
             />
 
             {/* After Image with clip-path - Staged on right */}
@@ -52,6 +53,7 @@ export const BeforeAfter = () => {
                 height="900"
                 loading="lazy"
                 decoding="async"
+                sizes="(max-width: 1024px) 90vw, 800px"
               />
             </div>
 
