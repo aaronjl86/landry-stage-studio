@@ -118,7 +118,7 @@ export const SocialProof = () => {
 
       {/* Testimonials */}
       <div className="space-y-2">
-        <h3 className="font-semibold text-center mb-2 py-8 text-5xl">What Our Users Say</h3>
+        <h3 className="font-semibold text-center mb-2 py-8 text-5xl">We're onboarding our first wave of real estate professionals for early access. In exchange for your honest feedback, we'll enhance your first listing free of charge.</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {(isMobile ? testimonials.slice(0, 3) : testimonials).map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
               <img 
