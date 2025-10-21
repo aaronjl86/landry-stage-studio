@@ -1,4 +1,5 @@
 import { useState } from "react";
+import spatialMotionTitle from "@/assets/spatial-intelligence-in-motion.png";
 const emptyRoom = "/images/before/before-living-room-fireplace.jpeg";
 const stagedRoom = "/images/after/after-living-room-fireplace-staged.jpeg";
 
@@ -14,10 +15,16 @@ export const BeforeAfter = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">
           <h3 className="text-4xl md:text-5xl font-bold">
-            See the
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent ml-3">
-              Transformation
-            </span>
+            <img
+              src={spatialMotionTitle}
+              alt="Spatial Intelligence in Motion title"
+              className="mx-auto h-auto max-h-24 w-auto object-contain"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="200"
+            />
+            <span className="sr-only">Spatial Intelligence in Motion</span>
           </h3>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Drag the slider to compare empty rooms with our AI-staged versions
