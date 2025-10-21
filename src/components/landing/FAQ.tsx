@@ -7,16 +7,28 @@ import {
 
 const faqs = [
   {
+    question: "How is virtual staging different from physical staging?",
+    answer: "Virtual staging uses AI to digitally furnish empty rooms, while physical staging requires renting and placing actual furniture. Virtual staging costs 90% less than traditional staging ($29-149/month vs $2,000-5,000 per home), delivers staged homes in 24 hours instead of weeks, and allows unlimited style changes without the hassle of moving furniture. Perfect for real estate agents who need fast, affordable staging solutions."
+  },
+  {
+    question: "What furniture styles are available?",
+    answer: "Our virtual staging software offers unlimited furniture style options including modern, traditional, contemporary, minimalist, luxury, farmhouse, industrial, Scandinavian, and more. Each style is designed to appeal to home buyers and showcase your real estate photos in the best light. You can even create custom styles with your own prompts."
+  },
+  {
+    question: "How quickly will I receive my staged photos?",
+    answer: "Most staged images are delivered within seconds to minutes! Our AI-powered virtual staging platform processes photos instantly. Professional plan users get priority processing with 12-hour guaranteed turnaround, while Enterprise users receive staged photos within 2 hours. Much faster than traditional physical staging that takes 7-14 days."
+  },
+  {
     question: "How does AI virtual staging work?",
     answer: "Upload a photo of an empty room, and our AI analyzes the space's dimensions, lighting, and style. It then generates professionally staged furniture and decor that perfectly fits the room, creating photorealistic images in seconds."
   },
   {
-    question: "What file formats do you accept?",
-    answer: "We accept JPG, PNG, and HEIC files. For best results, we recommend high-resolution images (at least 1920x1080 pixels) taken with good lighting."
+    question: "Can virtual staging help attract more home buyers?",
+    answer: "Absolutely! Studies show that staged homes sell 73% faster and for 3-5% more than empty properties. Virtual staging helps home buyers visualize themselves living in the space, making your real estate listings more appealing and memorable. Our photorealistic staged images showcase the full potential of every room."
   },
   {
-    question: "How long does it take to stage a room?",
-    answer: "AI processing typically completes within seconds! Batch uploads may take a few minutes depending on queue volume. All plans include instant AI processing. Support response times vary by tier: Starter (24h), Professional (12h), Enterprise (2h)."
+    question: "What file formats do you accept?",
+    answer: "We accept JPG, PNG, and HEIC files from any real estate photographer. For best results, we recommend high-resolution images (at least 1920x1080 pixels) taken with good lighting."
   },
   {
     question: "Can I customize the staging style?",
