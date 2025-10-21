@@ -159,18 +159,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    // Lightweight default context for public pages (avoids loading backend on initial paint)
-    return {
-      user: null,
-      session: null,
-      credits: 0,
-      loading: false,
-      subscription: { subscribed: false, product_id: null, subscription_end: null },
-      isAdmin: false,
-      signOut: async () => {},
-      refreshCredits: async () => {},
-      checkSubscription: async () => {},
-    } as AuthContextType;
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };

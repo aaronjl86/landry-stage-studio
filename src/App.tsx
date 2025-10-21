@@ -24,33 +24,29 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      {/* Toast UIs kept global but lightweight */}
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Suspense fallback={<div className="h-24"></div>}>
-          <Routes>
-            {/* Public routes do NOT load the heavy auth backend by default */}
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/cookie-policy" element={<CookiePolicy />} />
-            <Route path="/terms" element={<Terms />} />
-
-            {/* Protected app: wrap ONLY these routes with AuthProvider to avoid loading backend on public pages */}
-            <Route path="/dashboard" element={<AuthProvider><Dashboard /></AuthProvider>} />
-            <Route path="/dashboard/gallery" element={<AuthProvider><Gallery /></AuthProvider>} />
-            <Route path="/dashboard/credits" element={<AuthProvider><Credits /></AuthProvider>} />
-
-            {/* Catch-all */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        <CookieBanner />
-      </BrowserRouter>
+      <AuthProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Suspense fallback={<div className="h-24"></div>}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/gallery" element={<Gallery />} />
+              <Route path="/dashboard/credits" element={<Credits />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <CookieBanner />
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
