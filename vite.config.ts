@@ -49,41 +49,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          // FIRST: Core React only (highest priority - must load before everything)
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'react-core';
-          }
-          
-          // SECOND: React ecosystem libraries (depend on react-core)
-          if (id.includes('react-router') || id.includes('@tanstack/react-query') || 
-              id.includes('next-themes')) {
-            return 'react-ecosystem';
-          }
-          
-          // THIRD: Radix UI components (depend on React)
-          if (id.includes('@radix-ui')) {
-            return 'ui-vendor';
-          }
-          
-          // Supabase (used only after auth)
-          if (id.includes('@supabase')) {
-            return 'supabase-vendor';
-          }
-          
-          // AI/processing libraries (dashboard only)
-          if (id.includes('browser-image-compression') || id.includes('jszip')) {
-            return 'processing-vendor';
-          }
-          
-          // Animation libraries
-          if (id.includes('framer-motion')) {
-            return 'animation-vendor';
-          }
-          
-          // Everything else
-          if (id.includes('node_modules')) {
-            return 'common-vendor';
-          }
+          if (id.includes('node_modules')) return 'vendor';
         }
       }
     }
