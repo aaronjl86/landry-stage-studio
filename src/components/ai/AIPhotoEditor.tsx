@@ -43,7 +43,8 @@ export function AIPhotoEditor() {
       return;
     }
 
-    if (credits < uploadedImages.length) {
+    // Admins bypass credit checks
+    if (!isAdmin && credits < uploadedImages.length) {
       console.log("Insufficient credits - showing upgrade dialog");
       setRequiredCredits(uploadedImages.length);
       setShowUpgradeDialog(true);
@@ -80,7 +81,7 @@ export function AIPhotoEditor() {
           <div>
             <h3 className="text-lg font-semibold">Credit Balance</h3>
             <p className="text-sm text-muted-foreground">
-              You have {credits} credits remaining
+              {isAdmin ? "Unlimited credits (Admin)" : `You have ${credits} credits remaining`}
             </p>
           </div>
           {isAdmin && (

@@ -13,7 +13,9 @@ export const Hero = () => {
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPosition(Number(e.target.value));
   };
-  return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12" style={{ backgroundColor: '#36eee0' }} aria-label="AI-Powered Virtual Staging Hero">
+  return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12" style={{
+    backgroundColor: '#36eee0'
+  }} aria-label="AI-Powered Virtual Staging Hero">
       {/* GPU-Accelerated Background - CSS only, no JS animations */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 animated-bg" data-decorative="true" />
       
@@ -31,13 +33,19 @@ export const Hero = () => {
               </span>
             </div>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
-              <span className="block text-gray-900 drop-shadow-lg">Stage Any Space</span>
-              <span className="block mt-3 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent drop-shadow-2xl font-extrabold">
-                Exactly How You Envision It
+              <span className="block drop-shadow-lg">
+                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">AI-powered virtual staging</span>
+                <span className="text-gray-900"> that brings </span>
+                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">YOUR</span>
+                <span className="text-gray-900"> vision and </span>
+                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">YOUR</span>
+                <br />
+                <span className="text-gray-900">listings to life in </span>
+                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">SECONDS</span>
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-              The <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-extrabold">ONLY</span> self-serve platform where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Upload your photos, write custom prompts, and get photorealistic staging in seconds—not days.
+              The <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-extrabold">ONLY</span> self-serve platform where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Upload photos, describe your vision, and watch AI create stunning staged homes in seconds. No expensive physical staging, no waiting weeks—just professional results that help properties sell faster.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
@@ -61,17 +69,9 @@ export const Hero = () => {
               <picture>
                 <source srcSet={beforeRoomAvif} type="image/avif" />
                 <source srcSet={beforeRoomWebp} type="image/webp" />
-              <img 
-                src={beforeRoomJpg} 
-                alt="Empty living room before virtual staging" 
-                className="absolute inset-0 w-full h-full object-cover scale-110"
-                width="800"
-                height="600"
-                loading="eager"
-                decoding="async"
-                sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px"
-                {...({ fetchpriority: 'high' } as any)}
-              />
+              <img src={beforeRoomJpg} alt="Empty living room before virtual staging" className="absolute inset-0 w-full h-full object-cover scale-110" width="800" height="600" loading="eager" decoding="async" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" {...{
+                fetchpriority: 'high'
+              } as any} />
               </picture>
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
@@ -81,31 +81,15 @@ export const Hero = () => {
                 <picture>
                   <source srcSet={afterRoomAvif} type="image/avif" />
                   <source srcSet={afterRoomWebp} type="image/webp" />
-                <img 
-                  src={afterRoomJpg} 
-                  alt="Professionally staged living room with modern design" 
-                  className="w-full h-full object-cover scale-110"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px"
-                  {...({ fetchpriority: 'low' } as any)}
-                />
+                <img src={afterRoomJpg} alt="Professionally staged living room with modern design" className="w-full h-full object-cover scale-110" width="800" height="600" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" {...{
+                  fetchpriority: 'low'
+                } as any} />
                 </picture>
               </div>
 
               {/* Slider */}
               <div className="absolute inset-0 flex items-center">
-                <input 
-                  type="range" 
-                  min="0" 
-                  max="100" 
-                  value={sliderPosition} 
-                  onChange={handleSliderChange} 
-                  className="absolute w-full h-full opacity-0 cursor-ew-resize z-10"
-                  aria-label="Before and after comparison slider"
-                />
+                <input type="range" min="0" max="100" value={sliderPosition} onChange={handleSliderChange} className="absolute w-full h-full opacity-0 cursor-ew-resize z-10" aria-label="Before and after comparison slider" />
                 
                 {/* Slider Line */}
                 <div className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none" style={{
