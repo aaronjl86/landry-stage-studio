@@ -48,19 +48,22 @@ export default function Auth() {
   const [recoveryError, setRecoveryError] = useState<string | null>(null);
   const [isCheckingRecovery, setIsCheckingRecovery] = useState(false);
 
-  // Initialize device fingerprint on mount
-  useEffect(() => {
-    const initFingerprint = async () => {
-      try {
-        const fp = await FingerprintJS.load();
-        const result = await fp.get();
-        setDeviceFingerprint(result.visitorId);
-      } catch (error) {
-        console.error('Fingerprint init failed:', error);
-      }
-    };
+  // Initialize device fingerprint on demand (when user interacts with form)
+  const initFingerprint = async () => {
+    if (deviceFingerprint) return; // Already initialized
+    try {
+      const fp = await FingerprintJS.load();
+      const result = await fp.get();
+      setDeviceFingerprint(result.visitorId);
+    } catch (error) {
+      console.error('Fingerprint init failed:', error);
+    }
+  };
+
+  // Trigger fingerprint on first form interaction
+  const handleFormFocus = () => {
     initFingerprint();
-  }, []);
+  };
 
   // Bootstrap recovery session when arriving from email link
   useEffect(() => {
@@ -425,15 +428,16 @@ export default function Auth() {
 
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        placeholder="you@example.com"
-                        autoComplete="email"
-                      />
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onFocus={handleFormFocus}
+                    required
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                  />
                     </div>
 
                     <div className="space-y-2">
