@@ -1,3 +1,7 @@
+// Deployment Sync Marker: 2025-10-28T21:30:00Z
+// This deployment synchronizes both frontend (Cloudflare Pages) and backend (Edge Functions)
+// to resolve the split-brain deployment state caused by the October 21 incident
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
