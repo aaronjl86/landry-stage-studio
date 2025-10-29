@@ -8,6 +8,24 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Header } from "@/components/landing/Header";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { z } from "zod";
+
+// Input validation schemas
+const signupSchema = z.object({
+  email: z.string().email('Please enter a valid email address').max(255, 'Email too long'),
+  password: z.string()
+    .min(8, 'Password must be at least 8 characters')
+    .max(72, 'Password too long'),
+  fullName: z.string()
+    .trim()
+    .min(1, 'Name is required')
+    .max(100, 'Name too long'),
+});
+
+const loginSchema = z.object({
+  email: z.string().email('Please enter a valid email address').max(255, 'Email too long'),
+  password: z.string().min(1, 'Password is required').max(72, 'Password too long'),
+});
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -101,7 +119,15 @@ export default function Auth() {
 
     try {
       if (isLogin) {
-        // Login flow unchanged
+        // Validate login input
+        const validationResult = loginSchema.safeParse({ email, password });
+        if (!validationResult.success) {
+          const firstError = validationResult.error.errors[0];
+          toast.error(firstError.message);
+          setLoading(false);
+          return;
+        }
+
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -110,8 +136,21 @@ export default function Auth() {
         toast.success("Welcome back!");
         navigate("/dashboard");
       } else {
+        // Validate signup input
+        const validationResult = signupSchema.safeParse({ 
+          email, 
+          password, 
+          fullName 
+        });
+        if (!validationResult.success) {
+          const firstError = validationResult.error.errors[0];
+          toast.error(firstError.message);
+          setLoading(false);
+          return;
+        }
+
         // Pre-validate signup to check for abuse patterns
-        const { data: validationResult, error: validationError } = 
+        const { data: abuseValidation, error: validationError } = 
           await supabase.functions.invoke('validate-signup', {
             body: {
               email,
@@ -125,13 +164,13 @@ export default function Auth() {
           return;
         }
 
-        if (!validationResult?.allowed) {
-          toast.error(validationResult?.message || "Signup not allowed. Please contact support if you believe this is an error.");
+        if (!abuseValidation?.allowed) {
+          toast.error(abuseValidation?.message || "Signup not allowed. Please contact support if you believe this is an error.");
           setLoading(false);
           return;
         }
 
-        if (validationResult.requires_verification) {
+        if (abuseValidation.requires_verification) {
           toast.warning("Your account requires additional verification.");
         }
 

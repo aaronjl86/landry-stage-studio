@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Sparkles, Loader2 } from "lucide-react";
 import { EnhancedPhotoUpload } from "./EnhancedPhotoUpload";
@@ -19,7 +18,6 @@ export function AIPhotoEditor() {
   >([]);
   const [selectedTemplates, setSelectedTemplates] = useState<string[]>([]);
   const [customPrompt, setCustomPrompt] = useState("");
-  const [makePublic, setMakePublic] = useState(false);
   const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const [requiredCredits, setRequiredCredits] = useState(0);
   
@@ -45,14 +43,15 @@ export function AIPhotoEditor() {
       return;
     }
 
-    if (credits < uploadedImages.length) {
+    // Admins bypass credit checks
+    if (!isAdmin && credits < uploadedImages.length) {
       console.log("Insufficient credits - showing upgrade dialog");
       setRequiredCredits(uploadedImages.length);
       setShowUpgradeDialog(true);
       return;
     }
 
-    await submitBatchEdit(uploadedImages, selectedTemplates, customPrompt, makePublic);
+    await submitBatchEdit(uploadedImages, selectedTemplates, customPrompt, false);
     await refreshCredits();
   };
 
@@ -62,7 +61,6 @@ export function AIPhotoEditor() {
     setUploadedImages([]);
     setSelectedTemplates([]);
     setCustomPrompt("");
-    setMakePublic(false);
     // Note: Credits only refresh after actual subscription purchase or monthly renewal
   };
 
@@ -83,7 +81,7 @@ export function AIPhotoEditor() {
           <div>
             <h3 className="text-lg font-semibold">Credit Balance</h3>
             <p className="text-sm text-muted-foreground">
-              You have {credits} credits remaining
+              {isAdmin ? "Unlimited credits (Admin)" : `You have ${credits} credits remaining`}
             </p>
           </div>
           {isAdmin && (
@@ -104,24 +102,6 @@ export function AIPhotoEditor() {
         customPrompt={customPrompt}
         onCustomPromptChange={setCustomPrompt}
       />
-
-      <Card className="p-4 bg-muted/50">
-        <div className="flex items-start gap-3">
-          <Checkbox 
-            id="make-public"
-            checked={makePublic}
-            onCheckedChange={(checked) => setMakePublic(checked === true)}
-          />
-          <div className="space-y-1">
-            <Label htmlFor="make-public" className="text-sm font-medium cursor-pointer">
-              Share in Public Gallery
-            </Label>
-            <p className="text-xs text-muted-foreground">
-              Allow others to see your staged photos in the public showcase gallery
-            </p>
-          </div>
-        </div>
-      </Card>
 
       <div className="flex justify-center gap-4">
         <Button

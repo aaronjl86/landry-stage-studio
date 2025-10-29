@@ -1,0 +1,20 @@
+/* Disable expensive animations on mobile */
+@media (max-width: 640px) {
+  .animated-bg,
+  .blob,
+  .pulse,
+  [data-decorative="true"] {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
