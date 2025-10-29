@@ -20,43 +20,13 @@ export const BeforeAfter = () => {
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
             {/* Before Image - Empty room on left */}
-            <picture>
-              <source 
-                srcSet="/images/before/before-living-room-fireplace.webp" 
-                type="image/webp"
-              />
-              <img 
-                src={emptyRoom} 
-                alt="Empty living room before staging" 
-                className="absolute inset-0 w-full h-full object-cover" 
-                width="1200" 
-                height="900" 
-                loading="eager"
-                decoding="async" 
-                sizes="(max-width: 1024px) 90vw, 800px"
-              />
-            </picture>
+            <img src={emptyRoom} alt="Empty living room before staging" className="absolute inset-0 w-full h-full object-cover" width="1200" height="900" loading="lazy" decoding="async" sizes="(max-width: 1024px) 90vw, 800px" />
 
             {/* After Image with clip-path - Staged on right */}
             <div className="absolute inset-0" style={{
             clipPath: `inset(0 0 0 ${sliderPosition}%)`
           }}>
-              <picture>
-                <source 
-                  srcSet="/images/after/after-living-room-fireplace-staged.webp" 
-                  type="image/webp"
-                />
-                <img 
-                  src={stagedRoom} 
-                  alt="Staged living room after virtual staging" 
-                  className="w-full h-full object-cover" 
-                  width="1200" 
-                  height="900" 
-                  loading="eager"
-                  decoding="async" 
-                  sizes="(max-width: 1024px) 90vw, 800px"
-                />
-              </picture>
+              <img src={stagedRoom} alt="Staged living room after virtual staging" className="w-full h-full object-cover" width="1200" height="900" loading="lazy" decoding="async" sizes="(max-width: 1024px) 90vw, 800px" />
             </div>
 
             {/* Slider */}

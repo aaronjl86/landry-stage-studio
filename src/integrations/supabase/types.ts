@@ -123,7 +123,7 @@ export type Database = {
           phone_verified: boolean | null
           quota: number | null
           risk_level: string | null
-          signup_ip: unknown
+          signup_ip: unknown | null
           updated_at: string | null
           used: number | null
         }
@@ -140,7 +140,7 @@ export type Database = {
           phone_verified?: boolean | null
           quota?: number | null
           risk_level?: string | null
-          signup_ip?: unknown
+          signup_ip?: unknown | null
           updated_at?: string | null
           used?: number | null
         }
@@ -157,7 +157,7 @@ export type Database = {
           phone_verified?: boolean | null
           quota?: number | null
           risk_level?: string | null
-          signup_ip?: unknown
+          signup_ip?: unknown | null
           updated_at?: string | null
           used?: number | null
         }

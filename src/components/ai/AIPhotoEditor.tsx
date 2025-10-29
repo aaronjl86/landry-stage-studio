@@ -78,18 +78,11 @@ export function AIPhotoEditor() {
 
       <Card className="p-6 card-professional">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {isAdmin && (
-              <span className="text-xs px-2 py-1 rounded bg-primary/10 text-primary font-medium">
-                Admin (Unlimited)
-              </span>
-            )}
-            <div>
-              <h3 className="text-lg font-semibold">Credit Balance</h3>
-              <p className="text-sm text-muted-foreground">
-                {isAdmin ? "Unlimited credits (Admin)" : `You have ${credits} credits remaining`}
-              </p>
-            </div>
+          <div>
+            <h3 className="text-lg font-semibold">Credit Balance</h3>
+            <p className="text-sm text-muted-foreground">
+              {isAdmin ? "Unlimited credits (Admin)" : `You have ${credits} credits remaining`}
+            </p>
           </div>
           {isAdmin && (
             <div className="bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(290,75%,65%)] text-white px-4 py-2 rounded-full text-sm font-semibold">

@@ -4,7 +4,6 @@ import { corsHeaders } from "../_shared/cors.ts";
 import { validateJWT } from "../_shared/jwt-utils.ts";
 import { checkRateLimit } from "../_shared/rate-limit.ts";
 import { logger } from "../_shared/structured-logger.ts";
-import { isAdmin } from "../_shared/admin-utils.ts";
 
 serve(async (req) => {
   const correlationId = crypto.randomUUID();
@@ -92,16 +91,23 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
-    // Check if user is admin using secure helper function
-    const userIsAdmin = await isAdmin(userId, supabase);
-    logger.info("Admin status checked", { correlationId, userId, isAdmin: userIsAdmin });
+    // Check if user is admin
+    const { data: adminData } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .eq('role', 'admin')
+      .maybeSingle();
+    
+    const isAdmin = !!adminData;
+    logger.info("Admin status checked", { correlationId, userId, isAdmin });
 
     // Generate unique reference for idempotency
     const ref = `edit_${userId}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
     let creditResult;
     
-    if (!userIsAdmin) {
+    if (!isAdmin) {
       // Consume credits for non-admin users
       logger.info("Consuming credits", { correlationId, userId, amount: 1 });
       const { data, error: creditError } = await supabase.rpc("credits_consume", {
@@ -188,7 +194,7 @@ USER'S EDITING REQUEST: ${sanitizedPrompt}`;
       });
 
       // Refund credits due to AI failure (skip for admins)
-      if (!userIsAdmin) {
+      if (!isAdmin) {
         await supabase.rpc("credits_refund", {
           _user_id: userId,
           _amount: 1,
@@ -217,7 +223,7 @@ USER'S EDITING REQUEST: ${sanitizedPrompt}`;
       logger.error("No image in AI response", { correlationId, userId, response: JSON.stringify(aiData) });
 
       // Refund credits due to missing image (skip for admins)
-      if (!userIsAdmin) {
+      if (!isAdmin) {
         await supabase.rpc("credits_refund", {
           _user_id: userId,
           _amount: 1,

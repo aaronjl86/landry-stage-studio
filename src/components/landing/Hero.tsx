@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-const beforeRoomAvif = "/images/hero/before-empty-room.avif";
-const beforeRoomWebp = "/images/hero/before-empty-room.webp";
-const beforeRoomJpg = "/images/hero/before-empty-room.jpg";
+import beforeRoomAvif from "@/assets/before-empty-room.avif";
+import beforeRoomWebp from "@/assets/before-empty-room.webp";
+import beforeRoomJpg from "@/assets/before-empty-room.jpg";
 import afterRoomAvif from "@/assets/after-staged-room.avif";
 import afterRoomWebp from "@/assets/after-staged-room.webp";
 import afterRoomJpg from "@/assets/after-staged-room.jpg";
@@ -20,8 +20,8 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 animated-bg" data-decorative="true" />
       
       {/* Simplified decorative circles - GPU composited */}
-      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl blob" data-decorative="true" style={{ contain: 'layout paint' }} />
-      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl blob" data-decorative="true" style={{ contain: 'layout paint' }} />
+      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl blob" data-decorative="true" />
+      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl blob" data-decorative="true" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
@@ -33,16 +33,7 @@ export const Hero = () => {
               </span>
             </div>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
-              <span className="block drop-shadow-lg">
-                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">AI-powered virtual staging</span>
-                <span className="text-gray-900"> that brings </span>
-                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">YOUR</span>
-                <span className="text-gray-900"> vision and </span>
-                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">YOUR</span>
-                <br />
-                <span className="text-gray-900">listings to life in </span>
-                <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">SECONDS</span>
-              </span>
+              <span className="block text-gray-900 drop-shadow-lg">AI-powered virtual staging that brings your vision and your listings to life in seconds</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
               The <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-extrabold">ONLY</span> self-serve platform where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Upload photos, describe your vision, and watch AI create stunning staged homes in seconds. No expensive physical staging, no waiting weeks—just professional results that help properties sell faster.

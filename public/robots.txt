@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /dashboard/
-Disallow: /auth/
-Disallow: /_headers
-Disallow: /_routes.json
 
 Sitemap: https://www.thelandrymethod.com/sitemap.xml
