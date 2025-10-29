@@ -20,8 +20,8 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 animated-bg" data-decorative="true" />
       
       {/* Simplified decorative circles - GPU composited */}
-      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl blob" data-decorative="true" />
-      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl blob" data-decorative="true" />
+      <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl blob" data-decorative="true" style={{ contain: 'layout paint' }} />
+      <div className="absolute bottom-20 left-20 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl blob" data-decorative="true" style={{ contain: 'layout paint' }} />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">

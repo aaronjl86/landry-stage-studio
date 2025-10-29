@@ -49,7 +49,35 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (id.includes('node_modules')) return 'vendor';
+          // Core React bundle
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-vendor';
+          }
+          
+          // Router bundle
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'router';
+          }
+          
+          // UI component library
+          if (id.includes('node_modules/@radix-ui')) {
+            return 'radix-ui';
+          }
+          
+          // Charts library (large)
+          if (id.includes('node_modules/recharts')) {
+            return 'recharts';
+          }
+          
+          // Supabase
+          if (id.includes('node_modules/@supabase')) {
+            return 'supabase';
+          }
+          
+          // Remaining vendor code
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         }
       }
     }
