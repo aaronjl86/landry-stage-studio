@@ -16,6 +16,14 @@
     <!-- Preload primary font for instant text rendering -->
     <link rel="preload" href="/fonts/montserrat-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     
+    <!-- Resource Hints - Preconnect to critical origins -->
+    <link rel="preconnect" href="https://lcwhbgfcyzefwnoblkkd.supabase.co">
+    <link rel="dns-prefetch" href="https://lcwhbgfcyzefwnoblkkd.supabase.co">
+    
+    <!-- Prefetch likely next navigations -->
+    <link rel="prefetch" href="/auth">
+    <link rel="prefetch" href="/pricing">
+    
     <!-- Async load full stylesheet - non-blocking -->
     
     <!-- Preload ONLY the LCP image (before image) for instant render -->
