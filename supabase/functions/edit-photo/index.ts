@@ -49,31 +49,13 @@ serve(async (req) => {
     if (!prompt || !imageData || !mimeType) {
       logger.warn("Invalid input", { correlationId, userId, hasPrompt: !!prompt, hasImage: !!imageData });
       return new Response(
-        JSON.stringify({ error: "Missing required fields" }),
+        JSON.stringify({ error: "Missing required fields: prompt, imageData, mimeType" }),
         {
           status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         }
       );
     }
-
-    // Validate prompt length and sanitize (prevent injection attacks)
-    if (prompt.length > 500) {
-      logger.warn("Prompt too long", { correlationId, userId, length: prompt.length });
-      return new Response(
-        JSON.stringify({ error: "Prompt must be 500 characters or less" }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
-    }
-
-    // Sanitize prompt: remove newlines and excessive whitespace
-    const sanitizedPrompt = prompt
-      .replace(/[\r\n]+/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
 
     // Validate image size (max 10MB base64)
     if (imageData.length > 10 * 1024 * 1024 * 1.37) {
@@ -91,50 +73,30 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
-    // Check if user is admin
-    const { data: adminData } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userId)
-      .eq('role', 'admin')
-      .maybeSingle();
-    
-    const isAdmin = !!adminData;
-    logger.info("Admin status checked", { correlationId, userId, isAdmin });
-
     // Generate unique reference for idempotency
     const ref = `edit_${userId}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
-    let creditResult;
-    
-    if (!isAdmin) {
-      // Consume credits for non-admin users
-      logger.info("Consuming credits", { correlationId, userId, amount: 1 });
-      const { data, error: creditError } = await supabase.rpc("credits_consume", {
-        _user_id: userId,
-        _amount: 1,
-        _ref: ref,
-        _service: "edit-photo",
-      });
+    // Consume credits
+    logger.info("Consuming credits", { correlationId, userId, amount: 1 });
+    const { data: creditResult, error: creditError } = await supabase.rpc("credits_consume", {
+      _user_id: userId,
+      _amount: 1,
+      _ref: ref,
+      _service: "edit-photo",
+    });
 
-      if (creditError || !data?.success) {
-        logger.warn("Credit consumption failed", { correlationId, userId, error: creditError, result: data });
-        return new Response(
-          JSON.stringify({ 
-            error: data?.error || "Failed to consume credits",
-            remaining: data?.remaining 
-          }),
-          {
-            status: 402,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-          }
-        );
-      }
-      creditResult = data;
-    } else {
-      // Admin bypass - unlimited credits
-      logger.info("Admin user - bypassing credit check", { correlationId, userId });
-      creditResult = { success: true, remaining: 999999 };
+    if (creditError || !creditResult?.success) {
+      logger.warn("Credit consumption failed", { correlationId, userId, error: creditError, result: creditResult });
+      return new Response(
+        JSON.stringify({ 
+          error: creditResult?.error || "Failed to consume credits",
+          remaining: creditResult?.remaining 
+        }),
+        {
+          status: 402,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
     // Call Lovable AI Gateway with Gemini image editing model
@@ -150,7 +112,7 @@ serve(async (req) => {
 
 Do not modify the core architectural layout of the room. This includes prohibiting any changes such as adding or removing structural walls, windows, doors, or fixed architectural features (e.g., fireplaces, built-in shelving, or permanent fixtures). All design adjustments must remain strictly cosmetic or surface-level—for example, alterations to lighting, furniture, materials, textures, or decor are acceptable.
 
-USER'S EDITING REQUEST: ${sanitizedPrompt}`;
+USER'S EDITING REQUEST: ${prompt}`;
 
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -193,20 +155,18 @@ USER'S EDITING REQUEST: ${sanitizedPrompt}`;
         error: errorText 
       });
 
-      // Refund credits due to AI failure (skip for admins)
-      if (!isAdmin) {
-        await supabase.rpc("credits_refund", {
-          _user_id: userId,
-          _amount: 1,
-          _ref: `refund_${ref}`,
-          _original_ref: ref,
-          _service: "edit-photo",
-        });
-        logger.info("Credit refunded due to AI failure", { correlationId, userId });
-      }
+      // Refund credits due to AI failure
+      await supabase.rpc("credits_refund", {
+        _user_id: userId,
+        _amount: 1,
+        _ref: `refund_${ref}`,
+        _original_ref: ref,
+        _service: "edit-photo",
+      });
+      logger.info("Credit refunded due to AI failure", { correlationId, userId });
 
       return new Response(
-        JSON.stringify({ error: "Processing failed. Please try again." }),
+        JSON.stringify({ error: "AI processing failed" }),
         {
           status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -222,20 +182,18 @@ USER'S EDITING REQUEST: ${sanitizedPrompt}`;
     if (!editedImageUrl) {
       logger.error("No image in AI response", { correlationId, userId, response: JSON.stringify(aiData) });
 
-      // Refund credits due to missing image (skip for admins)
-      if (!isAdmin) {
-        await supabase.rpc("credits_refund", {
-          _user_id: userId,
-          _amount: 1,
-          _ref: `refund_${ref}`,
-          _original_ref: ref,
-          _service: "edit-photo",
-        });
-        logger.info("Credit refunded due to missing image", { correlationId, userId });
-      }
+      // Refund credits due to missing image
+      await supabase.rpc("credits_refund", {
+        _user_id: userId,
+        _amount: 1,
+        _ref: `refund_${ref}`,
+        _original_ref: ref,
+        _service: "edit-photo",
+      });
+      logger.info("Credit refunded due to missing image", { correlationId, userId });
 
       return new Response(
-        JSON.stringify({ error: "Processing failed. Please try again." }),
+        JSON.stringify({ error: "No edited image returned from AI" }),
         {
           status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -264,7 +222,7 @@ USER'S EDITING REQUEST: ${sanitizedPrompt}`;
     });
 
     return new Response(
-      JSON.stringify({ error: "An unexpected error occurred. Please try again." }),
+      JSON.stringify({ error: "Internal server error", correlationId }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

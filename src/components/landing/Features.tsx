@@ -3,33 +3,33 @@ import { Zap, Image, Clock, Shield, Wand2, TrendingUp } from "lucide-react";
 const features = [
   {
     icon: Wand2,
-    title: "Professional Virtual Staging Service",
-    description: "Write exactly what you want to see with custom prompts. No preset templates—describe your vision in your own words and our AI-powered virtual staging software brings it to life with photorealistic results."
+    title: "Custom Prompts",
+    description: "Write exactly what you want to see. No preset templates—describe your vision in your own words and our AI brings it to life."
   },
   {
     icon: Zap,
-    title: "24 Hours Turnaround Time",
-    description: "Get professional staged photos in seconds, not days. Our virtual staging real estate platform delivers faster than traditional staging without waiting for designers or back-and-forth revisions."
+    title: "Instant Results",
+    description: "Get photorealistic staging in seconds, not days. No waiting for designers or back-and-forth revisions."
   },
   {
     icon: Image,
-    title: "Works with Any Real Estate Photographer",
-    description: "Upload real estate photos from any source. High-definition, professional staged images at a fraction of the cost of physical staging—competitively priced virtual staging service for real estate agents."
+    title: "Photorealistic Quality",
+    description: "High-definition, professional images at a fraction of the cost of physical staging—competitively priced with other virtual services."
   },
   {
     icon: Clock,
-    title: "Self-Serve Virtual Staging Platform",
-    description: "Complete control from start to finish. Upload your real estate photos, choose furniture styles, customize, and download staged homes—all on your own timeline, 24/7. No design experience needed."
+    title: "Self-Serve Platform",
+    description: "Complete control from start to finish. Upload, customize, and download—all on your own timeline, 24/7."
   },
   {
     icon: Shield,
-    title: "Unlimited Furniture Styles",
-    description: "Generate as many staged images as you need. Try different furniture styles, arrangements, and details until it's perfect. From modern to traditional staging, showcase staged homes that appeal to home buyers."
+    title: "Unlimited Creativity",
+    description: "Generate as many variations as you need. Try different styles, furniture arrangements, and details until it's perfect."
   },
   {
     icon: TrendingUp,
-    title: "Staged Homes Sell 73% Faster",
-    description: "Staged homes sell 73% faster and for 3-5% more than empty properties. Virtual staging real estate gives you the flexibility to showcase any style to your target home buyers at a fraction of physical staging costs."
+    title: "Sell Faster",
+    description: "Staged homes sell 73% faster and for 3-5% more. Now with the flexibility to showcase any style to your target buyers."
   }
 ];
 

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Header } from "@/components/landing/Header";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -6,18 +5,6 @@ import { ArrowLeft, Target, Users, Zap } from "lucide-react";
 import Footer4Col from "@/components/ui/footer-column";
 
 export default function About() {
-  useEffect(() => {
-    document.title = "About The Landry Method | Professional Virtual Staging Service for Real Estate";
-    
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', 'Learn how The Landry Method helps real estate agents transform empty spaces with AI-powered virtual staging. Professional results in 24 hours.');
-  }, []);
-
   return (
     <div className="min-h-screen">
       <Header />

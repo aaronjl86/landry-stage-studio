@@ -41,15 +41,16 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    sourcemap: false,
-    target: 'es2018',
-    cssCodeSplit: false,
-    cssTarget: 'chrome90',
-    minify: 'esbuild',
+    cssCodeSplit: false, // Bundle all CSS into one file
+    cssTarget: 'chrome90', // Target modern browsers for smaller CSS
+    minify: 'esbuild', // Fast minification
     rollupOptions: {
       output: {
-        manualChunks(id: string) {
-          if (id.includes('node_modules')) return 'vendor';
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['lucide-react', 'framer-motion', '@radix-ui/react-slot'],
+          'supabase': ['@supabase/supabase-js'],
+          'query': ['@tanstack/react-query']
         }
       }
     }

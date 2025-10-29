@@ -22,18 +22,6 @@ export default function Gallery() {
   const [loadingUploads, setLoadingUploads] = useState(true);
 
   useEffect(() => {
-    document.title = "Your Staged Photos | Virtual Staging Gallery - The Landry Method";
-    
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', 'View all your virtually staged real estate photos. Download before and after images to showcase properties.');
-  }, []);
-
-  useEffect(() => {
     if (!loading && !user) {
       navigate("/auth");
     }

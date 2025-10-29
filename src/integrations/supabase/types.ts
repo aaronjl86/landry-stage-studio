@@ -414,30 +414,7 @@ export type Database = {
       }
     }
     Views: {
-      public_uploads: {
-        Row: {
-          created_at: string | null
-          id: string | null
-          original_image_url: string | null
-          staged_image_url: string | null
-          status: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string | null
-          original_image_url?: string | null
-          staged_image_url?: string | null
-          status?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string | null
-          original_image_url?: string | null
-          staged_image_url?: string | null
-          status?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       check_signup_abuse: {
