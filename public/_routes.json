@@ -17,6 +17,18 @@
     "/*.woff2",
     "/robots.txt",
     "/placeholder.svg",
-    "/_headers"
+    "/_headers",
+    "/_redirects",
+    "/sitemap.xml",
+    "/manifest.webmanifest",
+    "/cdn-cgi/*"
+  ],
+  "routes": [
+    {
+      "pattern": "/*",
+      "zone_name": "thelandrymethod.com",
+      "serve": "/index.html",
+      "status": 200
+    }
   ]
 }
