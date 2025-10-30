@@ -5,7 +5,7 @@ import { Header } from "@/components/landing/Header";
 import { AIPhotoEditor } from "@/components/ai/AIPhotoEditor";
 
 export default function Dashboard() {
-  const { user, loading } = useAuth();
+  const { user, session, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,10 +21,10 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!loading && !user && !session) {
       navigate("/auth");
     }
-  }, [user, loading, navigate]);
+  }, [user, session, loading, navigate]);
 
   if (loading) {
     return (
