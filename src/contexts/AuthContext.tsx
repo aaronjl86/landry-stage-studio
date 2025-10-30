@@ -82,17 +82,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+      async (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         
         // Refresh credits and subscription when user logs in
         if (session?.user) {
-          setTimeout(() => {
-            refreshCredits();
-            checkSubscription();
-            checkAdminStatus();
-          }, 0);
+          await Promise.all([
+            refreshCredits(),
+            checkSubscription(),
+            checkAdminStatus()
+          ]);
         } else {
           setCredits(0);
           setIsAdmin(false);
@@ -102,18 +102,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     );
 
     // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
-      setLoading(false);
       
       if (session?.user) {
-        setTimeout(() => {
-          refreshCredits();
-          checkSubscription();
-          checkAdminStatus();
-        }, 0);
+        await Promise.all([
+          refreshCredits(),
+          checkSubscription(),
+          checkAdminStatus()
+        ]);
       }
+      
+      setLoading(false);
     });
 
     return () => subscription.unsubscribe();

@@ -58,7 +58,7 @@ export function UpgradeDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[900px] md:max-w-[1000px] z-[60] max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center justify-center mb-4">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
@@ -76,13 +76,10 @@ export function UpgradeDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid gap-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4 items-stretch">
           {/* Starter Plan */}
-          <Card
-            className="p-6 cursor-pointer transition-all hover:shadow-lg border-2 hover:border-primary"
-            onClick={() => handleUpgrade(SUBSCRIPTION_PLANS.starter.monthlyPriceId)}
-          >
-            <div className="space-y-3">
+          <Card className="p-6 transition-all hover:shadow-lg border-2 hover:border-primary flex flex-col">
+            <div className="space-y-3 flex flex-col h-full">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   Starter Plan
@@ -95,26 +92,35 @@ export function UpgradeDialog({
               <p className="text-sm text-muted-foreground">
                 {SUBSCRIPTION_PLANS.starter.description}
               </p>
-              <ul className="space-y-2">
+              <ul className="space-y-2 flex-grow">
                 {SUBSCRIPTION_PLANS.starter.features.map((feature, idx) => (
                   <li key={idx} className="text-sm flex items-center gap-2">
                     <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">✓</span> {feature}
                   </li>
                 ))}
               </ul>
+              <div className="mt-4 pt-4">
+                <Button 
+                  size="lg" 
+                  className="w-full"
+                  onClick={() => handleUpgrade(SUBSCRIPTION_PLANS.starter.monthlyPriceId)}
+                >
+                  Choose Starter
+                </Button>
+              </div>
             </div>
           </Card>
 
           {/* Professional Plan */}
-          <Card
-            className="p-6 cursor-pointer transition-all hover:shadow-lg border-2 hover:border-primary bg-gradient-to-br from-purple-50/50 to-blue-50/50 dark:from-purple-950/20 dark:to-blue-950/20"
-            onClick={() => handleUpgrade(SUBSCRIPTION_PLANS.professional.monthlyPriceId)}
-          >
-            <div className="space-y-3">
+          <Card className="p-6 transition-all hover:shadow-lg border-2 hover:border-primary bg-gradient-to-br from-purple-50/50 to-blue-50/50 dark:from-purple-950/20 dark:to-blue-950/20 flex flex-col">
+            <div className="space-y-3 flex flex-col h-full">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                  Professional Plan
-                </h3>
+                <div>
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    Professional Plan
+                  </h3>
+                  <span className="text-xs font-semibold text-purple-600 dark:text-purple-400">Most Popular</span>
+                </div>
                 <div className="text-right">
                   <div className="text-2xl font-bold">${SUBSCRIPTION_PLANS.professional.monthlyPrice}</div>
                   <div className="text-sm text-muted-foreground">per month</div>
@@ -123,13 +129,22 @@ export function UpgradeDialog({
               <p className="text-sm text-muted-foreground">
                 {SUBSCRIPTION_PLANS.professional.description}
               </p>
-              <ul className="space-y-2">
+              <ul className="space-y-2 flex-grow">
                 {SUBSCRIPTION_PLANS.professional.features.map((feature, idx) => (
                   <li key={idx} className="text-sm flex items-center gap-2">
                     <span className="text-purple-600">✓</span> {feature}
                   </li>
                 ))}
               </ul>
+              <div className="mt-4 pt-4">
+                <Button 
+                  size="lg" 
+                  className="w-full"
+                  onClick={() => handleUpgrade(SUBSCRIPTION_PLANS.professional.monthlyPriceId)}
+                >
+                  Choose Professional
+                </Button>
+              </div>
             </div>
           </Card>
         </div>
