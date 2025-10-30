@@ -51,14 +51,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", user.id)
-        .eq("role", "admin")
-        .maybeSingle();
+      // Use security definer function to bypass RLS safely
+      const { data, error } = await supabase.rpc('has_role', {
+        _user_id: user.id,
+        _role: 'admin'
+      });
 
-      setIsAdmin(!error && !!data);
+      if (error) {
+        console.error('Failed to check admin status via RPC:', error);
+        setIsAdmin(false);
+        return;
+      }
+
+      setIsAdmin(!!data);
     } catch (error) {
       console.error('Failed to check admin status:', error);
       setIsAdmin(false);
