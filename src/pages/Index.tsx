@@ -27,7 +27,9 @@ const Index = () => {
         </section>
       </Suspense>
       
-      <Features />
+      <section style={{ backgroundColor: '#36eee0' }}>
+        <Features />
+      </section>
       
       <Suspense fallback={<div className="h-96" />}>
         <BeforeAfter />
