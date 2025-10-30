@@ -34,9 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     subscription_end: null,
   });
 
-  const checkSubscription = async () => {
-    if (!user) return;
-
+  const checkSubscriptionInternal = async (currentUser: User) => {
     try {
       const { data, error } = await supabase.functions.invoke('check-subscription');
       if (!error && data) {
@@ -47,13 +45,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const checkAdminStatus = async () => {
-    if (!user) return;
-
+  const checkAdminStatusInternal = async (currentUser: User) => {
     try {
       // Use security definer function to bypass RLS safely
       const { data, error } = await supabase.rpc('has_role', {
-        _user_id: user.id,
+        _user_id: currentUser.id,
         _role: 'admin'
       });
 
@@ -70,18 +66,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const refreshCredits = async () => {
-    if (!user) return;
-
+  const refreshCreditsInternal = async (currentUser: User) => {
     const { data, error } = await supabase
       .from("profiles")
       .select("quota, used")
-      .eq("id", user.id)
+      .eq("id", currentUser.id)
       .single();
 
     if (!error && data) {
       setCredits(data.quota - data.used);
+    } else if (error) {
+      console.error('Failed to refresh credits:', error);
     }
+  };
+
+  // Public wrappers for manual refresh
+  const refreshCredits = async () => {
+    if (!user) return;
+    await refreshCreditsInternal(user);
+  };
+
+  const checkSubscription = async () => {
+    if (!user) return;
+    await checkSubscriptionInternal(user);
   };
 
   useEffect(() => {
@@ -94,9 +101,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         // Refresh credits and subscription when user logs in
         if (session?.user) {
           await Promise.all([
-            refreshCredits(),
-            checkSubscription(),
-            checkAdminStatus()
+            refreshCreditsInternal(session.user),
+            checkSubscriptionInternal(session.user),
+            checkAdminStatusInternal(session.user)
           ]);
         } else {
           setCredits(0);
@@ -113,9 +120,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       
       if (session?.user) {
         await Promise.all([
-          refreshCredits(),
-          checkSubscription(),
-          checkAdminStatus()
+          refreshCreditsInternal(session.user),
+          checkSubscriptionInternal(session.user),
+          checkAdminStatusInternal(session.user)
         ]);
       }
       
