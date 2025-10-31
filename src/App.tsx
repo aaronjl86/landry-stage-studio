@@ -53,3 +53,5 @@ const App = () => (
 );
 
 export default App;
+import "@/assets/before-empty-room.jpg";
+import "@/assets/after-staged-room.jpg";
