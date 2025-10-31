@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
-import beforeRoom from "@/assets/before-empty-room.jpg";
-import afterRoom from "@/assets/after-staged-room.jpg";
+
+const beforeRoom = "/images/before-empty-room.jpg";
+const afterRoom = "/images/after-staged-room.jpg";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
