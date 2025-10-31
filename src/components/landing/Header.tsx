@@ -83,7 +83,7 @@ export const Header = () => {
               playsInline 
               aria-label="The Landry Method" 
               className="h-[70px] md:h-[140px] w-auto object-contain"
-              poster="/assets/tlm-logo-footer.png"
+              poster="/cdn-cgi/image/width=300,quality=85,format=auto/assets/tlm-logo-footer.png"
             />
           </Link>
 

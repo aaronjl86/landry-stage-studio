@@ -57,25 +57,32 @@ export const Hero = () => {
           <div className="relative animate-scale-in">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform">
               {/* Before Image - Empty Room (Left side) */}
-              <picture>
-                <source srcSet={beforeRoomAvif} type="image/avif" />
-                <source srcSet={beforeRoomWebp} type="image/webp" />
-              <img src={beforeRoomJpg} alt="Empty living room before virtual staging" className="absolute inset-0 w-full h-full object-cover scale-110" width="800" height="600" loading="eager" decoding="async" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" {...{
-                fetchpriority: 'high'
-              } as any} />
-              </picture>
+              <img 
+                src="/cdn-cgi/image/width=1200,quality=85,format=auto/assets/before-empty-room.jpg" 
+                alt="Empty living room before virtual staging" 
+                className="absolute inset-0 w-full h-full object-cover scale-110" 
+                width="1200" 
+                height="900" 
+                loading="eager" 
+                decoding="async" 
+                sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" 
+                {...{fetchpriority: 'high'} as any} 
+              />
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute inset-0" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
-                <picture>
-                  <source srcSet={afterRoomAvif} type="image/avif" />
-                  <source srcSet={afterRoomWebp} type="image/webp" />
-                <img src={afterRoomJpg} alt="Professionally staged living room with modern design" className="w-full h-full object-cover scale-110" width="800" height="600" loading="lazy" decoding="async" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" {...{
-                  fetchpriority: 'low'
-                } as any} />
-                </picture>
+                <img 
+                  src="/cdn-cgi/image/width=1200,quality=85,format=auto/assets/after-staged-room.jpg" 
+                  alt="Professionally staged living room with modern design" 
+                  className="w-full h-full object-cover scale-110" 
+                  width="1200" 
+                  height="900" 
+                  loading="lazy" 
+                  decoding="async" 
+                  sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" 
+                />
               </div>
 
               {/* Slider */}

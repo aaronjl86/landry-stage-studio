@@ -11,7 +11,15 @@ export const BeforeAfter = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">
           <h3 className="text-4xl md:text-5xl font-bold">
-            <img src={spatialMotionTitle} alt="Spatial Intelligence in Motion title" className="mx-auto h-auto max-h-24 w-auto object-contain" loading="lazy" decoding="async" width="800" height="200" />
+            <img 
+              src="/cdn-cgi/image/width=800,quality=85,format=auto/assets/spatial-intelligence-in-motion.png" 
+              alt="Spatial Intelligence in Motion title" 
+              className="mx-auto h-auto max-h-24 w-auto object-contain" 
+              loading="lazy" 
+              decoding="async" 
+              width="800" 
+              height="200" 
+            />
             <span className="sr-only">Spatial Intelligence in Motion</span>
           </h3>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Drag the slider to compare empty room with our AI-staged version</p>
@@ -20,13 +28,32 @@ export const BeforeAfter = () => {
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
             {/* Before Image - Empty room on left */}
-            <img src={emptyRoom} alt="Empty living room before staging" className="absolute inset-0 w-full h-full object-cover" width="1200" height="900" loading="lazy" decoding="async" sizes="(max-width: 1024px) 90vw, 800px" />
+            <img 
+              src="/cdn-cgi/image/width=1200,quality=85,format=auto/images/before/before-living-room-fireplace.jpeg" 
+              alt="Empty living room before staging" 
+              className="absolute inset-0 w-full h-full object-cover" 
+              width="1200" 
+              height="900" 
+              loading="lazy" 
+              decoding="async" 
+              sizes="(max-width: 1024px) 90vw, 800px" 
+              {...{fetchpriority: 'high'} as any}
+            />
 
             {/* After Image with clip-path - Staged on right */}
             <div className="absolute inset-0" style={{
             clipPath: `inset(0 0 0 ${sliderPosition}%)`
           }}>
-              <img src={stagedRoom} alt="Staged living room after virtual staging" className="w-full h-full object-cover" width="1200" height="900" loading="lazy" decoding="async" sizes="(max-width: 1024px) 90vw, 800px" />
+              <img 
+                src="/cdn-cgi/image/width=1200,quality=85,format=auto/images/after/after-living-room-fireplace-staged.jpeg" 
+                alt="Staged living room after virtual staging" 
+                className="w-full h-full object-cover" 
+                width="1200" 
+                height="900" 
+                loading="lazy" 
+                decoding="async" 
+                sizes="(max-width: 1024px) 90vw, 800px" 
+              />
             </div>
 
             {/* Slider */}

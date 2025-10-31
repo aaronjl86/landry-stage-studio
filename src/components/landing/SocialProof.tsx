@@ -116,7 +116,15 @@ export const SocialProof = () => {
         <p className="text-center text-muted-foreground italic mb-4 text-sm">Sample feedback illustrating the type of client experience we aim to deliver. Real testimonials coming soon.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {(isMobile ? testimonials.slice(0, 3) : testimonials).map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
-              <img src={testimonial.image} alt={`${testimonial.name} - ${testimonial.role}`} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30 blur-sm" width="80" height="80" loading="lazy" decoding="async" />
+              <img 
+                src={`/cdn-cgi/image/width=160,quality=85,format=auto${testimonial.image}`} 
+                alt={`${testimonial.name} - ${testimonial.role}`} 
+                className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30 blur-sm" 
+                width="80" 
+                height="80" 
+                loading="lazy" 
+                decoding="async" 
+              />
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400 animate-fade-in hover:scale-110 transition-transform" style={{
               animationDelay: `${i * 0.1}s`
@@ -136,34 +144,59 @@ export const SocialProof = () => {
         <div className="text-5xl font-semibold mb-4 rounded-none">Want your project featured here? Try your first free enhancement.</div>
         {showMarquee && <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <picture>
-              <source srcSet={redOakRealtyWebP} type="image/webp" />
-              <img src={redOakRealtyPNG} alt="Red Oak Realty" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
-            </picture>
+            <img 
+              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/red-oak-realty-opt.png" 
+              alt="Red Oak Realty" 
+              className="h-full w-full object-contain blur-sm" 
+              width="192" 
+              height="112" 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <picture>
-              <source srcSet={austinRealEstateWebP} type="image/webp" />
-              <img src={austinRealEstatePNG} alt="Austin Real Estate Experts" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
-            </picture>
+            <img 
+              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/austin-real-estate-opt.png" 
+              alt="Austin Real Estate Experts" 
+              className="h-full w-full object-contain blur-sm" 
+              width="192" 
+              height="112" 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <picture>
-              <source srcSet={kellerWilliamsWebP} type="image/webp" />
-              <img src={kellerWilliamsPNG} alt="Keller Williams" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
-            </picture>
+            <img 
+              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/keller-williams-opt.png" 
+              alt="Keller Williams" 
+              className="h-full w-full object-contain blur-sm" 
+              width="192" 
+              height="112" 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <picture>
-              <source srcSet={leggettRealEstateWebP} type="image/webp" />
-              <img src={leggettRealEstatePNG} alt="Leggett International Real Estate" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
-            </picture>
+            <img 
+              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/leggett-real-estate-opt.png" 
+              alt="Leggett International Real Estate" 
+              className="h-full w-full object-contain blur-sm" 
+              width="192" 
+              height="112" 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
-            <picture>
-              <source srcSet={johnTaylorWebP} type="image/webp" />
-              <img src={johnTaylorPNG} alt="John Taylor Luxury Real Estate" className="h-full w-full object-contain blur-sm" width="192" height="112" loading="lazy" decoding="async" />
-            </picture>
+            <img 
+              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/john-taylor-opt.png" 
+              alt="John Taylor Luxury Real Estate" 
+              className="h-full w-full object-contain blur-sm" 
+              width="192" 
+              height="112" 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
         </Marquee>}
       </div>
