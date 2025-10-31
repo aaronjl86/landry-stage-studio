@@ -1,4 +1,6 @@
 import { useState } from "react";
+import beforeRoom from "@/assets/before-empty-room.jpg";
+import afterRoom from "@/assets/after-staged-room.jpg";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -10,31 +12,23 @@ export const BeforeAfter = () => {
   return (
     <section className="py-20 md:py-28 bg-secondary/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* ===== Header Section ===== */}
+        {/* Header */}
         <div className="text-center space-y-4 mb-12">
           <h3 className="text-4xl md:text-5xl font-bold">
-            <img
-              src="/images/after/after-living-room-fireplace-staged.jpeg"
-              alt="Spatial Intelligence in Motion title"
-              className="mx-auto h-auto max-h-24 w-auto object-contain rounded-md"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="200"
-            />
-            <span className="sr-only">Spatial Intelligence in Motion</span>
+            <span className="block mb-2">Spatial Intelligence in Motion</span>
           </h3>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Drag the slider to compare the empty room with our AI-staged version
           </p>
         </div>
 
-        {/* ===== Before/After Slider ===== */}
+        {/* Before/After Container */}
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-            {/* Before Image (empty room) */}
+            
+            {/* Before Image */}
             <img
-              src="/images/before/before-living-room-fireplace.jpeg"
+              src={beforeRoom}
               alt="Empty living room before staging"
               className="absolute inset-0 w-full h-full object-cover"
               width="1200"
@@ -45,13 +39,13 @@ export const BeforeAfter = () => {
               fetchpriority="high"
             />
 
-            {/* After Image (staged room) */}
+            {/* After Image */}
             <div
               className="absolute inset-0"
               style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
             >
               <img
-                src="/images/after/after-living-room-fireplace-staged.jpeg"
+                src={afterRoom}
                 alt="Staged living room after virtual staging"
                 className="w-full h-full object-cover"
                 width="1200"
@@ -62,7 +56,7 @@ export const BeforeAfter = () => {
               />
             </div>
 
-            {/* ===== Slider Control ===== */}
+            {/* Slider Control */}
             <div className="absolute inset-0 flex items-center">
               <input
                 type="range"
@@ -73,8 +67,6 @@ export const BeforeAfter = () => {
                 className="absolute w-full h-full opacity-0 cursor-ew-resize z-10"
                 aria-label="Slide to compare before and after staging"
               />
-
-              {/* Slider line + handle */}
               <div
                 className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none"
                 style={{ left: `${sliderPosition}%` }}
@@ -88,7 +80,7 @@ export const BeforeAfter = () => {
               </div>
             </div>
 
-            {/* ===== Labels ===== */}
+            {/* Labels */}
             <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold">
               Before
             </div>
