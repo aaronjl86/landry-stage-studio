@@ -90,3 +90,18 @@
   Cache-Control: public, max-age=31536000, immutable
   Vary: Accept
   Access-Control-Allow-Origin: *
+/assets/*.avif
+  Content-Type: image/avif
+  Access-Control-Allow-Origin: *
+
+/assets/*.webp
+  Content-Type: image/webp
+  Access-Control-Allow-Origin: *
+
+/assets/*.png
+  Content-Type: image/png
+  Access-Control-Allow-Origin: *
+
+/assets/*.jpg
+  Content-Type: image/jpeg
+  Access-Control-Allow-Origin: *
