@@ -1,95 +1,702 @@
-import { useState } from "react";
-import beforeRoom from "@/assets/before-empty-room.jpg";
-import afterRoom from "@/assets/after-staged-room.jpg";
+contentScript.js:2 wle:content:translations: Started initialization.
+contentScript.js:2 i18next: languageChanged en-US
+contentScript.js:2 i18next: initialized {debug: true, initImmediate: true, ns: Array(1), defaultNS: Array(1), fallbackLng: Array(1), …}
+3851-7cdc07038548d361.js?dpl=6904afe382f4a600083c3bd8:1 Initializing RudderStack Analytics
+VM8902:2 
+⠀⠀#######
+ ##########
+#############
+##############
+##############
+###################
+#####################
+#######################
+#######################
+#######################
+######################
+###################
 
-export const BeforeAfter = () => {
-  const [sliderPosition, setSliderPosition] = useState(50);
-
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderPosition(Number(e.target.value));
-  };
-
-  return (
-    <section className="py-20 md:py-28 bg-secondary/20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header */}
-        <div className="text-center space-y-4 mb-12">
-          <h3 className="text-4xl md:text-5xl font-bold">
-            <span className="block mb-2">Spatial Intelligence in Motion</span>
-          </h3>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Drag the slider to compare the empty room with our AI-staged version
-          </p>
-        </div>
-
-        {/* Before/After Container */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-            
-            {/* Before Image */}
-            <img
-              src={beforeRoom}
-              alt="Empty living room before staging"
-              className="absolute inset-0 w-full h-full object-cover"
-              width="1200"
-              height="900"
-              loading="lazy"
-              decoding="async"
-              sizes="(max-width: 1024px) 90vw, 800px"
-              fetchpriority="high"
-            />
-
-            {/* After Image */}
-            <div
-              className="absolute inset-0"
-              style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
-            >
-              <img
-                src={afterRoom}
-                alt="Staged living room after virtual staging"
-                className="w-full h-full object-cover"
-                width="1200"
-                height="900"
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 1024px) 90vw, 800px"
-              />
-            </div>
-
-            {/* Slider Control */}
-            <div className="absolute inset-0 flex items-center">
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderPosition}
-                onChange={handleSliderChange}
-                className="absolute w-full h-full opacity-0 cursor-ew-resize z-10"
-                aria-label="Slide to compare before and after staging"
-              />
-              <div
-                className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center">
-                  <div className="flex gap-1">
-                    <div className="w-0.5 h-4 bg-primary" />
-                    <div className="w-0.5 h-4 bg-primary" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Labels */}
-            <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold">
-              Before
-            </div>
-            <div className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold">
-              After
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+We're hiring!https://lovable.dev/careers
+3851-7cdc07038548d361.js?dpl=6904afe382f4a600083c3bd8:1 RudderStack: Identifying user {userId: 'JnAcBf9SLBhYGtYjqKR9ELOZZLW2'}
+layout-eba5c2a55c9639fe.js?dpl=6904afe382f4a600083c3bd8:1  GET https://connect.facebook.net/en_US/fbevents.js net::ERR_BLOCKED_BY_ADMINISTRATOR
+Node.insertBefore @ layout-eba5c2a55c9639fe.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ScriptLoader.js:36
+init @ browser.js:100
+iq @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+Promise.then
+loadJSFile @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+load @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+invoke @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+invokeSingle @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+invokeSingle @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+loadDestinations @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+onLoaded @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+e1.c @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+eB @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+eL @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+processConfig @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+Promise.then
+getAsyncData @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+getConfig @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+init @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+loadConfig @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+onBrowserCapabilitiesReady @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+e1.c @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+eB @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+e0 @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+e1.c @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+e2 @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+startLifecycle @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+load @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+load @ 7a040ae9-7c6ff4b9ae77518e.js?dpl=6904afe382f4a600083c3bd8:4
+(anonymous) @ 2971-ab5653d6c7bb2e24.js?dpl=6904afe382f4a600083c3bd8:1
+aw @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+useState @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+t.useState @ 1689-425aab338203ccc4.js?dpl=6904afe382f4a600083c3bd8:11
+f @ 2971-ab5653d6c7bb2e24.js?dpl=6904afe382f4a600083c3bd8:1
+l9 @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+o_ @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+oq @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ik @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iu @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iX @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+A @ 1689-425aab338203ccc4.js?dpl=6904afe382f4a600083c3bd8:11
+ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1 Unrecognized feature: 'vr'.
+e4 @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+sc @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+sd @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ix @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ik @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iu @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iX @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+A @ 1689-425aab338203ccc4.js?dpl=6904afe382f4a600083c3bd8:11
+ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1 Unrecognized feature: 'ambient-light-sensor'.
+e4 @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+sc @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+sd @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ix @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ik @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iu @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iX @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+A @ 1689-425aab338203ccc4.js?dpl=6904afe382f4a600083c3bd8:11
+ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1 Unrecognized feature: 'battery'.
+e4 @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+sc @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+sd @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ix @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ik @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+(anonymous) @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iu @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+iX @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+A @ 1689-425aab338203ccc4.js?dpl=6904afe382f4a600083c3bd8:11
+layout-eba5c2a55c9639fe.js?dpl=6904afe382f4a600083c3bd8:1 An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.
+Node.insertBefore @ layout-eba5c2a55c9639fe.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ub @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+layout-eba5c2a55c9639fe.js?dpl=6904afe382f4a600083c3bd8:1 An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.
+Node.insertBefore @ layout-eba5c2a55c9639fe.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+un @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ub @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+ug @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+uv @ ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1
+3851-7cdc07038548d361.js?dpl=6904afe382f4a600083c3bd8:1 devserver_websocket_open
+3851-7cdc07038548d361.js?dpl=6904afe382f4a600083c3bd8:1 devserver_websocket_open
+3851-7cdc07038548d361.js?dpl=6904afe382f4a600083c3bd8:1 devserver_websocket_open
+client:733 [vite] connecting...
+vendor-BcA5-2Ni.js:33  GET https://id-preview--acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovable.app/cdn-cgi/image/width=300,quality=85,format=auto/assets/tlm-logo-footer.png 404 (Not Found)
+C @ vendor-BcA5-2Ni.js:33
+Rb @ vendor-BcA5-2Ni.js:40
+pv @ vendor-BcA5-2Ni.js:40
+hv @ vendor-BcA5-2Ni.js:40
+Db @ vendor-BcA5-2Ni.js:40
+uv @ vendor-BcA5-2Ni.js:40
+L @ vendor-BcA5-2Ni.js:25
+P @ vendor-BcA5-2Ni.js:25
+before-empty-room.jpg:1  GET https://id-preview--acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovable.app/cdn-cgi/image/width=1200,quality=85,format=auto/assets/before-empty-room.jpg 404 (Not Found)
+Image
+C @ vendor-BcA5-2Ni.js:33
+Rb @ vendor-BcA5-2Ni.js:40
+pv @ vendor-BcA5-2Ni.js:40
+hv @ vendor-BcA5-2Ni.js:40
+Db @ vendor-BcA5-2Ni.js:40
+uv @ vendor-BcA5-2Ni.js:40
+L @ vendor-BcA5-2Ni.js:25
+P @ vendor-BcA5-2Ni.js:25
+client:827 [vite] connected.
+before-empty-room.jpg:1  GET https://id-preview--acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovable.app/cdn-cgi/image/width=1200,quality=85,format=auto/assets/before-empty-room.jpg 404 (Not Found)
+Image
+ov @ vendor-BcA5-2Ni.js:40
+sv @ vendor-BcA5-2Ni.js:40
+sv @ vendor-BcA5-2Ni.js:40
+Nb @ vendor-BcA5-2Ni.js:40
+Fb @ vendor-BcA5-2Ni.js:40
+Yi @ vendor-BcA5-2Ni.js:40
+setTimeout
+uv @ vendor-BcA5-2Ni.js:40
+L @ vendor-BcA5-2Ni.js:25
+P @ vendor-BcA5-2Ni.js:25
+lovable.js:1 ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+console.<computed> @ lovable.js:1
+warnOnce @ react-router-dom.js?v=e8f1a390:4393
+logDeprecation @ react-router-dom.js?v=e8f1a390:4396
+logV6DeprecationWarnings @ react-router-dom.js?v=e8f1a390:4399
+(anonymous) @ react-router-dom.js?v=e8f1a390:5271
+commitHookEffectListMount @ chunk-PKS3QMML.js?v=6d3e9082:16963
+commitPassiveMountOnFiber @ chunk-PKS3QMML.js?v=6d3e9082:18206
+commitPassiveMountEffects_complete @ chunk-PKS3QMML.js?v=6d3e9082:18179
+commitPassiveMountEffects_begin @ chunk-PKS3QMML.js?v=6d3e9082:18169
+commitPassiveMountEffects @ chunk-PKS3QMML.js?v=6d3e9082:18159
+flushPassiveEffectsImpl @ chunk-PKS3QMML.js?v=6d3e9082:19543
+flushPassiveEffects @ chunk-PKS3QMML.js?v=6d3e9082:19500
+performSyncWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18921
+flushSyncCallbacks @ chunk-PKS3QMML.js?v=6d3e9082:9166
+commitRootImpl @ chunk-PKS3QMML.js?v=6d3e9082:19485
+commitRoot @ chunk-PKS3QMML.js?v=6d3e9082:19330
+finishConcurrentRender @ chunk-PKS3QMML.js?v=6d3e9082:18836
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18768
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+lovable.js:1 ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+console.<computed> @ lovable.js:1
+warnOnce @ react-router-dom.js?v=e8f1a390:4393
+logDeprecation @ react-router-dom.js?v=e8f1a390:4396
+logV6DeprecationWarnings @ react-router-dom.js?v=e8f1a390:4402
+(anonymous) @ react-router-dom.js?v=e8f1a390:5271
+commitHookEffectListMount @ chunk-PKS3QMML.js?v=6d3e9082:16963
+commitPassiveMountOnFiber @ chunk-PKS3QMML.js?v=6d3e9082:18206
+commitPassiveMountEffects_complete @ chunk-PKS3QMML.js?v=6d3e9082:18179
+commitPassiveMountEffects_begin @ chunk-PKS3QMML.js?v=6d3e9082:18169
+commitPassiveMountEffects @ chunk-PKS3QMML.js?v=6d3e9082:18159
+flushPassiveEffectsImpl @ chunk-PKS3QMML.js?v=6d3e9082:19543
+flushPassiveEffects @ chunk-PKS3QMML.js?v=6d3e9082:19500
+performSyncWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18921
+flushSyncCallbacks @ chunk-PKS3QMML.js?v=6d3e9082:9166
+commitRootImpl @ chunk-PKS3QMML.js?v=6d3e9082:19485
+commitRoot @ chunk-PKS3QMML.js?v=6d3e9082:19330
+finishConcurrentRender @ chunk-PKS3QMML.js?v=6d3e9082:18836
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18768
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+ff2c0863-dca8d03ffa255156.js?dpl=6904afe382f4a600083c3bd8:1 [Violation] 'setTimeout' handler took 145ms
+[Violation] Forced reflow while executing JavaScript took 31ms
+chunk-PKS3QMML.js?v=6d3e9082:1233  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=300,quality=85,format=auto/assets/tlm-logo-footer.png 404 (Not Found)
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1233
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+chunk-PKS3QMML.js?v=6d3e9082:1271  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=160,quality=85,format=auto/src/assets/testimonials/sarah-johnson-opt.webp 404 (Not Found)
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1271
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+chunk-PKS3QMML.js?v=6d3e9082:1271  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=160,quality=85,format=auto/src/assets/testimonials/michael-chen-opt.webp 404 (Not Found)
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1271
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+chunk-PKS3QMML.js?v=6d3e9082:1271  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=160,quality=85,format=auto/src/assets/testimonials/emma-williams-opt.webp 404 (Not Found)
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1271
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+chunk-PKS3QMML.js?v=6d3e9082:1271  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=160,quality=85,format=auto/src/assets/testimonials/david-martinez-opt.webp 404 (Not Found)
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1271
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+chunk-PKS3QMML.js?v=6d3e9082:1271  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=160,quality=85,format=auto/src/assets/testimonials/robert-anderson-opt.webp 404 (Not Found)
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1271
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+before-empty-room.jpg:1  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=1200,quality=85,format=auto/assets/before-empty-room.jpg 404 (Not Found)
+Image
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1233
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+chunk-PKS3QMML.js?v=6d3e9082:1271  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=160,quality=85,format=auto/src/assets/testimonials/jennifer-lee-opt.webp 404 (Not Found)
+setValueForProperty @ chunk-PKS3QMML.js?v=6d3e9082:1271
+setInitialDOMProperties @ chunk-PKS3QMML.js?v=6d3e9082:7494
+setInitialProperties @ chunk-PKS3QMML.js?v=6d3e9082:7627
+finalizeInitialChildren @ chunk-PKS3QMML.js?v=6d3e9082:8392
+completeWork @ chunk-PKS3QMML.js?v=6d3e9082:16341
+completeUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19277
+performUnitOfWork @ chunk-PKS3QMML.js?v=6d3e9082:19259
+workLoopConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19242
+renderRootConcurrent @ chunk-PKS3QMML.js?v=6d3e9082:19217
+performConcurrentWorkOnRoot @ chunk-PKS3QMML.js?v=6d3e9082:18728
+workLoop @ chunk-PKS3QMML.js?v=6d3e9082:197
+flushWork @ chunk-PKS3QMML.js?v=6d3e9082:176
+performWorkUntilDeadline @ chunk-PKS3QMML.js?v=6d3e9082:384
+after-staged-room.jpg:1  GET https://acb55c13-97c9-4e5b-a8bc-3b8b3abbc318.lovableproject.com/cdn-cgi/image/width=1200,quality=85,format=auto/assets/after-staged-room.jpg 404 (Not Found)
