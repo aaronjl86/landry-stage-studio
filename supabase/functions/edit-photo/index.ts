@@ -149,7 +149,7 @@ serve(async (req) => {
     // CRITICAL ARCHITECTURAL PRESERVATION RULE
     const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION RULE:
 
-Do not modify the core architectural layout of the room. This includes prohibiting any changes such as adding or removing structural walls, windows, doors, or fixed architectural features (e.g., fireplaces, built-in shelving, or permanent fixtures). All design adjustments must remain strictly cosmetic or surface-level—for example, alterations to lighting, furniture, materials, textures, or decor are acceptable.
+Do not modify the core architectural layout of the room. This includes prohibiting any changes such as adding or removing structural walls, windows, doors, or fixed architectural features (e.g., fireplaces, built-in shelving, or permanent fixtures). All design adjustments must remain strictly cosmetic or surface-level—for example, alterations to lighting, furniture, materials, textures, or decor are acceptable. Furnishings must match room types (e.g. bed in a bedroom not in a living room)
 
 USER'S EDITING REQUEST: ${sanitizedPrompt}`;
 
