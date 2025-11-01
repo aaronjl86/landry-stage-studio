@@ -133,6 +133,12 @@ All colors MUST be HSL.
   }
 }
 
+/* Custom card variants */
+.card-professional {
+  background: hsl(176, 81%, 56%);
+  border: 1px solid hsl(176, 81%, 46%);
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
