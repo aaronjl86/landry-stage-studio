@@ -16,7 +16,6 @@ export function AIPhotoEditor() {
   const [uploadedImages, setUploadedImages] = useState<
     { data: string; name: string }[]
   >([]);
-  const [selectedTemplates, setSelectedTemplates] = useState<string[]>([]);
   const [customPrompt, setCustomPrompt] = useState("");
   const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const [requiredCredits, setRequiredCredits] = useState(0);
@@ -48,10 +47,10 @@ export function AIPhotoEditor() {
       return;
     }
 
-    if (selectedTemplates.length === 0 && !customPrompt) {
+    if (!customPrompt) {
       toast({
-        title: "No Templates Selected",
-        description: "Please select at least one template or add custom instructions",
+        title: "No Instructions Provided",
+        description: "Please add editing instructions",
         variant: "destructive",
       });
       return;
@@ -65,15 +64,14 @@ export function AIPhotoEditor() {
       return;
     }
 
-    await submitBatchEdit(uploadedImages, selectedTemplates, customPrompt, false);
+    await submitBatchEdit(uploadedImages, [], customPrompt, false);
     await refreshCredits();
-  }, [uploadedImages, selectedTemplates, customPrompt, isAdmin, credits, submitBatchEdit, refreshCredits]);
+  }, [uploadedImages, customPrompt, isAdmin, credits, submitBatchEdit, refreshCredits]);
 
   const handleUpgradeDialogClose = useCallback(() => {
     console.log("Upgrade dialog closed - resetting editor state");
     // Reset all form state so user can start fresh without stuck button
     setUploadedImages([]);
-    setSelectedTemplates([]);
     setCustomPrompt("");
     // Note: Credits only refresh after actual subscription purchase or monthly renewal
   }, []);
@@ -81,7 +79,6 @@ export function AIPhotoEditor() {
   const handleClearAll = useCallback(() => {
     clearJobs();
     setUploadedImages([]);
-    setSelectedTemplates([]);
     setCustomPrompt("");
   }, [clearJobs]);
 
@@ -118,8 +115,6 @@ export function AIPhotoEditor() {
       />
 
       <EnhancedTemplateSelector
-        selectedTemplates={selectedTemplates}
-        onSelectionChange={setSelectedTemplates}
         customPrompt={customPrompt}
         onCustomPromptChange={setCustomPrompt}
       />

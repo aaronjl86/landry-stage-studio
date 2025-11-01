@@ -43,10 +43,14 @@ export function useAIProcessor() {
 
         updateJob(job.id, { progress: 30 });
 
+        // Extract MIME type from data URL (e.g., data:image/webp;base64,...)
+        const mimeTypeMatch = job.originalImage.match(/^data:([^;]+);/);
+        const mimeType = mimeTypeMatch ? mimeTypeMatch[1] : "image/png";
+
         const request: EditImageRequest = {
           prompt,
           imageData: job.originalImage,
-          mimeType: "image/png",
+          mimeType,
         };
 
         const result = await aiAPI.submitEdit(request);
