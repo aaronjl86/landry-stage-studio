@@ -100,22 +100,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, 5000);
 
     // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+    const { data: { subscription: authSub } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         
-        // Refresh credits and subscription when user logs in
+        // Defer any backend calls to avoid blocking the auth event
         if (session?.user) {
-          try {
-            await Promise.all([
+          setTimeout(() => {
+            Promise.all([
               refreshCreditsInternal(session.user),
               checkSubscriptionInternal(session.user),
               checkAdminStatusInternal(session.user)
-            ]);
-          } catch (error) {
-            console.error('Error refreshing user data:', error);
-          }
+            ]).catch((error) => {
+              console.error('Error refreshing user data:', error);
+            });
+          }, 0);
         } else {
           setCredits(0);
           setIsAdmin(false);
@@ -151,7 +151,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     return () => {
       clearTimeout(timeout);
-      subscription.unsubscribe();
+      authSub.unsubscribe();
     };
   }, []);
 
@@ -169,17 +169,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signOut = async () => {
     console.log('[AuthContext] Sign out clicked');
     try {
-      await supabase?.auth.signOut();
-    } catch (err) {
-      console.error('[AuthContext] signOut error:', err);
+      // Fire-and-forget to avoid UI being blocked by network hiccups
+      supabase?.auth.signOut().catch((err) => {
+        console.error('[AuthContext] signOut error (non-blocking):', err);
+      });
     } finally {
       setUser(null);
       setSession(null);
       setCredits(0);
       setIsAdmin(false);
       setSubscription({ subscribed: false, product_id: null, subscription_end: null });
-      // Force full page reload to auth page
-      window.location.href = '/auth';
+      // Hard redirect within the app origin to ensure correct routing in previews
+      const target = `${window.location.origin}/auth`;
+      console.log('[AuthContext] Redirecting to:', target);
+      window.location.replace(target);
     }
   };
 
