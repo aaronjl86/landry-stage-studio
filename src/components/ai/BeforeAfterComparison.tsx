@@ -37,7 +37,7 @@ export function BeforeAfterComparison({ jobs, onRedoJob }: BeforeAfterComparison
   };
 
   return (
-    <Card className="p-6 card-professional">
+    <Card className="p-6 !bg-[hsl(176,81%,56%)] !border-[hsl(176,81%,46%)]">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Results</h3>
