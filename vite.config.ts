@@ -15,6 +15,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     mode === "production" &&
       ViteImageOptimizer({
+        exclude: ["**/*.avif"],
         png: {
           quality: 80,
           compressionLevel: 9,
@@ -30,9 +31,6 @@ export default defineConfig(({ mode }) => ({
         webp: {
           quality: 85,
           lossless: false,
-        },
-        avif: {
-          quality: 70,
         },
       }),
   ].filter(Boolean),
