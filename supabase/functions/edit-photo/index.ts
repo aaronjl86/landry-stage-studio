@@ -59,10 +59,10 @@ serve(async (req) => {
 
     // Validate prompt length and sanitize (prevent injection attacks)
     // Allow longer prompts since we add system instructions
-    if (prompt.length > 1500) {
+    if (prompt.length > 4000) {
       logger.warn("Prompt too long", { correlationId, userId, length: prompt.length });
       return new Response(
-        JSON.stringify({ error: "Prompt must be 1500 characters or less" }),
+        JSON.stringify({ error: "Prompt must be 4000 characters or less" }),
         {
           status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
