@@ -118,8 +118,8 @@ export const SocialProof = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {(isMobile ? testimonials.slice(0, 3) : testimonials).map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
               <img 
-                src={`/cdn-cgi/image/width=160,quality=85,format=auto${testimonial.image}`} 
-                alt={`${testimonial.name} - ${testimonial.role}`} 
+                src={testimonial.image} 
+                alt={`${testimonial.name} - ${testimonial.role}`}
                 className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-4 border-primary/30 blur-sm" 
                 width="80" 
                 height="80" 
@@ -146,7 +146,7 @@ export const SocialProof = () => {
         {showMarquee && <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
             <img 
-              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/red-oak-realty-opt.png" 
+              src={redOakRealtyWebP} 
               alt="Red Oak Realty" 
               className="h-full w-full object-contain blur-sm" 
               width="192" 
@@ -157,7 +157,7 @@ export const SocialProof = () => {
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <img 
-              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/austin-real-estate-opt.png" 
+              src={austinRealEstateWebP} 
               alt="Austin Real Estate Experts" 
               className="h-full w-full object-contain blur-sm" 
               width="192" 
@@ -168,7 +168,7 @@ export const SocialProof = () => {
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <img 
-              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/keller-williams-opt.png" 
+              src={kellerWilliamsWebP} 
               alt="Keller Williams" 
               className="h-full w-full object-contain blur-sm" 
               width="192" 
@@ -179,7 +179,7 @@ export const SocialProof = () => {
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <img 
-              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/leggett-real-estate-opt.png" 
+              src={leggettRealEstateWebP} 
               alt="Leggett International Real Estate" 
               className="h-full w-full object-contain blur-sm" 
               width="192" 
@@ -190,7 +190,7 @@ export const SocialProof = () => {
           </div>
           <div className="relative h-28 w-48 flex items-center justify-center">
             <img 
-              src="/cdn-cgi/image/width=250,quality=85,format=auto/assets/logos/john-taylor-opt.png" 
+              src={johnTaylorWebP} 
               alt="John Taylor Luxury Real Estate" 
               className="h-full w-full object-contain blur-sm" 
               width="192" 
