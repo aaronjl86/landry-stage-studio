@@ -18,11 +18,6 @@ export const Header = () => {
   const isMobile = useIsMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleForceRefresh = async () => {
-    console.log('[Debug] Force refreshing auth state...');
-    await Promise.all([refreshCredits(), checkSubscription()]);
-    window.location.reload();
-  };
 
   // Main navigation tabs
   const mainTabs: TabItem[] = [{
@@ -99,34 +94,7 @@ export const Header = () => {
           {/* Desktop Navigation - Large screens only */}
           <nav className="hidden lg:flex items-center flex-1 justify-center gap-2">
             <ExpandableTabs tabs={allTabs} />
-            {user && (
-              <Button 
-                onClick={handleForceRefresh}
-                variant="outline"
-                size="sm"
-                className="text-xs"
-              >
-                🔄 Refresh Auth
-              </Button>
-            )}
           </nav>
-
-          {/* Desktop Auth Controls */}
-          <div className="hidden lg:flex items-center gap-2">
-            {user ? (
-              <Button variant="ghost" size="sm" onClick={signOut} aria-label="Sign out">
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
-            ) : (
-              <Link to="/auth">
-                <Button size="sm" aria-label="Sign in">
-                  <LogIn className="h-4 w-4 mr-2" />
-                  Sign In
-                </Button>
-              </Link>
-            )}
-          </div>
 
           {/* Mobile/Tablet Navigation - Hamburger menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
