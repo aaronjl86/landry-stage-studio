@@ -91,6 +91,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    // Safety timeout to ensure loading state resolves
+    const timeout = setTimeout(() => {
+      console.warn('Auth initialization timed out, forcing loading to false');
+      setLoading(false);
+    }, 5000);
+
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
@@ -99,11 +105,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         
         // Refresh credits and subscription when user logs in
         if (session?.user) {
-          await Promise.all([
-            refreshCreditsInternal(session.user),
-            checkSubscriptionInternal(session.user),
-            checkAdminStatusInternal(session.user)
-          ]);
+          try {
+            await Promise.all([
+              refreshCreditsInternal(session.user),
+              checkSubscriptionInternal(session.user),
+              checkAdminStatusInternal(session.user)
+            ]);
+          } catch (error) {
+            console.error('Error refreshing user data:', error);
+          }
         } else {
           setCredits(0);
           setIsAdmin(false);
@@ -118,17 +128,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        await Promise.all([
-          refreshCreditsInternal(session.user),
-          checkSubscriptionInternal(session.user),
-          checkAdminStatusInternal(session.user)
-        ]);
+        try {
+          await Promise.all([
+            refreshCreditsInternal(session.user),
+            checkSubscriptionInternal(session.user),
+            checkAdminStatusInternal(session.user)
+          ]);
+        } catch (error) {
+          console.error('Error initializing user data:', error);
+        }
       }
       
+      clearTimeout(timeout);
+      setLoading(false);
+    }).catch((error) => {
+      console.error('Error getting session:', error);
+      clearTimeout(timeout);
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      clearTimeout(timeout);
+      subscription.unsubscribe();
+    };
   }, []);
 
   // Auto-refresh subscription status every minute
