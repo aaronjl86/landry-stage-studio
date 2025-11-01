@@ -92,7 +92,7 @@ export function EnhancedTemplateSelector({
   ];
 
   return (
-    <Card className="p-6 bg-[hsl(176,81%,56%)] border-[hsl(176,81%,46%)]">
+    <Card className="p-6 !bg-[hsl(176,81%,56%)] !border-[hsl(176,81%,46%)]">
       <div className="space-y-4">
         <div>
           <h3 className="text-lg font-semibold mb-2">Enhancement Templates</h3>
