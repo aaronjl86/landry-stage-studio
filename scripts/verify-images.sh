@@ -9,7 +9,4 @@ for url in "${URLS[@]}"; do
   curl -Is "$url" | grep -E "HTTP|cf-image-transform|Cache-Control|Vary|cf-resized"
 done
 echo -e "\n✅ Image optimization checks complete."
-<<<<<<< HEAD
-=======
 
->>>>>>> 4aa163d (Move images to public/images and fix BeforeAfter image paths)
