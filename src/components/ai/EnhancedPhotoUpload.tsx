@@ -28,7 +28,7 @@ export function EnhancedPhotoUpload({
   // Initialize Web Worker on mount
   useEffect(() => {
     const worker = new Worker(
-      new URL('../workers/imageCompression.worker.ts', import.meta.url),
+      new URL('../../workers/imageCompression.worker.ts', import.meta.url),
       { type: 'module' }
     );
     workerRef.current = worker;
