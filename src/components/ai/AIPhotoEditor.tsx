@@ -97,7 +97,7 @@ export function AIPhotoEditor() {
         </p>
       </div>
 
-      <Card className="p-6 !bg-[hsl(176,81%,56%)] !border-[hsl(176,81%,46%)]">
+      <Card className="p-6 !bg-[hsl(176,81%,46%)] !border-[hsl(176,81%,36%)]">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-semibold">Credit Balance</h3>
