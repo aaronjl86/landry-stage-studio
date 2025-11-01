@@ -10,10 +10,19 @@ import { useState } from "react";
 export const Header = () => {
   const {
     user,
-    signOut
+    signOut,
+    refreshCredits,
+    checkSubscription,
+    isAdmin
   } = useAuth();
   const isMobile = useIsMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleForceRefresh = async () => {
+    console.log('[Debug] Force refreshing auth state...');
+    await Promise.all([refreshCredits(), checkSubscription()]);
+    window.location.reload();
+  };
 
   // Main navigation tabs
   const mainTabs: TabItem[] = [{
@@ -88,8 +97,18 @@ export const Header = () => {
           </Link>
 
           {/* Desktop Navigation - Large screens only */}
-          <nav className="hidden lg:flex items-center flex-1 justify-center">
+          <nav className="hidden lg:flex items-center flex-1 justify-center gap-2">
             <ExpandableTabs tabs={allTabs} />
+            {user && (
+              <Button 
+                onClick={handleForceRefresh}
+                variant="outline"
+                size="sm"
+                className="text-xs"
+              >
+                🔄 Refresh Auth
+              </Button>
+            )}
           </nav>
 
           {/* Mobile/Tablet Navigation - Hamburger menu */}

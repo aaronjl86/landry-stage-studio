@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const checkAdminStatusInternal = async (currentUser: User) => {
+    console.log('[AuthContext] Checking admin status for user:', currentUser.id);
     try {
       const { data, error } = await supabase.rpc('has_role', {
         _user_id: currentUser.id,
@@ -53,14 +54,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
 
       if (error) {
-        console.error('Failed to check admin status via RPC:', error);
+        console.error('[AuthContext] Failed to check admin status via RPC:', error);
         setIsAdmin(false);
         return;
       }
 
+      console.log('[AuthContext] Admin check result:', data);
       setIsAdmin(!!data);
     } catch (error) {
-      console.error('Failed to check admin status:', error);
+      console.error('[AuthContext] Exception checking admin status:', error);
       setIsAdmin(false);
     }
   };
@@ -171,6 +173,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setCredits(0);
     setIsAdmin(false);
     setSubscription({ subscribed: false, product_id: null, subscription_end: null });
+    // Force full page reload to auth page
+    window.location.href = '/auth';
   };
 
   return (

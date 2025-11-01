@@ -34,29 +34,55 @@ const Pricing = () => {
 
   const handleSubscribe = async (planKey: string, priceId: string) => {
     if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to subscribe to a plan",
+      });
       navigate("/auth");
       return;
     }
 
     setLoadingPlan(planKey);
+    
     try {
+      console.log('[Pricing] Creating checkout session for:', { planKey, priceId });
+      
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { priceId }
       });
 
-      if (error) throw error;
+      console.log('[Pricing] Checkout response:', { data, error });
+
+      if (error) {
+        console.error('[Pricing] Checkout error:', error);
+        toast({
+          title: "Checkout Error",
+          description: error.message || "Failed to create checkout session",
+          variant: "destructive",
+        });
+        setLoadingPlan(null);
+        return;
+      }
 
       if (data?.url) {
-        window.open(data.url, '_blank');
+        console.log('[Pricing] Redirecting to Stripe:', data.url);
+        // Redirect in same window so user returns to app after payment
+        window.location.href = data.url;
+      } else {
+        toast({
+          title: "Error",
+          description: "No checkout URL received from server",
+          variant: "destructive",
+        });
+        setLoadingPlan(null);
       }
     } catch (error) {
-      console.error('Checkout error:', error);
+      console.error('[Pricing] Exception during checkout:', error);
       toast({
-        title: "Error",
-        description: "Failed to start checkout process. Please try again.",
+        title: "Unexpected Error",
+        description: error instanceof Error ? error.message : "Please try again",
         variant: "destructive",
       });
-    } finally {
       setLoadingPlan(null);
     }
   };
