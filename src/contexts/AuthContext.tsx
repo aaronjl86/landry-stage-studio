@@ -167,14 +167,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [user]);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    setSession(null);
-    setCredits(0);
-    setIsAdmin(false);
-    setSubscription({ subscribed: false, product_id: null, subscription_end: null });
-    // Force full page reload to auth page
-    window.location.href = '/auth';
+    try {
+      await supabase?.auth.signOut();
+    } catch (err) {
+      console.error('[AuthContext] signOut error:', err);
+    } finally {
+      setUser(null);
+      setSession(null);
+      setCredits(0);
+      setIsAdmin(false);
+      setSubscription({ subscribed: false, product_id: null, subscription_end: null });
+      // Force full page reload to auth page
+      window.location.href = '/auth';
+    }
   };
 
   return (
