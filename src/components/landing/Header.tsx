@@ -111,6 +111,23 @@ export const Header = () => {
             )}
           </nav>
 
+          {/* Desktop Auth Controls */}
+          <div className="hidden lg:flex items-center gap-2">
+            {user ? (
+              <Button variant="ghost" size="sm" onClick={signOut} aria-label="Sign out">
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </Button>
+            ) : (
+              <Link to="/auth">
+                <Button size="sm" aria-label="Sign in">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+            )}
+          </div>
+
           {/* Mobile/Tablet Navigation - Hamburger menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
