@@ -58,8 +58,8 @@ export const Hero = () => {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform">
               {/* Before Image - Empty Room (Left side) */}
               <img 
-                src="/cdn-cgi/image/width=1200,quality=85,format=auto/assets/before-empty-room.jpg" 
-                alt="Empty living room before virtual staging" 
+                src={beforeRoomJpg} 
+                alt="Empty living room before virtual staging"
                 className="absolute inset-0 w-full h-full object-cover scale-110" 
                 width="1200" 
                 height="900" 
@@ -74,8 +74,8 @@ export const Hero = () => {
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
                 <img 
-                  src="/cdn-cgi/image/width=1200,quality=85,format=auto/assets/after-staged-room.jpg" 
-                  alt="Professionally staged living room with modern design" 
+                  src={afterRoomJpg} 
+                  alt="Professionally staged living room with modern design"
                   className="w-full h-full object-cover scale-110" 
                   width="1200" 
                   height="900" 
