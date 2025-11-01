@@ -1,3 +1,11 @@
 name = "landry-stage-studio"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "dist"
+
+# Cloudflare Polish Configuration
+# Image optimization rules are applied via Cloudflare Dashboard Configuration Rules
+# See cloudflare-config-rules.json and CLOUDFLARE_POLISH_SETUP.md for details
+# Polish automatically optimizes images at the edge with:
+# - Lossy compression + WebP conversion for general images (40-60% size reduction)
+# - Lossless compression + WebP for high-value real estate photos
+# - Polish OFF for logos to maintain perfect quality

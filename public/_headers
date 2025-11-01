@@ -127,3 +127,54 @@
   Access-Control-Allow-Origin: *
   Cross-Origin-Resource-Policy: cross-origin
   Cross-Origin-Embedder-Policy: unsafe-none
+
+# =======================================
+# 🎨 Cloudflare Polish Optimization
+# =======================================
+# Polish automatically optimizes images at the edge
+# with lossy/lossless compression + WebP conversion
+
+# Polish OFF for logos - preserve perfect brand quality
+/assets/logos/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Polish: off
+  X-Content-Type-Options: nosniff
+
+# Add Vary: Accept for all images to enable WebP serving
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+  X-Content-Type-Options: nosniff
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+  X-Content-Type-Options: nosniff
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+  X-Content-Type-Options: nosniff
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+  X-Content-Type-Options: nosniff
+
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+  X-Content-Type-Options: nosniff
+
+# High-value real estate photos (before/after, gallery, hero)
+/assets/gallery/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+
+/images/before/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+
+/images/after/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
