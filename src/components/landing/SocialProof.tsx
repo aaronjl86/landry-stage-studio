@@ -1,6 +1,7 @@
 import { Star, Users, TrendingUp, Award } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
 import { useState, useEffect, useRef } from "react";
+import { throttle } from "@/utils/throttle";
 // WebP versions
 import redOakRealtyWebP from "@/assets/logos/red-oak-realty-opt.webp";
 import austinRealEstateWebP from "@/assets/logos/austin-real-estate-opt.webp";
@@ -25,7 +26,7 @@ export const SocialProof = () => {
   const [showMarquee, setShowMarquee] = useState(false);
   const marqueeRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = throttle(() => setIsMobile(window.innerWidth < 768), 200);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);

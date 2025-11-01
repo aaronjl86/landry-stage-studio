@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -24,7 +24,21 @@ export function AIPhotoEditor() {
   const { jobs, isProcessing, submitBatchEdit, clearJobs, redoJob } = useAIProcessor();
   const { credits, refreshCredits, isAdmin } = useAuth();
 
-  const handleProcess = async () => {
+  // Memoize credit check computation
+  const canProcess = useMemo(() => {
+    return isAdmin || credits >= uploadedImages.length;
+  }, [isAdmin, credits, uploadedImages.length]);
+
+  // Memoize job filtering for display
+  const completedJobs = useMemo(() => {
+    return jobs.filter(job => job.status === 'completed');
+  }, [jobs]);
+
+  const pendingJobs = useMemo(() => {
+    return jobs.filter(job => job.status === 'pending' || job.status === 'processing');
+  }, [jobs]);
+
+  const handleProcess = useCallback(async () => {
     if (uploadedImages.length === 0) {
       toast({
         title: "No Images",
@@ -53,16 +67,23 @@ export function AIPhotoEditor() {
 
     await submitBatchEdit(uploadedImages, selectedTemplates, customPrompt, false);
     await refreshCredits();
-  };
+  }, [uploadedImages, selectedTemplates, customPrompt, isAdmin, credits, submitBatchEdit, refreshCredits]);
 
-  const handleUpgradeDialogClose = () => {
+  const handleUpgradeDialogClose = useCallback(() => {
     console.log("Upgrade dialog closed - resetting editor state");
     // Reset all form state so user can start fresh without stuck button
     setUploadedImages([]);
     setSelectedTemplates([]);
     setCustomPrompt("");
     // Note: Credits only refresh after actual subscription purchase or monthly renewal
-  };
+  }, []);
+
+  const handleClearAll = useCallback(() => {
+    clearJobs();
+    setUploadedImages([]);
+    setSelectedTemplates([]);
+    setCustomPrompt("");
+  }, [clearJobs]);
 
 
   return (
@@ -127,12 +148,7 @@ export function AIPhotoEditor() {
           <Button
             variant="outline"
             size="lg"
-            onClick={() => {
-              clearJobs();
-              setUploadedImages([]);
-              setSelectedTemplates([]);
-              setCustomPrompt("");
-            }}
+            onClick={handleClearAll}
           >
             Clear All
           </Button>

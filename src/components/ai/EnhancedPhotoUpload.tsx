@@ -1,8 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Upload, X, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import imageCompression from "browser-image-compression";
 import { toast } from "@/hooks/use-toast";
 
 interface UploadedImage {
@@ -24,21 +23,50 @@ export function EnhancedPhotoUpload({
 }: EnhancedPhotoUploadProps) {
   const [images, setImages] = useState<UploadedImage[]>([]);
   const [isCompressing, setIsCompressing] = useState(false);
+  const workerRef = useRef<Worker | null>(null);
 
-  const compressImage = async (file: File): Promise<string> => {
-    const options = {
-      maxSizeMB: 2,
-      maxWidthOrHeight: 1920,
-      useWebWorker: true,
-      fileType: "image/webp",
+  // Initialize Web Worker on mount
+  useEffect(() => {
+    const worker = new Worker(
+      new URL('../workers/imageCompression.worker.ts', import.meta.url),
+      { type: 'module' }
+    );
+    workerRef.current = worker;
+    
+    return () => {
+      worker.terminate();
     };
+  }, []);
 
-    const compressedFile = await imageCompression(file, options);
+  const compressImage = async (file: File): Promise<{ data: string; size: number }> => {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(compressedFile);
+      if (!workerRef.current) {
+        reject(new Error('Worker not initialized'));
+        return;
+      }
+
+      const worker = workerRef.current;
+      
+      const handleMessage = (e: MessageEvent) => {
+        if (e.data.success) {
+          resolve({ data: e.data.data, size: e.data.size });
+        } else {
+          reject(new Error(e.data.error));
+        }
+        worker.removeEventListener('message', handleMessage);
+      };
+      
+      worker.addEventListener('message', handleMessage);
+      
+      worker.postMessage({
+        file,
+        options: {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+          fileType: "image/webp",
+        }
+      });
     });
   };
 
@@ -64,7 +92,7 @@ export function EnhancedPhotoUpload({
         for (const file of files) {
           if (!file.type.startsWith("image/")) continue;
 
-          const compressedData = await compressImage(file);
+          const { data: compressedData, size } = await compressImage(file);
           const objectUrl = URL.createObjectURL(file);
 
           newImages.push({
@@ -72,7 +100,7 @@ export function EnhancedPhotoUpload({
             name: file.name,
             data: compressedData,
             objectUrl,
-            size: compressedData.length,
+            size,
           });
         }
 

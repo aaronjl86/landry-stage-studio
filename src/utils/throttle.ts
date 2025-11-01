@@ -1,17 +1,27 @@
-export const throttle = (fn: (...args: any[]) => void, ms = 150) => {
-  let last = 0;
-  let timer: number | undefined;
-  return (...args: any[]) => {
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  wait = 150
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let previous = 0;
+  
+  return function(this: any, ...args: Parameters<T>) {
     const now = Date.now();
-    if (now - last >= ms) {
-      last = now;
-      fn(...args);
-    } else {
-      clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        last = Date.now();
-        fn(...args);
-      }, ms);
+    const remaining = wait - (now - previous);
+    
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      func.apply(this, args);
+    } else if (!timeout) {
+      timeout = setTimeout(() => {
+        previous = Date.now();
+        timeout = null;
+        func.apply(this, args);
+      }, remaining);
     }
   };
-};
+}

@@ -126,15 +126,44 @@ export function useAIProcessor() {
       setJobs((prev) => [...prev, ...newJobs]);
       setIsProcessing(true);
 
-      try {
-        // Process with controlled concurrency (5 at a time)
-        const concurrency = 5;
-        for (let i = 0; i < newJobs.length; i += concurrency) {
-          const batch = newJobs.slice(i, i + concurrency);
-          await Promise.all(batch.map((job) => processJob(job)));
+      // Process in chunks to avoid blocking main thread
+      const processChunk = async (startIdx: number): Promise<void> => {
+        const CHUNK_SIZE = 3; // Process 3 images at a time
+        const endIdx = Math.min(startIdx + CHUNK_SIZE, newJobs.length);
+        
+        // Process this chunk
+        const chunkPromises = newJobs
+          .slice(startIdx, endIdx)
+          .map((job) => processJob(job));
+        
+        await Promise.all(chunkPromises);
+        
+        // If more images remain, schedule next chunk
+        if (endIdx < newJobs.length) {
+          // Use requestIdleCallback if available, otherwise setTimeout
+          if ('requestIdleCallback' in window) {
+            await new Promise<void>((resolve) => {
+              requestIdleCallback(() => {
+                processChunk(endIdx).then(resolve);
+              }, { timeout: 100 }); // Fallback after 100ms
+            });
+          } else {
+            await new Promise<void>((resolve) => {
+              setTimeout(() => {
+                processChunk(endIdx).then(resolve);
+              }, 0);
+            });
+          }
+        } else {
+          setIsProcessing(false);
         }
-      } finally {
+      };
+
+      try {
+        await processChunk(0);
+      } catch (error) {
         setIsProcessing(false);
+        throw error;
       }
     },
     [processJob]

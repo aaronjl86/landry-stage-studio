@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { EditingJob } from "@/hooks/useAIProcessor";
+import { useMemo } from "react";
 
 interface ProcessingQueueProps {
   jobs: EditingJob[];
@@ -38,8 +39,16 @@ export function ProcessingQueue({ jobs }: ProcessingQueueProps) {
     );
   };
 
-  const completedCount = jobs.filter((j) => j.status === "completed").length;
-  const failedCount = jobs.filter((j) => j.status === "failed").length;
+  // Memoize counts to avoid recalculating on every render
+  const completedCount = useMemo(() => 
+    jobs.filter((j) => j.status === "completed").length,
+    [jobs]
+  );
+  
+  const failedCount = useMemo(() => 
+    jobs.filter((j) => j.status === "failed").length,
+    [jobs]
+  );
 
   return (
     <Card className="p-6 card-professional">
