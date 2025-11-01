@@ -169,17 +169,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signOut = async () => {
     console.log('[AuthContext] Sign out clicked');
     try {
-      // Fire-and-forget to avoid UI being blocked by network hiccups
-      supabase?.auth.signOut().catch((err) => {
-        console.error('[AuthContext] signOut error (non-blocking):', err);
-      });
+      await supabase?.auth.signOut();
+    } catch (err) {
+      console.error('[AuthContext] signOut error:', err);
     } finally {
       setUser(null);
       setSession(null);
       setCredits(0);
       setIsAdmin(false);
       setSubscription({ subscribed: false, product_id: null, subscription_end: null });
-      // Hard redirect within the app origin to ensure correct routing in previews
+      // Redirect to the sign-in screen after ensuring sign-out completed
       const target = `${window.location.origin}/auth`;
       console.log('[AuthContext] Redirecting to:', target);
       window.location.replace(target);
