@@ -42,11 +42,12 @@ export default defineConfig(({ mode }) => ({
   build: {
     sourcemap: false,
     target: "es2018",
-    cssCodeSplit: false,
+    cssCodeSplit: true,
     cssTarget: "chrome90",
     minify: "esbuild",
     rollupOptions: {
       output: {
+        inlineDynamicImports: false,
         manualChunks(id: string) {
           if (id.includes("node_modules")) return "vendor";
         },
