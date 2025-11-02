@@ -1,0 +1,83 @@
+/* Deferred CSS - Non-critical styles loaded after first paint */
+
+:root {
+  /* Additional gradients */
+  --gradient-lilac: linear-gradient(135deg, hsl(280, 70%, 70%), hsl(265, 65%, 55%), hsl(290, 75%, 65%));
+}
+
+/* Extended Typography */
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  h4 { font-size: 1.5rem; line-height: 2rem; }
+  h5 { font-size: 1.25rem; line-height: 1.75rem; }
+  h6 { font-size: 1.125rem; line-height: 1.75rem; }
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+/* Gradient animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 6s ease infinite;
+}
+
+/* Disable expensive animations on mobile */
+@media (max-width: 640px) {
+  .animated-bg,
+  .blob,
+  .pulse,
+  [data-decorative="true"] {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
