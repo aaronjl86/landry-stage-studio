@@ -139,15 +139,15 @@ export function AIPhotoEditor() {
           )}
         </Button>
 
-        {jobs.length > 0 && (
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={handleClearAll}
-          >
-            Clear All
-          </Button>
-        )}
+      {(uploadedImages.length > 0 || jobs.length > 0) && (
+        <Button
+          variant="outline"
+          size="lg"
+          onClick={handleClearAll}
+        >
+          Clear All
+        </Button>
+      )}
       </div>
 
       {jobs.length > 0 && (
