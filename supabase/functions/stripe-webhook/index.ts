@@ -7,18 +7,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, stripe-signature',
 };
 
-// Map Stripe product IDs to credit amounts
-const CREDIT_MAP: Record<string, number> = {
-  // Starter plans
-  'prod_TBQJMYlasGRqG': 10,  // Monthly
-  'prod_TQ8JBVm1yc0yKd': 10,  // Yearly
-  // Professional plans
-  'prod_TQ8JKPwJmHr2': 50,  // Monthly
-  'prod_TQaJRgLJma': 50,  // Yearly
-  // Enterprise plans
-  'prod_TDF2': 400,  // Monthly (corrected key based on context - was truncated)
-  'prod_TDF2OCFGCIe': 400,  // Yearly
-};
 
 const logStep = (step: string, details?: any) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
@@ -108,11 +96,15 @@ serve(async (req) => {
 
       logStep('Product ID from event', { productId });
 
-      // Get credit amount from product ID
-      const credits = CREDIT_MAP[productId];
+      // Query subscription_plans table for credit allocation
+      const { data: planData, error: planError } = await supabase
+        .from('subscription_plans')
+        .select('credits_per_month')
+        .eq('product_id', productId)
+        .single();
 
-      if (!credits) {
-        logStep('WARNING: Unknown product ID', { productId });
+      if (planError || !planData) {
+        logStep('WARNING: Product not found in subscription_plans', { productId, error: planError });
         return new Response(JSON.stringify({ 
           success: true, 
           message: 'Unknown product, no credits allocated' 
@@ -122,7 +114,8 @@ serve(async (req) => {
         });
       }
 
-      logStep('Allocating credits', { productId, credits });
+      const credits = planData.credits_per_month;
+      logStep('Allocating credits from database', { productId, credits });
 
       // Update user's credits in profiles table
       const { data: profileData, error: profileError } = await supabase

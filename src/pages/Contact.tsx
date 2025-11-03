@@ -8,6 +8,13 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Mail, MessageSquare, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message must be less than 1000 characters")
+});
 import Footer4Col from "@/components/ui/footer-column";
 
 export default function Contact() {
@@ -32,14 +39,31 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      toast.success("Message sent! We'll get back to you soon.");
-      setName("");
-      setEmail("");
-      setMessage("");
+    // Validate form data
+    try {
+      const validatedData = contactSchema.parse({
+        name: name.trim(),
+        email: email.trim(),
+        message: message.trim()
+      });
+      
+      // Simulate form submission with validated data
+      setTimeout(() => {
+        toast.success("Message sent! We'll get back to you soon.");
+        setName("");
+        setEmail("");
+        setMessage("");
+        setLoading(false);
+      }, 1000);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const firstError = error.errors[0];
+        toast.error(firstError.message);
+      } else {
+        toast.error("Failed to send message. Please try again.");
+      }
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (

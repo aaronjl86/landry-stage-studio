@@ -155,16 +155,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
-  // Auto-refresh subscription status every minute
+  // Subscribe to realtime updates for subscription changes
   useEffect(() => {
     if (!user) return;
 
-    const interval = setInterval(() => {
-      checkSubscriptionInternal(user);
-    }, 60000);
+    console.log('[AuthContext] Setting up realtime subscription for user:', user.id);
+    
+    const channel = supabase
+      .channel('subscription-updates')
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'user_payment_info',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload) => {
+          console.log('[AuthContext] Received subscription update:', payload);
+          checkSubscriptionInternal(user);
+        }
+      )
+      .subscribe();
 
-    return () => clearInterval(interval);
+    return () => {
+      console.log('[AuthContext] Cleaning up realtime subscription');
+      supabase.removeChannel(channel);
+    };
   }, [user]);
+
 
   const signOut = async () => {
     console.log('[AuthContext] Sign out clicked');
