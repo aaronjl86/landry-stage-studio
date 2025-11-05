@@ -29,14 +29,14 @@ export const Hero = () => {
           <div className="space-y-8 animate-fade-in text-center lg:text-left">
             <div className="inline-block mb-4">
               <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(265,65%,55%)] text-white px-6 py-3 rounded-full text-base font-bold shadow-lg shadow-purple-500/50">
-                ✨ AI-Powered Virtual Staging
+                ✨ Stage Properties in Seconds, Not Weeks
               </span>
             </div>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
-              <span className="block text-gray-900 drop-shadow-lg">AI-powered virtual staging that brings your vision and your listings to life in seconds</span>
+              <span className="block text-gray-900 drop-shadow-lg">AI-powered <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">virtual staging</span> that brings <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">your</span> vision and <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">your</span> listings to life in <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">seconds</span></span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-              The <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-extrabold">ONLY</span> self-serve platform where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Upload photos, describe your vision, and watch AI create stunning staged homes in seconds. No expensive physical staging, no waiting weeks—just professional results that help properties sell faster.
+              The <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-extrabold">ONLY</span> self-serve platform where <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">YOU control the design</span>. Upload photos, describe your vision, and watch AI create stunning staged homes in seconds. No expensive physical staging, no waiting weeks—just <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent font-bold">professional results</span> that help properties sell faster.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
