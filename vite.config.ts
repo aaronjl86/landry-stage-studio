@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    sourcemap: false,
+    sourcemap: true,
     target: "es2018",
     cssCodeSplit: true,
     cssTarget: "chrome90",
