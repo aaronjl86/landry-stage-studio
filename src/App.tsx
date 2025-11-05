@@ -23,7 +23,6 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-          <main>
     <TooltipProvider>
       <AuthProvider>
         <Toaster />
@@ -51,7 +50,6 @@ const App = () => (
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
-          </main>
 );
 
 export default App;
