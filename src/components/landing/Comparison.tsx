@@ -54,7 +54,7 @@ const comparisonData = [
 export const Comparison = () => {
   return (
     <section className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold">
             Virtual Staging vs Physical Staging
@@ -65,12 +65,12 @@ export const Comparison = () => {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse bg-card rounded-2xl overflow-hidden shadow-lg">
+          <table className="w-full table-fixed border-collapse bg-card rounded-2xl overflow-hidden shadow-lg">
             <thead>
               <tr className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)]">
-                <th className="p-6 text-left text-white font-bold text-lg">Feature</th>
-                <th className="p-6 text-center text-white font-bold text-lg">Traditional Physical Staging</th>
-                <th className="p-6 text-center text-white font-bold text-lg">
+                <th className="p-3 md:p-6 text-left text-white font-bold text-sm md:text-lg">Feature</th>
+                <th className="p-3 md:p-6 text-center text-white font-bold text-sm md:text-lg">Traditional Physical Staging</th>
+                <th className="p-3 md:p-6 text-center text-white font-bold text-sm md:text-lg">
                   <div className="flex items-center justify-center gap-2">
                     AI Virtual Staging
                     <span className="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-bold">WINNER</span>
@@ -84,16 +84,16 @@ export const Comparison = () => {
                   key={index} 
                   className={`border-b border-border ${index % 2 === 0 ? 'bg-secondary/10' : 'bg-background'}`}
                 >
-                  <td className="p-6 font-semibold">{row.feature}</td>
-                  <td className="p-6 text-center text-muted-foreground">
+                  <td className="p-3 md:p-6 font-semibold text-sm md:text-base">{row.feature}</td>
+                  <td className="p-3 md:p-6 text-center text-muted-foreground text-sm md:text-base">
                     <div className="flex items-center justify-center gap-2">
-                      <X className="h-5 w-5 text-destructive flex-shrink-0" />
+                      <X className="h-4 w-4 md:h-5 md:w-5 text-destructive flex-shrink-0" />
                       <span>{row.traditional}</span>
                     </div>
                   </td>
-                  <td className="p-6 text-center font-semibold">
+                  <td className="p-3 md:p-6 text-center font-semibold text-sm md:text-base">
                     <div className="flex items-center justify-center gap-2">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <Check className="h-4 w-4 md:h-5 md:w-5 text-green-500 flex-shrink-0" />
                       <span className="text-foreground">{row.virtual}</span>
                     </div>
                   </td>
