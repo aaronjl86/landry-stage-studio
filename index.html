@@ -148,11 +148,6 @@
     <link rel="preload" as="font" href="/fonts/montserrat-v25-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="image" href="/images/before/before-living-room-fireplace.jpeg" type="image/jpeg" fetchpriority="high">
     
-    <!-- Load deferred CSS asynchronously after first paint -->
-    <link rel="preload" as="style" href="/src/index.css">
-    <link rel="stylesheet" href="/src/index.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
-    
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Virtual Staging Real Estate | AI-Powered Virtual Staging Software" />
@@ -191,6 +186,6 @@
   
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
