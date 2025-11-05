@@ -53,6 +53,7 @@ const faqs = [
 ];
 
 const FAQ = () => {
+  // FAQ component with SEO-optimized schema markup
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
