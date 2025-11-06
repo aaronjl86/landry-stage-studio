@@ -56,10 +56,10 @@ export const Comparison = () => {
     <section className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-3xl md:text-4xl font-bold">
             Virtual Staging vs Physical Staging
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             See why real estate agents are switching from traditional staging to AI-powered virtual staging software. Save thousands while delivering professional staged homes faster.
           </p>
         </div>
@@ -105,15 +105,15 @@ export const Comparison = () => {
 
         <div className="mt-12 grid md:grid-cols-3 gap-8">
           <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/20 dark:to-purple-900/20 p-6 rounded-2xl border border-purple-200 dark:border-purple-800">
-            <div className="text-4xl font-bold text-purple-600 mb-2">90%</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2">90%</div>
             <p className="text-muted-foreground">Lower cost than physical staging</p>
           </div>
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/20 dark:to-blue-900/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-800">
-            <div className="text-4xl font-bold text-blue-600 mb-2">95%</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">95%</div>
             <p className="text-muted-foreground">Faster turnaround than traditional staging</p>
           </div>
           <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/20 dark:to-green-900/20 p-6 rounded-2xl border border-green-200 dark:border-green-800">
-            <div className="text-4xl font-bold text-green-600 mb-2">∞</div>
+            <div className="text-3xl font-bold text-green-600 mb-2">∞</div>
             <p className="text-muted-foreground">Unlimited furniture style variations</p>
           </div>
         </div>

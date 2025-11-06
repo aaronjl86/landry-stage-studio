@@ -106,14 +106,14 @@ export const SocialProof = () => {
             <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] mx-auto mb-2 flex items-center justify-center shadow-lg shadow-purple-500/40">
               <stat.icon className="h-8 w-8 text-white stroke-[2.5]" />
             </div>
-            <div className="text-3xl font-bold mb-1">{stat.value}</div>
-            <div className="text-lg text-muted-foreground font-bold">{stat.label}</div>
+            <div className="text-2xl font-bold mb-1">{stat.value}</div>
+            <div className="text-base text-muted-foreground font-bold">{stat.label}</div>
           </div>)}
       </div>
 
       {/* Testimonials */}
       <div className="space-y-2">
-        <h3 className="font-semibold text-center mb-2 py-8 text-5xl bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 bg-clip-text text-transparent">We're onboarding our first wave of real estate professionals for early access. In exchange for your honest feedback, we'll enhance your first listing free of charge.</h3>
+        <h3 className="font-semibold text-center mb-2 py-8 text-3xl md:text-4xl bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 bg-clip-text text-transparent">We're onboarding our first wave of real estate professionals for early access. In exchange for your honest feedback, we'll enhance your first listing free of charge.</h3>
         <p className="text-center text-muted-foreground italic mb-4 text-sm">Sample feedback illustrating the type of client experience we aim to deliver. Real testimonials coming soon.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {(isMobile ? testimonials.slice(0, 3) : testimonials).map((testimonial, idx) => <div key={idx} className="bg-card border-4 rounded-lg p-2 hover:border-primary/50 transition-colors border-primary/40 text-center">
@@ -131,8 +131,8 @@ export const SocialProof = () => {
               animationDelay: `${i * 0.1}s`
             }} />)}
               </div>
-              <p className="mb-2 italic font-bold text-base">"{testimonial.text}"</p>
-              <div className="text-base">
+              <p className="mb-2 italic font-bold text-sm">"{testimonial.text}"</p>
+              <div className="text-sm">
                 <div className="font-bold">{testimonial.name}</div>
                 <div className="text-muted-foreground font-bold">{testimonial.role}</div>
               </div>
@@ -142,7 +142,7 @@ export const SocialProof = () => {
 
       {/* Trust Badges */}
       <div ref={marqueeRef} className="bg-muted/30 rounded-lg p-6 text-center overflow-hidden">
-        <div className="text-5xl font-semibold mb-4 rounded-none">Want your project featured here? Try your first free enhancement.</div>
+        <div className="text-3xl md:text-4xl font-semibold mb-4 rounded-none">Want your project featured here? Try your first free enhancement.</div>
         {showMarquee && <Marquee pauseOnHover className="py-6 [--gap:4rem] rounded-xl">
           <div className="relative h-28 w-48 flex items-center justify-center">
             <img 

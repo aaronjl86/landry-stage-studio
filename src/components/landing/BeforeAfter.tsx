@@ -14,10 +14,10 @@ export const BeforeAfter = () => {
     <section className="py-20 md:py-28 bg-secondary/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">
-          <h3 className="text-4xl md:text-5xl font-bold">
+          <h3 className="text-3xl md:text-4xl font-bold">
             Spatial Intelligence in Motion
           </h3>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Drag the slider to compare the empty room with our AI-staged version.
           </p>
         </div>

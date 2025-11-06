@@ -101,10 +101,10 @@ const Pricing = () => {
             <div className="inline-block bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(290,75%,65%)] text-white px-6 py-3 rounded-full text-lg font-semibold mb-4">
               🎉 Admin Account - Unlimited Access
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl font-bold">
               You have full admin access
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               As an administrator, you have unlimited credits and full access to all features. No subscription required.
             </p>
           </div>
@@ -115,10 +115,10 @@ const Pricing = () => {
   return <section className="py-20 md:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-3xl md:text-4xl font-bold">
             Competitively Priced, Infinitely More Flexible
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Get photorealistic virtual staging at prices comparable to other services—but with unlimited creative freedom and instant results you control.
           </p>
           
@@ -160,10 +160,10 @@ const Pricing = () => {
                 )}
                 
                 <CardHeader>
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                  <CardTitle className="text-lg">{plan.name}</CardTitle>
                   <CardDescription>{plan.description}</CardDescription>
                   <div className="mt-4">
-                    <span className="text-4xl font-bold">
+                    <span className="text-3xl font-bold">
                       ${isYearly ? plan.yearlyPrice : plan.monthlyPrice}
                     </span>
                     <span className="text-muted-foreground">
