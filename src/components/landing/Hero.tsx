@@ -54,7 +54,7 @@ export const Hero = () => {
               <img 
                 src="/images/before-empty-room.jpg"
                 alt="Empty room before virtual staging"
-                className="absolute inset-0 w-full h-full object-cover object-center" 
+                className="absolute top-0 left-0 w-full h-full object-cover" 
                 width="1120" 
                 height="838" 
                 loading="eager" 
@@ -63,13 +63,13 @@ export const Hero = () => {
               />
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
-              <div className="absolute inset-0" style={{
+              <div className="absolute top-0 left-0 w-full h-full" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
                 <img 
                   src="/images/after-staged-room.jpg"
                   alt="Professionally staged room with L-shaped sofa and modern design"
-                  className="w-full h-full object-cover object-center" 
+                  className="absolute top-0 left-0 w-full h-full object-cover" 
                   width="1120" 
                   height="838" 
                   loading="eager" 
