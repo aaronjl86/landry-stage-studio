@@ -26,7 +26,7 @@ export const Hero = () => {
                 ✨ Stage Properties in Seconds, Not Weeks
               </span>
             </div>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
               <span className="block text-gray-900 drop-shadow-lg">AI-powered <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">virtual staging</span> that brings <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">your</span> vision and <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">your</span> listings to life in <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent">seconds</span></span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
