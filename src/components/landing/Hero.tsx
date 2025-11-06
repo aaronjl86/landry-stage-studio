@@ -52,8 +52,8 @@ export const Hero = () => {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform">
               {/* Before Image - Empty Room (Left side) - LCP Element */}
               <img 
-                src="/images/before/before-living-room-fireplace.jpeg"
-                alt="Empty living room before virtual staging"
+                src="/images/before-empty-room.jpg"
+                alt="Empty room before virtual staging"
                 className="absolute inset-0 w-full h-full object-cover" 
                 width="1120" 
                 height="838" 
@@ -67,8 +67,8 @@ export const Hero = () => {
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
                 <img 
-                  src="/images/after/after-living-room-fireplace-staged.jpeg"
-                  alt="Professionally staged living room with modern design"
+                  src="/images/after-staged-room.jpg"
+                  alt="Professionally staged room with L-shaped sofa and modern design"
                   className="w-full h-full object-cover" 
                   width="1120" 
                   height="838" 
