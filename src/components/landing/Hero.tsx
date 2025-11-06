@@ -47,52 +47,34 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Before/After Slider - No animations on container to prevent LCP delay */}
+          {/* Before/After Slider - Responsive optimized images */}
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform">
               {/* Before Image - Empty Room (Left side) - LCP Element */}
-              <picture>
-                <source
-                  type="image/webp"
-                  srcSet="
-                    /images/before/before-living-room-fireplace.jpeg 1120w
-                  "
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
-                />
-                <img 
-                  src="/images/before/before-living-room-fireplace.jpeg"
-                  alt="Empty living room before virtual staging"
-                  className="absolute inset-0 w-full h-full object-cover" 
-                  width="1120" 
-                  height="838" 
-                  loading="eager" 
-                  decoding="async" 
-                  {...{fetchpriority: 'high'} as any} 
-                />
-              </picture>
+              <img 
+                src="/images/before/before-living-room-fireplace.jpeg"
+                alt="Empty living room before virtual staging"
+                className="absolute inset-0 w-full h-full object-cover" 
+                width="1120" 
+                height="838" 
+                loading="eager" 
+                decoding="async" 
+                {...{fetchpriority: 'high'} as any} 
+              />
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute inset-0" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
-                <picture>
-                  <source
-                    type="image/webp"
-                    srcSet="
-                      /images/after/after-living-room-fireplace-staged.jpeg 1120w
-                    "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
-                  />
-                  <img 
-                    src="/images/after/after-living-room-fireplace-staged.jpeg"
-                    alt="Professionally staged living room with modern design"
-                    className="w-full h-full object-cover" 
-                    width="1120" 
-                    height="838" 
-                    loading="eager" 
-                    decoding="async" 
-                  />
-                </picture>
+                <img 
+                  src="/images/after/after-living-room-fireplace-staged.jpeg"
+                  alt="Professionally staged living room with modern design"
+                  className="w-full h-full object-cover" 
+                  width="1120" 
+                  height="838" 
+                  loading="eager" 
+                  decoding="async" 
+                />
               </div>
 
               {/* Slider */}
