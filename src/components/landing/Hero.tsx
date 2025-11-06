@@ -2,12 +2,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import beforeRoomAvif from "@/assets/before-empty-room.avif";
-import beforeRoomWebp from "@/assets/before-empty-room.webp";
-import beforeRoomJpg from "@/assets/before-empty-room.jpg";
-import afterRoomAvif from "@/assets/after-staged-room.avif";
-import afterRoomWebp from "@/assets/after-staged-room.webp";
-import afterRoomJpg from "@/assets/after-staged-room.jpg";
 export const Hero = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,36 +47,52 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Before/After Slider */}
-          <div className="relative animate-scale-in">
+          {/* Before/After Slider - No animations on container to prevent LCP delay */}
+          <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform">
-              {/* Before Image - Empty Room (Left side) */}
-              <img 
-                src={beforeRoomWebp} 
-                alt="Empty living room before virtual staging"
-                className="absolute inset-0 w-full h-full object-cover scale-110" 
-                width="1200" 
-                height="900" 
-                loading="eager" 
-                decoding="async" 
-                sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" 
-                {...{fetchpriority: 'high'} as any} 
-              />
+              {/* Before Image - Empty Room (Left side) - LCP Element */}
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="
+                    /images/before/before-living-room-fireplace.jpeg 1120w
+                  "
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
+                />
+                <img 
+                  src="/images/before/before-living-room-fireplace.jpeg"
+                  alt="Empty living room before virtual staging"
+                  className="absolute inset-0 w-full h-full object-cover" 
+                  width="1120" 
+                  height="838" 
+                  loading="eager" 
+                  decoding="async" 
+                  {...{fetchpriority: 'high'} as any} 
+                />
+              </picture>
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute inset-0" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
-                <img 
-                  src={afterRoomWebp} 
-                  alt="Professionally staged living room with modern design"
-                  className="w-full h-full object-cover scale-110" 
-                  width="1200" 
-                  height="900" 
-                  loading="lazy" 
-                  decoding="async" 
-                  sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 640px" 
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="
+                      /images/after/after-living-room-fireplace-staged.jpeg 1120w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
+                  />
+                  <img 
+                    src="/images/after/after-living-room-fireplace-staged.jpeg"
+                    alt="Professionally staged living room with modern design"
+                    className="w-full h-full object-cover" 
+                    width="1120" 
+                    height="838" 
+                    loading="eager" 
+                    decoding="async" 
+                  />
+                </picture>
               </div>
 
               {/* Slider */}
