@@ -22,7 +22,7 @@ export const Hero = () => {
           {/* Content */}
           <div className="space-y-8 animate-fade-in text-center lg:text-left">
             <div className="inline-block mb-4">
-              <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(265,65%,55%)] text-white px-6 py-3 rounded-full text-base font-bold shadow-lg shadow-purple-500/50">
+              <span className="bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(265,65%,55%)] text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-purple-500/50">
                 ✨ Stage Properties in Seconds, Not Weeks
               </span>
             </div>
