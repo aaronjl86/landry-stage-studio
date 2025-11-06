@@ -38,10 +38,10 @@ export const Features = () => {
     <section className="py-20 md:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-3xl md:text-4xl font-bold">
             Why The Landry Method is Different
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Process entire properties in the time it takes to schedule a single designer call. Upload 15 photos at once, watch them transform in real-time, and have your listings market-ready before lunch.
           </p>
         </div>
@@ -57,8 +57,8 @@ export const Features = () => {
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center mb-4 shadow-lg shadow-purple-500/30">
                   <Icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground">{feature.description}</p>
               </div>
             );
           })}
