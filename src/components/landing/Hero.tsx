@@ -54,7 +54,7 @@ export const Hero = () => {
               <img 
                 src="/images/before-empty-room.jpg"
                 alt="Empty room before virtual staging"
-                className="absolute inset-0 w-full h-full object-cover" 
+                className="absolute inset-0 w-full h-full object-cover object-center" 
                 width="1120" 
                 height="838" 
                 loading="eager" 
@@ -69,7 +69,7 @@ export const Hero = () => {
                 <img 
                   src="/images/after-staged-room.jpg"
                   alt="Professionally staged room with L-shaped sofa and modern design"
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover object-center" 
                   width="1120" 
                   height="838" 
                   loading="eager" 
