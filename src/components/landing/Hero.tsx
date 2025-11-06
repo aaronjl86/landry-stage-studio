@@ -34,7 +34,7 @@ export const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/auth">
-                <Button size="lg" className="group text-2xl px-12 py-8 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] hover:shadow-2xl hover:shadow-purple-500/60 transition-all duration-300 hover:scale-110 font-bold">
+                <Button size="lg" className="group text-base px-8 py-6 bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] hover:shadow-2xl hover:shadow-purple-500/60 transition-all duration-300 hover:scale-110 font-bold">
                   Start Free Trial
                   <ArrowRight className="ml-3 h-7 w-7 transition-transform group-hover:translate-x-2" />
                 </Button>
