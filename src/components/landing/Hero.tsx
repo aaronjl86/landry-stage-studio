@@ -49,12 +49,12 @@ export const Hero = () => {
 
           {/* Before/After Slider - Responsive optimized images */}
           <div className="relative">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform bg-black">
               {/* Before Image - Empty Room (Left side) - LCP Element */}
               <img 
                 src="/images/before-empty-room.jpg"
                 alt="Empty room before virtual staging"
-                className="absolute top-0 left-0 w-full h-full object-cover" 
+                className="absolute top-0 left-0 w-full h-full object-cover object-center scale-[1.08] md:scale-[1.04] will-change-transform" 
                 width="1120" 
                 height="838" 
                 loading="eager" 
@@ -69,7 +69,7 @@ export const Hero = () => {
                 <img 
                   src="/images/after-staged-room.jpg"
                   alt="Professionally staged room with L-shaped sofa and modern design"
-                  className="absolute top-0 left-0 w-full h-full object-cover" 
+                  className="absolute top-0 left-0 w-full h-full object-cover object-center scale-[1.08] md:scale-[1.04] will-change-transform" 
                   width="1120" 
                   height="838" 
                   loading="eager" 
