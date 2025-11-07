@@ -25,30 +25,34 @@ export const BeforeAfter = () => {
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
             {/* Before Image */}
-            <img
-              src={beforeRoom}
-              alt="Empty living room before staging"
-              className="absolute inset-0 w-full h-full object-cover"
-              width={1200}
-              height={900}
-              loading="eager"
-              decoding="async"
-            />
+            <picture>
+              <img
+                src={beforeRoom}
+                alt="Empty living room before staging"
+                className="absolute inset-0 w-full h-full object-cover"
+                width={1200}
+                height={900}
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
 
             {/* After Image (masked to slider position) */}
             <div
               className="absolute inset-0"
               style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
             >
-              <img
-                src={afterRoom}
-                alt="Staged living room after virtual staging"
-                className="w-full h-full object-cover"
-                width={1200}
-                height={900}
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <img
+                  src={afterRoom}
+                  alt="Staged living room after virtual staging"
+                  className="w-full h-full object-cover"
+                  width={1200}
+                  height={900}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
 
             {/* Slider Control */}

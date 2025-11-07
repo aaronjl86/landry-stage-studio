@@ -2,6 +2,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import beforeAvif from "@/assets/before-empty-room.avif";
+import beforeWebp from "@/assets/before-empty-room.webp";
+import afterAvif from "@/assets/after-staged-room.avif";
+import afterWebp from "@/assets/after-staged-room.webp";
 export const Hero = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,31 +55,39 @@ export const Hero = () => {
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform bg-black">
               {/* Before Image - Empty Room (Left side) - LCP Element */}
-              <img 
-                src="/images/before-empty-room.jpg"
-                alt="Empty room before virtual staging"
-                className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                style={{ objectPosition: 'center 46%' }}
-                width="1120" 
-                height="838" 
-                loading="eager" 
-                decoding="async" 
-                fetchPriority="high"
-              />
+              <picture>
+                <source type="image/avif" srcSet={beforeAvif} />
+                <source type="image/webp" srcSet={beforeWebp} />
+                <img 
+                  src="/images/before-empty-room.jpg"
+                  alt="Empty room before virtual staging"
+                  className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
+                  style={{ objectPosition: 'center 46%' }}
+                  width="1120" 
+                  height="838" 
+                  loading="eager" 
+                  decoding="async" 
+                  fetchPriority="high"
+                />
+              </picture>
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute top-0 left-0 w-full h-full" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
-                <img 
-                  src="/images/after-staged-room.jpg"
-                  alt="Professionally staged room with L-shaped sofa and modern design"
-                  className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                  width="1120" 
-                  height="838" 
-                  loading="eager" 
-                  decoding="async" 
-                />
+                <picture>
+                  <source type="image/avif" srcSet={afterAvif} />
+                  <source type="image/webp" srcSet={afterWebp} />
+                  <img 
+                    src="/images/after-staged-room.jpg"
+                    alt="Professionally staged room with L-shaped sofa and modern design"
+                    className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
+                    width="1120" 
+                    height="838" 
+                    loading="eager" 
+                    decoding="async" 
+                  />
+                </picture>
               </div>
 
               {/* Slider */}
