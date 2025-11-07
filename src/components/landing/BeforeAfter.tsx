@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from "react";
 
-const beforeRoom = "https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/before/before-living-room-fireplace.jpeg?v=20251107";
-const afterRoom = "https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/after/after-living-room-fireplace-staged.jpeg?v=20251107";
+const beforeRoom = "/images/before/before-living-room-fireplace.jpeg";
+const afterRoom = "/images/after/after-living-room-fireplace-staged.jpeg";
 
 export const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -27,16 +27,10 @@ export const BeforeAfter = () => {
             {/* Before Image */}
             <img
               src={beforeRoom}
-              srcSet="
-                https://thelandrymethod.com/cdn-cgi/image/width=768,quality=85,format=auto/images/before/before-living-room-fireplace.jpeg?v=20251107 768w,
-                https://thelandrymethod.com/cdn-cgi/image/width=1200,quality=85,format=auto/images/before/before-living-room-fireplace.jpeg?v=20251107 1200w,
-                https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/before/before-living-room-fireplace.jpeg?v=20251107 1600w
-              "
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               alt="Empty living room before staging"
               className="absolute inset-0 w-full h-full object-cover"
-              width={1600}
-              height={1200}
+              width={1200}
+              height={900}
               loading="eager"
               decoding="async"
             />
@@ -48,16 +42,10 @@ export const BeforeAfter = () => {
             >
               <img
                 src={afterRoom}
-                srcSet="
-                  https://thelandrymethod.com/cdn-cgi/image/width=768,quality=85,format=auto/images/after/after-living-room-fireplace-staged.jpeg?v=20251107 768w,
-                  https://thelandrymethod.com/cdn-cgi/image/width=1200,quality=85,format=auto/images/after/after-living-room-fireplace-staged.jpeg?v=20251107 1200w,
-                  https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/after/after-living-room-fireplace-staged.jpeg?v=20251107 1600w
-                "
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 alt="Staged living room after virtual staging"
                 className="w-full h-full object-cover"
-                width={1600}
-                height={1200}
+                width={1200}
+                height={900}
                 loading="lazy"
                 decoding="async"
               />

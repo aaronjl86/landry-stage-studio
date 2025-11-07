@@ -52,18 +52,12 @@ export const Hero = () => {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform bg-black">
               {/* Before Image - Empty Room (Left side) - LCP Element */}
               <img 
-                src="https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/before-empty-room.jpg?v=20251107"
-                srcSet="
-                  https://thelandrymethod.com/cdn-cgi/image/width=768,quality=85,format=auto/images/before-empty-room.jpg?v=20251107 768w,
-                  https://thelandrymethod.com/cdn-cgi/image/width=1200,quality=85,format=auto/images/before-empty-room.jpg?v=20251107 1200w,
-                  https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/before-empty-room.jpg?v=20251107 1600w
-                "
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                src="/images/before-empty-room.jpg"
                 alt="Empty room before virtual staging"
                 className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
                 style={{ objectPosition: 'center 46%' }}
-                width="1600" 
-                height="1200" 
+                width="1120" 
+                height="838" 
                 loading="eager" 
                 decoding="async" 
                 fetchPriority="high"
@@ -74,17 +68,11 @@ export const Hero = () => {
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
                 <img 
-                  src="https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/after-staged-room.jpg?v=20251107"
-                  srcSet="
-                    https://thelandrymethod.com/cdn-cgi/image/width=768,quality=85,format=auto/images/after-staged-room.jpg?v=20251107 768w,
-                    https://thelandrymethod.com/cdn-cgi/image/width=1200,quality=85,format=auto/images/after-staged-room.jpg?v=20251107 1200w,
-                    https://thelandrymethod.com/cdn-cgi/image/width=1600,quality=85,format=auto/images/after-staged-room.jpg?v=20251107 1600w
-                  "
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  src="/images/after-staged-room.jpg"
                   alt="Professionally staged room with L-shaped sofa and modern design"
                   className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                  width="1600" 
-                  height="1200" 
+                  width="1120" 
+                  height="838" 
                   loading="eager" 
                   decoding="async" 
                 />
