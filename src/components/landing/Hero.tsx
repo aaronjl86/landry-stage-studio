@@ -54,14 +54,20 @@ export const Hero = () => {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform bg-black">
               {/* Before Image - Empty Room (Left side) - LCP Element */}
               <picture>
-                <source type="image/webp" srcSet={beforeWebp} />
+                <source 
+                  type="image/webp" 
+                  srcSet={`${beforeWebp} 640w, ${beforeWebp} 1024w, ${beforeWebp} 1920w`}
+                  sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
+                />
                 <img
                   src="/images/before-empty-room.jpg"
+                  srcSet="/images/before-empty-room.jpg 640w, /images/before-empty-room.jpg 1024w, /images/before-empty-room.jpg 1920w"
+                  sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
                   alt="Empty room before virtual staging"
                   className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
                   style={{ objectPosition: 'center 46%' }}
-                  width="1120" 
-                  height="838" 
+                  width="1920" 
+                  height="1440" 
                   loading="eager" 
                   decoding="async" 
                   fetchPriority="high"
@@ -73,15 +79,22 @@ export const Hero = () => {
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
               <picture>
-                <source type="image/webp" srcSet={afterWebp} />
+                <source 
+                  type="image/webp" 
+                  srcSet={`${afterWebp} 640w, ${afterWebp} 1024w, ${afterWebp} 1920w`}
+                  sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
+                />
                 <img
                     src="/images/after-staged-room.jpg"
+                    srcSet="/images/after-staged-room.jpg 640w, /images/after-staged-room.jpg 1024w, /images/after-staged-room.jpg 1920w"
+                    sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
                     alt="Professionally staged room with L-shaped sofa and modern design"
                     className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                    width="1120" 
-                    height="838" 
+                    style={{ objectPosition: 'center 46%' }}
+                    width="1920" 
+                    height="1440" 
                     loading="eager" 
-                    decoding="async" 
+                    decoding="async"
                   />
                 </picture>
               </div>
