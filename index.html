@@ -146,7 +146,11 @@
     <!-- Preload critical resources -->
     <link rel="preload" as="font" href="/fonts/montserrat-v25-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/fonts/montserrat-v25-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" as="image" href="/images/before/before-living-room-fireplace.jpeg" fetchpriority="high" imagesizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw">
+    <link rel="preload" as="image" href="/images/before-empty-room.jpg" fetchpriority="high" imagesrcset="/images/before-empty-room.jpg?format=webp&width=1024 1024w" imagesizes="50vw">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     
     <!-- Load main CSS bundle asynchronously after critical render -->
     <link rel="stylesheet" href="/assets/index.css" media="print" onload="this.media='all';this.onload=null;">
