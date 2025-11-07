@@ -15,7 +15,7 @@
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin
   X-Robots-Tag: noai, noimageai
-  Cache-Control: no-store, must-revalidate
+  
 
   # ===============================
   # ⚙️ SEO & Indexing Optimization
