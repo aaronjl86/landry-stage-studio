@@ -53,11 +53,7 @@ export const Hero = () => {
               {/* Before Image - Empty Room (Left side) - LCP Element */}
               <img
                 src="/images/before-empty-room.jpg"
-                srcSet={
-                  typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-                    ? "/cdn-cgi/image/width=640,quality=85,format=auto/images/before-empty-room.jpg 640w, /cdn-cgi/image/width=1024,quality=85,format=auto/images/before-empty-room.jpg 1024w, /cdn-cgi/image/width=1536,quality=85,format=auto/images/before-empty-room.jpg 1536w"
-                    : "/images/before-empty-room.jpg 640w, /images/before-empty-room.jpg 1024w, /images/before-empty-room.jpg 1536w"
-                }
+                srcSet="/images/before-empty-room.jpg 1920w"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1120px"
                 alt="Empty room before virtual staging"
                 className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
@@ -75,11 +71,7 @@ export const Hero = () => {
             }}>
               <img
                 src="/images/after-staged-room.jpg"
-                srcSet={
-                  typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-                    ? "/cdn-cgi/image/width=640,quality=85,format=auto/images/after-staged-room.jpg 640w, /cdn-cgi/image/width=1024,quality=85,format=auto/images/after-staged-room.jpg 1024w, /cdn-cgi/image/width=1536,quality=85,format=auto/images/after-staged-room.jpg 1536w"
-                    : "/images/after-staged-room.jpg 640w, /images/after-staged-room.jpg 1024w, /images/after-staged-room.jpg 1536w"
-                }
+                srcSet="/images/after-staged-room.jpg 1920w"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1120px"
                 alt="Professionally staged room with L-shaped sofa and modern design"
                 className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
