@@ -11,11 +11,11 @@
       "priority": 1
     },
     {
-      "description": "Polish LOSSLESS for hero and gallery images - high quality for real estate photos",
+      "description": "Polish LOSSY for hero and gallery images - optimal WebP conversion",
       "expression": "(http.request.uri.path contains \"/assets/gallery/\" or http.request.uri.path contains \"hero-\" or http.request.uri.path contains \"before-\" or http.request.uri.path contains \"after-\" or http.request.uri.path contains \"/images/before/\" or http.request.uri.path contains \"/images/after/\")",
       "action": "set_config",
       "action_parameters": {
-        "polish": "lossless",
+        "polish": "lossy",
         "webp": true
       },
       "enabled": true,
