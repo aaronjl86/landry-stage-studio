@@ -61,8 +61,7 @@ export const Hero = () => {
                 width="1920" 
                 height="1440" 
                 loading="eager" 
-                decoding="async" 
-                fetchPriority="high"
+                decoding="async"
               />
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
