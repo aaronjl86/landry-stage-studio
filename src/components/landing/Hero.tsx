@@ -53,8 +53,6 @@ export const Hero = () => {
               {/* Before Image - Empty Room (Left side) - LCP Element */}
               <img
                 src="/images/before-empty-room.jpg"
-                srcSet="/images/before-empty-room-640.jpg 640w, /images/before-empty-room-1024.jpg 1024w, /images/before-empty-room.jpg 1920w"
-                sizes="(max-width: 768px) 100vw, 50vw"
                 alt="Empty room before virtual staging"
                 className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
                 style={{ objectPosition: 'center 46%' }}
@@ -71,8 +69,6 @@ export const Hero = () => {
             }}>
               <img
                 src="/images/after-staged-room.jpg"
-                srcSet="/images/after-staged-room-640.jpg 640w, /images/after-staged-room-1024.jpg 1024w, /images/after-staged-room.jpg 1920w"
-                sizes="(max-width: 768px) 100vw, 50vw"
                 alt="Professionally staged room with L-shaped sofa and modern design"
                 className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
                 style={{ objectPosition: 'center 46%' }}
