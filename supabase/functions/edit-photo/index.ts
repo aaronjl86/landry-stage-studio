@@ -147,9 +147,27 @@ serve(async (req) => {
     logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
 
     // CRITICAL ARCHITECTURAL PRESERVATION RULE
-    const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION RULE:
+    const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION RULE - ABSOLUTELY NO EXCEPTIONS:
 
-Do not modify the core architectural layout of the room. This includes prohibiting any changes such as adding or removing structural walls, windows, doors, or fixed architectural features (e.g., fireplaces, built-in shelving, or permanent fixtures). All design adjustments must remain strictly cosmetic or surface-level—for example, alterations to lighting, furniture, materials, textures, or decor are acceptable. Furnishings must match room types (e.g. bed in a bedroom not in a living room)
+You MUST preserve the EXACT architectural structure of the room:
+- Keep ALL windows in their EXACT original positions, sizes, and shapes
+- Keep ALL walls in their EXACT original positions and angles
+- Keep ALL doors in their EXACT original positions
+- Keep the floor surface EXACTLY as it appears (material/texture can be enhanced but geometry must stay identical)
+- Keep the ceiling EXACTLY as it appears
+- Do NOT move, resize, add, or remove ANY structural elements
+- Do NOT change room dimensions or spatial layout in ANY way
+- Do NOT alter the perspective or camera angle
+
+ONLY these changes are allowed:
+- Adding furniture (beds, sofas, tables, chairs, decor items)
+- Changing wall colors, paint, or wallpaper
+- Adding artwork, pictures, or decorations on walls
+- Enhancing lighting quality
+- Adding rugs, curtains, or soft furnishings
+- Improving image quality or brightness
+
+Furnishings must match room types (e.g. bed in bedroom, not in living room).
 
 USER'S EDITING REQUEST: ${sanitizedPrompt}`;
 
