@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import tlmLogoVideo from "@/assets/tlm-logo-animated.mp4";
 import { useAuth } from "@/contexts/AuthContext";
 import { LogOut, Home, DollarSign, Info, Mail, Sparkles, ImageIcon, CreditCard, LogIn, Menu } from "lucide-react";
 import { ExpandableTabs, type TabItem } from "@/components/ui/expandable-tabs";
@@ -81,10 +80,11 @@ export const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0 max-w-[70%] md:max-w-none">
             <video 
-              src={tlmLogoVideo} 
+              src="/videos/tlm-logo-animated.mp4" 
               autoPlay={!isMobile} 
               muted 
               playsInline 
+              preload={isMobile ? "none" : "metadata"}
               aria-label="The Landry Method" 
               className="h-[56px] md:h-[112px] w-auto object-contain"
               poster="/cdn-cgi/image/width=300,quality=85,format=auto/assets/tlm-logo-footer.png"

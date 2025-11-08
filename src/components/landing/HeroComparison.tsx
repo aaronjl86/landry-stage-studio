@@ -29,7 +29,8 @@ export const HeroComparison = () => {
               src={beforeRoom}
               alt="Empty room before virtual staging"
               className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
             />
 
@@ -42,7 +43,8 @@ export const HeroComparison = () => {
                 src={afterRoom}
                 alt="Professionally staged room after virtual staging"
                 className="w-full h-full object-cover"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
                 decoding="async"
               />
             </div>
