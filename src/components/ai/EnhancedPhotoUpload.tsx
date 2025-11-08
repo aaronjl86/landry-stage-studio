@@ -1,5 +1,6 @@
-import { useState, useCallback, useEffect, useRef } from "react";
-import { Upload, X, Image as ImageIcon } from "lucide-react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { Upload, X } from "lucide-react";
+import imageCompression from "browser-image-compression";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
@@ -24,9 +25,19 @@ export function EnhancedPhotoUpload({
   const [images, setImages] = useState<UploadedImage[]>([]);
   const [isCompressing, setIsCompressing] = useState(false);
   const workerRef = useRef<Worker | null>(null);
+  const isIOS = useMemo(() => {
+    const ua = navigator.userAgent || "";
+    const iOSDevice = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && (navigator as any).maxTouchPoints > 1);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+    return iOSDevice && isSafari;
+  }, []);
 
-  // Initialize Web Worker on mount
+  // Initialize Web Worker on mount (skip on iOS Safari)
   useEffect(() => {
+    if (isIOS || typeof Worker === 'undefined') {
+      workerRef.current = null;
+      return;
+    }
     const worker = new Worker(
       new URL('../../workers/imageCompression.worker.ts', import.meta.url),
       { type: 'module' }
@@ -36,28 +47,49 @@ export function EnhancedPhotoUpload({
     return () => {
       worker.terminate();
     };
-  }, []);
+  }, [isIOS]);
 
   const compressImage = async (file: File): Promise<{ data: string; size: number }> => {
-    return new Promise((resolve, reject) => {
-      if (!workerRef.current) {
-        reject(new Error('Worker not initialized'));
-        return;
-      }
+    const compressOnMainThread = async (): Promise<{ data: string; size: number }> => {
+      const compressedFile = await imageCompression(file, {
+        maxSizeMB: 2,
+        maxWidthOrHeight: 1920,
+        useWebWorker: false,
+        fileType: "image/webp",
+      });
+      const data: string = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => reject(new Error('Failed to read compressed file'));
+        reader.readAsDataURL(compressedFile);
+      });
+      return { data, size: compressedFile.size };
+    };
 
-      const worker = workerRef.current;
-      
+    if (!workerRef.current) {
+      return compressOnMainThread();
+    }
+
+    return new Promise((resolve, reject) => {
+      const worker = workerRef.current as Worker;
+
       const handleMessage = (e: MessageEvent) => {
+        worker.removeEventListener('message', handleMessage);
         if (e.data.success) {
           resolve({ data: e.data.data, size: e.data.size });
         } else {
-          reject(new Error(e.data.error));
+          const msg = String(e.data.error || '');
+          // Fallback for iOS Safari where Image is unavailable in workers
+          if (msg.toLowerCase().includes('image')) {
+            compressOnMainThread().then(resolve).catch(reject);
+          } else {
+            reject(new Error(msg));
+          }
         }
-        worker.removeEventListener('message', handleMessage);
       };
-      
+
       worker.addEventListener('message', handleMessage);
-      
+
       worker.postMessage({
         file,
         options: {
