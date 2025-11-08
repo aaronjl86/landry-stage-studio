@@ -30,7 +30,7 @@ Violating this directive constitutes a system error requiring reprocessing.` as 
 
 // SHA-256 hash of the architectural rule for integrity verification
 // This hash is computed from the exact text above and must match at runtime
-export const ARCHITECTURAL_RULE_HASH = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+export const ARCHITECTURAL_RULE_HASH = "0621b537283ca928df43a7a14ba5aa06c6bb416f45df4911cd3286215682a4dc";
 
 /**
  * Constructs the full prompt with architectural rule prepended
