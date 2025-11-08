@@ -1,12 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 export const Hero = () => {
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderPosition(Number(e.target.value));
-  };
   return <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12" style={{
     backgroundColor: '#36eee0'
   }} aria-label="AI-Powered Virtual Staging Hero">
@@ -47,78 +42,17 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Before/After Slider - Responsive optimized images */}
-          <div className="relative">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform bg-black">
-              {/* Before Image - Empty Room (Left side) - LCP Element */}
-              <picture>
-                <source 
-                  srcSet="/images/before-empty-room-optimized.webp" 
-                  type="image/webp"
-                />
-                <img
-                  src="/images/before-empty-room.jpg"
-                  alt="Empty room before virtual staging"
-                  className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                  style={{ objectPosition: 'center 46%' }}
-                  width="1920" 
-                  height="1440" 
-                  loading="eager" 
-                  decoding="async"
-                  fetchPriority="high"
-                />
-              </picture>
-
-              {/* After Image - Staged Room (Right side, revealed by slider) */}
-              <div className="absolute top-0 left-0 w-full h-full" style={{
-              clipPath: `inset(0 0 0 ${sliderPosition}%)`
-            }}>
-              <picture>
-                <source 
-                  srcSet="/images/after-staged-room-optimized.webp" 
-                  type="image/webp"
-                />
-                <img
-                  src="/images/after-staged-room.jpg"
-                  alt="Professionally staged room with L-shaped sofa and modern design"
-                  className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                  style={{ objectPosition: 'center 46%' }}
-                  width="1920" 
-                  height="1440" 
-                  loading="lazy" 
-                  decoding="async"
-                />
-              </picture>
-              </div>
-
-              {/* Slider */}
-              <div className="absolute inset-0 flex items-center">
-                <input type="range" min="0" max="100" value={sliderPosition} onChange={handleSliderChange} className="absolute w-full h-full opacity-0 cursor-ew-resize z-10" aria-label="Before and after comparison slider" />
-                
-                {/* Slider Line */}
-                <div className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none" style={{
-                left: `${sliderPosition}%`
-              }}>
-                  {/* Slider Handle */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center">
-                    <div className="flex gap-1">
-                      <div className="w-0.5 h-4 bg-primary" />
-                      <div className="w-0.5 h-4 bg-primary" />
-                    </div>
-                  </div>
+          {/* Right Column - Simple Visual */}
+          <div className="lg:w-1/2 flex items-center justify-center">
+            <div className="relative">
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
+                  <span className="text-2xl">✨</span>
+                  <span className="text-sm font-medium">AI-Powered Staging</span>
                 </div>
-              </div>
-
-              {/* Labels */}
-              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300" style={{
-              opacity: sliderPosition > 10 ? 1 : 0
-            }}>
-                Before
-              </div>
-              <div className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-opacity duration-300" style={{
-              opacity: sliderPosition < 90 ? 1 : 0
-            }}>
-                After
+                <p className="text-muted-foreground max-w-md mx-auto">
+                  See the full before & after transformation below
+                </p>
               </div>
             </div>
           </div>

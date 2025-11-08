@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
-import { SocialProof } from "@/components/landing/SocialProof";
 
 // Lazy load heavy components
 const InteractiveDemo = lazy(() => import("@/components/landing/InteractiveDemo"));
@@ -18,22 +17,9 @@ const Index = () => {
         <Hero />
       </section>
       
-      {/* Social Proof Section */}
-      <Suspense fallback={<div className="h-24" />}>
-        <section className="bg-background py-12">
-          <div className="container mx-auto px-4">
-            <SocialProof />
-          </div>
-        </section>
-      </Suspense>
-      
       <section style={{ backgroundColor: '#36eee0' }}>
         <Features />
       </section>
-      
-      <Suspense fallback={<div className="h-96" />}>
-        <BeforeAfter />
-      </Suspense>
       
       <Suspense fallback={<div className="h-96" />}>
         <Comparison />
@@ -52,6 +38,10 @@ const Index = () => {
           <FAQ />
         </Suspense>
       </div>
+      
+      <Suspense fallback={<div className="h-96" />}>
+        <BeforeAfter />
+      </Suspense>
       
       <Suspense fallback={<div className="h-24"></div>}>
         <Footer4Col />

@@ -179,10 +179,3 @@
   Cache-Control: public, max-age=31536000, immutable
   Vary: Accept
 
-# Optimized hero images - WebP variants
-/images/*-optimized.webp
-  Cache-Control: public, max-age=31536000, immutable
-  Content-Type: image/webp
-  Vary: Accept
-  Access-Control-Allow-Origin: *
-  X-Content-Type-Options: nosniff
