@@ -63,7 +63,7 @@ export function EnhancedPhotoUpload({
         options: {
           maxSizeMB: 2,
           maxWidthOrHeight: 1920,
-          useWebWorker: true,
+          useWebWorker: false,
           fileType: "image/webp",
         }
       });
