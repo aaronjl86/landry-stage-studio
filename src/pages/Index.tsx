@@ -10,6 +10,7 @@ const FAQ = lazy(() => import("@/components/landing/FAQ"));
 const Footer4Col = lazy(() => import("@/components/ui/footer-column"));
 const HeroComparison = lazy(() => import("@/components/landing/HeroComparison").then(m => ({ default: m.HeroComparison })));
 const Comparison = lazy(() => import("@/components/landing/Comparison").then(m => ({ default: m.Comparison })));
+const BeforeAfter = lazy(() => import("@/components/landing/BeforeAfter").then(m => ({ default: m.BeforeAfter })));
 const Index = () => {
   return <div className="min-h-screen">
       <Header />
@@ -37,6 +38,10 @@ const Index = () => {
           <Pricing />
         </Suspense>
       </div>
+      <Suspense fallback={<div className="h-96" />}>
+        <BeforeAfter />
+      </Suspense>
+      
       <div id="faq">
         <Suspense fallback={<div className="h-96 flex items-center justify-center"><div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div></div>}>
           <FAQ />
