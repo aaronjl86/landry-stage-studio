@@ -141,38 +141,57 @@ npm run build
 
 #### Step 2: Deploy to Your Hosting Provider
 
-The deployment method depends on your hosting provider:
+##### Recommended: Cloudflare Pages (Primary Deployment Method)
 
-##### Option A: Netlify
-1. **Via Netlify CLI**:
-   ```bash
-   npm install -g netlify-cli
-   netlify login
-   netlify deploy --prod --dir=dist
-   ```
+This project is configured for **Cloudflare Pages** deployment with automatic edge optimization.
 
-2. **Via GitHub Integration**:
-   - Push your code to GitHub
-   - Connect Netlify to your repository
-   - Set build command: `npm run build`
-   - Set publish directory: `dist`
-   - Netlify will auto-deploy on push
+**Method 1: Via Wrangler CLI** (Fastest)
+```bash
+# Install Wrangler CLI (if not already installed)
+npm install -g wrangler
 
-##### Option B: Vercel
-1. **Via Vercel CLI**:
-   ```bash
-   npm install -g vercel
-   vercel login
-   vercel --prod
-   ```
+# Login to Cloudflare
+wrangler login
 
-2. **Via GitHub Integration**:
-   - Push to GitHub
-   - Connect Vercel to your repository
-   - Build command: `npm run build`
-   - Output directory: `dist`
+# Deploy to production
+npm run build
+wrangler pages deploy dist --project-name=landry-stage-studio
+```
 
-##### Option C: AWS S3 + CloudFront
+**Method 2: Via GitHub Integration** (Recommended for continuous deployment)
+1. **Connect Repository**:
+   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
+   - Navigate to Workers & Pages → Create application → Pages → Connect to Git
+   - Select your repository
+
+2. **Configure Build Settings**:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+   - **Environment variables**: Add all VITE_* variables from your `.env` file
+
+3. **Deploy**:
+   - Push to your main branch
+   - Cloudflare Pages automatically builds and deploys
+   - Get instant preview deployments for pull requests
+
+**Benefits of Cloudflare Pages**:
+- ✅ Unlimited bandwidth (no limits)
+- ✅ Automatic edge caching and optimization
+- ✅ Built-in image optimization via Cloudflare Polish
+- ✅ Free SSL/TLS certificates
+- ✅ DDoS protection included
+- ✅ Global CDN with 300+ locations
+- ✅ Automatic preview deployments for PRs
+- ✅ Web Analytics included (privacy-friendly)
+
+**Configuration Files**:
+- `wrangler.toml` - Cloudflare Pages configuration (already set up)
+- `cloudflare-config-rules.json` - Image optimization rules for Cloudflare Polish
+- See `CLOUDFLARE_DEPLOYMENT_GUIDE.md` for detailed setup instructions
+
+##### Alternative Deployment Options
+
+**Option B: AWS S3 + CloudFront**
 ```bash
 # Install AWS CLI
 npm install -g aws-cli
@@ -184,13 +203,13 @@ aws s3 sync dist/ s3://your-bucket-name --delete
 aws cloudfront create-invalidation --distribution-id YOUR_DIST_ID --paths "/*"
 ```
 
-##### Option D: Manual FTP/SFTP
+**Option C: Manual FTP/SFTP**
 1. Build the application: `npm run build`
 2. Upload entire `dist/` folder contents to your web root
 3. Ensure index.html is at the root level
 4. Clear any CDN or server cache
 
-##### Option E: Docker Deployment
+**Option D: Docker Deployment**
 ```dockerfile
 FROM nginx:alpine
 COPY dist/ /usr/share/nginx/html
