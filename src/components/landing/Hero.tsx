@@ -50,9 +50,12 @@ export const Hero = () => {
                   <span className="text-2xl">✨</span>
                   <span className="text-sm font-medium">AI-Powered Staging</span>
                 </div>
-                <p className="text-muted-foreground max-w-md mx-auto">
+                <a 
+                  href="#comparison"
+                  className="text-muted-foreground max-w-md mx-auto hover:text-primary transition-colors underline cursor-pointer block"
+                >
                   See the full before & after transformation below
-                </p>
+                </a>
               </div>
             </div>
           </div>
