@@ -51,32 +51,44 @@ export const Hero = () => {
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-[1.02] transform will-change-transform bg-black">
               {/* Before Image - Empty Room (Left side) - LCP Element */}
-              <img
-                src="/images/before-empty-room.jpg"
-                alt="Empty room before virtual staging"
-                className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                style={{ objectPosition: 'center 46%' }}
-                width="1920" 
-                height="1440" 
-                loading="eager" 
-                decoding="async"
-                fetchPriority="high"
-              />
+              <picture>
+                <source 
+                  srcSet="/images/before-empty-room-optimized.webp" 
+                  type="image/webp"
+                />
+                <img
+                  src="/images/before-empty-room.jpg"
+                  alt="Empty room before virtual staging"
+                  className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
+                  style={{ objectPosition: 'center 46%' }}
+                  width="1920" 
+                  height="1440" 
+                  loading="eager" 
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </picture>
 
               {/* After Image - Staged Room (Right side, revealed by slider) */}
               <div className="absolute top-0 left-0 w-full h-full" style={{
               clipPath: `inset(0 0 0 ${sliderPosition}%)`
             }}>
-              <img
-                src="/images/after-staged-room.jpg"
-                alt="Professionally staged room with L-shaped sofa and modern design"
-                className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
-                style={{ objectPosition: 'center 46%' }}
-                width="1920" 
-                height="1440" 
-                loading="lazy" 
-                decoding="async"
-              />
+              <picture>
+                <source 
+                  srcSet="/images/after-staged-room-optimized.webp" 
+                  type="image/webp"
+                />
+                <img
+                  src="/images/after-staged-room.jpg"
+                  alt="Professionally staged room with L-shaped sofa and modern design"
+                  className="absolute top-0 left-0 w-full h-full object-cover will-change-transform scale-[1.14] sm:scale-[1.12] lg:scale-[1.1]"
+                  style={{ objectPosition: 'center 46%' }}
+                  width="1920" 
+                  height="1440" 
+                  loading="lazy" 
+                  decoding="async"
+                />
+              </picture>
               </div>
 
               {/* Slider */}
