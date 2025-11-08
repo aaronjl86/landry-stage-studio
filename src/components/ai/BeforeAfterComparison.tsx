@@ -2,6 +2,7 @@ import { Download, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EditingJob } from "@/hooks/useAIProcessor";
+import { ViolationReportButton } from "./ViolationReportButton";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
@@ -55,26 +56,36 @@ export function BeforeAfterComparison({ jobs, onRedoJob }: BeforeAfterComparison
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {completedJobs.map((job) => (
             <div key={job.id} className="space-y-3">
-              <div className="flex items-center justify-between">
-                <h4 className="text-sm font-medium truncate">{job.fileName}</h4>
-                <div className="flex gap-1">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => onRedoJob?.(job.id)}
-                    title="Re-render with same settings"
-                  >
-                    <RefreshCw className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => downloadImage(job.editedImage!, job.fileName)}
-                    title="Download image"
-                  >
-                    <Download className="h-4 w-4" />
-                  </Button>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-medium truncate">{job.fileName}</h4>
+                  <div className="flex gap-1">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => onRedoJob?.(job.id)}
+                      title="Re-render with same settings"
+                    >
+                      <RefreshCw className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => downloadImage(job.editedImage!, job.fileName)}
+                      title="Download image"
+                    >
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
+                
+                {/* Phase 3: Violation reporting integration */}
+                <ViolationReportButton
+                  originalImageUrl={job.originalImage}
+                  editedImageUrl={job.editedImage!}
+                  prompt={job.customPrompt || ""}
+                  jobId={job.id}
+                />
               </div>
 
               <div className="grid grid-cols-2 gap-4">

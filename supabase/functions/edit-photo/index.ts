@@ -4,6 +4,9 @@ import { corsHeaders } from "../_shared/cors.ts";
 import { validateJWT } from "../_shared/jwt-utils.ts";
 import { checkRateLimit } from "../_shared/rate-limit.ts";
 import { logger } from "../_shared/structured-logger.ts";
+import { verifyPromptIntegrity, injectRuleSignature } from "../_shared/prompt-integrity.ts";
+import { getArchitecturalPrompt } from "../_shared/architectural-rule.ts";
+import { validateArchitecturalIntegrity } from "../_shared/image-validator.ts";
 
 serve(async (req) => {
   const correlationId = crypto.randomUUID();
@@ -15,6 +18,13 @@ serve(async (req) => {
 
   try {
     logger.info("edit-photo request started", { correlationId });
+
+    // Phase 4: Pre-flight integrity check
+    const isPromptValid = await verifyPromptIntegrity();
+    if (!isPromptValid) {
+      logger.error("CRITICAL: Architectural rule hash mismatch!", { correlationId });
+      throw new Error("System integrity violation: Architectural rule modified");
+    }
 
     // Validate JWT
     const { userId, error: authError } = await validateJWT(req.headers.get("Authorization"));
@@ -146,30 +156,10 @@ serve(async (req) => {
 
     logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
 
-    // CRITICAL ARCHITECTURAL PRESERVATION RULE
-    const enhancedPrompt = `CRITICAL ARCHITECTURAL PRESERVATION RULE - ABSOLUTELY NO EXCEPTIONS:
-
-You MUST preserve the EXACT architectural structure of the room:
-- Keep ALL windows in their EXACT original positions, sizes, and shapes
-- Keep ALL walls in their EXACT original positions and angles
-- Keep ALL doors in their EXACT original positions
-- Keep the floor surface EXACTLY as it appears (material/texture can be enhanced but geometry must stay identical)
-- Keep the ceiling EXACTLY as it appears
-- Do NOT move, resize, add, or remove ANY structural elements
-- Do NOT change room dimensions or spatial layout in ANY way
-- Do NOT alter the perspective or camera angle
-
-ONLY these changes are allowed:
-- Adding furniture (beds, sofas, tables, chairs, decor items)
-- Changing wall colors, paint, or wallpaper
-- Adding artwork, pictures, or decorations on walls
-- Enhancing lighting quality
-- Adding rugs, curtains, or soft furnishings
-- Improving image quality or brightness
-
-Furnishings must match room types (e.g. bed in bedroom, not in living room).
-
-USER'S EDITING REQUEST: ${sanitizedPrompt}`;
+    // Phase 1: Use immutable architectural rule with signature injection
+    const enhancedPrompt = injectRuleSignature(
+      getArchitecturalPrompt(sanitizedPrompt)
+    );
 
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -262,7 +252,60 @@ USER'S EDITING REQUEST: ${sanitizedPrompt}`;
       );
     }
 
-    logger.info("Image editing successful", { correlationId, userId });
+    // Phase 2: Validate architectural integrity
+    logger.info("Validating architectural integrity", { correlationId, userId });
+    const validation = await validateArchitecturalIntegrity(imageData, editedImageUrl);
+    
+    if (!validation.valid) {
+      logger.warn("Architectural integrity violation detected", {
+        correlationId,
+        userId,
+        similarityScore: validation.similarityScore,
+        reason: validation.reason
+      });
+      
+      // Log violation to database for analysis
+      try {
+        await supabase.from("architectural_violations").insert({
+          user_id: userId,
+          original_image_url: `data:${mimeType};base64,${imageData.substring(0, 100)}...`, // Truncated for storage
+          edited_image_url: editedImageUrl.substring(0, 100) + "...", // Truncated
+          user_prompt: sanitizedPrompt,
+          ssim_score: validation.similarityScore,
+          violation_reason: validation.reason,
+          reported_by_user: false
+        });
+      } catch (dbError) {
+        logger.error("Failed to log violation", { correlationId, error: dbError });
+        // Continue even if logging fails
+      }
+      
+      // Refund credit and reject output (skip for admins)
+      if (!isAdmin) {
+        await supabase.rpc("credits_refund", {
+          _user_id: userId,
+          _amount: 1,
+          _ref: `refund_${ref}`,
+          _original_ref: ref,
+          _service: "edit-photo",
+        });
+        logger.info("Credit refunded due to integrity violation", { correlationId, userId });
+      }
+      
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Image processing resulted in structural changes. Credit refunded. Please try again with different instructions."
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 422 }
+      );
+    }
+    
+    logger.info("Architectural integrity validated successfully", {
+      correlationId,
+      userId,
+      similarityScore: validation.similarityScore
+    });
 
     return new Response(
       JSON.stringify({

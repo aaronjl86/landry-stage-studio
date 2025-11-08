@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      architectural_violations: {
+        Row: {
+          created_at: string | null
+          edited_image_url: string
+          id: string
+          original_image_url: string
+          reported_by_user: boolean | null
+          ssim_score: number | null
+          user_id: string | null
+          user_prompt: string
+          violation_reason: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          edited_image_url: string
+          id?: string
+          original_image_url: string
+          reported_by_user?: boolean | null
+          ssim_score?: number | null
+          user_id?: string | null
+          user_prompt: string
+          violation_reason?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          edited_image_url?: string
+          id?: string
+          original_image_url?: string
+          reported_by_user?: boolean | null
+          ssim_score?: number | null
+          user_id?: string | null
+          user_prompt?: string
+          violation_reason?: string | null
+        }
+        Relationships: []
+      }
       blacklisted_identifiers: {
         Row: {
           blocked_until: string | null
