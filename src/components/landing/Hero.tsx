@@ -6,7 +6,7 @@ export const Hero = () => {
     backgroundColor: '#36eee0'
   }} aria-label="AI-Powered Virtual Staging Hero">
       {/* GPU-Accelerated Background - CSS only, no JS animations */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-blue-400/20 to-cyan-500/20 animated-bg" data-decorative="true" />
+      <div className="absolute inset-0 animated-bg" data-decorative="true" />
       
       {/* Simplified decorative circles - GPU composited */}
       <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl blob" data-decorative="true" />
