@@ -24,7 +24,7 @@ export const BeforeAfter = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-            {/* Before Image - Below fold, lazy load */}
+            {/* Before Image */}
             <picture>
               <img
                 src={beforeRoom}
@@ -32,9 +32,8 @@ export const BeforeAfter = () => {
                 className="absolute inset-0 w-full h-full object-cover"
                 width={1200}
                 height={900}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
               />
             </picture>
 
@@ -52,7 +51,6 @@ export const BeforeAfter = () => {
                   height={900}
                   loading="lazy"
                   decoding="async"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                 />
               </picture>
             </div>
