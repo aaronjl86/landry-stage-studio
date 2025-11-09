@@ -1,7 +1,6 @@
 import { useState, ChangeEvent } from "react";
-
-const beforeRoom = "/images/before-empty-room.jpg";
-const afterRoom = "/images/after-staged-room.jpg";
+import beforeRoomWebP from "@/assets/before-empty-room.webp";
+import afterRoomWebP from "@/assets/after-staged-room.webp";
 
 export const HeroComparison = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -24,29 +23,40 @@ export const HeroComparison = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-            {/* Before Image */}
-            <img
-              src={beforeRoom}
-              alt="Empty room before virtual staging"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
+            {/* Before Image - Critical LCP image */}
+            <picture>
+              <source type="image/webp" srcSet={beforeRoomWebP} />
+              <img
+                src="/images/before-empty-room.jpg"
+                alt="Empty room before virtual staging"
+                className="absolute inset-0 w-full h-full object-cover"
+                width={1200}
+                height={900}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+              />
+            </picture>
 
-            {/* After Image (masked to slider position) */}
+            {/* After Image (masked to slider position) - Lazy loaded */}
             <div
               className="absolute inset-0"
               style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
             >
-              <img
-                src={afterRoom}
-                alt="Professionally staged room after virtual staging"
-                className="w-full h-full object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
+              <picture>
+                <source type="image/webp" srcSet={afterRoomWebP} />
+                <img
+                  src="/images/after-staged-room.jpg"
+                  alt="Professionally staged room after virtual staging"
+                  className="w-full h-full object-cover"
+                  width={1200}
+                  height={900}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+                />
+              </picture>
             </div>
 
             {/* Slider Control */}
