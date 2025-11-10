@@ -84,10 +84,10 @@ export const Header = () => {
               autoPlay={!isMobile} 
               muted 
               playsInline 
-              preload={isMobile ? "none" : "metadata"}
+              preload="metadata"
               aria-label="The Landry Method" 
               className="h-[56px] md:h-[112px] w-auto object-contain"
-              poster="/cdn-cgi/image/width=300,quality=85,format=auto/assets/tlm-logo-footer.png"
+              poster="/TLM Logo White LA8-gigapixel-low resolution v2-823h.png"
             />
           </Link>
 
