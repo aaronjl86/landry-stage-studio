@@ -1,20 +1,9 @@
 import { Header } from "@/components/landing/Header";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Mail, MessageSquare, Phone } from "lucide-react";
-import { useState, useEffect } from "react";
-import { toast } from "sonner";
-import { z } from "zod";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message must be less than 1000 characters")
-});
+import { useEffect } from "react";
 import Footer4Col from "@/components/ui/footer-column";
 
 export default function Contact() {
@@ -28,43 +17,17 @@ export default function Contact() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.setAttribute('content', 'Get help with virtual staging for your real estate photos. Contact our support team for questions about AI staging, pricing, or technical assistance.');
-  }, []);
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
     
-    // Validate form data
-    try {
-      const validatedData = contactSchema.parse({
-        name: name.trim(),
-        email: email.trim(),
-        message: message.trim()
-      });
-      
-      // Simulate form submission with validated data
-      setTimeout(() => {
-        toast.success("Message sent! We'll get back to you soon.");
-        setName("");
-        setEmail("");
-        setMessage("");
-        setLoading(false);
-      }, 1000);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const firstError = error.errors[0];
-        toast.error(firstError.message);
-      } else {
-        toast.error("Failed to send message. Please try again.");
-      }
-      setLoading(false);
-    }
-  };
+    // Load the form embed script
+    const script = document.createElement('script');
+    script.src = 'https://join.thelandrymethod.com/js/form_embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -90,56 +53,25 @@ export default function Contact() {
           
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Send us a message</CardTitle>
-                <CardDescription>
-                  Fill out the form and we'll get back to you within 24 hours
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Name</Label>
-                    <Input
-                      id="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      placeholder="Your name"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      required
-                      placeholder="How can we help you?"
-                      rows={5}
-                    />
-                  </div>
-                  
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            <div className="h-[625px]">
+              <iframe
+                src="https://join.thelandrymethod.com/widget/form/BenVcHLbmmMPUOTsDsSA"
+                style={{ width: '100%', height: '100%', border: 'none', borderRadius: '8px' }}
+                id="inline-BenVcHLbmmMPUOTsDsSA"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Contact Us"
+                data-height="625"
+                data-layout-iframe-id="inline-BenVcHLbmmMPUOTsDsSA"
+                data-form-id="BenVcHLbmmMPUOTsDsSA"
+                title="Contact Us"
+              />
+            </div>
             
             {/* Contact Information */}
             <div className="space-y-6">
