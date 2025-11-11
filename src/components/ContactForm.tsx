@@ -44,10 +44,10 @@ const contactFormSchema = z.object({
     .min(10, { message: "Message must be at least 10 characters" })
     .max(2000, { message: "Message must be less than 2000 characters" }),
   smsConsent: z.boolean().refine((val) => val === true, {
-    message: "You must consent to receive SMS notifications",
+    message: "Please accept the terms and conditions",
   }),
   marketingConsent: z.boolean().refine((val) => val === true, {
-    message: "You must consent to receive marketing messages",
+    message: "Please accept the terms and conditions",
   }),
 });
 
