@@ -191,15 +191,17 @@ export function ContactForm() {
             control={form.control}
             name="smsConsent"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormItem className="flex items-start gap-3 space-y-0">
                 <FormControl>
                   <Checkbox
+                    id="smsConsent"
+                    className="mt-0.5"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel className="text-sm font-normal">
+                  <FormLabel htmlFor="smsConsent" className="text-sm font-normal cursor-pointer">
                     I Consent to Receive SMS Notifications, Alerts & Upcoming Show Details from The Landry Method LLC. Message frequency may vary. Message & data rates may apply. Text HELP for assistance. You may reply STOP to unsubscribe at any time.
                   </FormLabel>
                   <FormMessage />
@@ -212,15 +214,17 @@ export function ContactForm() {
             control={form.control}
             name="marketingConsent"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormItem className="flex items-start gap-3 space-y-0">
                 <FormControl>
                   <Checkbox
+                    id="marketingConsent"
+                    className="mt-0.5"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel className="text-sm font-normal">
+                  <FormLabel htmlFor="marketingConsent" className="text-sm font-normal cursor-pointer">
                     I Consent to Receive the Occasional Marketing Messages from The Landry Method LLC. You can Reply STOP to unsubscribe at any time.
                   </FormLabel>
                   <FormMessage />
