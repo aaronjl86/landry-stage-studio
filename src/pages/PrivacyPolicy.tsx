@@ -115,6 +115,22 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
+            <h2>Mobile Communications and SMS</h2>
+            <p>
+              If you provide your mobile phone number and opt-in to receive text messages from us:
+            </p>
+            <ul>
+              <li>No mobile information will be shared with third parties/affiliates for marketing/promotional purposes</li>
+              <li>Information sharing to subcontractors in support services, such as customer service, is permitted</li>
+              <li>All other use case categories exclude text messaging originator opt-in data and consent</li>
+              <li>This information will not be shared with any third parties</li>
+            </ul>
+            <p>
+              Your mobile information is used solely for service-related communications and customer support purposes.
+            </p>
+          </section>
+
+          <section>
             <h2>Your Rights and Choices</h2>
             <h3>Access and Control</h3>
             <p>You have the right to:</p>
