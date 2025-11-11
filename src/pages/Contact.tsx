@@ -53,7 +53,7 @@ export default function Contact() {
           
           <div className="grid md:grid-cols-2 gap-8 items-start mb-16">
             {/* Contact Form */}
-            <div className="h-[550px] md:h-[625px] mt-4 md:mt-6">
+            <div className="h-[550px] md:h-[625px]">
               <iframe
                 src="https://join.thelandrymethod.com/widget/form/BenVcHLbmmMPUOTsDsSA"
                 style={{ width: '100%', height: '100%', border: 'none', borderRadius: '8px' }}
