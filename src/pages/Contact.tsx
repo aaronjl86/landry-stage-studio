@@ -74,7 +74,7 @@ export default function Contact() {
             </div>
             
             {/* Contact Information */}
-            <div className="space-y-6 mt-4 md:mt-6">
+            <div className="space-y-6 mt-8 md:mt-12">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
