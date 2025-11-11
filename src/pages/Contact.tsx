@@ -33,7 +33,7 @@ export default function Contact() {
     <div className="min-h-screen">
       <Header />
       
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24">
         <div className="mb-8">
           <Link to="/">
             <Button variant="ghost" size="sm">
