@@ -91,7 +91,7 @@ export default function Terms() {
             <ul>
               <li><strong>Starter Plan:</strong> $29/month or $290/year - 10 uploads/month, HD quality, 24-hour turnaround</li>
               <li><strong>Professional Plan:</strong> $79/month or $790/year - 50 uploads/month, Ultra HD quality, 12-hour turnaround</li>
-              <li><strong>Enterprise Plan:</strong> $149/month or $1,490/year - 400 uploads per month, 4K quality, 2-hour turnaround</li>
+              <li><strong>Enterprise Plan:</strong> $149/month or $1,490/year - Unlimited uploads, 4K quality, 2-hour turnaround</li>
             </ul>
 
             <h3>4.2 Billing and Payments</h3>
@@ -107,7 +107,7 @@ export default function Terms() {
               <li>Each image processed consumes one credit</li>
               <li>Credits refresh monthly based on your subscription plan</li>
               <li>Unused credits do not roll over to the next billing cycle</li>
-              <li>Enterprise plan users receive 400 credits per month</li>
+              <li>Enterprise plan users receive unlimited credits per month</li>
             </ul>
 
             <h3>4.4 Refund Policy</h3>

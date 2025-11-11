@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Mail, MessageSquare, Phone } from "lucide-react";
 import { useEffect } from "react";
 import Footer4Col from "@/components/ui/footer-column";
+import { ContactForm } from "@/components/ContactForm";
 
 export default function Contact() {
   useEffect(() => {
@@ -17,16 +18,6 @@ export default function Contact() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.setAttribute('content', 'Get help with virtual staging for your real estate photos. Contact our support team for questions about AI staging, pricing, or technical assistance.');
-    
-    // Load the form embed script
-    const script = document.createElement('script');
-    script.src = 'https://join.thelandrymethod.com/js/form_embed.js';
-    script.async = true;
-    document.body.appendChild(script);
-    
-    return () => {
-      document.body.removeChild(script);
-    };
   }, []);
 
   return (
@@ -53,24 +44,8 @@ export default function Contact() {
           
           <div className="grid md:grid-cols-2 gap-8 items-start mb-16">
             {/* Contact Form */}
-            <div className="h-[550px] md:h-[625px]">
-              <iframe
-                src="https://join.thelandrymethod.com/widget/form/BenVcHLbmmMPUOTsDsSA"
-                style={{ width: '100%', height: '100%', border: 'none', borderRadius: '8px' }}
-                id="inline-BenVcHLbmmMPUOTsDsSA"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Contact Us"
-                data-height="625"
-                data-layout-iframe-id="inline-BenVcHLbmmMPUOTsDsSA"
-                data-form-id="BenVcHLbmmMPUOTsDsSA"
-                title="Contact Us"
-              />
+            <div>
+              <ContactForm />
             </div>
             
             {/* Contact Information */}
