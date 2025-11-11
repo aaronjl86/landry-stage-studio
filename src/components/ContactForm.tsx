@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const contactFormSchema = z.object({
   firstName: z
@@ -42,6 +43,12 @@ const contactFormSchema = z.object({
     .trim()
     .min(10, { message: "Message must be at least 10 characters" })
     .max(2000, { message: "Message must be less than 2000 characters" }),
+  smsConsent: z.boolean().refine((val) => val === true, {
+    message: "You must consent to receive SMS notifications",
+  }),
+  marketingConsent: z.boolean().refine((val) => val === true, {
+    message: "You must consent to receive marketing messages",
+  }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -58,6 +65,8 @@ export function ContactForm() {
       email: "",
       phone: "",
       message: "",
+      smsConsent: false,
+      marketingConsent: false,
     },
   });
 
@@ -174,6 +183,48 @@ export function ContactForm() {
                   />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="smsConsent"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel className="text-sm font-normal">
+                    I Consent to Receive SMS Notifications, Alerts & Upcoming Show Details from The Landry Method LLC. Message frequency may vary. Message & data rates may apply. Text HELP for assistance. You may reply STOP to unsubscribe at any time.
+                  </FormLabel>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="marketingConsent"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel className="text-sm font-normal">
+                    I Consent to Receive the Occasional Marketing Messages from The Landry Method LLC. You can Reply STOP to unsubscribe at any time.
+                  </FormLabel>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
