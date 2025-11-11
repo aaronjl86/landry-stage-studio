@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { LogOut, Home, DollarSign, Info, Mail, Sparkles, ImageIcon, CreditCard, LogIn, Menu } from "lucide-react";
+import { LogOut, Home, DollarSign, Info, Mail, Sparkles, ImageIcon, CreditCard, LogIn, Menu, MessageSquare } from "lucide-react";
 import { ExpandableTabs, type TabItem } from "@/components/ui/expandable-tabs";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -54,6 +54,13 @@ export const Header = () => {
     path: user ? "/dashboard/credits" : "/auth"
   }];
 
+  // Admin tabs (only show if user is admin)
+  const adminTabs: TabItem[] = isAdmin ? [{
+    title: "Submissions",
+    icon: MessageSquare,
+    path: "/dashboard/contact-submissions"
+  }] : [];
+
   // Auth tabs (conditionally add based on user state)
   const authTabs: TabItem[] = user ? [{
     type: "separator"
@@ -69,7 +76,7 @@ export const Header = () => {
     icon: LogIn,
     path: "/auth"
   }];
-  const allTabs = [...mainTabs, ...userTabs, ...authTabs];
+  const allTabs = [...mainTabs, ...userTabs, ...adminTabs, ...authTabs];
   const handleMobileNavClick = (onClick?: () => void) => {
     setMobileMenuOpen(false);
     if (onClick) onClick();
@@ -133,6 +140,22 @@ export const Header = () => {
                           </Link>;
                 })}
                   </div>
+
+                  {/* Admin Tabs (only for admins) */}
+                  {isAdmin && adminTabs.length > 0 && (
+                    <>
+                      <div className="h-px bg-border my-2" />
+                      <div className="flex flex-col gap-2">
+                        {adminTabs.map(tab => {
+                          const Icon = tab.icon;
+                          return <Link key={tab.path} to={tab.path} onClick={() => handleMobileNavClick()} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors bg-primary/10">
+                                    <Icon className="h-5 w-5" />
+                                    <span className="text-base font-medium">{tab.title}</span>
+                                  </Link>;
+                        })}
+                      </div>
+                    </>
+                  )}
 
                   {/* Auth Section */}
                   <div className="h-px bg-border my-2" />

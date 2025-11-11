@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactFormSchema = z.object({
   firstName: z
@@ -74,35 +75,36 @@ export function ContactForm() {
     setIsSubmitting(true);
     
     try {
-      // Encode data for URL parameters
-      const encodedMessage = encodeURIComponent(
-        `Name: ${data.firstName} ${data.lastName}\n` +
-        `Email: ${data.email}\n` +
-        `Phone: ${data.phone}\n\n` +
-        `Message:\n${data.message}`
-      );
-      
-      // Send to support email via mailto (opens user's email client)
-      window.location.href = `mailto:support@thelandrymethod.com?subject=${encodeURIComponent(
-        "Contact Form Submission"
-      )}&body=${encodedMessage}`;
-      
+      // Save to database
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+          sms_consent: data.smsConsent,
+          marketing_consent: data.marketingConsent,
+          user_agent: navigator.userAgent,
+        });
+
+      if (error) throw error;
+
       toast({
-        title: "Opening your email client",
-        description: "Your message has been prepared. Please send the email to complete your submission.",
+        title: "Message sent successfully!",
+        description: "Thank you for contacting us. We'll get back to you soon.",
       });
       
-      // Reset form after short delay
-      setTimeout(() => {
-        form.reset();
-        setIsSubmitting(false);
-      }, 1000);
+      form.reset();
     } catch (error) {
+      console.error('Contact form error:', error);
       toast({
         title: "Error",
-        description: "Something went wrong. Please try emailing us directly at support@thelandrymethod.com",
+        description: "Something went wrong. Please try again or email us at support@thelandrymethod.com",
         variant: "destructive",
       });
+    } finally {
       setIsSubmitting(false);
     }
   }

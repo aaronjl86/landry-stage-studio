@@ -12,6 +12,7 @@ const Auth = lazy(() => import("./pages/Auth"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const Credits = lazy(() => import("./pages/Credits"));
+const ContactSubmissions = lazy(() => import("./pages/ContactSubmissions"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -41,6 +42,7 @@ const App = () => (
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard/gallery" element={<Gallery />} />
               <Route path="/dashboard/credits" element={<Credits />} />
+              <Route path="/dashboard/contact-submissions" element={<ContactSubmissions />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

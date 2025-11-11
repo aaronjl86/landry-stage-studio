@@ -101,6 +101,54 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          email: string
+          first_name: string
+          id: string
+          ip_address: unknown
+          last_name: string
+          marketing_consent: boolean
+          message: string
+          notes: string | null
+          phone: string
+          read: boolean | null
+          sms_consent: boolean
+          submitted_at: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          email: string
+          first_name: string
+          id?: string
+          ip_address?: unknown
+          last_name: string
+          marketing_consent?: boolean
+          message: string
+          notes?: string | null
+          phone: string
+          read?: boolean | null
+          sms_consent?: boolean
+          submitted_at?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          email?: string
+          first_name?: string
+          id?: string
+          ip_address?: unknown
+          last_name?: string
+          marketing_consent?: boolean
+          message?: string
+          notes?: string | null
+          phone?: string
+          read?: boolean | null
+          sms_consent?: boolean
+          submitted_at?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       credit_transactions: {
         Row: {
           amount: number
