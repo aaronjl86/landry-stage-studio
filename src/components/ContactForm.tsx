@@ -204,7 +204,7 @@ export function ContactForm() {
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel htmlFor="smsConsent" className="text-sm font-normal cursor-pointer">
-                    I Consent to Receive SMS Notifications, Alerts & Upcoming Show Details from The Landry Method LLC. Message frequency may vary. Message & data rates may apply. Text HELP for assistance. You may reply STOP to unsubscribe at any time.
+                    I consent to receive text messages and phone calls from The Landry Method LLC. I understand that calls may be automated, pre-recorded, or use an AI voice. Message frequency may vary. Message & data rates may apply. Text HELP for assistance. You may reply STOP to unsubscribe at any time.
                   </FormLabel>
                   <FormMessage />
                 </div>
@@ -227,7 +227,7 @@ export function ContactForm() {
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel htmlFor="marketingConsent" className="text-sm font-normal cursor-pointer">
-                    I Consent to Receive the Occasional Marketing Messages from The Landry Method LLC. You can Reply STOP to unsubscribe at any time.
+                    I consent to receive marketing communications, including text messages and phone calls, from The Landry Method LLC. I understand that calls may be automated, pre-recorded, or use an AI voice. You can reply STOP to text messages or request removal from call lists at any time.
                   </FormLabel>
                   <FormMessage />
                 </div>
