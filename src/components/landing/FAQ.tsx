@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     question: "Do you offer refunds?",
-    answer: "We offer a 30-day money-back guarantee from your initial purchase date. If you're not satisfied with our service, contact support@thelandrymethod.com for a refund. Credits used during the trial period will be deducted from your refund amount."
+    answer: "We offer a 30-day money-back guarantee from the date of your initial purchase. If you are not satisfied with our service, simply contact us at support@thelandrymethod.com within 30 days and we will process your refund. If you used any credits during this period, the value of those credits will be deducted from your refund amount."
   },
   {
     question: "Can I cancel my subscription anytime?",

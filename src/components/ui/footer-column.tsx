@@ -28,7 +28,13 @@ export default function Footer4Col() {
               AI-powered virtual staging for real estate professionals
             </p>
             <p className="text-lg text-foreground font-medium">
-              &copy; 2025 The Landry Method. All rights reserved.
+              &copy; 2025 The Landry Method LLC. All rights reserved.
+            </p>
+            <p className="text-sm text-foreground">
+              Refunds: 30-day money-back guarantee (<Link to="/terms" className="underline hover:no-underline">see Terms &amp; Conditions</Link>)
+            </p>
+            <p className="text-sm text-foreground">
+              Contact: <a href="mailto:support@thelandrymethod.com" className="underline hover:no-underline">support@thelandrymethod.com</a> • +1 (323) 745-8111
             </p>
           </div>
 
