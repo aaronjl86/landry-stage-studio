@@ -63,6 +63,7 @@ Use these exact settings:
 VITE_SUPABASE_PROJECT_ID=lcwhbgfcyzefwnoblkkd
 VITE_SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxjd2hiZ2ZjeXplZndub2Jsa2tkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0OTAyNTQsImV4cCI6MjA3NTA2NjI1NH0.C_8p4biYHN9hCQc15k6zDPPQdhOgAnI_AHjVb-6n8NQ
 VITE_SUPABASE_URL=https://lcwhbgfcyzefwnoblkkd.supabase.co
+VITE_ROUTELLM_API_KEY=s2_2684d6d37911409faf6effd3976b9ae0
 ```
 
 3. Set each variable's environment to **Production** (and optionally **Preview** for testing)

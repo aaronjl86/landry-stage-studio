@@ -193,5 +193,13 @@ export class RouteLLMService {
 }
 
 // Export a singleton instance
-export const routeLLM = new RouteLLMService();
+export const routeLLM = (() => {
+  const apiKey = import.meta.env.VITE_ROUTELLM_API_KEY;
+  if (!apiKey) {
+    // In production with Cloudflare, the API key should always be set
+    // This null check is primarily for local development
+    return null;
+  }
+  return new RouteLLMService();
+})();
 
