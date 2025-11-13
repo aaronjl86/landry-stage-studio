@@ -115,19 +115,52 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2>Mobile Communications and SMS</h2>
+            <h2>Voice Communications and Automated Calling</h2>
+            <h3>Telephone Communications</h3>
             <p>
-              If you provide your mobile phone number and opt-in to receive text messages from us:
+              If you provide your telephone number and consent to receive calls from us:
+            </p>
+            <ul>
+              <li><strong>Automated Calls:</strong> You may receive calls using automated telephone dialing systems, pre-recorded messages, or artificial intelligence (AI) voice technology</li>
+              <li><strong>Purpose:</strong> Calls may include service notifications, appointment reminders, customer support, marketing communications, and promotional offers</li>
+              <li><strong>Consent Requirement:</strong> By providing your phone number and agreeing to our consent language, you expressly consent to receive such calls</li>
+              <li><strong>No Charges from Us:</strong> We do not charge for calls, but standard message and data rates from your carrier may apply</li>
+              <li><strong>TCPA Compliance:</strong> Your consent is not a condition of purchasing any goods or services, and you may opt out at any time</li>
+            </ul>
+
+            <h3>SMS and Text Messaging</h3>
+            <p>
+              If you opt-in to receive text messages from us:
             </p>
             <ul>
               <li>No mobile information will be shared with third parties/affiliates for marketing/promotional purposes</li>
               <li>Information sharing to subcontractors in support services, such as customer service, is permitted</li>
               <li>All other use case categories exclude text messaging originator opt-in data and consent</li>
               <li>This information will not be shared with any third parties</li>
+              <li>Message frequency may vary depending on your interaction with our services</li>
             </ul>
+
+            <h3>Opt-Out and Preferences</h3>
             <p>
-              Your mobile information is used solely for service-related communications and customer support purposes.
+              You have full control over your communication preferences:
             </p>
+            <ul>
+              <li><strong>SMS Opt-Out:</strong> Reply STOP to any text message to unsubscribe from SMS communications</li>
+              <li><strong>Call Opt-Out:</strong> Request removal from our call list by contacting support@thelandrymethod.com or informing us during any call</li>
+              <li><strong>Help:</strong> Reply HELP to any text message or email support@thelandrymethod.com for assistance</li>
+              <li><strong>Do Not Call Registry:</strong> We honor the National Do Not Call Registry and internal do-not-call lists</li>
+            </ul>
+
+            <h3>Data Usage</h3>
+            <p>
+              Your phone number and communication preferences are used solely for:
+            </p>
+            <ul>
+              <li>Service-related notifications and customer support</li>
+              <li>Marketing communications (only with your express consent)</li>
+              <li>Appointment scheduling and reminders</li>
+              <li>Account security and verification</li>
+            </ul>
           </section>
 
           <section>

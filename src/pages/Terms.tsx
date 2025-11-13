@@ -276,7 +276,63 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2>11. Privacy and Data Protection</h2>
+            <h2>11. Communications and Consent</h2>
+            <h3>11.1 Consent to Receive Communications</h3>
+            <p>
+              By providing your telephone number and agreeing to receive communications from us, you expressly consent to receive:
+            </p>
+            <ul>
+              <li><strong>Phone Calls:</strong> Including automated calls, pre-recorded messages, and artificial intelligence (AI) voice calls</li>
+              <li><strong>Text Messages:</strong> SMS and MMS messages for service notifications and marketing</li>
+              <li><strong>Marketing Communications:</strong> Promotional offers, updates, and information about our services</li>
+            </ul>
+
+            <h3>11.2 Automated and AI Voice Technology</h3>
+            <p>
+              You acknowledge and agree that:
+            </p>
+            <ul>
+              <li>We may use automated telephone dialing systems to contact you</li>
+              <li>Calls may be pre-recorded or generated using artificial intelligence voice technology</li>
+              <li>AI voice agents may conduct conversations, answer questions, and collect information</li>
+              <li>Call content may be recorded for quality assurance and training purposes</li>
+            </ul>
+
+            <h3>11.3 TCPA Compliance</h3>
+            <p>
+              In compliance with the Telephone Consumer Protection Act (TCPA):
+            </p>
+            <ul>
+              <li>Your consent is not required as a condition of purchasing any goods or services</li>
+              <li>You may revoke your consent at any time without penalty</li>
+              <li>We maintain internal do-not-call lists and honor the National Do Not Call Registry</li>
+              <li>Standard message and data rates from your carrier may apply to calls and texts</li>
+            </ul>
+
+            <h3>11.4 Communication Frequency</h3>
+            <ul>
+              <li>Message and call frequency may vary based on your account activity and selected preferences</li>
+              <li>Service-related communications (account notifications, security alerts) may be sent regardless of marketing preferences</li>
+              <li>Marketing communications will only be sent if you have provided express consent</li>
+            </ul>
+
+            <h3>11.5 Opt-Out Rights</h3>
+            <p>
+              You have the right to opt out of communications at any time:
+            </p>
+            <ul>
+              <li><strong>SMS/Text Messages:</strong> Reply STOP to any text message to unsubscribe</li>
+              <li><strong>Phone Calls:</strong> Request removal during any call or email support@thelandrymethod.com</li>
+              <li><strong>Marketing Emails:</strong> Click unsubscribe in any marketing email</li>
+              <li><strong>All Communications:</strong> Contact support@thelandrymethod.com to update all preferences</li>
+            </ul>
+            <p>
+              For assistance with communications, reply HELP to any text message or contact support@thelandrymethod.com.
+            </p>
+          </section>
+
+          <section>
+            <h2>12. Privacy and Data Protection</h2>
             <p>
               Your privacy is important to us. Please review our <Link to="/privacy-policy" className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent hover:underline">Privacy Policy</Link> to understand how we collect, use, and protect your information.
             </p>
@@ -292,7 +348,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2>12. Modifications to Terms</h2>
+            <h2>13. Modifications to Terms</h2>
             <p>
               We reserve the right to modify these Terms at any time. We will notify you of material changes by:
             </p>
@@ -307,7 +363,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2>13. Governing Law and Dispute Resolution</h2>
+            <h2>14. Governing Law and Dispute Resolution</h2>
             <h3>13.1 Governing Law</h3>
             <p>
               These Terms are governed by the laws of the State of Oregon, without regard to conflict of law principles.
@@ -340,7 +396,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2>14. Miscellaneous</h2>
+            <h2>15. Miscellaneous</h2>
             <h3>14.1 Entire Agreement</h3>
             <p>
               These Terms, together with our Privacy Policy, constitute the entire agreement between you and The Landry Method.
@@ -368,7 +424,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2>15. Contact Information</h2>
+            <h2>16. Contact Information</h2>
             <p>
               For questions about these Terms, please contact us:
             </p>
@@ -380,7 +436,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2>16. Acknowledgment</h2>
+            <h2>17. Acknowledgment</h2>
             <p>
               BY USING THE SERVICE, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS, UNDERSTAND THEM, AND AGREE TO BE BOUND BY THEM.
             </p>
