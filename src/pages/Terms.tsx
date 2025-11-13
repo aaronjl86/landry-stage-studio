@@ -21,7 +21,10 @@ export default function Terms() {
         
         <article className="max-w-4xl mx-auto prose prose-slate dark:prose-invert">
           <h1>Terms & Conditions</h1>
-          <p className="text-muted-foreground">Last updated: January 2025</p>
+          <p className="text-muted-foreground">
+            <strong>Effective Date: November 13, 2025</strong>
+          </p>
+          <p className="text-muted-foreground">Last updated: November 13, 2025</p>
           
           <section>
             <h2>1. Acceptance of Terms</h2>
