@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CookieBanner } from "@/components/CookieBanner";
+import { SupportBot } from "@/components/SupportBot";
 import { lazy, Suspense } from "react";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -48,6 +49,7 @@ const App = () => (
             </Routes>
           </Suspense>
           <CookieBanner />
+          <SupportBot />
         </BrowserRouter>
       </AuthProvider>
     </TooltipProvider>
