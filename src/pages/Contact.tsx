@@ -76,7 +76,7 @@ export default function Contact() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    +1 (555) 123-4567
+                    +1 (323) 745-8111
                   </p>
                   <p className="text-sm text-muted-foreground mt-2">
                     Monday - Friday, 9am - 5pm EST
