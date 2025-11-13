@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
         
         <article className="max-w-4xl mx-auto prose prose-slate dark:prose-invert">
           <h1>Privacy Policy</h1>
-          <p className="text-muted-foreground">Last updated: January 2025</p>
+          <p className="text-muted-foreground">Last updated: November 13, 2025</p>
           
           <section>
             <h2>Introduction</h2>
@@ -270,9 +270,11 @@ export default function PrivacyPolicy() {
               For privacy-related questions, concerns, or requests, please contact us:
             </p>
             <ul>
-              <li><strong>Email:</strong> privacy@thelandrymethod.com</li>
-              <li><strong>Support:</strong> support@thelandrymethod.com</li>
-              <li><strong>Mail:</strong> The Landry Method Privacy Team, Address available upon request (contact privacy@thelandrymethod.com)</li>
+              <li><strong>Company:</strong> The Landry Method</li>
+              <li><strong>Address:</strong> 5441 S Macadam Ave STE N, Portland, OR 97239</li>
+              <li><strong>Phone:</strong> +1 (323) 745-8111</li>
+              <li><strong>Email:</strong> Via contact form at <a href="/contact" className="text-primary hover:underline">thelandrymethod.com/contact</a></li>
+              <li><strong>Hours:</strong> Monday - Friday, 9am - 5pm EST</li>
             </ul>
             <p>
               We will respond to your request within 30 days.

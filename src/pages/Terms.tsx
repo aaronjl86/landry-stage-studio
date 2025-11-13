@@ -21,7 +21,7 @@ export default function Terms() {
         
         <article className="max-w-4xl mx-auto prose prose-slate dark:prose-invert">
           <h1>Terms & Conditions</h1>
-          <p className="text-muted-foreground">Last updated: January 2025</p>
+          <p className="text-muted-foreground">Last updated: November 13, 2025</p>
           
           <section>
             <h2>1. Acceptance of Terms</h2>
@@ -89,9 +89,9 @@ export default function Terms() {
               We offer three subscription tiers:
             </p>
             <ul>
-              <li><strong>Starter Plan:</strong> $29/month or $290/year - 10 uploads/month, HD quality, 24-hour turnaround</li>
-              <li><strong>Professional Plan:</strong> $79/month or $790/year - 50 uploads/month, Ultra HD quality, 12-hour turnaround</li>
-              <li><strong>Enterprise Plan:</strong> $149/month or $1,490/year - Unlimited uploads, 4K quality, 2-hour turnaround</li>
+              <li><strong>Starter Plan:</strong> $29/month or $290/year - 10 uploads/month, HD quality, 24-hour turnaround, Email support, Basic editing tools</li>
+              <li><strong>Professional Plan:</strong> $79/month or $790/year - 50 uploads/month, Ultra HD quality, 12-hour turnaround, Priority support, Advanced editing tools, Bulk upload, Custom branding</li>
+              <li><strong>Enterprise Plan:</strong> $149/month or $1,490/year - Unlimited uploads, 4K quality, 2-hour turnaround, Dedicated support, Full editing suite, API access, White-label solution, Team collaboration</li>
             </ul>
 
             <h3>4.2 Billing and Payments</h3>
@@ -429,9 +429,11 @@ export default function Terms() {
               For questions about these Terms, please contact us:
             </p>
             <ul>
-              <li><strong>Email:</strong> legal@thelandrymethod.com</li>
-              <li><strong>Support:</strong> support@thelandrymethod.com</li>
-              <li><strong>Mail:</strong> The Landry Method Legal Department, Address available upon request (contact support@thelandrymethod.com)</li>
+              <li><strong>Company:</strong> The Landry Method</li>
+              <li><strong>Address:</strong> 5441 S Macadam Ave STE N, Portland, OR 97239</li>
+              <li><strong>Phone:</strong> +1 (323) 745-8111</li>
+              <li><strong>Email:</strong> Via contact form at <a href="/contact" className="text-primary hover:underline">thelandrymethod.com/contact</a></li>
+              <li><strong>Hours:</strong> Monday - Friday, 9am - 5pm EST</li>
             </ul>
           </section>
 
