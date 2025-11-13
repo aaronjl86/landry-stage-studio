@@ -23,6 +23,12 @@ export function useRouteLLM(options: UseRouteLLMOptions = {}) {
    */
   const sendMessage = useCallback(
     async (messages: RouteLLMMessage[]): Promise<string> => {
+      if (!routeLLM) {
+        const error = new Error("RouteLLM service is not available. Please check your API key configuration.");
+        setError(error);
+        throw error;
+      }
+
       setIsLoading(true);
       setError(null);
       setResponse("");
@@ -58,6 +64,12 @@ export function useRouteLLM(options: UseRouteLLMOptions = {}) {
       messages: RouteLLMMessage[],
       onChunk?: (content: string) => void
     ): Promise<string> => {
+      if (!routeLLM) {
+        const error = new Error("RouteLLM service is not available. Please check your API key configuration.");
+        setError(error);
+        throw error;
+      }
+
       setIsLoading(true);
       setError(null);
       setResponse("");
@@ -113,6 +125,7 @@ export function useRouteLLM(options: UseRouteLLMOptions = {}) {
     error,
     response,
     clear,
+    isAvailable: routeLLM !== null,
   };
 }
 

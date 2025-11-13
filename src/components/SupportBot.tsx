@@ -164,7 +164,7 @@ export function SupportBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { sendMessageStream, isLoading } = useRouteLLM({
+  const { sendMessageStream, isLoading, isAvailable } = useRouteLLM({
     model: "openai/gpt-oss-120b",
     temperature: 0.7,
   });
@@ -180,6 +180,11 @@ export function SupportBot() {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen, messages]);
+
+  // Don't render if service is not available
+  if (!isAvailable) {
+    return null;
+  }
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;

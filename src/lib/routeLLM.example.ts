@@ -9,6 +9,11 @@ import { routeLLM, RouteLLMMessage } from "./routeLLM";
 
 // Example 1: Non-streaming chat completion
 async function exampleNonStreaming() {
+  if (!routeLLM) {
+    console.error("RouteLLM service is not available. Check your API key.");
+    return;
+  }
+
   const messages: RouteLLMMessage[] = [
     {
       role: "user",
@@ -32,6 +37,11 @@ async function exampleNonStreaming() {
 
 // Example 2: Streaming chat completion
 async function exampleStreaming() {
+  if (!routeLLM) {
+    console.error("RouteLLM service is not available. Check your API key.");
+    return;
+  }
+
   const messages: RouteLLMMessage[] = [
     {
       role: "user",
