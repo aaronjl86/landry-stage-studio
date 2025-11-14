@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "How quickly will I receive my staged photos?",
-    answer: "Most staged images are delivered within seconds to minutes! Our AI-powered virtual staging platform processes photos instantly. Professional plan users get priority processing with 12-hour guaranteed turnaround, while Enterprise users receive staged photos within 2 hours. Much faster than traditional physical staging that takes 7-14 days."
+    answer: "Most staged images are delivered within seconds to minutes! Our AI-powered virtual staging platform processes photos instantly across all plans. Much faster than traditional physical staging that takes 7-14 days."
   },
   {
     question: "How does AI virtual staging work?",
