@@ -21,12 +21,13 @@ export function AIPhotoEditor() {
   const [requiredCredits, setRequiredCredits] = useState(0);
   
   const { jobs, isProcessing, submitBatchEdit, clearJobs, redoJob } = useAIProcessor();
-  const { credits, refreshCredits, isAdmin } = useAuth();
+  const { credits, freeTrialCredits, refreshCredits, isAdmin } = useAuth();
 
   // Memoize credit check computation
   const canProcess = useMemo(() => {
-    return isAdmin || credits >= uploadedImages.length;
-  }, [isAdmin, credits, uploadedImages.length]);
+    const totalCredits = freeTrialCredits + credits;
+    return isAdmin || totalCredits >= uploadedImages.length;
+  }, [isAdmin, freeTrialCredits, credits, uploadedImages.length]);
 
   // Memoize job filtering for display
   const completedJobs = useMemo(() => {
@@ -57,7 +58,8 @@ export function AIPhotoEditor() {
     }
 
     // Admins bypass credit checks
-    if (!isAdmin && credits < uploadedImages.length) {
+    const totalCredits = freeTrialCredits + credits;
+    if (!isAdmin && totalCredits < uploadedImages.length) {
       console.log("Insufficient credits - showing upgrade dialog");
       setRequiredCredits(uploadedImages.length);
       setShowUpgradeDialog(true);
@@ -98,9 +100,23 @@ export function AIPhotoEditor() {
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-semibold">Credit Balance</h3>
-            <p className="text-sm text-muted-foreground">
-              {isAdmin ? "Unlimited credits (Admin)" : `You have ${credits} credits remaining`}
-            </p>
+            {isAdmin ? (
+              <p className="text-sm text-muted-foreground">Unlimited credits (Admin)</p>
+            ) : (
+              <div className="space-y-1">
+                {freeTrialCredits > 0 && (
+                  <p className="text-sm text-muted-foreground">
+                    🎉 Free trial: {freeTrialCredits} uploads remaining
+                  </p>
+                )}
+                <p className="text-sm text-muted-foreground">
+                  Paid credits: {credits}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Total: {freeTrialCredits + credits} uploads available
+                </p>
+              </div>
+            )}
           </div>
           {isAdmin && (
             <div className="bg-gradient-to-r from-[hsl(280,70%,70%)] to-[hsl(290,75%,65%)] text-white px-4 py-2 rounded-full text-sm font-semibold">
