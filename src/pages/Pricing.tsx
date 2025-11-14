@@ -16,7 +16,7 @@ export default function Pricing() {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Compare virtual staging pricing plans. From $29/month for starter agents to unlimited enterprise plans. Save thousands vs physical staging costs.');
+    metaDescription.setAttribute('content', 'Compare virtual staging pricing plans. From $29/month for 10 uploads to $149/month for 200 uploads. Save thousands vs physical staging costs.');
   }, []);
 
   return <div className="min-h-screen">

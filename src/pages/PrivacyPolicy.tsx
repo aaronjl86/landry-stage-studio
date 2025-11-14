@@ -45,6 +45,16 @@ export default function PrivacyPolicy() {
               <li>Usage analytics</li>
               <li>Error logs</li>
             </ul>
+
+            <h3 className="text-xl font-semibold mt-6 mb-3">Free Trial Information</h3>
+            <p>When you register for an account, The Landry Method LLC automatically provides <strong>3 free uploads</strong>.</p>
+            <p>To support this functionality, we collect:</p>
+            <ul>
+              <li>Trial usage count</li>
+              <li>Upload timestamps</li>
+              <li>Non-payment identifiers used to enforce free-trial limits</li>
+            </ul>
+            <p>No payment method is required to use free uploads. Subscription billing begins only when you choose a paid plan.</p>
           </section>
 
           <section className="mb-8">
