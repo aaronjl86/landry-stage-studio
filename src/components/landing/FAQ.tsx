@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     question: "How is virtual staging different from physical staging?",
-    answer: "Virtual staging uses AI to digitally furnish empty rooms, while physical staging requires renting and placing actual furniture. Virtual staging costs 90% less than traditional staging ($29-149/month vs $2,000-5,000 per home), delivers staged homes in 24 hours instead of weeks, and allows unlimited style changes without the hassle of moving furniture. Perfect for real estate agents who need fast, affordable staging solutions."
+    answer: "Virtual staging uses AI to digitally furnish empty rooms, while physical staging requires renting and placing actual furniture. Virtual staging costs 90% less than traditional staging ($29-149/month vs $2,000-5,000 per home), delivers staged homes in seconds instead of weeks, and allows unlimited style changes without the hassle of moving furniture. Perfect for real estate agents who need fast, affordable staging solutions."
   },
   {
     question: "What furniture styles are available?",
@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     question: "Can I customize the staging style?",
-    answer: "Yes! All plans include editing tools to choose from various design styles (modern, traditional, minimalist, luxury, contemporary, etc.). Professional and Enterprise plans offer advanced editing capabilities and custom branding options."
+    answer: "Yes! All plans include the same professional editing tools to choose from various design styles (modern, traditional, minimalist, luxury, contemporary, etc.). Higher-tier plans offer more uploads per month and faster email support, but no additional features are unlocked."
   },
   {
     question: "Do you offer refunds?",
@@ -49,6 +49,14 @@ const faqs = [
   {
     question: "Do you provide commercial usage rights?",
     answer: "Yes! All staged images come with full commercial usage rights. You can use them in listings, marketing materials, and any promotional content."
+  },
+  {
+    question: "Do you offer a free trial?",
+    answer: "Yes! All new users automatically receive 3 free uploads when they create an account. No credit card required. You can test the platform and see results before committing to a paid plan."
+  },
+  {
+    question: "Can I revise an image if I don't like the result?",
+    answer: "Absolutely! Revisions are unlimited for the same original photo at no extra cost. If you're not satisfied with the result, simply hit 'Re-process Image' to generate a new version. You're only charged once per original photo upload, no matter how many times you revise it."
   }
 ];
 

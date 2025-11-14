@@ -39,6 +39,19 @@ export default function Terms() {
           </section>
 
           <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">2.5 Revisions & Re-Processing</h2>
+            <p>The Landry Method LLC provides <strong>unlimited revisions</strong> for the same original photo at <strong>no extra cost</strong>.</p>
+            <ul>
+              <li>Each original photo upload consumes <strong>one (1) credit</strong></li>
+              <li>Revisions do <strong>not</strong> consume additional credits</li>
+              <li>If you are unsatisfied with a result, you may re-process the same image at any time</li>
+              <li>AI errors (glitches, distortions, malformed objects) may be corrected by re-processing</li>
+              <li>If an image fails to process, the credit is automatically refunded</li>
+              <li>If the AI alters architectural structure (MLS violation), users should click <strong>"Report Structural Change"</strong> and re-process the image at no cost</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">3. Subscription Plans</h2>
             <p>The only differences between plans are <strong>monthly upload limits</strong> and <strong>support level</strong>.</p>
             <p>Higher-tier plans do <strong>not</strong> unlock extra tools, features, quality improvements, or capabilities.</p>
@@ -61,12 +74,30 @@ export default function Terms() {
               <li>Priority support</li>
             </ul>
 
-            <p className="mt-4"><strong>Credits refresh monthly and do not roll over.</strong></p>
+            <h3 className="text-xl font-semibold mt-6 mb-3">Upload & Credit System</h3>
+            <ul>
+              <li>One (1) credit = one (1) unique original photo upload</li>
+              <li>Revisions do <strong>not</strong> consume credits</li>
+              <li>Credits refresh monthly on your billing date and do not roll over to the next month</li>
+            </ul>
 
             <h3 className="text-xl font-semibold mt-6 mb-3">Support Level Definitions</h3>
             <ul>
-              <li><strong>Standard support:</strong> Email response within 48 business hours</li>
-              <li><strong>Priority support:</strong> Email response within 24 business hours</li>
+              <li><strong>Standard support:</strong> Typical email response within 48 business hours</li>
+              <li><strong>Priority support:</strong> Typical email response within 24 business hours</li>
+            </ul>
+            <p className="mt-2 text-sm text-muted-foreground"><em>Note: These are typical response times, not guaranteed service level agreements (SLAs).</em></p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">3.5 Free Trial</h2>
+            <p>All new users of The Landry Method LLC receive <strong>3 free uploads</strong> when creating an account.</p>
+            <ul>
+              <li>No credit card is required</li>
+              <li>Free uploads are available immediately upon registration</li>
+              <li>Free uploads are valid for 90 days of account inactivity</li>
+              <li>Once free uploads are used, continued usage requires a paid plan</li>
+              <li>Free uploads cannot be combined or rolled over with paid subscription credits</li>
             </ul>
           </section>
 
@@ -78,16 +109,50 @@ export default function Terms() {
 
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">5. Refund Policy (30-Day Money-Back Guarantee)</h2>
-            <p>We offer a <strong>30-day money-back guarantee</strong> on your first purchase.</p>
+            <p>We offer a <strong>30-day money-back guarantee</strong> on your <strong>first purchase</strong> only.</p>
             <p>To request a refund, email <a href="mailto:support@thelandrymethod.com" className="text-primary hover:underline">support@thelandrymethod.com</a> within 30 days.</p>
-            <p>If credits were used, the proportional value of those credits will be deducted from the refund.</p>
+            <p>If credits were used during the guarantee period, the proportional value of used credits will be deducted from the refund.</p>
+            <p className="mt-4"><strong>Additional refund rules:</strong></p>
+            <ul>
+              <li>Partial-month refunds are not provided unless required by applicable law</li>
+              <li>Annual subscriptions are non-refundable after the initial 30-day guarantee period</li>
+              <li>Processing failures automatically refund the associated credit</li>
+            </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">6. Acceptable Use</h2>
-            <p>You may not upload content that is illegal, hateful, violent, pornographic, copyrighted, or harmful.</p>
-            <p>Images containing identifiable people are prohibited.</p>
+            <h2 className="text-2xl font-semibold mb-4">6. Acceptable Use & MLS Compliance</h2>
+            <p>You may not upload content that is illegal, hateful, violent, pornographic, copyrighted, or harmful. Images containing identifiable people are prohibited.</p>
             <p>Virtual staging must be clearly disclosed when used in real-estate listings ("Photos are virtually staged").</p>
+            
+            <h3 className="text-xl font-semibold mt-6 mb-3">MLS Compliance</h3>
+            <p>Users must comply with all applicable MLS rules when using virtually staged images. The Landry Method LLC adheres to strict compliance by <strong>not modifying architectural structure</strong>.</p>
+            
+            <h4 className="text-lg font-semibold mt-4 mb-2">The system DOES NOT modify:</h4>
+            <ul>
+              <li>Walls</li>
+              <li>Doors</li>
+              <li>Windows</li>
+              <li>Ceilings</li>
+              <li>Floors</li>
+              <li>Built-ins</li>
+              <li>Fireplaces</li>
+              <li>Staircases</li>
+              <li>Any load-bearing or structural elements</li>
+            </ul>
+
+            <h4 className="text-lg font-semibold mt-4 mb-2">The system MAY modify:</h4>
+            <ul>
+              <li>Furniture placement</li>
+              <li>Clutter removal</li>
+              <li>Décor changes</li>
+              <li>Non-structural lighting enhancement</li>
+              <li>Aesthetic improvements</li>
+              <li>AI-generated errors (fixable by re-processing)</li>
+            </ul>
+
+            <p className="mt-4">Users are responsible for following MLS disclosure requirements (e.g., "Photos are virtually staged").</p>
+            <p>A <strong>"Report Structural Change"</strong> button is provided to flag accidental architectural modifications created by the AI.</p>
           </section>
 
           <section className="mb-8">
