@@ -62,6 +62,12 @@ export default function Terms() {
             </ul>
 
             <p className="mt-4"><strong>Credits refresh monthly and do not roll over.</strong></p>
+
+            <h3 className="text-xl font-semibold mt-6 mb-3">Support Level Definitions</h3>
+            <ul>
+              <li><strong>Standard support:</strong> Email response within 48 business hours</li>
+              <li><strong>Priority support:</strong> Email response within 24 business hours</li>
+            </ul>
           </section>
 
           <section className="mb-8">
