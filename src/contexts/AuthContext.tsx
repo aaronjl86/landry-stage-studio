@@ -77,10 +77,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       .single();
 
     if (!error && data) {
-      setCredits(data.quota - data.used);
-      setFreeTrialCredits(data.free_trial_uploads_remaining);
+      const paidCredits = (data.quota || 0) - (data.used || 0);
+      setCredits(paidCredits);
+      setFreeTrialCredits(data.free_trial_uploads_remaining || 0);
     } else if (error) {
       console.error('Failed to refresh credits:', error);
+      // Set defaults on error
+      setCredits(0);
+      setFreeTrialCredits(0);
     }
   };
 

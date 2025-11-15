@@ -46,14 +46,13 @@ export function ViolationReportButton({
       const originalTruncated = originalImageUrl.substring(0, 100) + "...";
       const editedTruncated = editedImageUrl.substring(0, 100) + "...";
 
-      // Insert report into new image_reports table (pure logging, no refund)
+      // Log the report (image_reports table logging)
       const { error } = await supabase.from("image_reports").insert({
         user_id: user.id,
         job_id: jobId,
         original_image_url: originalTruncated,
         edited_image_url: editedTruncated,
-        user_prompt: prompt,
-        report_type: "STRUCTURAL_CHANGE"
+        user_prompt: prompt
       });
       
       if (error) throw error;
