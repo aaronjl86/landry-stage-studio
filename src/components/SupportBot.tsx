@@ -68,6 +68,7 @@ export function SupportBot() {
 
     setMessages((prev) => [...prev, userMessage]);
     setInputValue("");
+    setIsLoading(true);
 
     // Create assistant message placeholder
     const assistantMessageId = `assistant-${Date.now()}`;
@@ -82,39 +83,50 @@ export function SupportBot() {
     try {
       // Build conversation history with system message
       const conversationHistory = [
-        { role: "system" as const, content: SYSTEM_MESSAGE },
+        { role: "system", content: SYSTEM_MESSAGE },
         ...messages.map((msg) => ({
           role: msg.role,
           content: msg.content,
         })),
-        { role: "user" as const, content: userMessage.content },
+        { role: "user", content: userMessage.content },
       ];
 
-      let fullResponse = "";
+      if (!supabase) {
+        throw new Error("Supabase client not available");
+      }
 
-      await sendMessageStream(conversationHistory, (chunk) => {
-        fullResponse += chunk;
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === assistantMessageId
-              ? { ...msg, content: fullResponse }
-              : msg
-          )
-        );
-        scrollToBottom();
+      const { data, error } = await supabase.functions.invoke('chat-support', {
+        body: { messages: conversationHistory }
       });
+
+      if (error) throw error;
+
+      const content = data?.content || "I apologize, but I didn't receive a response. Please try again.";
+      
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === assistantMessageId
+            ? { ...msg, content }
+            : msg
+        )
+      );
     } catch (error) {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message. Please try again.");
+      
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === assistantMessageId
             ? {
                 ...msg,
                 content:
-                  "I'm sorry, I encountered an error. Please try again or contact support if the issue persists.",
+                  "I apologize, but I encountered an error. Please try again.",
               }
             : msg
         )
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
