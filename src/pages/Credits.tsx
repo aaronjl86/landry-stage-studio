@@ -10,7 +10,7 @@ import { toast } from "@/hooks/use-toast";
 import { SUBSCRIPTION_PLANS } from "@/lib/subscriptionPlans";
 
 export default function Credits() {
-  const { user, loading, credits, refreshCredits, subscription, checkSubscription, isAdmin } = useAuth();
+  const { user, loading, credits, freeTrialCredits, refreshCredits, subscription, checkSubscription, isAdmin } = useAuth();
   const navigate = useNavigate();
   const [isLoadingPortal, setIsLoadingPortal] = useState(false);
 
@@ -116,10 +116,31 @@ export default function Credits() {
               <CardDescription>Your available AI credits</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold">{credits || 0}</div>
-              <p className="text-sm text-muted-foreground mt-2">
-                {isAdmin ? "Unlimited credits (Admin)" : "Credits remaining"}
-              </p>
+              {isAdmin ? (
+                <>
+                  <div className="text-4xl font-bold">∞</div>
+                  <p className="text-sm text-muted-foreground mt-2">Unlimited credits (Admin)</p>
+                </>
+              ) : (
+                <div className="space-y-3">
+                  {freeTrialCredits > 0 && (
+                    <div>
+                      <div className="text-2xl font-bold text-[hsl(176,81%,46%)]">
+                        🎉 {freeTrialCredits}
+                      </div>
+                      <p className="text-xs text-muted-foreground">Free trial uploads remaining</p>
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-2xl font-bold">{credits || 0}</div>
+                    <p className="text-xs text-muted-foreground">Paid credits</p>
+                  </div>
+                  <div className="pt-2 border-t border-border">
+                    <div className="text-3xl font-bold">{(freeTrialCredits || 0) + (credits || 0)}</div>
+                    <p className="text-xs text-muted-foreground">Total uploads available</p>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
 
