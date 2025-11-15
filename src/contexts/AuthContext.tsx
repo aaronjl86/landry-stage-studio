@@ -74,13 +74,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       .from("profiles")
       .select("quota, used, free_trial_uploads_remaining")
       .eq("id", currentUser.id)
-      .single();
+      .maybeSingle();
 
-    if (!error && data) {
-      setCredits(data.quota - data.used);
-      setFreeTrialCredits(data.free_trial_uploads_remaining);
-    } else if (error) {
+    if (data && !error) {
+      const paidCredits = (data.quota ?? 0) - (data.used ?? 0);
+      const freeTrialCredits = data.free_trial_uploads_remaining ?? 0;
+      setCredits(paidCredits);
+      setFreeTrialCredits(freeTrialCredits);
+    } else {
       console.error('Failed to refresh credits:', error);
+      setCredits(0);
+      setFreeTrialCredits(0);
     }
   };
 
