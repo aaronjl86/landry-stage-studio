@@ -185,14 +185,22 @@ export default function Credits() {
               <CardTitle>Usage Information</CardTitle>
               <CardDescription>How credits are consumed</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Per Image Edit:</span>
-                <span className="font-semibold">1 credit</span>
+            <CardContent className="space-y-3">
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Per Image Edit:</span>
+                  <span className="font-semibold">1 credit</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Per Generation:</span>
+                  <span className="font-semibold">1 credit</span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Per Generation:</span>
-                <span className="font-semibold">1 credit</span>
+              <div className="pt-3 border-t border-border">
+                <p className="text-xs text-muted-foreground">
+                  <strong>Credit Usage:</strong> Free trial uploads are used first, then paid credits. 
+                  Unlimited re-processing of the same photo at no extra charge.
+                </p>
               </div>
             </CardContent>
           </Card>
