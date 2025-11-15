@@ -55,8 +55,27 @@ serve(async (req) => {
     // Parse request body
     const { prompt, imageData, mimeType } = await req.json();
 
+    // Validate MIME type (Security Fix: INPUT_VALIDATION)
+    const ALLOWED_MIME_TYPES = [
+      'image/jpeg',
+      'image/jpg', 
+      'image/png',
+      'image/webp'
+    ];
+
+    if (!mimeType || !ALLOWED_MIME_TYPES.includes(mimeType)) {
+      logger.warn("Invalid MIME type", { correlationId, userId, mimeType });
+      return new Response(
+        JSON.stringify({ error: "Invalid image format. Allowed: JPEG, PNG, WebP" }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
     // Validate input
-    if (!prompt || !imageData || !mimeType) {
+    if (!prompt || !imageData) {
       logger.warn("Invalid input", { correlationId, userId, hasPrompt: !!prompt, hasImage: !!imageData });
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
