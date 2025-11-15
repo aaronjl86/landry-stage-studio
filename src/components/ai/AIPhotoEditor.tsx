@@ -21,13 +21,12 @@ export function AIPhotoEditor() {
   const [requiredCredits, setRequiredCredits] = useState(0);
   
   const { jobs, isProcessing, submitBatchEdit, clearJobs, redoJob } = useAIProcessor();
-  const { credits, freeTrialCredits, refreshCredits, isAdmin } = useAuth();
+  const { credits, refreshCredits, isAdmin } = useAuth();
 
   // Memoize credit check computation
   const canProcess = useMemo(() => {
-    const totalCredits = freeTrialCredits + credits;
-    return isAdmin || totalCredits >= uploadedImages.length;
-  }, [isAdmin, freeTrialCredits, credits, uploadedImages.length]);
+    return isAdmin || credits >= uploadedImages.length;
+  }, [isAdmin, credits, uploadedImages.length]);
 
   // Memoize job filtering for display
   const completedJobs = useMemo(() => {
@@ -58,8 +57,7 @@ export function AIPhotoEditor() {
     }
 
     // Admins bypass credit checks
-    const totalCredits = freeTrialCredits + credits;
-    if (!isAdmin && totalCredits < uploadedImages.length) {
+    if (!isAdmin && credits < uploadedImages.length) {
       console.log("Insufficient credits - showing upgrade dialog");
       setRequiredCredits(uploadedImages.length);
       setShowUpgradeDialog(true);
@@ -103,19 +101,9 @@ export function AIPhotoEditor() {
             {isAdmin ? (
               <p className="text-sm text-muted-foreground">Unlimited credits (Admin)</p>
             ) : (
-              <div className="space-y-1">
-                {freeTrialCredits > 0 && (
-                  <p className="text-sm text-muted-foreground">
-                    🎉 Free trial: {freeTrialCredits} uploads remaining
-                  </p>
-                )}
-                <p className="text-sm text-muted-foreground">
-                  Paid credits: {credits}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Total: {freeTrialCredits + credits} uploads available
-                </p>
-              </div>
+              <p className="text-sm text-muted-foreground">
+                {credits} uploads available
+              </p>
             )}
           </div>
           {isAdmin && (
