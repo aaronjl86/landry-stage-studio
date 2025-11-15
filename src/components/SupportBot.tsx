@@ -40,13 +40,9 @@ export function SupportBot() {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const { sendMessageStream, isLoading, isAvailable } = useRouteLLM({
-    model: "openai/gpt-oss-120b",
-    temperature: 0.7,
-  });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -59,11 +55,6 @@ export function SupportBot() {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen, messages]);
-
-  // Don't render if service is not available
-  if (!isAvailable) {
-    return null;
-  }
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -87,32 +78,35 @@ export function SupportBot() {
       timestamp: new Date(),
     };
     setMessages((prev) => [...prev, assistantMessage]);
+    setIsLoading(true);
 
     try {
       // Build conversation history with system message
-      const conversationHistory = [
-        { role: "system" as const, content: SYSTEM_MESSAGE },
+      const conversationMessages = [
+        { role: "system", content: SYSTEM_MESSAGE },
         ...messages.map((msg) => ({
           role: msg.role,
           content: msg.content,
         })),
-        { role: "user" as const, content: userMessage.content },
+        { role: "user", content: userMessage.content },
       ];
 
-      let fullResponse = "";
-
-      await sendMessageStream(conversationHistory, (chunk) => {
-        fullResponse += chunk;
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === assistantMessageId
-              ? { ...msg, content: fullResponse }
-              : msg
-          )
-        );
-        scrollToBottom();
+      const { data, error } = await supabase.functions.invoke('chat-support', {
+        body: { messages: conversationMessages }
       });
+
+      if (error) throw error;
+
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === assistantMessageId
+            ? { ...msg, content: data.response }
+            : msg
+        )
+      );
     } catch (error) {
+      console.error('Chat error:', error);
+      toast.error('Failed to get response. Please try again.');
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === assistantMessageId
@@ -124,6 +118,9 @@ export function SupportBot() {
             : msg
         )
       );
+    } finally {
+      setIsLoading(false);
+      scrollToBottom();
     }
   };
 
