@@ -283,6 +283,30 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limit_buckets: {
+        Row: {
+          count: number
+          created_at: string | null
+          id: string
+          identifier: string
+          window_start: string
+        }
+        Insert: {
+          count?: number
+          created_at?: string | null
+          id?: string
+          identifier: string
+          window_start?: string
+        }
+        Update: {
+          count?: number
+          created_at?: string | null
+          id?: string
+          identifier?: string
+          window_start?: string
+        }
+        Relationships: []
+      }
       signup_attempts: {
         Row: {
           created_at: string | null
@@ -564,6 +588,7 @@ export type Database = {
         Args: { _device_fingerprint?: string; _email: string; _ip: unknown }
         Returns: Json
       }
+      cleanup_rate_limit_buckets: { Args: never; Returns: undefined }
       credits_consume: {
         Args: {
           _amount: number

@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
 import { corsHeaders } from "../_shared/cors.ts";
 import { logger } from "../_shared/structured-logger.ts";
+import { checkDatabaseRateLimit } from "../_shared/db-rate-limit.ts";
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -28,6 +29,33 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
+
+    // Apply IP-based rate limiting (3 attempts per IP per minute)
+    const rateLimitResult = await checkDatabaseRateLimit(
+      supabase,
+      `signup_ip_${ip}`,
+      3,
+      60000
+    );
+
+    if (!rateLimitResult.allowed) {
+      logger.warn("Rate limit exceeded", { ip });
+      return new Response(
+        JSON.stringify({
+          allowed: false,
+          message: "Too many signup attempts. Please try again later.",
+          resetTime: rateLimitResult.resetTime,
+        }),
+        {
+          status: 429,
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json",
+            "Retry-After": Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000).toString()
+          }
+        }
+      );
+    }
 
     // Check for abuse patterns using the database function
     const { data: abuseCheck, error } = await supabase.rpc("check_signup_abuse", {
