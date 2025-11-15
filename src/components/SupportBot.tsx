@@ -67,6 +67,7 @@ export function SupportBot() {
 
     setMessages((prev) => [...prev, userMessage]);
     setInputValue("");
+    setIsLoading(true);
 
     // Create assistant message placeholder
     const assistantMessageId = `assistant-${Date.now()}`;
@@ -79,41 +80,48 @@ export function SupportBot() {
     setMessages((prev) => [...prev, assistantMessage]);
 
     try {
-      // Build conversation history with system message
-      const conversationHistory = [
-        { role: "system" as const, content: SYSTEM_MESSAGE },
-        ...messages.map((msg) => ({
+      // Build conversation history (exclude welcome message)
+      const conversationHistory = messages
+        .filter(msg => msg.id !== "welcome")
+        .map((msg) => ({
           role: msg.role,
           content: msg.content,
-        })),
-        { role: "user" as const, content: userMessage.content },
-      ];
+        }))
+        .concat({ role: "user", content: userMessage.content });
 
-      let fullResponse = "";
-
-      await sendMessageStream(conversationHistory, (chunk) => {
-        fullResponse += chunk;
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === assistantMessageId
-              ? { ...msg, content: fullResponse }
-              : msg
-          )
-        );
-        scrollToBottom();
+      // Call edge function
+      const { data, error } = await supabase.functions.invoke('chat-support', {
+        body: { 
+          messages: conversationHistory,
+          stream: false
+        }
       });
-    } catch (error) {
+
+      if (error) {
+        console.error("Chat support error:", error);
+        throw new Error(error.message || "Failed to get response");
+      }
+
+      // Extract response content
+      const responseContent = data?.choices?.[0]?.message?.content || "I apologize, but I couldn't generate a response. Please try again.";
+
+      // Update the assistant message with the response
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === assistantMessageId
-            ? {
-                ...msg,
-                content:
-                  "I'm sorry, I encountered an error. Please try again or contact support if the issue persists.",
-              }
+            ? { ...msg, content: responseContent }
             : msg
         )
       );
+
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message. Please try again.");
+      
+      // Remove the empty assistant message on error
+      setMessages((prev) => prev.filter((msg) => msg.id !== assistantMessageId));
+    } finally {
+      setIsLoading(false);
     }
   };
 
