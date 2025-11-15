@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useRouteLLM } from "@/hooks/useRouteLLM";
+import { supabase } from "@/integrations/supabase/client";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface Message {
   id: string;
@@ -39,13 +40,9 @@ export function SupportBot() {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const { sendMessageStream, isLoading, isAvailable } = useRouteLLM({
-    model: "openai/gpt-oss-120b",
-    temperature: 0.7,
-  });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -54,15 +51,9 @@ export function SupportBot() {
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
-      // Focus input when chat opens
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen, messages]);
-
-  // Don't render if service is not available
-  if (!isAvailable) {
-    return null;
-  }
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
