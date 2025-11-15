@@ -129,7 +129,8 @@ serve(async (req) => {
     );
 
   } catch (error) {
-    logger.error("Unexpected error in chat-support", { error: error.message });
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    logger.error("Unexpected error in chat-support", { error: errorMessage });
     return new Response(
       JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
