@@ -72,13 +72,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const refreshCreditsInternal = async (currentUser: User) => {
     const { data, error } = await supabase
       .from("profiles")
-      .select("quota, used, free_trial_uploads_remaining")
+      .select("quota, used")
       .eq("id", currentUser.id)
       .single();
 
     if (!error && data) {
       setCredits(data.quota - data.used);
-      setFreeTrialCredits(data.free_trial_uploads_remaining);
     } else if (error) {
       console.error('Failed to refresh credits:', error);
     }

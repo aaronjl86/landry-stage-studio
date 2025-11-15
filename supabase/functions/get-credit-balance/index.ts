@@ -22,10 +22,10 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
-    // Get quota, used, and free trial credits from profiles
+    // Get quota and used credits from profiles
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
-      .select("quota, used, free_trial_uploads_remaining")
+      .select("quota, used")
       .eq("id", userId)
       .single();
 
@@ -57,7 +57,6 @@ serve(async (req) => {
         quota: profile.quota,
         used: profile.used,
         remaining,
-        free_trial_remaining: profile.free_trial_uploads_remaining,
         plan_code: paymentInfo.plan_code,
         subscription_status: paymentInfo.subscription_status,
         period_start: paymentInfo.period_start,
