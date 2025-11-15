@@ -12,7 +12,6 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   credits: number;
-  freeTrialCredits: number;
   loading: boolean;
   subscription: SubscriptionInfo;
   isAdmin: boolean;
@@ -27,7 +26,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [credits, setCredits] = useState(0);
-  const [freeTrialCredits, setFreeTrialCredits] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [subscription, setSubscription] = useState<SubscriptionInfo>({
