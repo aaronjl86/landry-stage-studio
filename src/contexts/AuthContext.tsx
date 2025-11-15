@@ -118,7 +118,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           }, 0);
         } else {
           setCredits(0);
-          setFreeTrialCredits(0);
           setIsAdmin(false);
           setSubscription({ subscribed: false, product_id: null, subscription_end: null });
         }
@@ -196,7 +195,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
       setSession(null);
       setCredits(0);
-      setFreeTrialCredits(0);
       setIsAdmin(false);
       setSubscription({ subscribed: false, product_id: null, subscription_end: null });
       // Redirect to the sign-in screen after ensuring sign-out completed
