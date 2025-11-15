@@ -211,7 +211,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       user, 
       session, 
       credits, 
-      freeTrialCredits,
       loading, 
       subscription,
       isAdmin,
