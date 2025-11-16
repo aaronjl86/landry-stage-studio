@@ -97,7 +97,6 @@ export const Header = () => {
                 src="/videos/tlm-logo-animated.mp4" 
                 autoPlay 
                 muted 
-                loop
                 playsInline 
                 preload="auto"
                 aria-label="The Landry Method" 
