@@ -186,7 +186,7 @@ const InteractiveDemo = () => {
                       emoji: "🎯",
                       feature: "Quality",
                       traditional: "Variable",
-                      landry: "AI-powered HD/4K"
+                      landry: "AI-powered professional quality"
                     },
                     {
                       emoji: "💬",

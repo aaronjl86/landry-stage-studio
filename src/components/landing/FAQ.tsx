@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     question: "How is virtual staging different from physical staging?",
-    answer: "Virtual staging uses AI to digitally furnish empty rooms, while physical staging requires renting and placing actual furniture. Virtual staging costs 90% less than traditional staging ($29-149/month vs $2,000-5,000 per home), delivers staged homes in 24 hours instead of weeks, and allows unlimited style changes without the hassle of moving furniture. Perfect for real estate agents who need fast, affordable staging solutions."
+    answer: "Virtual staging uses AI to digitally furnish empty rooms, while physical staging requires renting and placing actual furniture. Virtual staging costs 90% less than traditional staging ($29-149/month vs $2,000-5,000 per home), and allows unlimited style changes without the hassle of moving furniture. Perfect for real estate agents who need fast, affordable staging solutions."
   },
   {
     question: "What furniture styles are available?",
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "How quickly will I receive my staged photos?",
-    answer: "Most staged images are delivered within seconds to minutes! Our AI-powered virtual staging platform processes photos instantly. Professional plan users get priority processing with 12-hour guaranteed turnaround, while Enterprise users receive staged photos within 2 hours. Much faster than traditional physical staging that takes 7-14 days."
+    answer: "Most staged images are delivered within seconds to minutes! Our AI-powered virtual staging platform processes photos instantly. Much faster than traditional physical staging that takes 7-14 days."
   },
   {
     question: "How does AI virtual staging work?",
@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     question: "Can I customize the staging style?",
-    answer: "Yes! All plans include editing tools to choose from various design styles (modern, traditional, minimalist, luxury, contemporary, etc.). Professional and Enterprise plans offer advanced editing capabilities and custom branding options."
+    answer: "Yes! All plans include editing tools to choose from various design styles (modern, traditional, minimalist, luxury, contemporary, etc.)."
   },
   {
     question: "Do you offer refunds?",

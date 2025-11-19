@@ -49,7 +49,7 @@ export default function Terms() {
               <li>Transform empty or poorly staged spaces using advanced AI technology powered by Google Gemini 2.5 Flash</li>
               <li>Access multiple styling templates including modern, luxury, minimalist, traditional, and contemporary staging options</li>
               <li>Process images in batches with controlled concurrency (up to 5 images simultaneously)</li>
-              <li>Download professionally staged images in HD, Ultra HD, or 4K quality depending on your plan</li>
+              <li>Download professionally staged images</li>
               <li>Manage and organize your gallery of processed images</li>
               <li>Track your credit usage and processing history</li>
             </ul>
@@ -110,30 +110,21 @@ export default function Terms() {
             <ul>
               <li><strong>Price:</strong> $29 per month or $290 per year (save $58 annually)</li>
               <li><strong>Upload Limit:</strong> 10 images per month</li>
-              <li><strong>Image Quality:</strong> HD (High Definition)</li>
-              <li><strong>Processing Speed:</strong> 24-hour turnaround time</li>
               <li><strong>Support:</strong> Email support</li>
-              <li><strong>Features:</strong> Basic editing tools, standard templates</li>
             </ul>
 
             <h4>Professional Plan (Most Popular)</h4>
             <ul>
               <li><strong>Price:</strong> $79 per month or $790 per year (save $158 annually)</li>
               <li><strong>Upload Limit:</strong> 50 images per month</li>
-              <li><strong>Image Quality:</strong> Ultra HD (4K ready)</li>
-              <li><strong>Processing Speed:</strong> 12-hour turnaround time</li>
               <li><strong>Support:</strong> Priority email support</li>
-              <li><strong>Features:</strong> Advanced editing tools, bulk upload, custom branding, all templates</li>
             </ul>
 
             <h4>Enterprise Plan</h4>
             <ul>
               <li><strong>Price:</strong> $149 per month or $1,490 per year (save $298 annually)</li>
-              <li><strong>Upload Limit:</strong> Unlimited images</li>
-              <li><strong>Image Quality:</strong> 4K quality</li>
-              <li><strong>Processing Speed:</strong> 2-hour turnaround time</li>
+              <li><strong>Upload Limit:</strong> 200 images per month</li>
               <li><strong>Support:</strong> Dedicated support team</li>
-              <li><strong>Features:</strong> Full editing suite, API access, white-label solution, team collaboration, priority processing</li>
             </ul>
 
             <h3>4.2 Billing and Payment</h3>
