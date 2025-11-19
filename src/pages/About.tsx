@@ -15,7 +15,7 @@ export default function About() {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Learn how The Landry Method helps real estate agents transform empty spaces with AI-powered virtual staging. Professional results in 24 hours.');
+    metaDescription.setAttribute('content', 'Learn how The Landry Method helps real estate agents transform empty spaces with AI-powered virtual staging. Professional results delivered quickly.');
   }, []);
 
   return (
