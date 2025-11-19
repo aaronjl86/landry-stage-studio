@@ -86,16 +86,24 @@ export const Header = () => {
         <div className="flex h-[100px] md:h-[160px] items-center justify-between gap-2 md:gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0 max-w-[70%] md:max-w-none">
-            <video 
-              src="/videos/tlm-logo-animated.mp4" 
-              autoPlay={!isMobile} 
-              muted 
-              playsInline 
-              preload="metadata"
-              aria-label="The Landry Method" 
-              className="h-[56px] md:h-[112px] w-auto object-contain"
-              poster="/TLM Logo White LA8-gigapixel-low resolution v2-823h.png"
-            />
+            {isMobile ? (
+              <img 
+                src="/TLM Logo White LA8-gigapixel-low resolution v2-823h.png"
+                alt="The Landry Method" 
+                className="h-[56px] w-auto object-contain"
+              />
+            ) : (
+              <video 
+                src="/videos/tlm-logo-animated.mp4" 
+                autoPlay 
+                muted 
+                loop
+                playsInline 
+                preload="auto"
+                aria-label="The Landry Method" 
+                className="h-[112px] w-auto object-contain"
+              />
+            )}
           </Link>
 
           {/* Desktop Navigation - Large screens only */}

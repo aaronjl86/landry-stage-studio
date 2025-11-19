@@ -68,7 +68,7 @@ export const SUBSCRIPTION_PLANS = {
       "AI-powered virtual staging",
       "Multiple room types supported",
       "Photorealistic results",
-      "Dedicated support",
+      "Priority support",
       "Drag-and-drop upload",
       "Multiple image formats supported",
       "Pre-designed staging templates",

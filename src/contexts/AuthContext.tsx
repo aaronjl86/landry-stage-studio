@@ -12,6 +12,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   credits: number;
+  freeTrialCredits: number;
   loading: boolean;
   subscription: SubscriptionInfo;
   isAdmin: boolean;
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [credits, setCredits] = useState(0);
+  const [freeTrialCredits, setFreeTrialCredits] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [subscription, setSubscription] = useState<SubscriptionInfo>({
@@ -70,12 +72,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const refreshCreditsInternal = async (currentUser: User) => {
     const { data, error } = await supabase
       .from("profiles")
-      .select("quota, used")
+      .select("quota, used, free_trial_uploads_remaining")
       .eq("id", currentUser.id)
       .single();
 
     if (!error && data) {
       setCredits(data.quota - data.used);
+      setFreeTrialCredits(data.free_trial_uploads_remaining);
     } else if (error) {
       console.error('Failed to refresh credits:', error);
     }
@@ -118,6 +121,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           }, 0);
         } else {
           setCredits(0);
+          setFreeTrialCredits(0);
           setIsAdmin(false);
           setSubscription({ subscribed: false, product_id: null, subscription_end: null });
         }
@@ -195,6 +199,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
       setSession(null);
       setCredits(0);
+      setFreeTrialCredits(0);
       setIsAdmin(false);
       setSubscription({ subscribed: false, product_id: null, subscription_end: null });
       // Redirect to the sign-in screen after ensuring sign-out completed
@@ -209,6 +214,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       user, 
       session, 
       credits, 
+      freeTrialCredits,
       loading, 
       subscription,
       isAdmin,

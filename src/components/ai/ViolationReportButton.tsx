@@ -12,11 +12,11 @@ interface ViolationReportButtonProps {
 }
 
 /**
- * Phase 3: User Violation Reporting Component
+ * Structural Change Reporting Component (NO REFUND LOGIC)
  * 
- * Allows users to flag AI-generated images that contain unwanted
- * architectural changes. Reports are logged to the database for
- * analysis and model retraining.
+ * Logs MLS-unsafe AI outputs for QA purposes only.
+ * Does NOT affect billing - revisions are already unlimited and free.
+ * User re-processes via existing unlimited revision system.
  */
 export function ViolationReportButton({ 
   originalImageUrl, 
@@ -35,22 +35,31 @@ export function ViolationReportButton({
 
     setIsReporting(true);
     try {
+      // Get current user
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast.error("You must be logged in to report structural changes");
+        return;
+      }
+
       // Truncate base64 data for storage (store only metadata)
       const originalTruncated = originalImageUrl.substring(0, 100) + "...";
       const editedTruncated = editedImageUrl.substring(0, 100) + "...";
 
-      const { error } = await supabase.from("architectural_violations").insert({
+      // Insert report into new image_reports table (pure logging, no refund)
+      const { error } = await supabase.from("image_reports").insert({
+        user_id: user.id,
+        job_id: jobId,
         original_image_url: originalTruncated,
         edited_image_url: editedTruncated,
         user_prompt: prompt,
-        reported_by_user: true,
-        violation_reason: "User-reported structural change"
+        report_type: "STRUCTURAL_CHANGE"
       });
       
       if (error) throw error;
       
       setHasReported(true);
-      toast.success("Thank you for reporting. We'll review this result to improve our AI.");
+      toast.success("Structural change reported. You may now re-process this image for free.");
     } catch (error: any) {
       console.error("Failed to report violation:", error);
       toast.error("Failed to submit report. Please try again.");
