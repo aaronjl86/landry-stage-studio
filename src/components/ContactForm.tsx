@@ -247,19 +247,7 @@ export function ContactForm() {
 
       <div className="text-center text-sm text-muted-foreground pt-2">
         By submitting this form, you agree to our{" "}
-        <Link
-          to="/privacy-policy"
-          className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent hover:underline font-medium"
-        >
-          Privacy Policy
-        </Link>{" "}
-        and{" "}
-        <Link
-          to="/terms"
-          className="bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] bg-clip-text text-transparent hover:underline font-medium"
-        >
-          Terms of Service
-        </Link>
+        <span className="font-medium">Privacy Policy</span> and <span className="font-medium">Terms of Service</span>
         .
       </div>
     </div>

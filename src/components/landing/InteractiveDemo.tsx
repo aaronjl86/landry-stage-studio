@@ -106,12 +106,12 @@ const InteractiveDemo = () => {
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
-                <Link to="/auth">
+                <a href="#pricing">
                   <Button size="lg" className="group whitespace-nowrap w-full sm:w-auto">
                     Get Started Free
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -235,12 +235,12 @@ const InteractiveDemo = () => {
                     Start with 3 free uploads • No credit card required
                   </p>
                 </div>
-                <Link to="/auth" className="w-full sm:w-auto">
+                <a href="#pricing" className="w-full sm:w-auto">
                   <Button size="lg" className="group whitespace-nowrap shadow-lg w-full sm:w-auto">
                     Try Free Now
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           </Card>
