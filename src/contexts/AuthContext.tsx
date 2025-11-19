@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const checkSubscriptionInternal = async (currentUser: User) => {
+    if (!supabase) return;
     try {
       const { data, error } = await supabase.functions.invoke('check-subscription');
       if (!error && data) {
@@ -48,6 +49,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const checkAdminStatusInternal = async (currentUser: User) => {
+    if (!supabase) return;
     console.log('[AuthContext] Checking admin status for user:', currentUser.id);
     try {
       const { data, error } = await supabase.rpc('has_role', {
@@ -70,6 +72,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const refreshCreditsInternal = async (currentUser: User) => {
+    if (!supabase) return;
     const { data, error } = await supabase
       .from("profiles")
       .select("quota, used, free_trial_uploads_remaining")
@@ -101,6 +104,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.warn('Auth initialization timed out, forcing loading to false');
       setLoading(false);
     }, 5000);
+
+    // If supabase is not initialized, skip auth setup
+    if (!supabase) {
+      console.warn('Supabase client not initialized, skipping auth setup');
+      setLoading(false);
+      return () => clearTimeout(timeout);
+    }
 
     // Set up auth state listener
     const { data: { subscription: authSub } } = supabase.auth.onAuthStateChange(
@@ -161,7 +171,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Subscribe to realtime updates for subscription changes
   useEffect(() => {
-    if (!user) return;
+    if (!user || !supabase) return;
 
     console.log('[AuthContext] Setting up realtime subscription for user:', user.id);
     
@@ -192,7 +202,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signOut = async () => {
     console.log('[AuthContext] Sign out clicked');
     try {
-      await supabase?.auth.signOut();
+      if (!supabase) return;
+      await supabase.auth.signOut();
     } catch (err) {
       console.error('[AuthContext] signOut error:', err);
     } finally {
