@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-43VP94NZWY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Defer analytics until after page load
+      window.addEventListener('load', function() {
+        gtag('js', new Date());
+        gtag('config', 'G-43VP94NZWY');
+      });
+    </script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    
+    <!-- Favicon - Multiple sizes for different devices -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <title>Virtual Staging Real Estate | AI-Powered Virtual Staging Software - The Landry Method</title>
+    <meta name="description" content="Professional virtual staging for real estate agents. Transform empty rooms into staged homes with AI-powered virtual staging software. Get staged photos in 24 hours with custom furniture styles and photorealistic results.">
+    <meta name="author" content="The Landry Method" />
+    
+    <!-- Critical CSS - Inline for instant render -->
+    <style>
+      /* Fonts */
+      @font-face{font-family:Montserrat;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/montserrat-v25-latin-regular.woff2) format('woff2')}
+      @font-face{font-family:Montserrat;font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/montserrat-v25-latin-500.woff2) format('woff2')}
+      @font-face{font-family:Montserrat;font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/montserrat-v25-latin-600.woff2) format('woff2')}
+      @font-face{font-family:Montserrat;font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/montserrat-v25-latin-700.woff2) format('woff2')}
+      @font-face{font-family:Montserrat;font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/montserrat-v25-latin-800.woff2) format('woff2')}
+      
+      /* CSS Variables - Design System */
+      :root{
+        --background:0 0% 100%;
+        --foreground:222 84% 5%;
+        --primary:186 100% 51%;
+        --primary-foreground:0 0% 100%;
+        --primary-accent:210 87% 42%;
+        --accent:186 100% 51%;
+        --accent-foreground:222 84% 5%;
+        --secondary:210 40% 96%;
+        --secondary-foreground:222 84% 5%;
+        --muted:210 40% 96%;
+        --muted-foreground:215 16% 40%;
+        --destructive:0 84% 60%;
+        --destructive-foreground:0 0% 100%;
+        --border:214 32% 91%;
+        --input:214 32% 91%;
+        --ring:186 100% 51%;
+        --radius:.75rem;
+      }
+      
+      /* Base Reset */
+      *{box-sizing:border-box;margin:0;padding:0}
+      body{
+        font-family:Montserrat,system-ui,-apple-system,sans-serif;
+        -webkit-font-smoothing:antialiased;
+        overflow-x:hidden;
+        background:hsl(var(--background));
+        color:hsl(var(--foreground));
+      }
+      
+      /* Hero Section */
+      .hero-section{min-height:90vh;display:flex;align-items:center;overflow:hidden;padding:3rem 0;background:linear-gradient(to bottom right,#ecfeff,#dbeafe,#cffafe);position:relative}
+      .hero-bg-gradient{position:absolute;inset:0;opacity:.4;background-color:#05F0FF;animation:pulse 8s cubic-bezier(.4,0,.6,1) infinite}
+      .hero-decorative-1{position:absolute;top:5rem;right:5rem;width:500px;height:500px;background-color:rgba(5,240,255,.2);border-radius:9999px;filter:blur(64px);animation:pulse 6s cubic-bezier(.4,0,.6,1) infinite}
+      .hero-decorative-2{position:absolute;bottom:5rem;left:5rem;width:600px;height:600px;background-color:rgba(96,165,250,.2);border-radius:9999px;filter:blur(64px);animation:pulse 7s cubic-bezier(.4,0,.6,1) infinite;animation-delay:1s}
+      .hero-content{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:0 1rem}
+      .hero-grid{display:grid;gap:4rem;align-items:center}
+      @media (min-width:1024px){.hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      .hero-heading{font-size:3rem;font-weight:800;line-height:1.1;letter-spacing:-.01em}
+      @media (min-width:768px){.hero-heading{font-size:4rem}}
+      @media (min-width:1024px){.hero-heading{font-size:6rem}}
+      .gradient-text{background:linear-gradient(to right,hsl(280,70%,70%),hsl(265,65%,55%),hsl(290,75%,65%));-webkit-background-clip:text;background-clip:text;color:transparent}
+      .hero-button{display:inline-flex;align-items:center;padding:1rem 1.5rem;font-size:1.125rem;font-weight:700;background:linear-gradient(to right,hsl(280,70%,70%),hsl(265,65%,55%),hsl(290,75%,65%));color:#fff;border-radius:.5rem;transition:all .3s}
+      
+      /* Header & Navigation */
+      header{position:sticky;top:0;z-index:50;background:hsl(var(--background));border-bottom:1px solid hsl(var(--border))}
+      nav{display:flex;align-items:center;justify-content:space-between;padding:1rem}
+      
+      /* Buttons */
+      button{cursor:pointer;border:none;background:none;padding:0;margin:0;font-family:inherit}
+      .btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:calc(var(--radius) - 2px);
+        font-size:.875rem;
+        font-weight:500;
+        transition:all .15s;
+        padding:.5rem 1rem;
+      }
+      .btn-primary{
+        background:hsl(var(--primary));
+        color:hsl(var(--primary-foreground));
+      }
+      .btn-primary:hover{
+        opacity:.9;
+      }
+      
+      /* Cards */
+      .card{
+        border-radius:var(--radius);
+        border:1px solid hsl(var(--border));
+        background:hsl(var(--background));
+        box-shadow:0 1px 3px 0 rgb(0 0 0 / .1);
+      }
+      
+      /* Animations */
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+      @keyframes fade-in{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+      .animate-fade-in{animation:fade-in .3s ease-out}
+      
+      /* Critical Layout Utilities */
+      .container{width:100%;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
+      @media(min-width:640px){.container{padding-left:1.5rem;padding-right:1.5rem}}
+      @media(min-width:1024px){.container{padding-left:2rem;padding-right:2rem}}
+      img{max-width:100%;height:auto;display:block}
+      h1,h2,h3,h4,h5,h6{margin:0;font-weight:inherit;font-size:inherit}
+      p{margin:0}
+      .flex{display:flex}
+      .items-center{align-items:center}
+      .justify-center{justify-content:center}
+      .justify-between{justify-content:space-between}
+      .relative{position:relative}
+      .absolute{position:absolute}
+      .inset-0{top:0;right:0;bottom:0;left:0}
+      .w-full{width:100%}
+      .h-full{height:100%}
+      .min-h-screen{min-height:100vh}
+      .gap-4{gap:1rem}
+      .p-4{padding:1rem}
+      .px-4{padding-left:1rem;padding-right:1rem}
+      .py-2{padding-top:.5rem;padding-bottom:.5rem}
+      .text-sm{font-size:.875rem}
+      .font-medium{font-weight:500}
+      .font-semibold{font-weight:600}
+      .font-bold{font-weight:700}
+      .rounded{border-radius:.25rem}
+      .border{border-width:1px}
+      .shadow{box-shadow:0 1px 3px 0 rgb(0 0 0 / .1)}
+    </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" as="font" href="/fonts/montserrat-v25-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/montserrat-v25-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
+    
+    <!-- Preload critical hero images for LCP optimization -->
+    <link rel="preload" as="image" href="/images/before-empty-room.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/after-staged-room.jpg" fetchpriority="high">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
+    <!-- Load main CSS bundle asynchronously after critical render -->
+    <link rel="stylesheet" href="/assets/index.css" media="print" onload="this.media='all';this.onload=null;">
+    <noscript><link rel="stylesheet" href="/assets/index.css"></noscript>
+    
+    <!-- Note: If using Cloudflare, disable Rocket Loader in Speed > Optimization settings
+         for optimal performance, or it will defer critical JavaScript and increase LCP -->
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Virtual Staging Real Estate | AI-Powered Virtual Staging Software" />
+    <meta property="og:description" content="Professional virtual staging for real estate agents. Transform empty rooms into staged homes with AI-powered virtual staging software. Get staged photos in 24 hours." />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/JnAcBf9SLBhYGtYjqKR9ELOZZLW2/social-images/social-1760050704749-Screenshot 2025-10-09 at 3.55.52 PM 2.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:title" content="Virtual Staging Real Estate | AI-Powered Virtual Staging Software" />
+    <meta name="twitter:description" content="Professional virtual staging for real estate agents. Transform empty rooms into staged homes with AI-powered virtual staging software in 24 hours." />
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/JnAcBf9SLBhYGtYjqKR9ELOZZLW2/social-images/social-1760050704749-Screenshot 2025-10-09 at 3.55.52 PM 2.png">
+    
+    <!-- Structured Data (Schema Markup) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "The Landry Method",
+      "applicationCategory": "DesignApplication",
+      "description": "Professional virtual staging software for real estate. AI-powered staging creates photorealistic staged homes in 24 hours.",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "29",
+        "highPrice": "149",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127"
+      }
+    }
+    </script>
+  </head>
+  
+  <body>
+    <div id="root"></div>
+    <!-- data-cfasync prevents Cloudflare Rocket Loader from deferring this critical script -->
+    <script type="module" src="/src/main.tsx" data-cfasync="false"></script>
+  </body>
+</html>

@@ -4,13 +4,13 @@ const comparisonData = [
   {
     feature: "Cost per Property",
     traditional: "$2,000 - $5,000",
-    virtual: "$29 - $149/month unlimited",
+    virtual: "$29 - $149/month",
     virtualWins: true
   },
   {
     feature: "Turnaround Time",
     traditional: "7-14 days",
-    virtual: "24 hours or less",
+    virtual: "Seconds to minutes",
     virtualWins: true
   },
   {

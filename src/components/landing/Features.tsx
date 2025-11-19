@@ -7,11 +7,6 @@ const features = [
     description: "Write exactly what you want to see with custom prompts. No preset templates—describe your vision in your own words and our AI-powered virtual staging software brings it to life with photorealistic results."
   },
   {
-    icon: Zap,
-    title: "24 Hours Turnaround Time",
-    description: "Get professional staged photos in seconds, not days. Our virtual staging real estate platform delivers faster than traditional staging without waiting for designers or back-and-forth revisions."
-  },
-  {
     icon: Image,
     title: "Works with Any Real Estate Photographer",
     description: "Upload real estate photos from any source. High-definition, professional staged images at a fraction of the cost of physical staging—competitively priced virtual staging service for real estate agents."
