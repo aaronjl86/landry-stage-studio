@@ -35,10 +35,11 @@ const Pricing = () => {
   const handleSubscribe = async (planKey: string, priceId: string) => {
     if (!user) {
       toast({
-        title: "Authentication Required",
-        description: "Please sign in to subscribe to a plan",
+        title: "Coming Soon",
+        description: "Authentication will be available soon. Please check back later.",
       });
-      navigate("/auth");
+      // Scroll to top of pricing section
+      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
       return;
     }
 

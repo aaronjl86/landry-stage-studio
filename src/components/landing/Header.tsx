@@ -18,64 +18,29 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 
-  // Main navigation tabs
+  // Main navigation tabs - only landing page sections (all other routes are hidden)
   const mainTabs: TabItem[] = [{
     title: "Home",
     icon: Home,
     path: "/"
   }, {
-    title: "About",
-    icon: Info,
-    path: "/about"
-  }, {
     title: "Pricing",
     icon: DollarSign,
-    path: "/pricing"
+    path: "/#pricing"
   }, {
-    title: "Contact",
-    icon: Mail,
-    path: "/contact"
+    title: "FAQ",
+    icon: Info,
+    path: "/#faq"
   }];
 
-  // User product tabs (always show, redirect to auth if not logged in)
-  const userTabs: TabItem[] = [{
-    type: "separator"
-  }, {
-    title: "Editor",
-    icon: Sparkles,
-    path: user ? "/dashboard" : "/auth"
-  }, {
-    title: "Gallery",
-    icon: ImageIcon,
-    path: user ? "/dashboard/gallery" : "/auth"
-  }, {
-    title: "Credits",
-    icon: CreditCard,
-    path: user ? "/dashboard/credits" : "/auth"
-  }];
+  // User product tabs - removed (routes are hidden)
+  const userTabs: TabItem[] = [];
 
-  // Admin tabs (only show if user is admin)
-  const adminTabs: TabItem[] = isAdmin ? [{
-    title: "Submissions",
-    icon: MessageSquare,
-    path: "/dashboard/contact-submissions"
-  }] : [];
+  // Admin tabs - removed (routes are hidden)
+  const adminTabs: TabItem[] = [];
 
-  // Auth tabs (conditionally add based on user state)
-  const authTabs: TabItem[] = user ? [{
-    type: "separator"
-  }, {
-    title: "Sign Out",
-    icon: LogOut,
-    path: "#",
-    onClick: signOut
-  }] : [{
-    type: "separator"
-  }, {
-    title: "Sign In",
-    icon: LogIn,
-    path: "/auth"
-  }];
+  // Auth tabs - removed (auth route is hidden)
+  const authTabs: TabItem[] = [];
   const allTabs = [...mainTabs, ...userTabs, ...adminTabs, ...authTabs];
   const handleMobileNavClick = (onClick?: () => void) => {
     setMobileMenuOpen(false);
@@ -135,45 +100,6 @@ export const Header = () => {
                 })}
                   </div>
 
-                  {/* User Tabs (always shown) */}
-                  <div className="h-px bg-border my-2" />
-                  <div className="flex flex-col gap-2">
-                    {userTabs.filter((tab): tab is Extract<TabItem, {
-                  type?: never;
-                }> => tab.type !== "separator").map(tab => {
-                  const Icon = tab.icon;
-                  return <Link key={tab.path} to={tab.path} onClick={() => handleMobileNavClick()} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors">
-                            <Icon className="h-5 w-5" />
-                            <span className="text-base font-medium">{tab.title}</span>
-                          </Link>;
-                })}
-                  </div>
-
-                  {/* Admin Tabs (only for admins) */}
-                  {isAdmin && adminTabs.length > 0 && (
-                    <>
-                      <div className="h-px bg-border my-2" />
-                      <div className="flex flex-col gap-2">
-                        {adminTabs.map(tab => {
-                          const Icon = tab.icon;
-                          return <Link key={tab.path} to={tab.path} onClick={() => handleMobileNavClick()} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors bg-primary/10">
-                                    <Icon className="h-5 w-5" />
-                                    <span className="text-base font-medium">{tab.title}</span>
-                                  </Link>;
-                        })}
-                      </div>
-                    </>
-                  )}
-
-                  {/* Auth Section */}
-                  <div className="h-px bg-border my-2" />
-                  {user ? <Button variant="ghost" onClick={() => handleMobileNavClick(signOut)} className="justify-start gap-3 px-4 py-6 h-auto">
-                      <LogOut className="h-5 w-5" />
-                      <span className="text-base font-medium">Sign Out</span>
-                    </Button> : <Link to="/auth" onClick={() => handleMobileNavClick()} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors">
-                      <LogIn className="h-5 w-5" />
-                      <span className="text-base font-medium">Sign In</span>
-                    </Link>}
                 </nav>
               </SheetContent>
             </Sheet>

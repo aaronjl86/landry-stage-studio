@@ -31,7 +31,7 @@ export default function Footer4Col() {
               &copy; 2025 The Landry Method LLC. All rights reserved.
             </p>
             <p className="text-sm text-foreground">
-              Refunds: 30-day money-back guarantee (<Link to="/terms" className="underline hover:no-underline">see Terms &amp; Conditions</Link>)
+              Refunds: 30-day money-back guarantee
             </p>
             <p className="text-sm text-foreground">
               Contact: <a href="mailto:support@thelandrymethod.com" className="underline hover:no-underline">support@thelandrymethod.com</a> • +1 (323) 745-8111
@@ -48,12 +48,7 @@ export default function Footer4Col() {
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/pricing" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
+                <Link to="/#pricing" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
                   Pricing
                 </Link>
               </li>
@@ -65,56 +60,32 @@ export default function Footer4Col() {
             </ul>
           </div>
 
-          {/* Column 3: Product */}
+          {/* Column 3: Contact */}
           <div>
-            <h3 className="font-semibold mb-4">Product</h3>
+            <h3 className="font-semibold mb-4">Contact</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/dashboard" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Dashboard
-                </Link>
+                <a href="mailto:support@thelandrymethod.com" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
+                  Email Support
+                </a>
               </li>
               <li>
-                <Link to="/dashboard/gallery" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link to="/dashboard/credits" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Credits
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Contact Us
-                </Link>
+                <a href="tel:+13237458111" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
+                  +1 (323) 745-8111
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Legal & CTA */}
+          {/* Column 4: CTA */}
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2 mb-6">
-              <li>
-                <Link to="/privacy-policy" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/cookie-policy" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Cookie Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Terms & Conditions
-                </Link>
-              </li>
-            </ul>
-            <Link to="/auth">
-              <Button className="w-full">Get Started Free</Button>
-            </Link>
+            <h3 className="font-semibold mb-4">Get Started</h3>
+            <p className="text-sm text-foreground mb-4">
+              Start staging your real estate photos today
+            </p>
+            <Button className="w-full" onClick={() => window.location.href = '/#pricing'}>
+              View Pricing
+            </Button>
           </div>
         </div>
       </div>
