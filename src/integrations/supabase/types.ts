@@ -193,6 +193,39 @@ export type Database = {
           },
         ]
       }
+      image_reports: {
+        Row: {
+          created_at: string | null
+          edited_image_url: string
+          id: string
+          job_id: string
+          original_image_url: string
+          report_type: string
+          user_id: string
+          user_prompt: string
+        }
+        Insert: {
+          created_at?: string | null
+          edited_image_url: string
+          id?: string
+          job_id: string
+          original_image_url: string
+          report_type?: string
+          user_id: string
+          user_prompt: string
+        }
+        Update: {
+          created_at?: string | null
+          edited_image_url?: string
+          id?: string
+          job_id?: string
+          original_image_url?: string
+          report_type?: string
+          user_id?: string
+          user_prompt?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           abuse_flags: Json | null
@@ -202,6 +235,7 @@ export type Database = {
           device_fingerprint: string | null
           email: string
           email_verified: boolean | null
+          free_trial_uploads_remaining: number
           full_name: string | null
           id: string
           phone_verified: boolean | null
@@ -219,6 +253,7 @@ export type Database = {
           device_fingerprint?: string | null
           email: string
           email_verified?: boolean | null
+          free_trial_uploads_remaining?: number
           full_name?: string | null
           id: string
           phone_verified?: boolean | null
@@ -236,6 +271,7 @@ export type Database = {
           device_fingerprint?: string | null
           email?: string
           email_verified?: boolean | null
+          free_trial_uploads_remaining?: number
           full_name?: string | null
           id?: string
           phone_verified?: boolean | null
@@ -244,6 +280,30 @@ export type Database = {
           signup_ip?: unknown
           updated_at?: string | null
           used?: number | null
+        }
+        Relationships: []
+      }
+      rate_limit_buckets: {
+        Row: {
+          count: number
+          created_at: string | null
+          id: string
+          identifier: string
+          window_start: string
+        }
+        Insert: {
+          count?: number
+          created_at?: string | null
+          id?: string
+          identifier: string
+          window_start?: string
+        }
+        Update: {
+          count?: number
+          created_at?: string | null
+          id?: string
+          identifier?: string
+          window_start?: string
         }
         Relationships: []
       }
@@ -528,6 +588,7 @@ export type Database = {
         Args: { _device_fingerprint?: string; _email: string; _ip: unknown }
         Returns: Json
       }
+      cleanup_rate_limit_buckets: { Args: never; Returns: undefined }
       credits_consume: {
         Args: {
           _amount: number
