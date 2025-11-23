@@ -75,15 +75,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!supabase) return;
     const { data, error } = await supabase
       .from("profiles")
-      .select("quota, used, free_trial_uploads_remaining")
+      .select("*")
       .eq("id", currentUser.id)
       .single();
 
     if (!error && data) {
-      setCredits(data.quota - data.used);
-      setFreeTrialCredits(data.free_trial_uploads_remaining);
+      // Safely access properties that might not exist
+      const quota = (data as any).quota ?? 0;
+      const used = (data as any).used ?? 0;
+      const freeTrialRemaining = (data as any).free_trial_uploads_remaining ?? 0;
+      
+      setCredits(Math.max(0, quota - used));
+      setFreeTrialCredits(freeTrialRemaining);
     } else if (error) {
       console.error('Failed to refresh credits:', error);
+      setCredits(0);
+      setFreeTrialCredits(0);
     }
   };
 
