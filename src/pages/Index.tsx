@@ -5,9 +5,11 @@ const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    "agent-name": "",
+    firstName: "",
+    lastName: "",
     email: "",
-    "listing-address": "",
+    phone: "",
+    message: "",
     notes: "",
   });
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
@@ -36,10 +38,14 @@ const Index = () => {
       const { error } = await supabase
         .from('contact_submissions')
         .insert([{
-          agent_name: formData['agent-name'],
+          first_name: formData.firstName,
+          last_name: formData.lastName,
           email: formData.email,
-          listing_address: formData['listing-address'] || '',
-          notes: formData.notes || ''
+          phone: formData.phone,
+          message: formData.message,
+          notes: formData.notes || '',
+          marketing_consent: false,
+          sms_consent: false
         }]);
 
       if (error) throw error;
@@ -50,9 +56,11 @@ const Index = () => {
       });
 
       setFormData({
-        "agent-name": "",
+        firstName: "",
+        lastName: "",
         email: "",
-        "listing-address": "",
+        phone: "",
+        message: "",
         notes: "",
       });
 
@@ -335,14 +343,27 @@ const Index = () => {
                 )}
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label htmlFor="agent-name" className="block text-sm font-medium text-gray-900 mb-2">Agent name *</label>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-900 mb-2">First Name *</label>
                     <input
                       type="text"
-                      id="agent-name"
-                      name="agent-name"
+                      id="firstName"
+                      name="firstName"
                       required
-                      value={formData['agent-name']}
-                      onChange={(e) => setFormData({ ...formData, 'agent-name': e.target.value })}
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent h-12"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-900 mb-2">Last Name *</label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      required
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent h-12"
                     />
                   </div>
@@ -361,23 +382,37 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="listing-address" className="block text-sm font-medium text-gray-900 mb-2">Listing address (optional)</label>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">Phone *</label>
                     <input
-                      type="text"
-                      id="listing-address"
-                      name="listing-address"
-                      value={formData['listing-address']}
-                      onChange={(e) => setFormData({ ...formData, 'listing-address': e.target.value })}
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent h-12"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="notes" className="block text-sm font-medium text-gray-900 mb-2">Notes</label>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">Message *</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={3}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent resize-none"
+                    ></textarea>
+                  </div>
+
+                  <div>
+                    <label htmlFor="notes" className="block text-sm font-medium text-gray-900 mb-2">Additional Notes (optional)</label>
                     <textarea
                       id="notes"
                       name="notes"
-                      rows={4}
+                      rows={2}
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent resize-none"
