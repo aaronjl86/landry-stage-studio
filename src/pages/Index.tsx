@@ -183,7 +183,7 @@ const Index = () => {
               <div>
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80"
+                    src="/images/downtown-loft.webp"
                     alt="Modern Portland-style staged living room"
                     className="w-full h-64 sm:h-80 object-cover"
                   />

@@ -1,2 +1,5 @@
+# Redirect the pages.dev subdomain to your custom domain
+https://landry-stage-studio.pages.dev/* https://thelandrymethod.com/:splat 301!
+
 # Redirect all routes to landing page - all other pages hidden from public view
 /* /index.html 200
