@@ -122,7 +122,7 @@ const Index = () => {
         {/* Hero Section */}
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
               {/* Left Column */}
               <div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
@@ -181,18 +181,24 @@ const Index = () => {
 
               {/* Right Column */}
               <div>
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                  <img
-                    src="/images/downtown-loft.webp"
-                    alt="Modern Portland-style staged living room"
-                    className="w-full h-96 sm:h-[500px] lg:h-[600px] object-contain"
-                  />
-                  <div className="p-6">
-                    <h3 className="font-bold text-gray-900 text-xl mb-2">Sample: Downtown Loft — mid-century + PNW craft</h3>
-                    <p className="text-gray-700 mb-3">Includes: Joinery-style walnut table, Schoolhouse-inspired pendant, Powell's book stack styling.</p>
-                    <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
+                <div className="bg-white rounded-xl shadow-lg">
+                  <div className="pt-4 px-4 leading-none">
+                    <img
+                      src="/images/downtown-loft.webp"
+                      alt="Modern Portland-style staged living room"
+                      className="w-full h-auto object-contain block"
+                      style={{ 
+                        height: 'auto',
+                        maxHeight: 'none',
+                        display: 'block',
+                        width: '100%'
+                      }}
+                    />
                   </div>
                 </div>
+                <h3 className="font-bold text-gray-900 text-xl mb-2">Sample: Downtown Loft — mid-century + PNW craft</h3>
+                <p className="text-gray-700 mb-3">Includes: Joinery-style walnut table, Schoolhouse-inspired pendant, Powell's book stack styling.</p>
+                <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
               </div>
             </div>
           </div>
