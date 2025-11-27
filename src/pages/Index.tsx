@@ -185,7 +185,7 @@ const Index = () => {
                   <img
                     src="/images/downtown-loft.webp"
                     alt="Modern Portland-style staged living room"
-                    className="w-full h-64 sm:h-80 object-cover"
+                    className="w-full h-96 sm:h-[500px] lg:h-[600px] object-contain"
                   />
                   <div className="p-6">
                     <h3 className="font-bold text-gray-900 text-xl mb-2">Sample: Downtown Loft — mid-century + PNW craft</h3>
