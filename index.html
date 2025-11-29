@@ -1,52 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google Tag Manager - Deferred for performance -->
-    <!-- GTM will load after page is interactive to avoid blocking main thread -->
-    <script>
-      // Initialize dataLayer immediately (no performance impact)
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      
-      // Defer GTM script loading until after page is fully interactive
-      // This prevents the 3.1s blocking time reported by PageSpeed Insights
-      function loadGTM() {
-        // Load GTM script dynamically
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-43VP94NZWY';
-        document.head.appendChild(script);
-        
-        script.onload = function() {
-          gtag('js', new Date());
-          gtag('config', 'G-43VP94NZWY', {
-            // Optimize for performance
-            'send_page_view': false, // Send manually after load
-            'transport_type': 'beacon' // Use sendBeacon for better performance
-          });
-          
-          // Send page view after everything is loaded
-          setTimeout(function() {
-            gtag('event', 'page_view', {
-              'page_title': document.title,
-              'page_location': window.location.href
-            });
-          }, 100);
-        };
-      }
-      
-      // Load GTM after page is interactive
-      // Use requestIdleCallback if available (runs when browser is idle)
-      // Fallback to setTimeout for older browsers
-      if (window.requestIdleCallback) {
-        requestIdleCallback(loadGTM, { timeout: 2000 });
-      } else {
-        // Fallback: wait for page load, then add small delay
-        window.addEventListener('load', function() {
-          setTimeout(loadGTM, 1000);
-        });
-      }
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MPDC5HS7');</script>
+    <!-- End Google Tag Manager -->
     
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -238,6 +199,10 @@
   </head>
   
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MPDC5HS7"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <!-- data-cfasync prevents Cloudflare Rocket Loader from deferring this critical script -->
     <script type="module" src="/src/main.tsx" data-cfasync="false"></script>
