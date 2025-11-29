@@ -86,7 +86,7 @@ export default function About() {
                 <div className="p-6 bg-card rounded-lg border">
                   <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                     <span className="text-2xl">❤️</span> Client Happiness
-                  </p>
+                  </h3>
                   <p className="text-muted-foreground">
                     Our clients' success and satisfaction are at the heart of everything we do. We take 
                     the time to understand your specific needs and deliver personalized service that exceeds 
