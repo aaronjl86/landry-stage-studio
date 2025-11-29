@@ -83,6 +83,11 @@ const Index = () => {
                 src="/TLM LOGO (BOLD LA STYLE) (800 x 1200 px) (1800 x 1200 px)-gigapixel-standard v2-2x.png"
                 alt="The Landry Method Logo"
                 className="h-16 sm:h-20 md:h-24 w-auto flex-shrink-0"
+                width="360"
+                height="112"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
 
@@ -187,6 +192,11 @@ const Index = () => {
                       src="/images/downtown-loft.webp"
                       alt="Modern Portland-style staged living room"
                       className="w-full h-auto object-contain block"
+                      width="609"
+                      height="332"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                       style={{ 
                         height: 'auto',
                         maxHeight: 'none',
@@ -218,6 +228,10 @@ const Index = () => {
                   src="/images/craftsman-living-room.webp"
                   alt="Portland craftsman living room staging"
                   className="w-full h-56 object-cover"
+                  width="800"
+                  height="472"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="p-5">
                   <h3 className="font-bold text-gray-900 text-lg mb-2">Craftsman Living Room</h3>
@@ -232,6 +246,10 @@ const Index = () => {
                   src="/images/pearl-district-bedroom.webp"
                   alt="Portland modern bedroom staging"
                   className="w-full h-56 object-cover"
+                  width="800"
+                  height="470"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="p-5">
                   <h3 className="font-bold text-gray-900 text-lg mb-2">Pearl District Bedroom</h3>
@@ -246,6 +264,10 @@ const Index = () => {
                   src="/images/alberta-arts-kitchen.webp"
                   alt="Portland kitchen staging"
                   className="w-full h-56 object-cover"
+                  width="800"
+                  height="472"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="p-5">
                   <h3 className="font-bold text-gray-900 text-lg mb-2">Alberta Arts Kitchen</h3>
