@@ -50,7 +50,8 @@ export function CookieBanner() {
                 <h3 className="font-semibold text-foreground">We Value Your Privacy</h3>
                 <p className="text-sm text-muted-foreground max-w-2xl">
                   We use cookies and similar technologies to enhance your experience, secure your account, and improve our service. 
-                  By clicking "Accept All", you consent to our use of cookies.
+                  By clicking "Accept All", you consent to our use of cookies.{" "}
+                  <Link to="/cookies" className="text-primary hover:underline">Learn more in our Cookie Policy</Link>.
                 </p>
               </div>
             </div>

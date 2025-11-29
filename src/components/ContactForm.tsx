@@ -204,7 +204,7 @@ export function ContactForm() {
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel htmlFor="smsConsent" className="text-sm font-normal cursor-pointer">
-                    I agree to receive text messages and phone calls from The Landry Method LLC. I understand that calls may be automated, pre-recorded, or use an AI voice. Message frequency may vary. Message &amp; data rates may apply. Text HELP for assistance. You may reply STOP to unsubscribe at any time.
+                    <strong>SMS/Text Message Consent:</strong> By checking this box, I consent to receive text messages from The Landry Method LLC at the phone number provided. I understand that message frequency may vary. Message and data rates may apply. I can cancel the SMS service at any time by replying "STOP" to any text message. After sending "STOP", I will receive one final confirmation message. To get help, I can reply "HELP" or contact support@thelandrymethod.com. I understand that carriers are not liable for delayed or undelivered messages. I can rejoin the SMS program at any time by contacting The Landry Method LLC. I have read and agree to the <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link> and <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link>.
                   </FormLabel>
                   <FormMessage />
                 </div>
@@ -227,7 +227,7 @@ export function ContactForm() {
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel htmlFor="marketingConsent" className="text-sm font-normal cursor-pointer">
-                    I agree to receive marketing communications, including text messages and phone calls, from The Landry Method LLC. I understand that calls may be automated, pre-recorded, or use an AI voice. You can reply STOP to opt out at any time.
+                    <strong>Marketing Communications Consent:</strong> I agree to receive marketing communications, including text messages and phone calls, from The Landry Method LLC. I understand that calls may be automated, pre-recorded, or use an AI voice. Message frequency may vary. Message and data rates may apply. I can opt out at any time by replying "STOP" to text messages or by contacting support@thelandrymethod.com. I understand that carriers are not liable for delayed or undelivered messages. I have read and agree to the <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link> and <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link>.
                   </FormLabel>
                   <FormMessage />
                 </div>
