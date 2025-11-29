@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const newsletterSchema = z.object({
   email: z
@@ -114,7 +115,6 @@ export function NewsletterSignup({ variant = "default", showFirstName = false }:
       }
 
       // Also save to Supabase for backup/analytics
-      const { supabase } = await import("@/integrations/supabase/client");
       try {
         await supabase.from("newsletter_subscriptions").insert({
           email: data.email,
