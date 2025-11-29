@@ -81,6 +81,8 @@ const Index = () => {
             <div className="flex items-center gap-3">
               <img
                 src="/TLM LOGO (BOLD LA STYLE) (800 x 1200 px) (1800 x 1200 px)-gigapixel-standard v2-2x.png"
+                srcSet="/cdn-cgi/image/width=240,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 240w, /cdn-cgi/image/width=360,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 360w, /cdn-cgi/image/width=480,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 480w"
+                sizes="(max-width: 640px) 240px, (max-width: 768px) 360px, 480px"
                 alt="The Landry Method Logo"
                 className="h-16 sm:h-20 md:h-24 w-auto flex-shrink-0"
                 width="360"
@@ -190,6 +192,8 @@ const Index = () => {
                   <div className="pt-4 px-4 leading-none">
                     <img
                       src="/images/downtown-loft.webp"
+                      srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/downtown-loft.webp 400w, /cdn-cgi/image/width=609,quality=85,format=auto/images/downtown-loft.webp 609w, /cdn-cgi/image/width=800,quality=85,format=auto/images/downtown-loft.webp 800w, /cdn-cgi/image/width=1200,quality=85,format=auto/images/downtown-loft.webp 1200w"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 609px, 800px"
                       alt="Modern Portland-style staged living room"
                       className="w-full h-auto object-contain block"
                       width="609"
@@ -226,6 +230,8 @@ const Index = () => {
               <div className="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
                 <img
                   src="/images/craftsman-living-room.webp"
+                  srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/craftsman-living-room.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/craftsman-living-room.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/craftsman-living-room.webp 800w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Portland craftsman living room staging"
                   className="w-full h-56 object-cover"
                   width="800"
@@ -244,6 +250,8 @@ const Index = () => {
               <div className="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
                 <img
                   src="/images/pearl-district-bedroom.webp"
+                  srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/pearl-district-bedroom.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/pearl-district-bedroom.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/pearl-district-bedroom.webp 800w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Portland modern bedroom staging"
                   className="w-full h-56 object-cover"
                   width="800"
@@ -262,6 +270,8 @@ const Index = () => {
               <div className="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
                 <img
                   src="/images/alberta-arts-kitchen.webp"
+                  srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/alberta-arts-kitchen.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/alberta-arts-kitchen.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/alberta-arts-kitchen.webp 800w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Portland kitchen staging"
                   className="w-full h-56 object-cover"
                   width="800"
