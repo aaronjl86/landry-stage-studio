@@ -72,40 +72,40 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white shadow-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-4">
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-3 sm:py-4">
             {/* Logo & Branding */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-shrink-0">
               <img
                 src="/TLM LOGO (BOLD LA STYLE) (800 x 1200 px) (1800 x 1200 px)-gigapixel-standard v2-2x.png"
                 srcSet="/cdn-cgi/image/width=240,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 240w, /cdn-cgi/image/width=360,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 360w, /cdn-cgi/image/width=480,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 480w"
-                sizes="(max-width: 640px) 240px, (max-width: 768px) 360px, 480px"
+                sizes="(max-width: 640px) 220px, (max-width: 768px) 280px, 320px"
                 alt="The Landry Method Logo"
-                className="h-16 sm:h-20 md:h-24 w-auto flex-shrink-0"
+                className="h-12 sm:h-14 md:h-16 w-auto"
                 width="360"
                 height="112"
                 loading="eager"
-                fetchPriority="high"
+                fetchpriority="high"
                 decoding="async"
               />
             </div>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#samples" className="text-gray-700 hover:text-[#FF634C] transition-colors">Samples</a>
-              <a href="#how" className="text-gray-700 hover:text-[#FF634C] transition-colors">How it works</a>
-              <a href="#about" className="text-gray-700 hover:text-[#FF634C] transition-colors">About</a>
-              <a href="#contact" className="text-gray-700 hover:text-[#FF634C] transition-colors">Contact</a>
-              <a href="#contact" className="bg-[#FF634C] text-white px-5 py-2 rounded-lg hover:bg-[#E5523E] transition-colors font-medium">Book a free sample</a>
+            <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+              <a href="#samples" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">Samples</a>
+              <a href="#how" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">How it works</a>
+              <a href="#about" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">About</a>
+              <a href="#contact" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">Contact</a>
+              <a href="#contact" className="bg-[#FF634C] text-white text-sm px-6 py-2.5 rounded-lg hover:bg-[#E5523E] transition-all duration-200 font-semibold shadow-sm hover:shadow-md">Book a sample</a>
             </nav>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-gray-700 hover:text-[#FF634C] p-3"
+              className="md:hidden text-gray-600 hover:text-gray-900 p-2"
               aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,174 +115,181 @@ const Index = () => {
           </div>
 
           {/* Mobile Menu */}
-          <nav className={`${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden pb-4 flex-col gap-3 transition-all duration-300 ease-in-out overflow-hidden`}>
-            <a href="#samples" onClick={() => setMobileMenuOpen(false)} className="block text-gray-700 hover:text-[#FF634C] transition-colors py-2">Samples</a>
-            <a href="#how" onClick={() => setMobileMenuOpen(false)} className="block text-gray-700 hover:text-[#FF634C] transition-colors py-2">How it works</a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block text-gray-700 hover:text-[#FF634C] transition-colors py-2">About</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block text-gray-700 hover:text-[#FF634C] transition-colors py-2">Contact</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="inline-block bg-[#FF634C] text-white px-5 py-3 rounded-lg hover:bg-[#E5523E] transition-colors font-medium text-center">Book a free sample</a>
+          <nav className={`${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden pb-4 flex-col gap-2 transition-all duration-300 ease-in-out`}>
+            <a href="#samples" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">Samples</a>
+            <a href="#how" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">How it works</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">About</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">Contact</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block bg-[#FF634C] text-white px-5 py-3 rounded-lg hover:bg-[#E5523E] transition-all duration-200 font-semibold text-sm text-center mt-2">Book a sample</a>
           </nav>
         </div>
       </header>
 
       <main>
         {/* Hero Section */}
-        <section className="py-12 sm:py-16 lg:py-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               {/* Left Column */}
               <div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 mb-6 leading-tight tracking-tight">
                   Ethically staged. Beautifully Portland. MLS-compliant.
                 </h1>
-                <p className="text-lg text-gray-700 mb-8">
+                <p className="text-lg sm:text-xl text-gray-600 mb-12 leading-relaxed max-w-lg">
                   Virtual staging that honors Pacific Northwest craft — furniture-style cues, local lighting aesthetics, and clear MLS disclosure baked into every image.
                 </p>
 
                 {/* Feature Callouts */}
-                <div className="space-y-6 mb-8">
+                <div className="space-y-5 mb-12">
                   {/* Feature 1 */}
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#FF634C] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  <div className="flex gap-5">
+                    <div className="flex-shrink-0 w-11 h-11 bg-[#FF634C] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
                       1
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 mb-1">MLS Disclosure Included</h3>
-                      <p className="text-gray-700">Every staged photo includes a visible disclosure and editable metadata ready for MLS upload.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1.5 text-base">MLS Disclosure Included</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">Every staged photo includes a visible disclosure and editable metadata ready for MLS upload.</p>
                     </div>
                   </div>
 
                   {/* Feature 2 */}
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#FF634C] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  <div className="flex gap-5">
+                    <div className="flex-shrink-0 w-11 h-11 bg-[#FF634C] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
                       2
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 mb-1">Portland Style Guide</h3>
-                      <p className="text-gray-700">Hand-curated visual language: Joinery-style wood, Schoolhouse-inspired lighting, Powell's stacks and subtle mural cues.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1.5 text-base">Portland Style Guide</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">Hand-curated visual language: Joinery-style wood, Schoolhouse-inspired lighting, Powell's stacks and subtle mural cues.</p>
                     </div>
                   </div>
 
                   {/* Feature 3 */}
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#FF634C] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  <div className="flex gap-5">
+                    <div className="flex-shrink-0 w-11 h-11 bg-[#FF634C] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
                       3
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 mb-1">Agent-Friendly Pricing</h3>
-                      <p className="text-gray-700">Sample delivery within 48 hours, clear usage rights, and an option for licensed local-art add-ons.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1.5 text-base">Agent-Friendly Pricing</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">Sample delivery within 48 hours, clear usage rights, and an option for licensed local-art add-ons.</p>
                     </div>
                   </div>
                 </div>
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="#samples" className="w-full sm:w-auto bg-[#FF634C] text-white px-6 py-3 rounded-lg hover:bg-[#E5523E] transition-colors font-medium text-center">
+                  <a href="#samples" className="inline-flex items-center justify-center bg-[#FF634C] text-white px-7 py-3.5 rounded-lg hover:bg-[#E5523E] transition-all duration-200 font-semibold shadow-md hover:shadow-lg">
                     See Portland Samples
                   </a>
-                  <a href="#contact" className="w-full sm:w-auto bg-white border-2 border-gray-300 text-gray-900 px-6 py-3 rounded-lg hover:border-[#FF634C] hover:text-[#FF634C] transition-colors font-medium text-center">
-                    Get a free disclosure template
+                  <a href="#contact" className="inline-flex items-center justify-center bg-white border-2 border-gray-300 text-gray-900 px-7 py-3.5 rounded-lg hover:border-[#FF634C] hover:text-[#FF634C] transition-all duration-200 font-semibold hover:shadow-sm">
+                    Get free template
                   </a>
                 </div>
               </div>
 
               {/* Right Column */}
               <div>
-                <div className="bg-white rounded-xl shadow-lg">
-                  <div className="pt-4 px-4 leading-none">
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                  <div className="pt-1 px-1 leading-none">
                     <img
                       src="/images/downtown-loft.webp"
                       srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/downtown-loft.webp 400w, /cdn-cgi/image/width=609,quality=85,format=auto/images/downtown-loft.webp 609w, /cdn-cgi/image/width=800,quality=85,format=auto/images/downtown-loft.webp 800w, /cdn-cgi/image/width=1200,quality=85,format=auto/images/downtown-loft.webp 1200w"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 609px, 800px"
                       alt="Modern Portland-style staged living room"
-                      className="w-full h-auto object-contain block"
+                      className="w-full h-auto object-cover rounded-xl"
                       width="609"
                       height="332"
                       loading="eager"
-                      fetchPriority="high"
+                      fetchpriority="high"
                       decoding="async"
-                      style={{ 
-                        height: 'auto',
-                        maxHeight: 'none',
-                        display: 'block',
-                        width: '100%'
-                      }}
                     />
                   </div>
+                  <div className="p-6">
+                    <h3 className="font-semibold text-gray-900 text-lg mb-2">Sample: Downtown Loft</h3>
+                    <p className="text-gray-600 text-sm mb-3 leading-relaxed">Mid-century + PNW craft. Includes: Joinery-style walnut table, Schoolhouse-inspired pendant, Powell's book stack styling.</p>
+                    <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
+                  </div>
                 </div>
-                <h3 className="font-bold text-gray-900 text-xl mb-2">Sample: Downtown Loft — mid-century + PNW craft</h3>
-                <p className="text-gray-700 mb-3">Includes: Joinery-style walnut table, Schoolhouse-inspired pendant, Powell's book stack styling.</p>
-                <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Samples Section */}
-        <section id="samples" className="py-12 sm:py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
-              Selected Portland-style staging samples
-            </h2>
+        <section id="samples" className="py-20 sm:py-28 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-950 mb-4 tracking-tight">
+                Selected Portland-style staging
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Explore our curated portfolio of authentic Pacific Northwest designs
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Sample Card 1 */}
-              <div className="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                <img
-                  src="/images/craftsman-living-room.webp"
-                  srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/craftsman-living-room.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/craftsman-living-room.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/craftsman-living-room.webp 800w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  alt="Portland craftsman living room staging"
-                  className="w-full h-56 object-cover"
-                  width="800"
-                  height="472"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="p-5">
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">Craftsman Living Room</h3>
-                  <p className="text-gray-700 mb-3 text-sm">Featuring: Reclaimed Douglas fir shelving, vintage Portland map art, and hand-turned ceramic pieces.</p>
-                  <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
+              <div className="group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl hover:border-[#FF634C]/20 transition-all duration-300">
+                <div className="relative overflow-hidden h-64">
+                  <img
+                    src="/images/craftsman-living-room.webp"
+                    srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/craftsman-living-room.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/craftsman-living-room.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/craftsman-living-room.webp 800w"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    alt="Portland craftsman living room staging"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    width="800"
+                    height="472"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-semibold text-gray-900 text-lg mb-2.5">Craftsman Living Room</h3>
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">Reclaimed Douglas fir shelving, vintage Portland map art, and hand-turned ceramic pieces.</p>
+                  <p className="text-xs text-gray-500 italic">Disclosure: Digitally staged to illustrate potential furnishings.</p>
                 </div>
               </div>
 
               {/* Sample Card 2 */}
-              <div className="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                <img
-                  src="/images/pearl-district-bedroom.webp"
-                  srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/pearl-district-bedroom.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/pearl-district-bedroom.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/pearl-district-bedroom.webp 800w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  alt="Portland modern bedroom staging"
-                  className="w-full h-56 object-cover"
-                  width="800"
-                  height="470"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="p-5">
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">Pearl District Bedroom</h3>
-                  <p className="text-gray-700 mb-3 text-sm">Featuring: Minimalist linen bedding, locally-sourced wood nightstands, and Pacific Northwest photography.</p>
-                  <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
+              <div className="group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl hover:border-[#FF634C]/20 transition-all duration-300">
+                <div className="relative overflow-hidden h-64">
+                  <img
+                    src="/images/pearl-district-bedroom.webp"
+                    srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/pearl-district-bedroom.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/pearl-district-bedroom.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/pearl-district-bedroom.webp 800w"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    alt="Portland modern bedroom staging"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    width="800"
+                    height="470"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-semibold text-gray-900 text-lg mb-2.5">Pearl District Bedroom</h3>
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">Minimalist linen bedding, locally-sourced wood nightstands, and Pacific Northwest photography.</p>
+                  <p className="text-xs text-gray-500 italic">Disclosure: Digitally staged to illustrate potential furnishings.</p>
                 </div>
               </div>
 
               {/* Sample Card 3 */}
-              <div className="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                <img
-                  src="/images/alberta-arts-kitchen.webp"
-                  srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/alberta-arts-kitchen.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/alberta-arts-kitchen.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/alberta-arts-kitchen.webp 800w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  alt="Portland kitchen staging"
-                  className="w-full h-56 object-cover"
-                  width="800"
-                  height="472"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="p-5">
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">Alberta Arts Kitchen</h3>
-                  <p className="text-gray-700 mb-3 text-sm">Featuring: Industrial pendant lighting, open shelving with local pottery, and fresh farmer's market styling.</p>
-                  <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
+              <div className="group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl hover:border-[#FF634C]/20 transition-all duration-300">
+                <div className="relative overflow-hidden h-64">
+                  <img
+                    src="/images/alberta-arts-kitchen.webp"
+                    srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/alberta-arts-kitchen.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/alberta-arts-kitchen.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/alberta-arts-kitchen.webp 800w"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    alt="Portland kitchen staging"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    width="800"
+                    height="472"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-semibold text-gray-900 text-lg mb-2.5">Alberta Arts Kitchen</h3>
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">Industrial pendant lighting, open shelving with local pottery, and fresh farmer's market styling.</p>
+                  <p className="text-xs text-gray-500 italic">Disclosure: Digitally staged to illustrate potential furnishings.</p>
                 </div>
               </div>
             </div>
@@ -290,41 +297,41 @@ const Index = () => {
         </section>
 
         {/* How It Works Section */}
-        <section id="how" className="py-12 sm:py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 lg:p-10">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">How it works</h2>
+        <section id="how" className="py-20 sm:py-28 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl shadow-xl p-8 sm:p-12 lg:p-16 border border-gray-100">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-950 mb-12 tracking-tight">How it works</h2>
 
-              <ol className="space-y-6 mb-8">
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 bg-[#065F46] text-white rounded-full flex items-center justify-center font-bold">1</span>
+              <ol className="space-y-7 mb-12 max-w-3xl">
+                <li className="flex gap-6">
+                  <span className="flex-shrink-0 w-10 h-10 bg-[#065F46] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">1</span>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Upload photos</h3>
-                    <p className="text-gray-700">High-res interior shots or provide key dimensions.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2 text-lg">Upload photos</h3>
+                    <p className="text-gray-600 leading-relaxed">High-res interior shots or provide key dimensions.</p>
                   </div>
                 </li>
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 bg-[#065F46] text-white rounded-full flex items-center justify-center font-bold">2</span>
+                <li className="flex gap-6">
+                  <span className="flex-shrink-0 w-10 h-10 bg-[#065F46] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">2</span>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Choose style</h3>
-                    <p className="text-gray-700">Portland Authentic / Craftsman / Loft / Custom</p>
+                    <h3 className="font-semibold text-gray-900 mb-2 text-lg">Choose style</h3>
+                    <p className="text-gray-600 leading-relaxed">Portland Authentic / Craftsman / Loft / Custom</p>
                   </div>
                 </li>
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-8 h-8 bg-[#065F46] text-white rounded-full flex items-center justify-center font-bold">3</span>
+                <li className="flex gap-6">
+                  <span className="flex-shrink-0 w-10 h-10 bg-[#065F46] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">3</span>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Receive staged images</h3>
-                    <p className="text-gray-700">48 hours for standard package; each image includes editable MLS disclosure overlay and metadata file.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2 text-lg">Receive staged images</h3>
+                    <p className="text-gray-600 leading-relaxed">48 hours for standard package; each image includes editable MLS disclosure overlay and metadata file.</p>
                   </div>
                 </li>
               </ol>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#contact" className="w-full sm:w-auto bg-[#FF634C] text-white px-6 py-3 rounded-lg hover:bg-[#E5523E] transition-colors font-medium text-center">
+              <div className="flex flex-col sm:flex-row gap-4 max-w-2xl">
+                <a href="#contact" className="inline-flex items-center justify-center bg-[#FF634C] text-white px-7 py-3.5 rounded-lg hover:bg-[#E5523E] transition-all duration-200 font-semibold shadow-md hover:shadow-lg">
                   Request sample
                 </a>
-                <a href="#contact" className="w-full sm:w-auto bg-white border-2 border-gray-300 text-gray-900 px-6 py-3 rounded-lg hover:border-[#065F46] hover:text-[#065F46] transition-colors font-medium text-center">
-                  Download disclosure template
+                <a href="#contact" className="inline-flex items-center justify-center bg-white border-2 border-gray-300 text-gray-900 px-7 py-3.5 rounded-lg hover:border-[#065F46] hover:text-[#065F46] transition-all duration-200 font-semibold hover:shadow-sm">
+                  Download template
                 </a>
               </div>
             </div>
@@ -332,21 +339,21 @@ const Index = () => {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-12 sm:py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 lg:p-10">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Why Portland?</h2>
+        <section id="about" className="py-20 sm:py-28 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl shadow-xl p-8 sm:p-12 lg:p-16 border border-gray-100 max-w-4xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-950 mb-10 tracking-tight">Why Portland?</h2>
 
-              <div className="space-y-6">
-                <p className="text-gray-700 leading-relaxed">
+              <div className="space-y-7 text-lg text-gray-700 leading-relaxed">
+                <p>
                   In 2015, I celebrated my 30th birthday with my mom—my favorite person—on a two-week journey through Portland. We explored Multnomah Falls, toured Pittock Mansion, wandered the rose gardens, discovered the Shanghai Tunnels, and stood speechless at Columbia River Gorge viewpoints.
                 </p>
 
-                <p className="text-gray-700 leading-relaxed">
+                <p>
                   Portland became more than my favorite city. It became the place I associate with my mom's laugh, her curiosity, her joy in discovering new things. She passed away from cancer. Portland remains.
                 </p>
 
-                <p className="text-gray-700 leading-relaxed">
+                <p>
                   When I registered The Landry Method as a Portland business despite living in Los Angeles, it wasn't strategy—it was tribute. This city gave me memories I treasure every day. My mom was born here. One day, I'll call it home.
                 </p>
               </div>
@@ -355,25 +362,32 @@ const Index = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-12 sm:py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-8 text-center">Contact & Book</h2>
+        <section id="contact" className="py-20 sm:py-28 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-950 mb-4 tracking-tight">
+                Ready to get started?
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Book a free sample and receive your MLS disclosure template
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               {/* Contact Form */}
-              <div className="bg-gray-50 rounded-xl shadow-md p-6 sm:p-8">
+              <div className="bg-gray-50 rounded-2xl shadow-lg p-8 sm:p-10 border border-gray-100">
                 {submitMessage && (
-                  <div className={`mb-4 p-4 rounded-lg ${
-                    submitMessage.type === 'success' 
-                      ? 'bg-green-50 text-green-800 border border-green-200' 
+                  <div className={`mb-6 p-4 rounded-lg text-sm font-medium ${
+                    submitMessage.type === 'success'
+                      ? 'bg-green-50 text-green-800 border border-green-200'
                       : 'bg-red-50 text-red-800 border border-red-200'
                   }`}>
                     {submitMessage.text}
                   </div>
                 )}
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="agent-name" className="block text-sm font-medium text-gray-900 mb-2">Agent name *</label>
+                    <label htmlFor="agent-name" className="block text-sm font-semibold text-gray-900 mb-2.5">Agent name *</label>
                     <input
                       type="text"
                       id="agent-name"
@@ -381,12 +395,13 @@ const Index = () => {
                       required
                       value={formData['agent-name']}
                       onChange={(e) => setFormData({ ...formData, 'agent-name': e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent h-12"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
+                      placeholder="Your name"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">Email *</label>
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2.5">Email *</label>
                     <input
                       type="email"
                       id="email"
@@ -394,38 +409,41 @@ const Index = () => {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent h-12"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
+                      placeholder="your@email.com"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="listing-address" className="block text-sm font-medium text-gray-900 mb-2">Listing address (optional)</label>
+                    <label htmlFor="listing-address" className="block text-sm font-semibold text-gray-900 mb-2.5">Listing address (optional)</label>
                     <input
                       type="text"
                       id="listing-address"
                       name="listing-address"
                       value={formData['listing-address']}
                       onChange={(e) => setFormData({ ...formData, 'listing-address': e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent h-12"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
+                      placeholder="123 Main St, Portland, OR"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="notes" className="block text-sm font-medium text-gray-900 mb-2">Notes</label>
+                    <label htmlFor="notes" className="block text-sm font-semibold text-gray-900 mb-2.5">Notes</label>
                     <textarea
                       id="notes"
                       name="notes"
                       rows={4}
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF634C] focus:border-transparent bg-white text-gray-900 placeholder-gray-500 resize-none"
+                      placeholder="Tell us about your project..."
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#FF634C] text-white px-6 py-3 rounded-lg hover:bg-[#E5523E] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-[#FF634C] text-white px-6 py-3.5 rounded-lg hover:bg-[#E5523E] transition-all duration-200 font-semibold shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit inquiry'}
                   </button>
@@ -433,29 +451,29 @@ const Index = () => {
               </div>
 
               {/* Design Inspirations Card */}
-              <div className="bg-gray-50 rounded-xl shadow-md p-6 sm:p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Portland Design Inspirations</h3>
-                <p className="text-gray-700 mb-6">
-                  Our virtual staging reflects authentic Pacific Northwest craft traditions. We draw respectful aesthetic inspiration from Portland's renowned furniture makers, lighting designers, and artisans to create staging that resonates with local buyers — without implying any formal affiliation.
+              <div className="bg-gray-50 rounded-2xl shadow-lg p-8 sm:p-10 border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-950 mb-5">Portland Design Inspirations</h3>
+                <p className="text-gray-700 mb-8 leading-relaxed">
+                  Our virtual staging reflects authentic Pacific Northwest craft traditions. We draw respectful aesthetic inspiration from Portland's renowned furniture makers, lighting designers, and artisans to create staging that resonates with local buyers.
                 </p>
-                <h4 className="font-bold text-gray-900 mb-3">Style references</h4>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#FF634C] font-bold mt-0.5 flex-shrink-0">•</span>
-                    <span className="text-gray-700"><strong>The Joinery</strong> — warm solid wood furniture, exposed joinery, heirloom quality feel</span>
+                <h4 className="font-semibold text-gray-900 mb-4 text-lg">Style references</h4>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#FF634C] font-bold mt-1 flex-shrink-0 text-lg">•</span>
+                    <span className="text-gray-700"><strong className="text-gray-900">The Joinery</strong><br className="hidden sm:block" /> warm solid wood furniture, exposed joinery, heirloom quality</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#FF634C] font-bold mt-0.5 flex-shrink-0">•</span>
-                    <span className="text-gray-700"><strong>Schoolhouse</strong> — vintage-inspired pendants, opal glass shades, honest brass hardware</span>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#FF634C] font-bold mt-1 flex-shrink-0 text-lg">•</span>
+                    <span className="text-gray-700"><strong className="text-gray-900">Schoolhouse</strong><br className="hidden sm:block" /> vintage pendants, opal glass, honest brass hardware</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#FF634C] font-bold mt-0.5 flex-shrink-0">•</span>
-                    <span className="text-gray-700"><strong>Pigeon Toe</strong> — hand-thrown ceramics, soft silhouettes, matte glazes and subtle color</span>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#FF634C] font-bold mt-1 flex-shrink-0 text-lg">•</span>
+                    <span className="text-gray-700"><strong className="text-gray-900">Pigeon Toe</strong><br className="hidden sm:block" /> hand-thrown ceramics, soft silhouettes, matte glazes</span>
                   </li>
                 </ul>
-                <div className="p-4 bg-white rounded-lg border border-gray-200">
-                  <p className="text-sm text-gray-600">
-                    Our images use original, generic furniture and décor designs influenced by this broader Portland maker aesthetic. We are not affiliated with, sponsored by, or endorsed by the businesses mentioned, and our work does not depict their actual products.
+                <div className="p-5 bg-white rounded-lg border border-gray-200">
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    We use original, generic furniture designs influenced by Portland maker aesthetics. We are not affiliated with, endorsed by, or representing the businesses mentioned.
                   </p>
                 </div>
               </div>
@@ -465,11 +483,16 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm">
-            © 2024 The Landry Method — Portland inspired virtual staging. All staged images include disclosure overlays unless otherwise noted.
-          </p>
+      <footer className="bg-gray-950 text-gray-400 py-12 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-sm leading-relaxed">
+              © 2024 The Landry Method — Portland inspired virtual staging. All staged images include disclosure overlays unless otherwise noted.
+            </p>
+            <p className="text-xs text-gray-500 mt-4">
+              Crafted with care for real estate professionals who value authenticity.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
