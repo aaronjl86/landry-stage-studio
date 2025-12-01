@@ -57,6 +57,11 @@ export default function Footer4Col() {
                   FAQ
                 </Link>
               </li>
+              <li>
+                <Link to="/mls" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
+                  MLS Compliance
+                </Link>
+              </li>
             </ul>
           </div>
 

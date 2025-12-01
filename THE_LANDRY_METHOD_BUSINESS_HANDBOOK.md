@@ -282,6 +282,40 @@ We believe that every property deserves to be presented in the best possible lig
 - Compliance is client responsibility
 - We provide guidance but not legal advice
 
+### MLS Guidelines (Portland, OR)
+
+#### Purpose
+- Provide a concise reference for MLS expectations that impact virtual staging projects handled by The Landry Method LLC (TLM) in the Portland, OR market, which is primarily served by **RMLS™ (Regional Multiple Listing Service)**.
+- Reinforce TLM’s commitment to supporting strict MLS compliance while clarifying that agents remain responsible for final adherence to their MLS rules and applicable laws.
+
+#### Regional Variance Disclaimer
+- MLS rules are **not uniform**; authoritative industry references confirm that requirements differ by MLS organization and by state/region.
+- This section summarizes **RMLS-focused** guidance. It does **not** cover every MLS or supersede brokerage policies, Fair Housing laws, or legal advice.
+- Clients/agents are fully responsible for confirming current rules with their local MLS, broker, or legal counsel before publishing listings.
+
+#### Key RMLS Photo & Virtual Staging Standards
+- **RMLS Rules & Regulations Section 3.8 (Photographs)** governs imagery:
+  - Photos may not contain added text/graphics or alterations that misrepresent the property.
+  - No people, copyrighted material, identifying/promotional info, private business names/locations, or Fair Housing violations.
+  - RMLS reserves the right to reject non-compliant images.
+- **Permitted clarifications** (must not mislead): lot lines, road names, arrows highlighting the property, names of public amenities.
+- **Virtual staging disclosure:** any virtually staged photo must display a visible **“Virtually Staged”** watermark on the image.
+- **Sample images for new construction:** if a photo shows a similar home, it must display a **“Sample Image”** watermark.
+- **Coming Soon – No Showings:** the first photo in this status will be watermarked “Coming Soon – No Showings” by the MLS system.
+
+#### TLM Commitments
+- Design virtual staging deliverables that avoid prohibited elements (people, branding, misleading edits, Fair Housing issues).
+- Provide files that accommodate required MLS watermarks or apply “Virtually Staged” / “Sample Image” text when requested.
+- Collaborate with clients to clarify intended MLS usage so imagery aligns with RMLS expectations.
+
+#### Agent Responsibilities & Best Practices
+- Review the latest **RMLS Rules and Regulations** plus “Rules Roundup” notices for updates.
+- Confirm brokerage-specific advertising or image policies.
+- Ensure uploaded photos retain required **“Virtually Staged”** or **“Sample Image”** disclosures and that listing remarks clearly note virtual staging (e.g., “Photos are virtually staged to help buyers visualize the potential of the space”).
+- Consult brokers, MLS compliance teams, or legal professionals for Fair Housing, advertising, or edge-case questions.
+
+> **Reminder:** TLM supports compliance but cannot guarantee MLS acceptance. Final responsibility for MLS, brokerage, and legal compliance always rests with the client/agent.
+
 ### Privacy & Data Protection
 
 **Privacy Policy:**
