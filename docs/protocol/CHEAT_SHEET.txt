@@ -1,0 +1,168 @@
+# LANDRY PROTOCOL v4.0 — CHEAT SHEET (Print This)
+
+---
+
+## WHEN STARTING A NEW CHAT
+
+**STEP 1: Copy/paste into the LLM chat**
+```
+[Entire PROTOCOL_COPY_PASTE.md file]
+```
+
+**STEP 2: Wait for acknowledgment**
+LLM must say: "I acknowledge that I have read and understand the Landry Coherence Protocol v4.0..."
+
+If it doesn't, do NOT proceed.
+
+---
+
+## DESCRIBING YOUR PROBLEM (Critical Format)
+
+**Use this template:**
+
+```
+Using the Landry Protocol in ICU Mode:
+
+ERROR: [What exactly is happening/breaking]
+
+FILE: [Paste the actual file that's breaking]
+
+DESIRED BEHAVIOR: [What should happen instead]
+
+QUESTION: [What specifically do you need me to fix]
+```
+
+**Example:**
+```
+Using the Landry Protocol in ICU Mode:
+
+ERROR: Upload returns 500 error. Bucket not found.
+
+FILE: [paste the upload handler function]
+
+DESIRED BEHAVIOR: Upload succeeds and returns image URL.
+
+QUESTION: How do I fix the bucket reference?
+```
+
+---
+
+## ICU MODE RULES (Default)
+
+1. **Show me the artifact** (no assumptions)
+2. **One error at a time** (no scope creep)
+3. **Minimal delta only** (line-level changes)
+4. **2-minute verification rule** (testable before you implement)
+5. **Halt on ambiguity** (AI asks if unclear)
+
+---
+
+## GROWTH MODE (Strategic Thinking)
+
+**Activate with:**
+```
+Switch to Growth Mode. [your strategic question]
+```
+
+Only use when you want architectural thinking, not execution.
+
+---
+
+## HALT CONDITIONS (AI Must Stop)
+
+AI must stop and ask if:
+- Context is missing
+- Artifacts conflict
+- Instructions are unclear
+- Solution can't be verified in 2 minutes
+- Need to see another file
+
+**AI should respond:**
+> "HALT: I cannot proceed safely. I need: [specific thing]"
+
+---
+
+## CONFIDENCE TIERS
+
+- **Tier 1 (Verifiable):** You can directly check it → Trust it
+- **Tier 2 (Supported):** Based on your artifact → Verify it
+- **Tier 3 (Inference):** A reasonable guess → Test it
+- **Tier 4 (Speculation):** Guessing → Only in Growth Mode
+
+---
+
+## WHEN TO STOP THE AI
+
+Say: **"Stop. You're breaking protocol."**
+
+Then point to the violation:
+
+| Red Flag | Response |
+|----------|----------|
+| Suggests code changes without seeing file | "Show me the file first" |
+| Proposes architecture in ICU Mode | "Growth Mode only if I ask" |
+| Multi-file refactor | "Delta-only fixes" |
+| Unverifiable suggestion | "This takes more than 2 minutes" |
+| Proceeds without context | "What's missing?" |
+
+---
+
+## THE LOOP (Repeat This)
+
+1. **You:** Describe problem (error + file + desired behavior)
+2. **AI:** Diagnose (artifact-only, no invention)
+3. **You:** Confirm diagnosis or provide context
+4. **AI:** Suggest minimal fix
+5. **You:** Test and report result
+6. **Repeat** until fixed
+
+---
+
+## VERIFICATION BEFORE IMPLEMENTING
+
+Ask yourself:
+- [ ] Does this match the file I pasted?
+- [ ] Is this the behavior I want?
+- [ ] Can I test this in 2 minutes?
+- [ ] Does the diagnosis make sense?
+- [ ] Do I need to ask for more context?
+
+---
+
+## IF SOMETHING FEELS WRONG
+
+Ask the AI:
+- "Do you have enough context to be sure?"
+- "What else would you need to see?"
+- "Why are you confident about this?"
+- "What could prove this wrong?"
+
+---
+
+## THE PROMISE
+
+If you follow the protocol:
+✓ Catastrophic failures become nearly impossible
+✓ Every fix is testable and minimal
+✓ You catch errors before they compound
+✓ You stay in control
+
+Not fast. Not genius. But safe.
+
+---
+
+## KEY FILES
+
+| Need | File |
+|------|------|
+| Full protocol | PROTOCOL_COPY_PASTE.md |
+| Quick lookup | Protocol_Quick_Reference.xlsx |
+| See it working | Protocol_Example_Workflow.md |
+| Understand limits | Landry_Protocol_v4.0_REVISED.xlsx |
+
+---
+
+## REMEMBER
+
+**The protocol only works if you enforce it.**
+The AI cannot self-police. You must watch.

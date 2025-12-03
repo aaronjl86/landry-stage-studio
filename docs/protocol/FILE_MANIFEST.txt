@@ -1,0 +1,200 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    LANDRY COHERENCE PROTOCOL v4.0
+                         COMPLETE PACKAGE MANIFEST
+═══════════════════════════════════════════════════════════════════════════════
+
+📍 START HERE: START_HERE.md
+   Read this first for orientation and next steps.
+
+═══════════════════════════════════════════════════════════════════════════════
+                          MASTER FILES (USE THESE)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. PROTOCOL_COPY_PASTE.md (8.5 KB) ⭐⭐⭐ MOST IMPORTANT
+   • The full protocol in copy/paste format
+   • Paste this entire file into any LLM chat
+   • AI will acknowledge and commit to following it
+   • Use for: Every conversation about code rebuilds/high-stakes work
+   
+   ACTION: Copy entire contents → Paste into LLM chat → Get acknowledgment
+
+───────────────────────────────────────────────────────────────────────────────
+
+2. CHEAT_SHEET.txt (3.7 KB) ⭐ PRINT THIS
+   • One-page quick reference card
+   • Print or save to phone
+   • Fast lookup of protocol rules, halts, red flags
+   • Use for: During conversations when you need quick guidance
+   
+   ACTION: Print or bookmark → Keep accessible while chatting
+
+───────────────────────────────────────────────────────────────────────────────
+
+3. Protocol_Quick_Reference.xlsx
+   • Spreadsheet version of quick reference
+   • Tabs for modes, halts, verification, red flags, confidence tiers
+   • Use for: Keep open in browser during conversations
+   
+   ACTION: Open in Excel/Google Sheets → Reference during chat
+
+───────────────────────────────────────────────────────────────────────────────
+
+4. README_PROTOCOL_PACKAGE.md (6.1 KB)
+   • Master index of all files in this package
+   • Explains what each file is and when to use it
+   • Quick start workflow
+   • Use for: Navigation and understanding the full package
+   
+   ACTION: Read to understand file organization
+
+═══════════════════════════════════════════════════════════════════════════════
+                       UNDERSTANDING FILES (READ THESE)
+═══════════════════════════════════════════════════════════════════════════════
+
+5. Protocol_Example_Workflow.md (8.3 KB)
+   • Real-world example: "Upload function is broken"
+   • Step-by-step walkthrough of protocol in action
+   • Shows good vs. bad AI responses
+   • Shows how to loop, when to switch modes
+   • Use for: Understanding how the protocol actually works
+   
+   ACTION: Read to see the protocol in practice
+
+───────────────────────────────────────────────────────────────────────────────
+
+6. Landry_Protocol_v4.0_REVISED.xlsx
+   • Formal protocol document with honest assessment
+   • Sections: Core principle, ICU rules, Growth mode, epistemic boundaries
+   • What it prevents (✓) and what it doesn't (✗)
+   • Red flags and failure modes that remain
+   • Use for: Deep understanding of limitations
+   
+   ACTION: Reference for detailed protocol rules
+
+───────────────────────────────────────────────────────────────────────────────
+
+7. FINAL_SYNTHESIS.md (5.5 KB)
+   • Meta-analysis comparing all four AI models' approaches
+   • Evolution of frameworks (v1 → v3 → v4 → v4 Revised)
+   • What actually works vs. what doesn't
+   • Strategic decision-making guidance
+   • Use for: Understanding philosophy, making your choices
+   
+   ACTION: Read for strategic context
+
+═══════════════════════════════════════════════════════════════════════════════
+                    LANDRY METHOD TRACKING (YOUR BUSINESS)
+═══════════════════════════════════════════════════════════════════════════════
+
+8. Landry_Method_Workbook.xlsx (14 KB)
+   • Prospect list template
+   • Outreach log tracker
+   • Mockup delivery log
+   • Metrics & conversion funnel
+   • Message templates (A/B/C variants)
+   • Weekly checklist
+   • Use for: Running The Landry Method operations (separate from protocol)
+   
+   ACTION: Use for business execution and tracking
+
+───────────────────────────────────────────────────────────────────────────────
+
+9. Landry_Operating_Protocol_v1.0.xlsx (17 KB)
+   • Domain-specific constraints for Landry Method work
+   • Operating constraints when discussing your business
+   • Confidence tier system
+   • Red flags for business hallucination
+   • "I don't know" thresholds
+   • Use for: Extra context on your specific domain
+   
+   ACTION: Reference for domain-specific rules
+
+═══════════════════════════════════════════════════════════════════════════════
+                         QUICK START (TODAY)
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 1 (Now): 
+   Read START_HERE.md (this orients you)
+
+STEP 2 (5 minutes):
+   Read Protocol_Example_Workflow.md (see how it works)
+
+STEP 3 (Print/Bookmark):
+   Save CHEAT_SHEET.txt to phone
+   Open Protocol_Quick_Reference.xlsx in browser tab
+
+STEP 4 (When you rebuild):
+   Copy/paste PROTOCOL_COPY_PASTE.md into LLM chat
+   Wait for acknowledgment
+   Describe your problem (error + file + desired behavior)
+   Follow the protocol
+
+═══════════════════════════════════════════════════════════════════════════════
+                           KEY PRINCIPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ Don't trust AI to self-police
+✓ Trust structure to constrain behavior
+✓ Verify every output before implementing
+✓ Accept that AI can be confidently wrong
+✓ Use ICU Mode for code/rebuilds (default)
+✓ Use Growth Mode only when explicitly activated
+✓ The protocol only works if you enforce it
+
+═══════════════════════════════════════════════════════════════════════════════
+                          WHICH FILE WHEN
+═══════════════════════════════════════════════════════════════════════════════
+
+Starting a new conversation about code:
+   → Copy/paste PROTOCOL_COPY_PASTE.md
+
+Need to remember a rule mid-conversation:
+   → Glance at CHEAT_SHEET.txt or Protocol_Quick_Reference.xlsx
+
+Want to understand the philosophy:
+   → Read FINAL_SYNTHESIS.md
+
+Want to see it working:
+   → Read Protocol_Example_Workflow.md
+
+Need deep protocol details:
+   → Reference Landry_Protocol_v4.0_REVISED.xlsx
+
+Need to understand what's in this package:
+   → Read README_PROTOCOL_PACKAGE.md
+
+═══════════════════════════════════════════════════════════════════════════════
+                        NEXT STEP: ANSWER 4 QUESTIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Which system is broken?
+   (A) Cloudflare Pages build failing
+   (B) Lovable.dev project code broken
+   (C) Supabase schema / API mismatch
+   (D) Routing / React components not rendering
+   (E) Entire deployment pipeline corrupted
+   (F) You don't know—it's all melted together
+
+2. What's the actual error?
+   (Not "the site is broken." The specific error message or behavior.)
+
+3. What should happen instead?
+   (Clear desired behavior.)
+
+4. Are you ready to work slowly and carefully?
+   (Safety over speed for this rebuild?)
+
+THEN:
+   Open chat with Claude/ChatGPT/Gemini
+   Paste PROTOCOL_COPY_PASTE.md
+   Get acknowledgment
+   Describe your problem
+   Follow the loop
+
+═══════════════════════════════════════════════════════════════════════════════
+
+You now have everything needed to rebuild The Landry Method safely with AI.
+
+The protocol works. Use it.
+
+═══════════════════════════════════════════════════════════════════════════════
