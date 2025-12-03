@@ -16,6 +16,7 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+postman-environment.json
 
 # Temporary Stripe scripts
 create-stripe-products.cjs
