@@ -117,6 +117,12 @@ export default function Auth() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!supabase) {
+      toast.error("Configuration error: Supabase client not initialized. Please check your environment variables.");
+      return;
+    }
+    
     setLoading(true);
 
     try {
@@ -151,45 +157,76 @@ export default function Auth() {
           return;
         }
 
-        // Pre-validate signup to check for abuse patterns
-        const { data: abuseValidation, error: validationError } = 
-          await supabase.functions.invoke('validate-signup', {
+        // Pre-validate signup to check for abuse patterns (optional - proceed if it fails)
+        // Note: functions.invoke() returns { data, error } - it doesn't throw for HTTP errors
+        let abuseValidation: any = null;
+        let validationError: any = null;
+        
+        try {
+          const result = await supabase.functions.invoke('validate-signup', {
             body: {
               email,
               deviceFingerprint,
             }
           });
+          
+          // functions.invoke() returns { data, error } - check error explicitly
+          // HTTP errors (403, 500, etc.) appear in result.error, not as exceptions
+          if (result.error) {
+            validationError = result.error;
+          } else {
+            abuseValidation = result.data;
+          }
+        } catch (err) {
+          // Only catches network errors, timeouts, or actual exceptions (not HTTP errors)
+          validationError = err;
+        }
 
-        if (validationError) {
-          toast.error("Validation failed. Please try again.");
+        // Only block signup if validation explicitly says not allowed
+        // If validation service is down, returns error (403, 500, etc.), or times out, proceed with signup
+        // This makes validate-signup truly optional - it's a safety check, not a requirement
+        if (!validationError && abuseValidation && !abuseValidation.allowed) {
+          toast.error(abuseValidation.message || "Signup not allowed. Please contact support if you believe this is an error.");
           setLoading(false);
           return;
         }
-
-        if (!abuseValidation?.allowed) {
-          toast.error(abuseValidation?.message || "Signup not allowed. Please contact support if you believe this is an error.");
-          setLoading(false);
-          return;
-        }
-
-        if (abuseValidation.requires_verification) {
+        
+        if (abuseValidation?.requires_verification) {
           toast.warning("Your account requires additional verification.");
         }
 
         // Proceed with signup, pass metadata
+        // Build signup options - only include redirect if we have a valid origin
+        const signupOptions: any = {
+          data: {
+            full_name: fullName,
+            device_fingerprint: deviceFingerprint,
+          },
+        };
+        
+        // Only add emailRedirectTo if we have a valid origin (helps avoid 422 errors)
+        // If email confirmations are disabled, this won't be used anyway
+        if (window.location.origin && window.location.origin !== 'null') {
+          signupOptions.emailRedirectTo = `${window.location.origin}/dashboard`;
+        }
+        
         const { data: signupData, error } = await supabase.auth.signUp({
           email,
           password,
-          options: {
-            data: {
-              full_name: fullName,
-              device_fingerprint: deviceFingerprint,
-            },
-            emailRedirectTo: `${window.location.origin}/dashboard`,
-          },
+          options: signupOptions,
         });
         
         if (error) {
+          // Provide more helpful error messages for common issues
+          if (error.status === 422) {
+            const helpfulMessage = error.message.includes('redirect') 
+              ? "Signup failed: Redirect URL not whitelisted. Please contact support or check Supabase settings."
+              : error.message.includes('email') 
+              ? "Signup failed: Email confirmation may be required. Please check your email or contact support."
+              : error.message || "Signup failed. Please check your information and try again.";
+            throw new Error(helpfulMessage);
+          }
+          
           throw error;
         }
         toast.success("Account created! Welcome to The Landry Method!");

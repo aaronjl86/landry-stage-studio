@@ -62,6 +62,7 @@ serve(async (req) => {
       logger.warn("Failed to log signup attempt", { error: logError.message });
     }
 
+    // Always return 200, let the frontend decide based on allowed flag
     return new Response(
       JSON.stringify({
         allowed: abuseCheck.allowed,
@@ -70,7 +71,7 @@ serve(async (req) => {
         message: abuseCheck.reason
       }),
       {
-        status: abuseCheck.allowed ? 200 : 403,
+        status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" }
       }
     );
