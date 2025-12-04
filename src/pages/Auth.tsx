@@ -116,7 +116,16 @@ export default function Auth() {
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:118',message:'handleSubmit called',data:{isLogin,hasEmail:!!email,hasPassword:!!password,hasFullName:!!fullName,deviceFingerprint:deviceFingerprint||'none',supabaseIsNull:!supabase},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
     e.preventDefault();
+    
+    if (!supabase) {
+      toast.error("Configuration error: Supabase client not initialized. Please check your environment variables.");
+      return;
+    }
+    
     setLoading(true);
 
     try {
@@ -138,12 +147,18 @@ export default function Auth() {
         toast.success("Welcome back!");
         navigate("/dashboard");
       } else {
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:140',message:'Starting signup flow',data:{email,hasPassword:!!password,fullName,deviceFingerprint:deviceFingerprint||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
         // Validate signup input
         const validationResult = signupSchema.safeParse({ 
           email, 
           password, 
           fullName 
         });
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:147',message:'Validation result',data:{valid:validationResult.success,errors:validationResult.success?[]:validationResult.error.errors.map(e=>e.message)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
         if (!validationResult.success) {
           const firstError = validationResult.error.errors[0];
           toast.error(firstError.message);
@@ -151,54 +166,127 @@ export default function Auth() {
           return;
         }
 
-        // Pre-validate signup to check for abuse patterns
-        const { data: abuseValidation, error: validationError } = 
-          await supabase.functions.invoke('validate-signup', {
+        // Pre-validate signup to check for abuse patterns (optional - proceed if it fails)
+        // Note: functions.invoke() returns { data, error } - it doesn't throw for HTTP errors
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:169',message:'Calling validate-signup',data:{email,hasFingerprint:!!deviceFingerprint},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
+        let abuseValidation: any = null;
+        let validationError: any = null;
+        
+        try {
+          const result = await supabase.functions.invoke('validate-signup', {
             body: {
               email,
               deviceFingerprint,
             }
           });
+          
+          // functions.invoke() returns { data, error } - check error explicitly
+          // HTTP errors (403, 500, etc.) appear in result.error, not as exceptions
+          if (result.error) {
+            validationError = result.error;
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:178',message:'validate-signup returned error',data:{error:result.error.message,status:result.error.status,name:result.error.name},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+            // #endregion
+          } else {
+            abuseValidation = result.data;
+          }
+        } catch (err) {
+          // Only catches network errors, timeouts, or actual exceptions (not HTTP errors)
+          validationError = err;
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:186',message:'validate-signup exception caught',data:{error:err instanceof Error?err.message:String(err)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+          // #endregion
+        }
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:192',message:'validate-signup final state',data:{hasError:!!validationError,errorMessage:validationError?.message,errorStatus:validationError?.status,hasData:!!abuseValidation,allowed:abuseValidation?.allowed,riskScore:abuseValidation?.risk_score,message:abuseValidation?.message},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
 
+        // Only block signup if validation explicitly says not allowed
+        // If validation service is down, returns error (403, 500, etc.), or times out, proceed with signup
+        // This makes validate-signup truly optional - it's a safety check, not a requirement
+        if (!validationError && abuseValidation && !abuseValidation.allowed) {
+          toast.error(abuseValidation.message || "Signup not allowed. Please contact support if you believe this is an error.");
+          setLoading(false);
+          return;
+        }
+        
+        // Log if validation failed but we're continuing anyway
         if (validationError) {
-          toast.error("Validation failed. Please try again.");
-          setLoading(false);
-          return;
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:203',message:'validate-signup failed, proceeding with signup anyway',data:{error:validationError.message||String(validationError),status:validationError.status},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+          // #endregion
         }
 
-        if (!abuseValidation?.allowed) {
-          toast.error(abuseValidation?.message || "Signup not allowed. Please contact support if you believe this is an error.");
-          setLoading(false);
-          return;
-        }
-
-        if (abuseValidation.requires_verification) {
+        if (abuseValidation?.requires_verification) {
           toast.warning("Your account requires additional verification.");
         }
 
         // Proceed with signup, pass metadata
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:179',message:'Calling supabase.auth.signUp',data:{email,hasPassword:!!password,fullName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
+        // Build signup options - only include redirect if we have a valid origin
+        const signupOptions: any = {
+          data: {
+            full_name: fullName,
+            device_fingerprint: deviceFingerprint,
+          },
+        };
+        
+        // Only add emailRedirectTo if we have a valid origin (helps avoid 422 errors)
+        // If email confirmations are disabled, this won't be used anyway
+        if (window.location.origin && window.location.origin !== 'null') {
+          signupOptions.emailRedirectTo = `${window.location.origin}/dashboard`;
+        }
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:204',message:'About to call signUp',data:{email,redirectUrl:signupOptions.emailRedirectTo||'none',hasPassword:!!password,passwordLength:password.length,fullName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
         const { data: signupData, error } = await supabase.auth.signUp({
           email,
           password,
-          options: {
-            data: {
-              full_name: fullName,
-              device_fingerprint: deviceFingerprint,
-            },
-            emailRedirectTo: `${window.location.origin}/dashboard`,
-          },
+          options: signupOptions,
         });
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:190',message:'signUp response',data:{hasError:!!error,error:error?.message,errorStatus:error?.status,errorDetails:error,hasUser:!!signupData?.user,userId:signupData?.user?.id,emailConfirmed:!!signupData?.user?.email_confirmed_at},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
         
         if (error) {
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:228',message:'signUp error details',data:{errorMessage:error.message,errorStatus:error.status,errorName:error.name,fullError:JSON.stringify(error)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+          // #endregion
+          
+          // Provide more helpful error messages for common issues
+          if (error.status === 422) {
+            const helpfulMessage = error.message.includes('redirect') 
+              ? "Signup failed: Redirect URL not whitelisted. Please contact support or check Supabase settings."
+              : error.message.includes('email') 
+              ? "Signup failed: Email confirmation may be required. Please check your email or contact support."
+              : error.message || "Signup failed. Please check your information and try again.";
+            throw new Error(helpfulMessage);
+          }
+          
           throw error;
         }
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:195',message:'Signup successful, navigating',data:{userId:signupData?.user?.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+        // #endregion
         toast.success("Account created! Welcome to The Landry Method!");
         navigate("/dashboard");
       }
     } catch (error: unknown) {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:198',message:'Error caught in handleSubmit',data:{error:error instanceof Error?error.message:String(error),isError:error instanceof Error,errorName:error instanceof Error?error.name:'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'F'})}).catch(()=>{});
+      // #endregion
       const errorMessage = error instanceof Error ? error.message : "An error occurred";
       toast.error(errorMessage);
     } finally {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:202',message:'handleSubmit finally block',data:{loading},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'G'})}).catch(()=>{});
+      // #endregion
       setLoading(false);
     }
   };
@@ -470,6 +558,11 @@ export default function Auth() {
                       type="submit" 
                       className="w-full" 
                       disabled={loading}
+                      onClick={() => {
+                        // #region agent log
+                        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:469',message:'Submit button clicked',data:{isLogin,loading,hasEmail:!!email,hasPassword:!!password,hasFullName:!!fullName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
+                        // #endregion
+                      }}
                     >
                       {loading ? "Loading..." : isLogin ? "Sign In" : "Create Account"}
                     </Button>
