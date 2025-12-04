@@ -11,7 +11,7 @@ export const SUBSCRIPTION_PLANS = {
     features: [
       "10 uploads per month",
       "Professional quality images",
-      "AI-powered virtual staging",
+      "Professional staging enhancement",
       "Multiple room types supported",
       "Photorealistic results",
       "Email support",
@@ -38,7 +38,7 @@ export const SUBSCRIPTION_PLANS = {
     features: [
       "50 uploads per month",
       "Professional quality images",
-      "AI-powered virtual staging",
+      "Professional staging enhancement",
       "Multiple room types supported",
       "Photorealistic results",
       "Priority support",
@@ -65,7 +65,7 @@ export const SUBSCRIPTION_PLANS = {
     features: [
       "200 uploads per month",
       "Professional quality images",
-      "AI-powered virtual staging",
+      "Professional staging enhancement",
       "Multiple room types supported",
       "Photorealistic results",
       "Priority support",

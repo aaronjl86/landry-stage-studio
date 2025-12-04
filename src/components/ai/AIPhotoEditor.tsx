@@ -89,10 +89,10 @@ export function AIPhotoEditor() {
     <div className="container mx-auto py-8 pb-32 space-y-6 relative">
       <div className="text-center space-y-2">
         <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-          AI Photo Virtual Staging
+          Professional Photo Enhancement
         </h1>
         <p className="text-muted-foreground">
-          Transform your real estate photos with AI-powered enhancements
+          Transform your real estate photos with professional staging enhancements
         </p>
       </div>
 

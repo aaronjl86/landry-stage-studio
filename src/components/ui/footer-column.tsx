@@ -1,92 +1,172 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import tlmLogoFooter from "@/assets/tlm-logo-footer.webp";
-import tlmLogoFooterPNG from "@/assets/tlm-logo-footer-opt.png";
 
 export default function Footer4Col() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t" style={{ backgroundColor: '#36eee0' }}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 font-bold">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="border-t bg-gray-950 text-gray-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Column 1: Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <picture>
-                <source srcSet={tlmLogoFooter} type="image/webp" />
-                <img 
-                  src={tlmLogoFooterPNG} 
-                  alt="The Landry Method logo" 
-                  className="h-16 md:h-20 w-auto" 
-                  width="200" 
-                  height="87" 
-                  loading="lazy" 
-                  decoding="async" 
-                />
-              </picture>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F483f25f7132142e9a123c6a7640139f0%2F02a36f10bc5448f9953f9578d904e2cc?format=webp&width=800"
+              alt="The Landry Method - Spatial Intelligence in Motion"
+              className="h-14 w-auto"
+            />
+            <p className="text-sm text-gray-400">
+              Professional virtual staging for real estate professionals
+            </p>
+            <p className="text-sm text-gray-400">
+              © {currentYear} The Landry Method LLC. All rights reserved.
+            </p>
+            <div className="text-sm text-gray-400 space-y-1">
+              <p>5441 S Macadam Ave STE N</p>
+              <p>Portland, OR 97239</p>
+              <p>Phone: +1 (503) 276-7274</p>
+              <p>
+                Email:{" "}
+                <a
+                  href="mailto:support@thelandrymethod.com"
+                  className="text-[#FF634C] hover:underline"
+                >
+                  support@thelandrymethod.com
+                </a>
+              </p>
             </div>
-            <p className="text-lg text-foreground font-medium">
-              AI-powered virtual staging for real estate professionals
-            </p>
-            <p className="text-lg text-foreground font-medium">
-              &copy; 2025 The Landry Method LLC. All rights reserved.
-            </p>
-            <p className="text-sm text-foreground">
-              Refunds: 30-day money-back guarantee
-            </p>
-            <p className="text-sm text-foreground">
-              Contact: <a href="mailto:support@thelandrymethod.com" className="underline hover:no-underline">support@thelandrymethod.com</a> • +1 (323) 745-8111
-            </p>
           </div>
 
-          {/* Column 2: Quick Links */}
+          {/* Column 2: Product Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="text-white font-bold mb-4">Product</h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
+                <Link
+                  to="/"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/#pricing" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  Pricing
+                <Link
+                  to="/about"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link to="/#faq" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  FAQ
+                <Link
+                  to="/auth"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/newsletter"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  Newsletter
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Contact */}
+          {/* Column 3: Legal */}
           <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2">
+            <h3 className="text-white font-bold mb-4">Legal</h3>
+            <ul className="space-y-3">
               <li>
-                <a href="mailto:support@thelandrymethod.com" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
+                <Link
+                  to="/privacy"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/terms"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/cookies"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/mls-compliance"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  MLS Compliance
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Support */}
+          <div>
+            <h3 className="text-white font-bold mb-4">Support</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="mailto:support@thelandrymethod.com"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
                   Email Support
                 </a>
               </li>
               <li>
-                <a href="tel:+13237458111" className="text-lg text-foreground font-semibold hover:text-foreground transition-colors">
-                  +1 (323) 745-8111
+                <a
+                  href="tel:+15032767274"
+                  className="text-sm text-gray-400 hover:text-[#FF634C] transition-colors"
+                >
+                  Call Us
                 </a>
+              </li>
+              <li>
+                <p className="text-sm text-gray-400">
+                  Available Monday - Friday, 9am - 5pm PST
+                </p>
               </li>
             </ul>
           </div>
+        </div>
 
-          {/* Column 4: CTA */}
-          <div>
-            <h3 className="font-semibold mb-4">Get Started</h3>
-            <p className="text-sm text-foreground mb-4">
-              Start staging your real estate photos today
+        {/* A2P Disclaimer */}
+        <div className="border-t border-gray-800 pt-8">
+          <div className="bg-gray-900 rounded p-4 mb-6">
+            <h4 className="text-white font-semibold mb-2 text-sm">
+              📱 SMS and Marketing Communications
+            </h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              By providing your phone number and opting in to our communications, you consent to receive
+              SMS text messages, transactional communications, and marketing messages from The Landry
+              Method via text message. Message frequency may vary. Message and data rates may apply.
+              Reply "STOP" to opt out. Carriers are not liable for delayed or undelivered messages. This
+              is standard A2P (Application-to-Person) messaging. You can manage your communication
+              preferences at any time by contacting support@thelandrymethod.com or replying "STOP" to any
+              message.
             </p>
-            <Button className="w-full" onClick={() => window.location.href = '/#pricing'}>
-              View Pricing
-            </Button>
           </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="border-t border-gray-800 pt-8 text-center">
+          <p className="text-xs text-gray-500">
+            The Landry Method is committed to ethical, compliant service delivery and transparent
+            business practices. All virtual staged photos include appropriate MLS disclosures.
+          </p>
         </div>
       </div>
     </footer>

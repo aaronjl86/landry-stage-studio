@@ -180,7 +180,7 @@ export default function PrivacyPolicy() {
               <strong>The Landry Method LLC</strong><br />
               5441 S Macadam Ave STE N<br />
               Portland, OR 97239<br />
-              Phone: +1 (323) 745-8111<br />
+              Phone: +1 (503) 276-7274<br />
               Email: <a href="mailto:support@thelandrymethod.com" className="text-primary hover:underline">support@thelandrymethod.com</a>
             </p>
           </section>

@@ -17,7 +17,7 @@ export default function Contact() {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Get help with virtual staging for your real estate photos. Contact our support team for questions about AI staging, pricing, or technical assistance.');
+    metaDescription.setAttribute('content', 'Get help with professional virtual staging for your real estate photos. Contact our support team for questions about staging, pricing, or technical assistance.');
   }, []);
 
   return (
@@ -76,7 +76,7 @@ export default function Contact() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    +1 (323) 745-8111
+                    +1 (503) 276-7274
                   </p>
                   <p className="text-sm text-muted-foreground mt-2">
                     Monday - Friday, 9am - 5pm EST
