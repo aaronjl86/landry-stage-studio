@@ -8,6 +8,7 @@ import { ProcessingQueue } from "./ProcessingQueue";
 import { BeforeAfterComparison } from "./BeforeAfterComparison";
 import { UpgradeDialog } from "./UpgradeDialog";
 import { MLSComplianceBadge } from "./MLSComplianceBadge";
+import { ModelSelector } from "./ModelSelector";
 import { useAIProcessor } from "@/hooks/useAIProcessor";
 import { toast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
@@ -20,6 +21,7 @@ interface ImageWithPrompt {
 
 export function AIPhotoEditor() {
   const [uploadedImages, setUploadedImages] = useState<ImageWithPrompt[]>([]);
+  const [selectedModel, setSelectedModel] = useState<"original" | "pro">("original");
   const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const [requiredCredits, setRequiredCredits] = useState(0);
   
@@ -71,9 +73,9 @@ export function AIPhotoEditor() {
       return;
     }
 
-    await submitBatchEdit(uploadedImages, false);
+    await submitBatchEdit(uploadedImages, selectedModel, false);
     await refreshCredits();
-  }, [uploadedImages, isAdmin, credits, freeTrialCredits, submitBatchEdit, refreshCredits]);
+  }, [uploadedImages, selectedModel, isAdmin, credits, freeTrialCredits, submitBatchEdit, refreshCredits]);
 
   const handleUpgradeDialogClose = useCallback(() => {
     console.log("Upgrade dialog closed - resetting editor state");
@@ -136,6 +138,11 @@ export function AIPhotoEditor() {
       </Card>
 
       <MLSComplianceBadge />
+
+      <ModelSelector 
+        value={selectedModel} 
+        onValueChange={(value) => setSelectedModel(value as "original" | "pro")} 
+      />
 
       <EnhancedPhotoUpload
         onImagesUploaded={handleImagesUpdate}

@@ -55,7 +55,7 @@ serve(async (req) => {
     }
 
     // Parse request body
-    const { prompt, imageData, mimeType } = await req.json();
+    const { prompt, imageData, mimeType, model = "original" } = await req.json();
 
     // Validate input
     if (!prompt || !imageData || !mimeType) {
@@ -188,7 +188,19 @@ serve(async (req) => {
       throw new Error("GOOGLE_AI_API_KEY not configured");
     }
 
-    logger.info("Calling Google Gemini API for image editing", { correlationId, userId });
+    // Determine model ID based on selection
+    const modelId = model === "pro" 
+      ? "gemini-3-pro-image-preview"
+      : "gemini-2.5-flash-image";
+    
+    const isProModel = model === "pro";
+    
+    logger.info("Calling Google Gemini API for image editing", { 
+      correlationId, 
+      userId, 
+      model: modelId,
+      modelType: isProModel ? "Pro" : "Original"
+    });
 
     // Phase 1: Combine architectural rule + MLS compliance + user prompt
     // First get architectural prompt, then add MLS compliance
@@ -199,36 +211,49 @@ serve(async (req) => {
     // Prepare image data (remove data URL prefix if present)
     const base64ImageData = imageData.replace(/^data:image\/\w+;base64,/, "");
 
+    // Build request body - Pro model uses thinking_level instead of thinking_budget
+    const requestBody: any = {
+      contents: [
+        {
+          parts: [
+            {
+              text: enhancedPrompt,
+            },
+            {
+              inline_data: {
+                mime_type: mimeType,
+                data: base64ImageData,
+              },
+            },
+          ],
+        },
+      ],
+      generationConfig: {
+        // Gemini 3 Pro requires temperature at default 1.0 to avoid looping/degraded performance
+        // Original (Gemini 2.5 Flash) can use lower temperature for more deterministic output
+        temperature: isProModel ? 1.0 : 0.4,
+        topK: 32,
+        topP: 1,
+      },
+    };
+
+    // Add thinking_level for Pro model (Gemini 3 Pro uses this instead of thinking_budget)
+    // Note: Cannot use both thinking_level and thinking_budget in the same request
+    if (isProModel) {
+      requestBody.generationConfig.thinkingLevel = "high"; // Default for Gemini 3 Pro
+      // Options: "low" (minimize latency/cost), "high" (maximize reasoning depth, default)
+      // "medium" is coming soon but not available at launch
+    }
+
     const aiResponse = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent",
+      `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "x-goog-api-key": GOOGLE_AI_API_KEY,
         },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: enhancedPrompt,
-                },
-                {
-                  inline_data: {
-                    mime_type: mimeType,
-                    data: base64ImageData,
-                  },
-                },
-              ],
-            },
-          ],
-          generationConfig: {
-            temperature: 0.4,
-            topK: 32,
-            topP: 1,
-          },
-        }),
+        body: JSON.stringify(requestBody),
       }
     );
 
