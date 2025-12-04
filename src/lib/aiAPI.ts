@@ -13,6 +13,14 @@ export interface EditImageResponse {
   editedImageData?: string;
   remaining?: number;
   error?: string;
+  mlsCompliant?: boolean;
+  mlsMetadata?: {
+    mlsCompliant: boolean;
+    disclosureText: string;
+    market: string;
+    timestamp: string;
+    policyVersion: string;
+  };
 }
 
 export interface GenerateImageRequest {
