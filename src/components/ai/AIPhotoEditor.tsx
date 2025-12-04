@@ -4,19 +4,22 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Sparkles, Loader2 } from "lucide-react";
 import { EnhancedPhotoUpload } from "./EnhancedPhotoUpload";
-import { EnhancedTemplateSelector } from "./EnhancedTemplateSelector";
 import { ProcessingQueue } from "./ProcessingQueue";
 import { BeforeAfterComparison } from "./BeforeAfterComparison";
 import { UpgradeDialog } from "./UpgradeDialog";
+import { MLSComplianceBadge } from "./MLSComplianceBadge";
 import { useAIProcessor } from "@/hooks/useAIProcessor";
 import { toast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 
+interface ImageWithPrompt {
+  data: string;
+  name: string;
+  prompt: string;
+}
+
 export function AIPhotoEditor() {
-  const [uploadedImages, setUploadedImages] = useState<
-    { data: string; name: string }[]
-  >([]);
-  const [customPrompt, setCustomPrompt] = useState("");
+  const [uploadedImages, setUploadedImages] = useState<ImageWithPrompt[]>([]);
   const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const [requiredCredits, setRequiredCredits] = useState(0);
   
@@ -48,10 +51,12 @@ export function AIPhotoEditor() {
       return;
     }
 
-    if (!customPrompt) {
+    // Check that all images have prompts
+    const imagesWithoutPrompts = uploadedImages.filter(img => !img.prompt || img.prompt.trim() === "");
+    if (imagesWithoutPrompts.length > 0) {
       toast({
-        title: "No Instructions Provided",
-        description: "Please add editing instructions",
+        title: "Missing Instructions",
+        description: `Please add staging instructions for ${imagesWithoutPrompts.length} image(s)`,
         variant: "destructive",
       });
       return;
@@ -66,23 +71,27 @@ export function AIPhotoEditor() {
       return;
     }
 
-    await submitBatchEdit(uploadedImages, [], customPrompt, false);
+    await submitBatchEdit(uploadedImages, false);
     await refreshCredits();
-  }, [uploadedImages, customPrompt, isAdmin, credits, submitBatchEdit, refreshCredits]);
+  }, [uploadedImages, isAdmin, credits, freeTrialCredits, submitBatchEdit, refreshCredits]);
 
   const handleUpgradeDialogClose = useCallback(() => {
     console.log("Upgrade dialog closed - resetting editor state");
     // Reset all form state so user can start fresh without stuck button
     setUploadedImages([]);
-    setCustomPrompt("");
     // Note: Credits only refresh after actual subscription purchase or monthly renewal
   }, []);
 
   const handleClearAll = useCallback(() => {
     clearJobs();
     setUploadedImages([]);
-    setCustomPrompt("");
   }, [clearJobs]);
+
+  const handleImagesUpdate = useCallback((images: ImageWithPrompt[]) => {
+    // Replace our state with the latest images and their prompts
+    // This handles both new uploads and prompt updates
+    setUploadedImages(images);
+  }, []);
 
 
   return (
@@ -126,13 +135,10 @@ export function AIPhotoEditor() {
         </div>
       </Card>
 
-      <EnhancedPhotoUpload
-        onImagesUploaded={(images) => setUploadedImages((prev) => [...prev, ...images])}
-      />
+      <MLSComplianceBadge />
 
-      <EnhancedTemplateSelector
-        customPrompt={customPrompt}
-        onCustomPromptChange={setCustomPrompt}
+      <EnhancedPhotoUpload
+        onImagesUploaded={handleImagesUpdate}
       />
 
       <div className="flex justify-center gap-4">

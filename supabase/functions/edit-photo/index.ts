@@ -7,6 +7,8 @@ import { logger } from "../_shared/structured-logger.ts";
 import { verifyPromptIntegrity, injectRuleSignature } from "../_shared/prompt-integrity.ts";
 import { getArchitecturalPrompt } from "../_shared/architectural-rule.ts";
 import { validateArchitecturalIntegrity } from "../_shared/image-validator.ts";
+import { getMLSCompliantPrompt, createMLSComplianceMetadata } from "../_shared/mls-policies.ts";
+import { validateMLSCompliance, getValidationErrorMessage } from "../_shared/mls-validator.ts";
 
 serve(async (req) => {
   const correlationId = crypto.randomUUID();
@@ -86,6 +88,38 @@ serve(async (req) => {
       .replace(/\s+/g, ' ')
       .trim();
 
+    // MLS Compliance Validation
+    logger.info("Validating MLS compliance", { correlationId, userId });
+    const mlsValidation = validateMLSCompliance(sanitizedPrompt);
+    
+    if (!mlsValidation.valid) {
+      logger.warn("MLS compliance validation failed", {
+        correlationId,
+        userId,
+        violations: mlsValidation.violations,
+      });
+      
+      return new Response(
+        JSON.stringify({
+          error: getValidationErrorMessage(mlsValidation),
+          violations: mlsValidation.violations,
+          warnings: mlsValidation.warnings,
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    if (mlsValidation.warnings.length > 0) {
+      logger.info("MLS compliance warnings", {
+        correlationId,
+        userId,
+        warnings: mlsValidation.warnings,
+      });
+    }
+
     // Validate image size (max 10MB base64)
     if (imageData.length > 10 * 1024 * 1024 * 1.37) {
       return new Response(
@@ -148,47 +182,52 @@ serve(async (req) => {
       creditResult = { success: true, remaining: 999999 };
     }
 
-    // Call Lovable AI Gateway with Gemini image editing model
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY not configured");
+    // Call Google Gemini API directly for image editing
+    const GOOGLE_AI_API_KEY = Deno.env.get("GOOGLE_AI_API_KEY");
+    if (!GOOGLE_AI_API_KEY) {
+      throw new Error("GOOGLE_AI_API_KEY not configured");
     }
 
-    logger.info("Calling Lovable AI Gateway for image editing", { correlationId, userId });
+    logger.info("Calling Google Gemini API for image editing", { correlationId, userId });
 
-    // Phase 1: Use immutable architectural rule with signature injection
-    const enhancedPrompt = injectRuleSignature(
-      getArchitecturalPrompt(sanitizedPrompt)
-    );
+    // Phase 1: Combine architectural rule + MLS compliance + user prompt
+    // First get architectural prompt, then add MLS compliance
+    const architecturalPrompt = getArchitecturalPrompt(sanitizedPrompt);
+    const mlsCompliantPrompt = getMLSCompliantPrompt(architecturalPrompt);
+    const enhancedPrompt = injectRuleSignature(mlsCompliantPrompt);
+
+    // Prepare image data (remove data URL prefix if present)
+    const base64ImageData = imageData.replace(/^data:image\/\w+;base64,/, "");
 
     const aiResponse = await fetch(
-      "https://ai.gateway.lovable.dev/v1/chat/completions",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent",
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${LOVABLE_API_KEY}`,
           "Content-Type": "application/json",
+          "x-goog-api-key": GOOGLE_AI_API_KEY,
         },
         body: JSON.stringify({
-          model: "google/gemini-2.5-flash-image-preview",
-          messages: [
+          contents: [
             {
-              role: "user",
-              content: [
+              parts: [
                 {
-                  type: "text",
-                  text: enhancedPrompt
+                  text: enhancedPrompt,
                 },
                 {
-                  type: "image_url",
-                  image_url: {
-                    url: `data:${mimeType};base64,${imageData.replace(/^data:image\/\w+;base64,/, "")}`
-                  }
-                }
-              ]
-            }
+                  inline_data: {
+                    mime_type: mimeType,
+                    data: base64ImageData,
+                  },
+                },
+              ],
+            },
           ],
-          modalities: ["image", "text"]
+          generationConfig: {
+            temperature: 0.4,
+            topK: 32,
+            topP: 1,
+          },
         }),
       }
     );
@@ -225,10 +264,13 @@ serve(async (req) => {
 
     const aiData = await aiResponse.json();
     
-    // Extract image from response
-    const editedImageUrl = aiData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    // Extract image from Gemini API response
+    // Gemini returns: candidates[0].content.parts[0].inline_data.data
+    const editedImageData = aiData.candidates?.[0]?.content?.parts?.find(
+      (part: any) => part.inline_data?.data
+    )?.inline_data?.data;
     
-    if (!editedImageUrl) {
+    if (!editedImageData) {
       logger.error("No image in AI response", { correlationId, userId, response: JSON.stringify(aiData) });
 
       // Refund credits due to missing image (skip for admins)
@@ -251,6 +293,9 @@ serve(async (req) => {
         }
       );
     }
+
+    // Convert base64 image data to data URL for validation
+    const editedImageUrl = `data:${mimeType};base64,${editedImageData}`;
 
     // Phase 2: Validate architectural integrity
     logger.info("Validating architectural integrity", { correlationId, userId });
@@ -280,6 +325,10 @@ serve(async (req) => {
         // Continue even if logging fails
       }
       
+      // Log MLS compliance metadata
+      const mlsMetadata = createMLSComplianceMetadata();
+      logger.info("MLS compliance metadata", { correlationId, userId, metadata: mlsMetadata });
+      
       // Refund credit and reject output (skip for admins)
       if (!isAdmin) {
         await supabase.rpc("credits_refund", {
@@ -307,11 +356,16 @@ serve(async (req) => {
       similarityScore: validation.similarityScore
     });
 
+    // Create MLS compliance metadata
+    const mlsMetadata = createMLSComplianceMetadata();
+
     return new Response(
       JSON.stringify({
         success: true,
         editedImageData: editedImageUrl,
         remaining: creditResult.remaining,
+        mlsCompliant: true,
+        mlsMetadata: mlsMetadata,
       }),
       {
         status: 200,

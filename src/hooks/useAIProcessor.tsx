@@ -39,7 +39,8 @@ export function useAIProcessor() {
       updateJob(job.id, { status: "processing", progress: 0 });
 
       try {
-        const prompt = aiAPI.combinePrompts(job.templateIds, job.customPrompt);
+        // Use the custom prompt directly (per-image prompts)
+        const prompt = job.customPrompt || "";
 
         updateJob(job.id, { progress: 30 });
 
@@ -70,14 +71,18 @@ export function useAIProcessor() {
             try {
               const { data: { user } } = await supabase.auth.getUser();
               if (user) {
-        await supabase.from("uploads").insert({
-          user_id: user.id,
-          original_image_url: job.originalImage,
-          staged_image_url: result.editedImageData,
-          status: "completed",
-          credits_used: 1,
-          is_public: job.isPublic || false,
-        });
+                await supabase.from("uploads").insert({
+                  user_id: user.id,
+                  original_image_url: job.originalImage,
+                  staged_image_url: result.editedImageData,
+                  status: "completed",
+                  credits_used: 1,
+                  is_public: job.isPublic || false,
+                  mls_compliant: result.mlsCompliant !== false, // Default to true if not specified
+                  mls_disclosure_text: "Photos are virtually staged to help buyers visualize the potential of the space",
+                  prompt_used: job.customPrompt || "",
+                  mls_metadata: result.mlsMetadata || null,
+                });
               }
             } catch (dbError) {
               console.error("Error saving to database:", dbError);
@@ -111,9 +116,7 @@ export function useAIProcessor() {
 
   const submitBatchEdit = useCallback(
     async (
-      images: { data: string; name: string }[],
-      templateIds: string[],
-      customPrompt?: string,
+      images: { data: string; name: string; prompt: string }[],
       isPublic?: boolean
     ) => {
       const newJobs: EditingJob[] = images.map((img) => ({
@@ -122,8 +125,8 @@ export function useAIProcessor() {
         fileName: img.name,
         status: "pending" as JobStatus,
         progress: 0,
-        templateIds,
-        customPrompt,
+        templateIds: [],
+        customPrompt: img.prompt,
         isPublic,
       }));
 
