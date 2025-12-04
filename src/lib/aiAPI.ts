@@ -6,6 +6,7 @@ export interface EditImageRequest {
   prompt: string;
   imageData: string;
   mimeType: string;
+  model?: "original" | "pro";
 }
 
 export interface EditImageResponse {

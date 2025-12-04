@@ -18,6 +18,7 @@ export interface EditingJob {
   fileName: string;
   isRedo?: boolean;
   isPublic?: boolean;
+  model?: "original" | "pro";
 }
 
 export function useAIProcessor() {
@@ -52,6 +53,7 @@ export function useAIProcessor() {
           prompt,
           imageData: job.originalImage,
           mimeType,
+          model: job.model || "original",
         };
 
         const result = await aiAPI.submitEdit(request);
@@ -117,6 +119,7 @@ export function useAIProcessor() {
   const submitBatchEdit = useCallback(
     async (
       images: { data: string; name: string; prompt: string }[],
+      model: "original" | "pro" = "original",
       isPublic?: boolean
     ) => {
       const newJobs: EditingJob[] = images.map((img) => ({
@@ -128,7 +131,8 @@ export function useAIProcessor() {
         templateIds: [],
         customPrompt: img.prompt,
         isPublic,
-      }));
+        model: model, // Store model selection with job
+      } as EditingJob & { model: "original" | "pro" }));
 
       setJobs((prev) => [...prev, ...newJobs]);
       setIsProcessing(true);

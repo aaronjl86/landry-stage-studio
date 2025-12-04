@@ -5,6 +5,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import About from "./pages/About";
 import CookiePolicy from "./pages/CookiePolicy";
+import Dashboard from "./pages/Dashboard";
+import Auth from "./pages/Auth";
+import Gallery from "./pages/Gallery";
+import Credits from "./pages/Credits";
 
 const App = () => (
   <BrowserRouter>
@@ -15,6 +19,10 @@ const App = () => (
       <Route path="/terms" element={<Terms />} />
       <Route path="/about" element={<About />} />
       <Route path="/cookies" element={<CookiePolicy />} />
+      <Route path="/auth" element={<Auth />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/gallery" element={<Gallery />} />
+      <Route path="/dashboard/credits" element={<Credits />} />
       {/* All other routes redirect to landing page */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
