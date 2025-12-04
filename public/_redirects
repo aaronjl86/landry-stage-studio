@@ -1,5 +1,13 @@
-# Redirect the pages.dev subdomain to your custom domain
-https://landry-stage-studio.pages.dev/* https://thelandrymethod.com/:splat 301!
-
-# Redirect all routes to landing page - all other pages hidden from public view
-/* /index.html 200
+# SPA routing: Serve index.html for specific routes only
+# Note: Domain redirects (pages.dev -> custom domain) must be configured in Cloudflare Dashboard
+# Static assets (images, CSS, JS, fonts) are automatically served by Cloudflare Pages
+# For production domain, _routes.json handles the catch-all
+# For preview deployments, explicit routes below handle SPA routing
+/dashboard /index.html 200
+/dashboard/* /index.html 200
+/auth /index.html 200
+/contact /index.html 200
+/privacy /index.html 200
+/terms /index.html 200
+/about /index.html 200
+/cookies /index.html 200
