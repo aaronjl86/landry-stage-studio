@@ -1,2 +1,12 @@
-# SPA routing: Serve index.html for all routes
+# Explicit SPA routes
+/dashboard /index.html 200
+/dashboard/* /index.html 200
+/auth /index.html 200
+/contact /index.html 200
+/privacy /index.html 200
+/terms /index.html 200
+/about /index.html 200
+/cookies /index.html 200
+
+# Fallback catch-all
 /* /index.html 200

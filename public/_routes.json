@@ -26,7 +26,6 @@
   "routes": [
     {
       "pattern": "/*",
-      "zone_name": "thelandrymethod.com",
       "serve": "/index.html",
       "status": 200
     }

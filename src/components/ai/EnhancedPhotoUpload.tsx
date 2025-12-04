@@ -3,6 +3,8 @@ import { Upload, X } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 
 interface UploadedImage {
@@ -11,10 +13,11 @@ interface UploadedImage {
   data: string;
   objectUrl: string;
   size: number;
+  prompt: string;
 }
 
 interface EnhancedPhotoUploadProps {
-  onImagesUploaded: (images: { data: string; name: string }[]) => void;
+  onImagesUploaded: (images: { data: string; name: string; prompt: string }[]) => void;
   maxImages?: number;
 }
 
@@ -133,11 +136,13 @@ export function EnhancedPhotoUpload({
             data: compressedData,
             objectUrl,
             size,
+            prompt: "",
           });
         }
 
-        setImages((prev) => [...prev, ...newImages]);
-        onImagesUploaded(newImages);
+        const updatedImages = [...images, ...newImages];
+        setImages(updatedImages);
+        onImagesUploaded(updatedImages.map(img => ({ data: img.data, name: img.name, prompt: img.prompt })));
 
         toast({
           title: "Images Uploaded",
@@ -156,16 +161,31 @@ export function EnhancedPhotoUpload({
         setIsCompressing(false);
       }
     },
-    [images.length, maxImages, onImagesUploaded]
+    [images, maxImages, onImagesUploaded]
   );
 
   const removeImage = useCallback((id: string) => {
     setImages((prev) => {
       const img = prev.find((i) => i.id === id);
       if (img) URL.revokeObjectURL(img.objectUrl);
-      return prev.filter((i) => i.id !== id);
+      const updated = prev.filter((i) => i.id !== id);
+      // Notify parent of updated images list
+      onImagesUploaded(updated.map(img => ({ data: img.data, name: img.name, prompt: img.prompt })));
+      return updated;
     });
-  }, []);
+  }, [onImagesUploaded]);
+
+  const updateImagePrompt = useCallback((id: string, prompt: string) => {
+    setImages((prev) => {
+      const updated = prev.map((img) =>
+        img.id === id ? { ...img, prompt } : img
+      );
+      // Notify parent of all current images with updated prompts
+      const imagesForParent = updated.map(img => ({ data: img.data, name: img.name, prompt: img.prompt }));
+      onImagesUploaded(imagesForParent);
+      return updated;
+    });
+  }, [onImagesUploaded]);
 
   return (
     <Card className="p-6 !bg-[hsl(176,81%,46%)] !border-[hsl(176,81%,36%)]">
@@ -219,33 +239,55 @@ export function EnhancedPhotoUpload({
         </label>
 
         {images.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+          <div className="space-y-4 mt-4">
             {images.map((img) => (
-              <div key={img.id} className="relative group">
-                <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-                  <img
-                    src={img.objectUrl}
-                    alt={img.name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
+              <Card key={img.id} className="p-4 space-y-3">
+                <div className="relative group">
+                  <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+                    <img
+                      src={img.objectUrl}
+                      alt={img.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <Button
+                    size="icon"
+                    variant="destructive"
+                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={() => removeImage(img.id)}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
                 </div>
-                <Button
-                  size="icon"
-                  variant="destructive"
-                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => removeImage(img.id)}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-                <p className="text-xs text-muted-foreground mt-1 truncate">
-                  {img.name}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {(img.size / 1024 / 1024).toFixed(2)} MB
-                </p>
-              </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-muted-foreground truncate">
+                      {img.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {(img.size / 1024 / 1024).toFixed(2)} MB
+                    </p>
+                  </div>
+                  <div className="space-y-1">
+                    <Label htmlFor={`prompt-${img.id}`} className="text-xs">
+                      Staging Instructions for this image
+                    </Label>
+                    <Textarea
+                      id={`prompt-${img.id}`}
+                      placeholder="Example: Add modern sectional sofa, mid-century-modern artwork on the walls, and decor to the room with a cohesive style of coffee table and 3 throw pillows in various shades of gray on the sofa."
+                      value={img.prompt}
+                      onChange={(e) => updateImagePrompt(img.id, e.target.value)}
+                      rows={3}
+                      className="resize-none text-sm"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Describe how you want this specific image staged
+                    </p>
+                  </div>
+                </div>
+              </Card>
             ))}
           </div>
         )}
