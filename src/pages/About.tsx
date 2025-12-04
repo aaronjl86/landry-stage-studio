@@ -37,7 +37,7 @@ export default function About() {
           
           <div className="prose prose-lg max-w-none">
             <p className="text-xl text-muted-foreground mb-8">
-              Transforming real estate marketing with AI-powered virtual staging technology
+              Transforming real estate marketing with professional virtual staging services
             </p>
             
             <section className="mb-12">
@@ -53,6 +53,19 @@ export default function About() {
                 we are dedicated to delivering exceptional results that help our clients succeed. Our 
                 commitment extends beyond just creating beautiful images—we are committed to building 
                 lasting relationships based on trust, integrity, and exceptional service.
+              </p>
+            </section>
+
+            <section className="mb-12 p-8 bg-gradient-to-r from-[#FF634C]/5 to-transparent rounded-lg border-2 border-[#FF634C]/20">
+              <h2 className="text-3xl font-bold mb-6 text-gray-950">What is Spatial Intelligence in Motion?</h2>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                Our tagline captures the essence of what we believe virtual staging should be. It's not just about placing furniture in a photo—it's about understanding the <strong>spatial intelligence</strong> that makes a room work: how light flows, how people move through the space, and how design choices influence perception.
+              </p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                <strong>In Motion</strong> represents the momentum we create for your listings. Better staged photos lead to more showings, faster sales, and happy clients. We help properties move—both visually and commercially.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Every image we enhance combines strategic design with authentic Portland aesthetics. We stage properties not to trick buyers, but to help them <strong>visualize the full potential</strong> of the space. That's Spatial Intelligence in Motion.
               </p>
             </section>
 
@@ -126,7 +139,7 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-bold mb-2">Our Team</h3>
                 <p className="text-muted-foreground">
-                  A dedicated team of AI experts and real estate professionals
+                  Experienced staging professionals with deep real estate market knowledge
                 </p>
               </div>
               
@@ -134,9 +147,9 @@ export default function About() {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[hsl(280,70%,70%)] via-[hsl(265,65%,55%)] to-[hsl(290,75%,65%)] flex items-center justify-center shadow-lg shadow-purple-500/25">
                   <Zap className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Our Technology</h3>
+                <h3 className="text-xl font-bold mb-2">Our Process</h3>
                 <p className="text-muted-foreground">
-                  Cutting-edge AI that delivers professional results in seconds
+                  Professional staging tools combined with expert human oversight for quality results
                 </p>
               </div>
             </div>

@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Header } from "@/components/landing/Header";
+import Footer4Col from "@/components/ui/footer-column";
+
+const isDev = import.meta.env.DEV;
 
 const Index = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     "agent-name": "",
@@ -73,57 +76,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-3 sm:py-4">
-            {/* Logo & Branding */}
-            <div className="flex items-center gap-3 flex-shrink-0">
-              <img
-                src="/TLM LOGO (BOLD LA STYLE) (800 x 1200 px) (1800 x 1200 px)-gigapixel-standard v2-2x.png"
-                srcSet="/cdn-cgi/image/width=240,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 240w, /cdn-cgi/image/width=360,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 360w, /cdn-cgi/image/width=480,quality=85,format=auto/TLM%20LOGO%20(BOLD%20LA%20STYLE)%20(800%20x%201200%20px)%20(1800%20x%201200%20px)-gigapixel-standard%20v2-2x.png 480w"
-                sizes="(max-width: 640px) 220px, (max-width: 768px) 280px, 320px"
-                alt="The Landry Method Logo"
-                className="h-12 sm:h-14 md:h-16 w-auto"
-                width="360"
-                height="112"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-              />
-            </div>
-
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-8 lg:gap-10">
-              <a href="#samples" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">Samples</a>
-              <a href="#how" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">How it works</a>
-              <a href="#about" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">About</a>
-              <a href="#contact" className="text-sm text-gray-600 hover:text-[#FF634C] transition-colors duration-200 font-medium">Contact</a>
-              <a href="#contact" className="bg-[#FF634C] text-white text-sm px-6 py-2.5 rounded-lg hover:bg-[#E5523E] transition-all duration-200 font-semibold shadow-sm hover:shadow-md">Book a sample</a>
-            </nav>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-gray-600 hover:text-gray-900 p-2"
-              aria-label="Toggle menu"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          <nav className={`${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden pb-4 flex-col gap-2 transition-all duration-300 ease-in-out`}>
-            <a href="#samples" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">Samples</a>
-            <a href="#how" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">How it works</a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">About</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block text-gray-600 hover:text-[#FF634C] transition-colors py-2.5 text-sm font-medium">Contact</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block bg-[#FF634C] text-white px-5 py-3 rounded-lg hover:bg-[#E5523E] transition-all duration-200 font-semibold text-sm text-center mt-2">Book a sample</a>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main>
         {/* Hero Section */}
@@ -148,7 +101,7 @@ const Index = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1.5 text-base">MLS Disclosure Included</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">Every staged photo includes a visible disclosure and editable metadata ready for MLS upload.</p>
+                      <p className="text-gray-600 text-sm leading-relaxed">Full compliance built in. Every image includes visible disclosure and editable metadata, so you stay confident and compliant with local MLS rules.</p>
                     </div>
                   </div>
 
@@ -158,8 +111,8 @@ const Index = () => {
                       2
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1.5 text-base">Portland Style Guide</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">Hand-curated visual language: Joinery-style wood, Schoolhouse-inspired lighting, Powell's stacks and subtle mural cues.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1.5 text-base">Portland Authenticity</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">We stage spaces the way Portland buyers expect to see them. Local materials, neighborhood character, and Pacific Northwest design sensibility in every image.</p>
                     </div>
                   </div>
 
@@ -169,8 +122,8 @@ const Index = () => {
                       3
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1.5 text-base">Agent-Friendly Pricing</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">Sample delivery within 48 hours, clear usage rights, and an option for licensed local-art add-ons.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1.5 text-base">Professional Service, No Platform</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">Direct service means personal attention. We deliver samples in 48 hours and handle all the details so you can focus on selling.</p>
                     </div>
                   </div>
                 </div>
@@ -192,8 +145,10 @@ const Index = () => {
                   <div className="pt-1 px-1 leading-none">
                     <img
                       src="/images/downtown-loft.webp"
-                      srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/downtown-loft.webp 400w, /cdn-cgi/image/width=609,quality=85,format=auto/images/downtown-loft.webp 609w, /cdn-cgi/image/width=800,quality=85,format=auto/images/downtown-loft.webp 800w, /cdn-cgi/image/width=1200,quality=85,format=auto/images/downtown-loft.webp 1200w"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 609px, 800px"
+                      {...(!isDev && {
+                        srcSet: "/cdn-cgi/image/width=400,quality=85,format=auto/images/downtown-loft.webp 400w, /cdn-cgi/image/width=609,quality=85,format=auto/images/downtown-loft.webp 609w, /cdn-cgi/image/width=800,quality=85,format=auto/images/downtown-loft.webp 800w, /cdn-cgi/image/width=1200,quality=85,format=auto/images/downtown-loft.webp 1200w",
+                        sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 609px, 800px"
+                      })}
                       alt="Modern Portland-style staged living room"
                       className="w-full h-auto object-cover rounded-xl"
                       width="609"
@@ -209,6 +164,46 @@ const Index = () => {
                     <p className="text-xs text-gray-500 italic">Disclosure: This image has been digitally staged to illustrate potential furnishings.</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Spatial Intelligence in Motion - Philosophy Section */}
+        <section className="py-16 sm:py-24 bg-gradient-to-r from-[#FF634C]/5 to-transparent border-t-2 border-[#FF634C]/10">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-950 mb-4">
+                Spatial Intelligence in Motion
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                Our tagline represents our core approach: understanding how space, light, and thoughtfully selected furnishings work together to help properties sell faster.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-3xl font-bold text-[#FF634C] mb-3">🧠</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Spatial Intelligence</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We understand how to read a room—analyzing proportions, natural light, traffic flow, and sight lines to stage spaces that feel authentic and inviting to buyers.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-3xl font-bold text-[#FF634C] mb-3">✨</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Design Integrity</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Every staged image reflects real design principles and local Portland aesthetics. We never overdo it—just enough to help buyers visualize the space at its full potential.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-3xl font-bold text-[#FF634C] mb-3">⚡</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">In Motion</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Staging is a catalyst—it creates momentum for your listings. Better photos = more showings = faster sales. We help your properties move.
+                </p>
               </div>
             </div>
           </div>
@@ -232,8 +227,10 @@ const Index = () => {
                 <div className="relative overflow-hidden h-64">
                   <img
                     src="/images/craftsman-living-room.webp"
-                    srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/craftsman-living-room.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/craftsman-living-room.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/craftsman-living-room.webp 800w"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    {...(!isDev && {
+                      srcSet: "/cdn-cgi/image/width=400,quality=85,format=auto/images/craftsman-living-room.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/craftsman-living-room.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/craftsman-living-room.webp 800w",
+                      sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    })}
                     alt="Portland craftsman living room staging"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     width="800"
@@ -254,8 +251,10 @@ const Index = () => {
                 <div className="relative overflow-hidden h-64">
                   <img
                     src="/images/pearl-district-bedroom.webp"
-                    srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/pearl-district-bedroom.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/pearl-district-bedroom.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/pearl-district-bedroom.webp 800w"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    {...(!isDev && {
+                      srcSet: "/cdn-cgi/image/width=400,quality=85,format=auto/images/pearl-district-bedroom.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/pearl-district-bedroom.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/pearl-district-bedroom.webp 800w",
+                      sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    })}
                     alt="Portland modern bedroom staging"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     width="800"
@@ -276,8 +275,10 @@ const Index = () => {
                 <div className="relative overflow-hidden h-64">
                   <img
                     src="/images/alberta-arts-kitchen.webp"
-                    srcSet="/cdn-cgi/image/width=400,quality=85,format=auto/images/alberta-arts-kitchen.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/alberta-arts-kitchen.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/alberta-arts-kitchen.webp 800w"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    {...(!isDev && {
+                      srcSet: "/cdn-cgi/image/width=400,quality=85,format=auto/images/alberta-arts-kitchen.webp 400w, /cdn-cgi/image/width=600,quality=85,format=auto/images/alberta-arts-kitchen.webp 600w, /cdn-cgi/image/width=800,quality=85,format=auto/images/alberta-arts-kitchen.webp 800w",
+                      sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    })}
                     alt="Portland kitchen staging"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     width="800"
@@ -385,6 +386,12 @@ const Index = () => {
                     {submitMessage.text}
                   </div>
                 )}
+                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-xs text-blue-800">
+                    <strong>📱 Opt-In Consent:</strong> By providing your phone number, you consent to receive SMS messages
+                    from The Landry Method. Message frequency may vary. Reply "STOP" to opt out. Standard message rates apply.
+                  </p>
+                </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="agent-name" className="block text-sm font-semibold text-gray-900 mb-2.5">Agent name *</label>
@@ -482,19 +489,7 @@ const Index = () => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-950 text-gray-400 py-12 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-sm leading-relaxed">
-              © 2024 The Landry Method — Portland inspired virtual staging. All staged images include disclosure overlays unless otherwise noted.
-            </p>
-            <p className="text-xs text-gray-500 mt-4">
-              Crafted with care for real estate professionals who value authenticity.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer4Col />
     </div>
   );
 };

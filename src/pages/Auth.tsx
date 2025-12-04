@@ -28,7 +28,13 @@ const loginSchema = z.object({
 });
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  // Check for both custom mode parameter and Supabase's recovery type
+  const isResetMode = searchParams.get("mode") === "reset" || searchParams.get("type") === "recovery";
+  // Check URL for signup mode
+  const isSignupMode = searchParams.get("mode") === "signup";
+  const [isLogin, setIsLogin] = useState(!isSignupMode);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,10 +44,6 @@ export default function Auth() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [deviceFingerprint, setDeviceFingerprint] = useState<string>("");
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  // Check for both custom mode parameter and Supabase's recovery type
-  const isResetMode = searchParams.get("mode") === "reset" || searchParams.get("type") === "recovery";
 
   // Recovery state handling
   const [hasRecoverySession, setHasRecoverySession] = useState(false);
@@ -114,7 +116,12 @@ export default function Auth() {
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    // #region agent log
+    console.log('[DEBUG] handleSubmit called', { isLogin, hasEmail: !!email, hasPassword: !!password, hasFullName: !!fullName });
+    fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:116',message:'handleSubmit called',data:{isLogin,hasEmail:!!email,hasPassword:!!password,hasFullName:!!fullName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
     e.preventDefault();
+    console.log('[DEBUG] Form prevented default, setting loading to true');
     setLoading(true);
 
     try {
@@ -137,17 +144,29 @@ export default function Auth() {
         navigate("/dashboard");
       } else {
         // Validate signup input
+        // #region agent log
+        console.log('[DEBUG] Starting signup validation', { email, hasPassword: !!password, fullName, deviceFingerprint: deviceFingerprint || 'none' });
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:139',message:'Starting signup validation',data:{email,hasPassword:!!password,fullName,deviceFingerprint:deviceFingerprint||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
         const validationResult = signupSchema.safeParse({ 
           email, 
           password, 
           fullName 
         });
         if (!validationResult.success) {
+          // #region agent log
+          console.error('[DEBUG] Validation failed', validationResult.error.errors);
+          fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:145',message:'Validation failed',data:{errors:validationResult.error.errors},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+          // #endregion
           const firstError = validationResult.error.errors[0];
           toast.error(firstError.message);
           setLoading(false);
           return;
         }
+        console.log('[DEBUG] Validation passed');
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:150',message:'Validation passed, calling validate-signup',data:{email},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
 
         // Pre-validate signup to check for abuse patterns
         const { data: abuseValidation, error: validationError } = 
@@ -157,6 +176,10 @@ export default function Auth() {
               deviceFingerprint,
             }
           });
+
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:160',message:'validate-signup response',data:{hasError:!!validationError,error:validationError?.message,allowed:abuseValidation?.allowed,riskScore:abuseValidation?.risk_score,message:abuseValidation?.message},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
 
         if (validationError) {
           toast.error("Validation failed. Please try again.");
@@ -175,7 +198,11 @@ export default function Auth() {
         }
 
         // Proceed with signup, pass metadata
-        const { error } = await supabase.auth.signUp({
+        // #region agent log
+        console.log('[DEBUG] Calling supabase.auth.signUp', { email });
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:177',message:'Calling supabase.auth.signUp',data:{email,hasPassword:!!password},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
+        const { data: signupData, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
@@ -187,13 +214,32 @@ export default function Auth() {
           },
         });
         
-        if (error) throw error;
+        // #region agent log
+        console.log('[DEBUG] signUp response', { hasError: !!error, error: error?.message, hasUser: !!signupData?.user, userId: signupData?.user?.id, emailConfirmed: !!signupData?.user?.email_confirmed_at });
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:190',message:'signUp response',data:{hasError:!!error,error:error?.message,hasUser:!!signupData?.user,userId:signupData?.user?.id,emailConfirmed:!!signupData?.user?.email_confirmed_at},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
+        
+        if (error) {
+          console.error('[DEBUG] SignUp error:', error);
+          throw error;
+        }
+        console.log('[DEBUG] SignUp successful, showing toast and navigating');
         toast.success("Account created! Welcome to The Landry Method!");
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:193',message:'Navigating to dashboard',data:{userId:signupData?.user?.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+        // #endregion
         navigate("/dashboard");
       }
     } catch (error: unknown) {
-      toast.error(error instanceof Error ? error.message : "An error occurred");
+      // #region agent log
+      console.error('[DEBUG] Error caught in handleSubmit', error);
+      fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:194',message:'Error caught in handleSubmit',data:{error:error instanceof Error?error.message:String(error),isError:error instanceof Error},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+      // #endregion
+      const errorMessage = error instanceof Error ? error.message : "An error occurred";
+      console.error('[DEBUG] Showing error toast:', errorMessage);
+      toast.error(errorMessage);
     } finally {
+      console.log('[DEBUG] Setting loading to false');
       setLoading(false);
     }
   };
@@ -461,14 +507,28 @@ export default function Auth() {
                   </CardContent>
 
                   <CardFooter className="flex flex-col gap-4">
-                    <Button type="submit" className="w-full" disabled={loading}>
+                    <Button 
+                      type="submit" 
+                      className="w-full" 
+                      disabled={loading}
+                      onClick={(e) => {
+                        // #region agent log
+                        console.log('[DEBUG] Button clicked', { isLogin, loading, hasEmail: !!email, hasPassword: !!password, hasFullName: !!fullName });
+                        fetch('http://127.0.0.1:7242/ingest/a9be2eb1-769f-4a1f-863d-5c5dac6908cc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Auth.tsx:464',message:'Button clicked',data:{isLogin,loading,hasEmail:!!email,hasPassword:!!password,hasFullName:!!fullName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+                        // #endregion
+                        // Don't prevent default - let form submission proceed
+                      }}
+                    >
                       {loading ? "Loading..." : isLogin ? "Sign In" : "Create Account"}
                     </Button>
 
                     <button
                       type="button"
-                      onClick={() => setIsLogin(!isLogin)}
-                      className="text-sm text-muted-foreground hover:bg-gradient-to-r hover:from-[hsl(280,70%,70%)] hover:via-[hsl(265,65%,55%)] hover:to-[hsl(290,75%,65%)] hover:bg-clip-text hover:text-transparent transition-colors"
+                      onClick={() => {
+                        console.log('[DEBUG] Toggle clicked, switching from', isLogin ? 'login' : 'signup', 'to', !isLogin ? 'login' : 'signup');
+                        setIsLogin(!isLogin);
+                      }}
+                      className="text-sm text-muted-foreground hover:text-primary underline transition-colors mt-2"
                     >
                       {isLogin
                         ? "Don't have an account? Sign up"
