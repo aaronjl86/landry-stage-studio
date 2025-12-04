@@ -27,6 +27,8 @@ const App = () => (
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/gallery" element={<Gallery />} />
       <Route path="/dashboard/credits" element={<Credits />} />
+      {/* Catch-all route: redirect unknown paths to home */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </BrowserRouter>
 );
