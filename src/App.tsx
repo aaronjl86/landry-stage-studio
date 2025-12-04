@@ -9,11 +9,8 @@ import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
 import Gallery from "./pages/Gallery";
 import Credits from "./pages/Credits";
-builder_branch
 import MLSCompliance from "./pages/MLSCompliance";
 import Newsletter from "./pages/Newsletter";
-
-
 
 const App = () => (
   <BrowserRouter>
@@ -24,20 +21,17 @@ const App = () => (
       <Route path="/terms" element={<Terms />} />
       <Route path="/about" element={<About />} />
       <Route path="/cookies" element={<CookiePolicy />} />
- builder_branch
+
       <Route path="/mls-compliance" element={<MLSCompliance />} />
       <Route path="/newsletter" element={<Newsletter />} />
 
-main
       <Route path="/auth" element={<Auth />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/gallery" element={<Gallery />} />
       <Route path="/dashboard/credits" element={<Credits />} />
- builder_branch
 
-      {/* All other routes redirect to landing page */}
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
- main
     </Routes>
   </BrowserRouter>
 );
