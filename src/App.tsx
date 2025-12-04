@@ -21,13 +21,16 @@ const App = () => (
       <Route path="/terms" element={<Terms />} />
       <Route path="/about" element={<About />} />
       <Route path="/cookies" element={<CookiePolicy />} />
+
       <Route path="/mls-compliance" element={<MLSCompliance />} />
       <Route path="/newsletter" element={<Newsletter />} />
+
       <Route path="/auth" element={<Auth />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/gallery" element={<Gallery />} />
       <Route path="/dashboard/credits" element={<Credits />} />
-      {/* Catch-all route: redirect unknown paths to home */}
+
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </BrowserRouter>
