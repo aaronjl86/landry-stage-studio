@@ -30,7 +30,6 @@ const App = () => (
       <Route path="/dashboard/gallery" element={<Gallery />} />
       <Route path="/dashboard/credits" element={<Credits />} />
 
-      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </BrowserRouter>
