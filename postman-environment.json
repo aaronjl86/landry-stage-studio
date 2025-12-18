@@ -1,0 +1,45 @@
+{
+  "id": "landry-stage-studio-env",
+  "name": "Landry Stage Studio - Development",
+  "values": [
+    {
+      "key": "CLOUDFLARE_API_TOKEN",
+      "value": "KDP-YlnhE9ug4vGiSZPLPminO02FjP4jolYBxxQ7",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "CLOUDFLARE_ACCOUNT_ID",
+      "value": "cc533e2d7e99ecb7c4c25f4f32400615",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "PROJECT_NAME",
+      "value": "landry-stage-studio",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "SUPABASE_URL",
+      "value": "https://lcwhbgfcyzefwnoblkkd.supabase.co",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "SUPABASE_ANON_KEY",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxjd2hiZ2ZjeXplZndub2Jsa2tkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0OTAyNTQsImV4cCI6MjA3NTA2NjI1NH0.C_8p4biYHN9hCQc15k6zDPPQdhOgAnI_AHjVb-6n8NQ",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "SUPABASE_JWT_TOKEN",
+      "value": "",
+      "type": "secret",
+      "enabled": true,
+      "description": "Get this from browser localStorage after logging in, or from Supabase auth.getSession()"
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
+
