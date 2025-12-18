@@ -1,0 +1,18 @@
+version: 2
+# Dependabot will run weekly for npm and pip. Change directory if manifests are in subfolders.
+updates:
+  - package-ecosystem: "npm"
+    directory: "/" # change if package.json lives in a subdirectory
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+
+  - package-ecosystem: "pip"
+    directory: "/" # change if requirements.txt or pyproject.toml is in a subdirectory
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
