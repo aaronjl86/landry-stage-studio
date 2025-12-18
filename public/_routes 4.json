@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*",
+    "/images/*",
+    "/fonts/*",
+    "/Proof of Concept Images/*",
+    "/*.png",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.webp",
+    "/*.avif",
+    "/*.svg",
+    "/*.ico",
+    "/*.mp4",
+    "/*.woff2",
+    "/robots.txt",
+    "/placeholder.svg",
+    "/_headers",
+    "/_redirects",
+    "/sitemap.xml",
+    "/manifest.webmanifest",
+    "/cdn-cgi/*"
+  ],
+  "routes": [
+    {
+      "pattern": "/*",
+      "zone_name": "thelandrymethod.com",
+      "serve": "/index.html",
+      "status": 200
+    }
+  ]
+}

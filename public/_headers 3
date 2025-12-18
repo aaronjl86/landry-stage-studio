@@ -1,0 +1,92 @@
+/* 
+  # ===============================
+  # 🔒 Security & Privacy Headers
+  # ===============================
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), fullscreen=(), gyroscope=(), accelerometer=(), magnetometer=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Resource-Policy: same-origin
+  X-Robots-Tag: noai, noimageai
+  Cache-Control: no-store, must-revalidate
+
+  # ===============================
+  # ⚙️ SEO & Indexing Optimization
+  # ===============================
+  X-Robots-Tag: index, follow
+  Link: </sitemap.xml>; rel="sitemap"
+
+  # ===============================
+  # 💾 Progressive Enhancement
+  # ===============================
+  Link: </manifest.webmanifest>; rel="manifest"
+  Service-Worker-Allowed: /
+
+  # ===============================
+  # 🧠 AI & Data Protection
+  # ===============================
+  # The directives below prevent generative AI systems from scraping or training on your content.
+  X-Robots-Tag: noai, noimageai
+  Permissions-Policy: browsing-topics=()
+
+  # ===============================
+  # 🔰 Content Security Policy (CSP)
+  # ===============================
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https: blob:; media-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.supabase.co https://api.cloudflare.com https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+
+  # ===============================
+  # 🧱 Browser Feature Policies
+  # ===============================
+  Expect-CT: enforce, max-age=86400
+  Report-To: {"group":"default","max_age":31536000,"endpoints":[{"url":"https://thelandrymethod.report-uri.com/a/d/g"}]}
+  NEL: {"report_to":"default","max_age":31536000,"success_fraction":0,"failure_fraction":0.1}
+
+  # ===============================
+  # ⚡ Preload & Prefetch Hints
+  # ===============================
+  Link: </assets/fonts/Inter.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
+  Link: </assets/fonts/Inter-Bold.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
+  Link: </assets/fonts/Inter-SemiBold.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
+  Link: </assets/tlm-logo-animated.mp4>; rel=preload; as=video; crossorigin
+  Link: </assets/after-staged-room.webp>; rel=preload; as=image; crossorigin
+  Link: </dashboard>; rel=prefetch; as=document
+  Link: </pricing>; rel=prefetch; as=document
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=604800, immutable
+
+/cdn-cgi/image/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+  Access-Control-Allow-Origin: *
